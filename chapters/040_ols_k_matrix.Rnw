@@ -21,7 +21,7 @@
 \item $\text{rang}(X)=k$
 \item $X$ не являются стохастическими
 \item $\E(\epsilon)=0$
-\item $\Cov(\epsilon)=\sigma^2 I$
+\item $\Var(\epsilon)=\sigma^2 I$
 \end{enumerate}
 то $\hat\beta=(X'X)^{-1}X'y$ являются лучшими оценками в классе линейных несмещённых оценок, то есть BLUE-оценками.
 
@@ -32,7 +32,7 @@
 \item регрессионная модель правильно специфицирована
 \item $\text{rang}(X)=k$
 \item $\E(\epsilon|X)=0$
-\item $\Cov(\epsilon|X)=\sigma^2 I$
+\item $\Var(\epsilon|X)=\sigma^2 I$
 \end{enumerate}
 то $\hat\beta=(X'X)^{-1}X'y$ являются лучшими оценками в классе линейных несмещённых оценок, то есть BLUE-оценками.
 
@@ -69,9 +69,9 @@
 \E(((X'X)^{-1}X'+A)X\beta)+((X'X)^{-1}X'+A)\underbrace{\E(\epsilon)}_{=0}=\\
 =\E((X'X)^{-1}X'X\beta+AX\beta)=\beta+AX\beta
 \end{multline*}
-$$\E(\tilde\beta)=\beta$$
-$$\beta+AX\beta=\beta$$
-$$AX\beta=0$$
+\[\E(\tilde\beta)=\beta\]
+\[\beta+AX\beta=\beta\]
+\[AX\beta=0\]
 Значит, либо $AX=0$, либо $\beta=0$.
 
 Заметим, что при $\beta=0$ при любом $AX$ оценка $\tilde\beta$ будет несмещённой.
@@ -89,21 +89,21 @@ y <- c(1,2,3)
 \end{problem}
 
 \begin{solution}
-$$X'X=\left(\begin{array}{cc}
+\[X'X=\left(\begin{array}{cc}
 3 & 2 \\ 
 2 & 2
-\end{array}\right) $$
-$$(X'X)^{-1}=\left(\begin{array}{cc}
+\end{array}\right) \]
+\[(X'X)^{-1}=\left(\begin{array}{cc}
 1 & -1 \\ 
 -1 & 1.5
-\end{array}\right) $$
+\end{array}\right) \]
 
-$$\Var(\hat\beta_1)=\Var(\hat\beta)_{[1,1]}=\sigma^2$$
-$$\Var(\hat\beta_2)=\Var(\hat\beta)_{[2,2]}=1.5\sigma^2$$
-$$\Cov(\hat\beta_1,\hat\beta_2)=\Var(\hat\beta)_{[1,2]}=-\sigma^2$$
+\[\Var(\hat\beta_1)=\Var(\hat\beta)_{[1,1]}=\sigma^2\]
+\[\Var(\hat\beta_2)=\Var(\hat\beta)_{[2,2]}=1.5\sigma^2\]
+\[\Cov(\hat\beta_1,\hat\beta_2)=\Var(\hat\beta)_{[1,2]}=-\sigma^2\]
 
-$$\corr(\hat\beta_1,\hat\beta_2)=\frac{\Cov(\hat\beta_1,\hat\beta_2)}{\sqrt{\Var(\hat\beta_1)}\Var(\hat\beta_2)}=\\
-\\\frac{\sigma^2}{\sigma\cdot\sqrt{1.5}\sigma}=\sqrt{\frac{2}{3}}=\frac{\sqrt6}{3}$$
+\[\corr(\hat\beta_1,\hat\beta_2)=\frac{\Cov(\hat\beta_1,\hat\beta_2)}{\sqrt{\Var(\hat\beta_1)}\Var(\hat\beta_2)}=\\
+\\\frac{\sigma^2}{\sigma\cdot\sqrt{1.5}\sigma}=\sqrt{\frac{2}{3}}=\frac{\sqrt6}{3}\]
 Показательно, что значения $y$ здесь не используются.
 
 Ответ: $\frac{\sqrt6}{3}$.
@@ -118,22 +118,22 @@ alpha <- matrix(as.integer(c(1,0,0,1,1,0,0,1,1)), nrow=3, byrow = FALSE, dimname
 \end{problem}
 
 \begin{solution}
-$$\hat\beta=(X'X)^{-1}X'y$$
-$$X'X\hat\beta=X'y$$
-$$\hat\alpha=(D'X'XD)^{-1}D'X'y$$
+\[\hat\beta=(X'X)^{-1}X'y\]
+\[X'X\hat\beta=X'y\]
+\[\hat\alpha=(D'X'XD)^{-1}D'X'y\]
 поэтому
-$$\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta$$
-$$D^{-1}=\left(\begin{array}{ccc}
+\[\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta\]
+\[D^{-1}=\left(\begin{array}{ccc}
 1 & -1 & 1\\ 
 0 & 1 & -1\\
 0 & 0 & 1
-\end{array}\right)$$
+\end{array}\right)\]
 
-$$\begin{cases}
+\[\begin{cases}
 \hat\alpha_1=\beta_1-\beta_2+\beta_3\\
 \hat\alpha_2=\beta_2-\beta_3\\
 \hat\alpha_3=\beta_3
-\end{cases}$$
+\end{cases}\]
 \end{solution}
 
 
@@ -145,22 +145,22 @@ alpha2 <- matrix(as.integer(c(1,0,0,1,1,0,1,1,1)), nrow=3, ncol=3, byrow = FALSE
 \end{problem}
 
 \begin{solution}
-$$\hat\beta=(X'X)^{-1}X'y$$
-$$X'X\hat\beta=X'y$$
-$$\hat\alpha=(D'X'XD)^{-1}D'X'y$$
+\[\hat\beta=(X'X)^{-1}X'y\]
+\[X'X\hat\beta=X'y\]
+\[\hat\alpha=(D'X'XD)^{-1}D'X'y\]
 поэтому
-$$\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta$$
-$$D^{-1}=\left(\begin{array}{ccc}
+\[\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta\]
+\[D^{-1}=\left(\begin{array}{ccc}
 1 & -1 & 0\\ 
 0 & 1 & -1\\
 0 & 0 & 1
-\end{array}\right)$$
+\end{array}\right)\]
 
-$$\begin{cases}
+\[\begin{cases}
 \hat\alpha_1=\beta_1-\beta_2\\
 \hat\alpha_2=\beta_2-\beta_3\\
 \hat\alpha_3=\beta_3
-\end{cases}$$
+\end{cases}\]
 \end{solution}
 
 
@@ -172,22 +172,22 @@ alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE
 \end{problem}
 
 \begin{solution}
-$$\hat\beta=(X'X)^{-1}X'y$$
-$$X'X\hat\beta=X'y$$
-$$\hat\alpha=(D'X'XD)^{-1}D'X'y$$
+\[\hat\beta=(X'X)^{-1}X'y\]
+\[X'X\hat\beta=X'y\]
+\[\hat\alpha=(D'X'XD)^{-1}D'X'y\]
 поэтому
-$$\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta$$
-$$D^{-1}=\left(\begin{array}{ccc}
+\[\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta\]
+\[D^{-1}=\left(\begin{array}{ccc}
 1 & 0 & 0\\ 
 0 & 1 & -1\\
 0 & 0 & 1
-\end{array}\right)$$
+\end{array}\right)\]
 
-$$\begin{cases}
+\[\begin{cases}
 \hat\alpha_1=\beta_1\\
 \hat\alpha_2=\beta_2-\beta_3\\
 \hat\alpha_3=\beta_3
-\end{cases}$$
+\end{cases}\]
 \end{solution}
 
 
@@ -203,7 +203,7 @@ $$\begin{cases}
 \end{multline*}
 
 Да, верно.
-$$\hy'\he=(\he'\hy)'=0$$
+\[\hy'\he=(\he'\hy)'=0\]
 так как выше доказано, что $he'\hy=0$.
 \end{solution}
 
@@ -261,18 +261,18 @@ $$\hy'\he=(\he'\hy)'=0$$
 \end{problem}
 \begin{solution}
 Да, верно.
-$$R^2=\frac{ESS}{TSS}=\frac{TSS-RSS}{TSS}=1-\frac{RSS}{TSS}$$
-$$TSS=\sum_{i=1}^n(y_i-\bar y)^2=y'\left(I-\frac{\overrightarrow{1}'}{\overrightarrow{1}^2}\right)y$$
+\[R^2=\frac{ESS}{TSS}=\frac{TSS-RSS}{TSS}=1-\frac{RSS}{TSS}\]
+\[TSS=\sum_{i=1}^n(y_i-\bar y)^2=y'\left(I-\frac{\overrightarrow{1}'}{\overrightarrow{1}^2}\right)y\]
 не зависит от $X$.
-$$RSS_a=\sum_{i=1}^n(y_i-\hat y_i)^2=y'(I-X(X'X)^{-1}X')y$$
-$$RSS_b=y'(I-Z(Z'Z)^{-1}Z')y=y'(I-XD(D'X'XD)^{-1}D'X')y=$$
+\[RSS_a=\sum_{i=1}^n(y_i-\hat y_i)^2=y'(I-X(X'X)^{-1}X')y\]
+\[RSS_b=y'(I-Z(Z'Z)^{-1}Z')y=y'(I-XD(D'X'XD)^{-1}D'X')y=\]
 так как $D$ является квадратной и невырожденной, то используя формулу $(AB)^{-1}=B^{-1}A^{-1}$, получим:
 \begin{multline*}
 RSS_b=y'(I-XD(D'X'XD)^{-1}D'X')y=y'(I-XDD^{-1}(X'X)^{-1}D'^{-1}D'X')y=\\=y'(I-X(X'X)^{-1}X')y=RSS_a
 \end{multline*}
 
 Значит,
-$$R^2_a=1-\frac{RSS_a}{TSS_a}=1-\frac{RSS_b}{TSS_b}=R^2_b$$
+\[R^2_a=1-\frac{RSS_a}{TSS_a}=1-\frac{RSS_b}{TSS_b}=R^2_b\]
 \end{solution}
 
 
@@ -281,8 +281,8 @@ $$R^2_a=1-\frac{RSS_a}{TSS_a}=1-\frac{RSS_b}{TSS_b}=R^2_b$$
 \end{problem}
 \begin{solution}
 Да, верно.
-$$RSS_1=\sum_{i=1}^n(y_i-\hat y_i)^2=y'(I-X(X'X)^{-1}X')y$$
-$$RSS_2=y'(I-Z(Z'Z)^{-1}Z')y=y'(I-XD(D'X'XD)^{-1}D'X')y=$$
+\[RSS_1=\sum_{i=1}^n(y_i-\hat y_i)^2=y'(I-X(X'X)^{-1}X')y\]
+\[RSS_2=y'(I-Z(Z'Z)^{-1}Z')y=y'(I-XD(D'X'XD)^{-1}D'X')y=\]
 так как $D$ является квадратной и невырожденной, то используя формулу $(AB)^{-1}=B^{-1}A^{-1}$, получим:
 \begin{multline*}
 RSS_2=y'(I-XD(D'X'XD)^{-1}D'X')y=y'(I-XDD^{-1}(X'X)^{-1}D'^{-1}D'X')y=\\=y'(I-X(X'X)^{-1}X')y=RSS_1
@@ -451,7 +451,7 @@ x_x <- solve(xx)
 \item Нижняя граница $= -2.920$, верхняя граница $= 2.920$
 \item Поскольку $T_{obs} = 1.7321$, что принадлежит промежутку от -2.920 до 2.920, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
-\item $p-value(T_{obs}) = \mathbb{P}(|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $t-$распределения с $n - k = 5 - 3 = 2$ степенями свободы в точке $|T_{obs}|$. $p-value(T_{obs}) = 2tcdf(-|T_{obs}|, n - k) = 2tcdf(-1.7321,2) = 0.2253$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_2 = 0$ не может быть отвергнута
+\item $p-value(T_{obs}) = \P (|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $t-$распределения с $n - k = 5 - 3 = 2$ степенями свободы в точке $|T_{obs}|$. $p-value(T_{obs}) = 2tcdf(-|T_{obs}|, n - k) = 2tcdf(-1.7321,2) = 0.2253$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_2 = 0$ не может быть отвергнута
 \item Проверка гипотезы
 \begin{enumerate}
 \item $T = \frac{\hb_2 - \beta_2}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
@@ -485,7 +485,7 @@ x_x <- solve(xx)
 \item Нижняя граница $= 0$, верхняя граница $= 19$
 \item Поскольку $T_{obs} = 4$, что принадлежит промежутку от $0$ до $19$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$. Следовательно, регрессия в целом незначима. Напомним, что $R^2 = 0.8$, то есть он высокий. Но при этом регрессия <<в целом>> незначима. Такой эффект может возникать при малом объёме выборки, например, таком, как в данной задаче
 \end{enumerate}
-\item $p-value(T_{obs}) = \mathbb{P}(|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $F-$распределения c $k = 3$ и $n - k = 5 - 3 = 2$ степенями свободы в точке $T_{obs}$. $p-value(T_{obs}) = 1 - fcdf(-|T_{obs}|, n - k) = 1 - fcdf(4,2) = 0.2$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_2 = \beta_3 = 0$ не может быть отвергнута. Таким образом, регрессия <<в целом>> незначима
+\item $p-value(T_{obs}) = \P (|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $F-$распределения c $k = 3$ и $n - k = 5 - 3 = 2$ степенями свободы в точке $T_{obs}$. $p-value(T_{obs}) = 1 - fcdf(-|T_{obs}|, n - k) = 1 - fcdf(4,2) = 0.2$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_2 = \beta_3 = 0$ не может быть отвергнута. Таким образом, регрессия <<в целом>> незначима
 \item Проверка гипотезы
 \begin{enumerate}
 \item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
@@ -806,7 +806,7 @@ $X'X=\left(
 \begin{problem}
 Теорема Фриша-Вау. Регрессоры разбиты на две группы: матрицу $X_1$ размера $n\times k_1$ и матрицу $X_2$ размера $n\times k_2$. Рассмотрим две процедуры:
 \begin{enumerate}
-\item[M1.] Строим регрессия вектора $y$ на все регрессоры, т.е. оцениваем модель:
+\item[M1.] Строим регрессию вектора $y$ на все регрессоры, т.е. оцениваем модель:
 \[ 
 y=X\beta + \e = X_1 \beta_1 + X_2 \beta_2 +\e 
 \]
@@ -855,8 +855,15 @@ X_2'
 Запишем и докажем формулу Фробениуса для обращения блочных матриц.
 
 Формула Фробениуса:
-$$\begin{bmatrix} A & B \\ C & D \\ \end{bmatrix}^{-1}=
-\begin{pmatrix} A^{-1} +A^{-1} BH^{-1} CA^{-1}  & -A^{-1} BH^{-1}\\ -H^{-1} CA^{-1}  & H^{-1}\end{pmatrix} $$
+\[
+\begin{bmatrix} A & B \\ 
+C & D \\ 
+\end{bmatrix}^{-1}=
+\begin{pmatrix} 
+A^{-1} +A^{-1} BH^{-1} CA^{-1}  & -A^{-1} BH^{-1}\\
+ -H^{-1} CA^{-1}  & H^{-1}
+\end{pmatrix} 
+\]
 где $H=D-CA^{-1}B$.
 
 Докажем формулу, обращая матрицу методом Гаусса. Умножим слева на $\left(\begin{array}{cc}
@@ -909,16 +916,16 @@ A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} & -A^{-1}B(D-CA^{-1}B)^{-1}\\
 \end{multline*}
 
 По формуле Фробениуса получим, что
-$$\left(\begin{array}{cc}
+\[\left(\begin{array}{cc}
 X_1'X_1 & X_1'X_2\\ 
 X_2'X_1 & X_2'X_2
 \end{array}\right)^{-1}=
 \left(\begin{array}{cc}
 (X_1'X_1)^{-1}+(X_1'X_1)^{-1}X_1'X_2H^{-1}X_2'X_1(X_1'X_1)^{-1} & -(X_1'X_1)^{-1}X_1'X_2H^{-1}\\ 
 -H^{-1}X_2'X_1(X_1'X_1)^{-1} & H^{-1}
-\end{array}\right),$$
+\end{array}\right),\]
 где $H=X_2'X_2-X_2'X_1(X_1'X_1)^{-1}X_1'X_2$. Верхняя строка в данном пункте не важна, и сейчас её опустим. Заметим, что
-$$H=X_2'X_2-X_2'X_1(X_1'X_1)^{-1}X_1'X_2=X_2'(I-X_1(X_1'X_1)^{-1}X_1')X_2=X_2'M_1X_2$$
+\[H=X_2'X_2-X_2'X_1(X_1'X_1)^{-1}X_1'X_2=X_2'(I-X_1(X_1'X_1)^{-1}X_1')X_2=X_2'M_1X_2\]
 Итак,
 \begin{multline*}
 \hat\beta=\left(\begin{array}{c}
@@ -955,9 +962,9 @@ H^{-1}X_2'M_1y
 \end{array}\right)
 \end{multline*}
 
-$$\hb_2=(X_2'M_1X_2)^{-1}X_2'M_1y$$
+\[\hb_2=(X_2'M_1X_2)^{-1}X_2'M_1y\]
 Заметим свойства матрицы-проектора $M_1$. 
-$$M_1'=(I-X_1(X_1'X_1)^{-1}X_1')'=I-X_1(X_1'X_1)^{-1}X_1'=M_1$$
+\[M_1'=(I-X_1(X_1'X_1)^{-1}X_1')'=I-X_1(X_1'X_1)^{-1}X_1'=M_1\]
 \begin{multline*}
 (M_1)^2=(I-X_1(X_1'X_1)^{-1}X_1')^2=I-2X_1(X_1'X_1)^{-1}X_1'+X_1(X_1'X_1)^{-1}X_1'\cdot X_1(X_1'X_1)^{-1}X_1'=\\
 =I-X_1(X_1'X_1)^{-1}X_1'=M_1
@@ -969,20 +976,20 @@ $$M_1'=(I-X_1(X_1'X_1)^{-1}X_1')'=I-X_1(X_1'X_1)^{-1}X_1'=M_1$$
 ((M_1X_2)'M_1X_2)^{-1}(M_1X_2)'M_1y
 \end{multline*}
 но ведь и
-$$
+\[
 \hat\gamma_2=
 ((M_1X_2)'M_1X_2)^{-1}(M_1X_2)'M_1y
-$$
+\]
 Значит, $\hb_2=\hat\gamma_2=
 ((M_1X_2)'M_1X_2)^{-1}(M_1X_2)'M_1y$
 , что и требовалось доказать.
 
 2. Да, верно.
-$$\hy=X_1\hb_1+X_2\hb_2$$
+\[\hy=X_1\hb_1+X_2\hb_2\]
 
-$$M_1 \he=M_1y-M_1\hy=M_1y-M_1(X_1\hat\beta_1+X_2\hb_2)=M_1y-M_1X_2\hb_2-M_1X_1\hat\beta_1$$
-$$M_1X_1=(I-X_1(X_1'X_1)^{-1}X_1')X_1=X_1-X_1(X_1'X_1)^{-1}X_1'X_1=0$$
-$$M_1 \he=M_1y-M_1X_2\hb_2=M_1y-M_1X_2\hat\gamma_2=\hat u$$
+\[M_1 \he=M_1y-M_1\hy=M_1y-M_1(X_1\hat\beta_1+X_2\hb_2)=M_1y-M_1X_2\hb_2-M_1X_1\hat\beta_1\]
+\[M_1X_1=(I-X_1(X_1'X_1)^{-1}X_1')X_1=X_1-X_1(X_1'X_1)^{-1}X_1'X_1=0\]
+\[M_1 \he=M_1y-M_1X_2\hb_2=M_1y-M_1X_2\hat\gamma_2=\hat u\]
 
 \begin{multline*}
 M_1\he=M_1(y-\hy)=M_1(I-X(X'X)^{-1}X')y=(I-X(X'X)^{-1}X')y
@@ -1014,8 +1021,8 @@ M_1\he=M_1(y-\hy)=M_1(I-X(X'X)^{-1}X')y=(I-X(X'X)^{-1}X')y
 
 \begin{solution}
 Докажем несмещенность МНК-оценок.
-$$\E\hb = \E\left( (X^T X)^{-1} X^T y \right) = (X^T X)^{-1} X^T \E(y) = $$
-$$= (X^T X)^{-1} X^T \E(X\beta + \e) = (X^T X)^{-1} X^T X\beta = \beta$$
+\[\E\hb = \E\left( (X^T X)^{-1} X^T y \right) = (X^T X)^{-1} X^T \E(y) = \]
+\[= (X^T X)^{-1} X^T \E(X\beta + \e) = (X^T X)^{-1} X^T X\beta = \beta\]
 Обозначим $\varphi(X, y) = (X^T X)^{-1} X^T y$. Тогда $\hb = \varphi(X, y)$. Покажем, что функция $\varphi$ линейна по переменной $y$.
 \begin{enumerate}
 \item $\varphi(X, \lambda \cdot y) = (X^T X)^{-1} X^T (\lambda \cdot y) = \lambda (X^T X)^{-1} X^T y = \lambda \cdot \varphi(X, y)$
@@ -1030,7 +1037,7 @@ $$= (X^T X)^{-1} X^T \E(X\beta + \e) = (X^T X)^{-1} X^T X\beta = \beta$$
 
 \begin{solution}
 Нет, так как для функции $\varphi(X, y) = (X^T X)^{-1} X^T y$ не выполнено, например, свойство однородности по переменной $X$. Действительно,
-$$\varphi(X, \lambda \cdot y) = ((\lambda \cdot X)^T (\lambda \cdot X))^{-1} (\lambda \cdot X)^T y = \frac{1}{\lambda} \cdot (X^T X)^{-1} X^T y = \frac{1}{\lambda} \varphi(X, y)$$.
+\[\varphi(X, \lambda \cdot y) = ((\lambda \cdot X)^T (\lambda \cdot X))^{-1} (\lambda \cdot X)^T y = \frac{1}{\lambda} \cdot (X^T X)^{-1} X^T y = \frac{1}{\lambda} \varphi(X, y)\].
 \end{solution}
 
 \begin{problem}
@@ -1039,13 +1046,13 @@ $$\varphi(X, \lambda \cdot y) = ((\lambda \cdot X)^T (\lambda \cdot X))^{-1} (\l
 
 \begin{solution} 
 $\tilde{\beta} = (X^T CX)^{-1} X^T Cy$, где
-$$C = \begin{bmatrix}
+\[C = \begin{bmatrix}
 1 & 0 & 0 & \cdots & 0 \\
 0 & 2 & 0 & \cdots & 0 \\
 0 & 0 & 3 & \ddots & \vdots \\
 \vdots & \vdots & \ddots & \ddots & 0 \\
 0 & 0 & \cdots & 0 & n \\
-\end{bmatrix} $$
+\end{bmatrix} \]
 \end{solution}
 
 
@@ -1243,7 +1250,9 @@ $t = \frac{\hb_2}{\sqrt{\Var(\hb_2)}} = \frac{6.1234}{\sqrt{10.269}} = 1.9109 \R
 
 
 \begin{problem}
-По данным для 15 фирм ($n = 15$) была оценена производственная функция Кобба-Дугласа: $\ln Q_i = \beta_1 + \beta_2 \ln L_i + \beta_3 \ln K_i + \e_i$. Полученные оценки: $$\underset{s.e.}{\widehat{\ln Q}} = \underset{(4.48)}{0.5} + \underset{(0.7)}{0.76} \ln L + \underset{(0.138)}{0.19} \ln K$$где $Q$ --- выпуск, $L$ --- трудозатраты, $K$ --- капиталовложения. Матрица обратная к матрице регрессоров имеет вид:
+По данным для 15 фирм ($n = 15$) была оценена производственная функция Кобба-Дугласа: $\ln Q_i = \beta_1 + \beta_2 \ln L_i + \beta_3 \ln K_i + \e_i$. Полученные оценки: 
+\[\underset{s.e.}{\widehat{\ln Q}} = \underset{(4.48)}{0.5} + \underset{(0.7)}{0.76} \ln L + \underset{(0.138)}{0.19} \ln K\]
+где $Q$ --- выпуск, $L$ --- трудозатраты, $K$ --- капиталовложения. Матрица обратная к матрице регрессоров имеет вид:
 
 $(X^T X)^{-1} = \begin{bmatrix}
 121573 & -19186 & 3718 \\
@@ -1289,15 +1298,15 @@ $t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3
 
 Значит, гипотеза не отвергается на любом <<разумном>> уровне значимости.
 
-\item Мы знаем, что $\frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \sim t_{n-k} = t_{15-3}$, поэтому построить доверительный интервал для $\beta_2 + \beta_3$ не составляет труда. $\mathbb{P}\left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \right| < t^* \right) = 0.95$
+\item Мы знаем, что $\frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \sim t_{n-k} = t_{15-3}$, поэтому построить доверительный интервал для $\beta_2 + \beta_3$ не составляет труда. $\P \left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \right| < t^* \right) = 0.95$
 
 Обозначим $se=\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}$, тогда:
 
 \begin{multline}
-\mathbb{P}\left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \right| < t^* \right) = \\
-\mathbb{P}\left( -t^* se < \hb_2 + \hb_3 - \beta_2 - \beta_3 < t^* se \right) = \\ 
-\mathbb{P}\left( -t^*se  - (\hb_2 + \hb_3) < - \beta_2 - \beta_3  < -(\hb_2 + \hb_3) + t^* se \right) =\\ 
-\mathbb{P}\left( (\hb_2 + \hb_3) + t^* se 
+\P \left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \right| < t^* \right) = \\
+\P \left( -t^* se < \hb_2 + \hb_3 - \beta_2 - \beta_3 < t^* se \right) = \\ 
+\P \left( -t^*se  - (\hb_2 + \hb_3) < - \beta_2 - \beta_3  < -(\hb_2 + \hb_3) + t^* se \right) =\\ 
+\P \left( (\hb_2 + \hb_3) + t^* se 
 > \beta_2 + \beta_3 
 > (\hb_2 + \hb_3) - t^* se \right) 
 \end{multline}
@@ -1318,18 +1327,18 @@ $t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3
 \begin{solution}
 
 Метод наименьших квадратов:
-$$\he'\he\rightarrow \min_{\hb}$$
-$$(y-\hy)'(y-\hy)\rightarrow\min_{\hb}$$
-$$(y-X\hb)'(y-X\hb)\rightarrow\min_{\hb}$$
-$$y'y-\hb' X'y-y'X\hb+\hb'X'X\hb\rightarrow\min_{\hb}$$
+\[\he'\he\rightarrow \min_{\hb}\]
+\[(y-\hy)'(y-\hy)\rightarrow\min_{\hb}\]
+\[(y-X\hb)'(y-X\hb)\rightarrow\min_{\hb}\]
+\[y'y-\hb' X'y-y'X\hb+\hb'X'X\hb\rightarrow\min_{\hb}\]
 
 Воспользуемся тем, что : $\frac{\partial x'A}{\partial x'}=A'$, $\frac{\partial Ax}{\partial x'}=A$,
 $\frac{\partial x'Ax}{\partial x'}=x'(A'+A)$
 Условие первого порядка:
-$$-2(X'y)'+(X'X+(X'X)')\hb'=0$$
-$$-2X'y+2\hb X'X=0$$
+\[-2(X'y)'+(X'X+(X'X)')\hb'=0\]
+\[-2X'y+2\hb X'X=0\]
 и
-$$\hb=(X'X)^{-1}X'y$$
+\[\hb=(X'X)^{-1}X'y\]
 
 \begin{multline*}
 \Var(\hat\beta)=\Var((X'X)^{-1}X'y)=(X'X)^{-1}X'\Var(y)((X'X)^{-1}X')'=\\
@@ -1384,10 +1393,10 @@ xtable(vcov(model))
 \end{problem}
 
 \begin{solution}
-$$\widehat{Var}(\hb_1+\hb_2-\hb_3)=\Var(\hb1)+\Var(\hb2)+\Var(\hb3)+
-2\Cov(\hb1,\hb2)-2\Cov(\hb1,\hb3)-2\Cov(\hb2,\hb3)$$
+\[\widehat{Var}(\hb_1+\hb_2-\hb_3)=\Var(\hb1)+\Var(\hb2)+\Var(\hb3)+
+2\Cov(\hb1,\hb2)-2\Cov(\hb1,\hb3)-2\Cov(\hb2,\hb3)\]
 
-$$\widehat{Var}(\hb_1+\hb_2-\hb_3)=1/3+4/3+2-2/3+2=5$$
+\[\widehat{Var}(\hb_1+\hb_2-\hb_3)=1/3+4/3+2-2/3+2=5\]
 \end{solution}
 
 \begin{problem}
@@ -1419,7 +1428,7 @@ $$\widehat{Var}(\hb_1+\hb_2-\hb_3)=1/3+4/3+2-2/3+2=5$$
 Из того, что $\widehat{Var}(\hb)=\sigma^2\cdot (X'X)^{-1}$ видно, что $\sigma^2=\frac13$.
 
 $RSS=\sigma^2\cdot(n-k)=1/3\cdot 2=2/3$
-$$R^2=49\frac13/50=148/150$$
+\[R^2=49\frac13/50=148/150\]
 
 
 $F=\frac{R^2/(k-1)}{(1-R^2)/(n-k)}=\frac{148/2}{2/2}=74$
