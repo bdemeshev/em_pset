@@ -11,6 +11,51 @@
 \end{problem}
 
 \begin{solution}
+\begin{enumerate}
+\item 
+В случае нестохастических регрессоров:
+
+Пусть дана регрессионная модель $y=X\beta+\epsilon$ с $k$ регрессорами, включая свободный член и $n$ наблюдениями, тогда если
+\begin{enumerate}
+\item регрессионная модель правильно специфицирована
+\item $\text{rang}(X)=k$
+\item $X$ не являются стохастическими
+\item $\E(\epsilon)=0$
+\item $\Cov(\epsilon)=\sigma^2 I$
+\end{enumerate}
+то $\hat\beta=(X'X)^{-1}X'y$ являются лучшими оценками в классе линейных несмещённых оценок, то есть BLUE-оценками.
+
+В случае стохастических регрессоров:
+
+Пусть дана регрессионная модель $y=X\beta+\epsilon$ с $k$ регрессорами, включая свободный член и $n$ наблюдениями, тогда если
+\begin{enumerate}
+\item регрессионная модель правильно специфицирована
+\item $\text{rang}(X)=k$
+\item $\E(\epsilon|X)=0$
+\item $\Cov(\epsilon|X)=\sigma^2 I$
+\end{enumerate}
+то $\hat\beta=(X'X)^{-1}X'y$ являются лучшими оценками в классе линейных несмещённых оценок, то есть BLUE-оценками.
+
+\item
+Да, верно. В самом деле, 
+\begin{multline*}
+\E(\hat\beta)=\E((X'X)^{-1}X'y)=(X'X)^{-1}X'\E(y)=(X'X)^{-1}X'\E(X\beta+\epsilon)=\\
+=(X'X)^{-1}X'X\E(\beta)+(X'X)^{-1}X'\underbrace{\E(\epsilon)}_{=0}=\beta
+\end{multline*}
+
+
+\item
+\begin{multline*}
+\Var(\hat\beta)=\Var((X'X)^{-1}X'y)=(X'X)^{-1}X'\Var(y)((X'X)^{-1}X')'=\\
+=(X'X)^{-1}X'\Var(X\beta+\epsilon)X(X'X)^{-1}
+\end{multline*}
+Так как $\beta$ является константой, то $\Var(X\beta)=0$. Тогда 
+\begin{multline*}
+\Var(\hat\beta)=(X'X)^{-1}X'\Var(X\beta+\epsilon)X(X'X)^{-1}=\\=(X'X)^{-1}X'\Var(\epsilon)X(X'X)^{-1}=
+(X'X)^{-1}X'\sigma^2X(X'X)^{-1}=\\=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}=\sigma^2(X'X)^{-1}
+\end{multline*}
+\end{enumerate}
+
 \end{solution}
 
 \begin{problem} 
@@ -18,6 +63,18 @@
 \end{problem}
 
 \begin{solution}
+Да, в общем случае (кроме случая $\beta=0$ это верно. Так как $\tilde\beta$ является несмещённой, то $\E(\tilde\beta)=\beta$.
+\begin{multline*}
+\E(\tilde\beta)=\E(((X'X)^{-1}X'+A)y)=\E[((X'X)^{-1}X'+A)(X\beta+\epsilon)]=\\=
+\E(((X'X)^{-1}X'+A)X\beta)+((X'X)^{-1}X'+A)\underbrace{\E(\epsilon)}_{=0}=\\
+=\E((X'X)^{-1}X'X\beta+AX\beta)=\beta+AX\beta
+\end{multline*}
+$$\E(\tilde\beta)=\beta$$
+$$\beta+AX\beta=\beta$$
+$$AX\beta=0$$
+Значит, либо $AX=0$, либо $\beta=0$.
+
+Заметим, что при $\beta=0$ при любом $AX$ оценка $\tilde\beta$ будет несмещённой.
 \end{solution}
 
 
@@ -32,6 +89,24 @@ y <- c(1,2,3)
 \end{problem}
 
 \begin{solution}
+$$X'X=\left(\begin{array}{cc}
+3 & 2 \\ 
+2 & 2
+\end{array}\right) $$
+$$(X'X)^{-1}=\left(\begin{array}{cc}
+1 & -1 \\ 
+-1 & 1.5
+\end{array}\right) $$
+
+$$\Var(\hat\beta_1)=\Var(\hat\beta)_{[1,1]}=\sigma^2$$
+$$\Var(\hat\beta_2)=\Var(\hat\beta)_{[2,2]}=1.5\sigma^2$$
+$$\Cov(\hat\beta_1,\hat\beta_2)=\Var(\hat\beta)_{[1,2]}=-\sigma^2$$
+
+$$\corr(\hat\beta_1,\hat\beta_2)=\frac{\Cov(\hat\beta_1,\hat\beta_2)}{\sqrt{\Var(\hat\beta_1)}\Var(\hat\beta_2)}=\\
+\\\frac{\sigma^2}{\sigma\cdot\sqrt{1.5}\sigma}=\sqrt{\frac{2}{3}}=\frac{\sqrt6}{3}$$
+Показательно, что значения $y$ здесь не используются.
+
+Ответ: $\frac{\sqrt6}{3}$.
 \end{solution}
 
 
@@ -43,6 +118,22 @@ alpha <- matrix(as.integer(c(1,0,0,1,1,0,0,1,1)), nrow=3, byrow = FALSE, dimname
 \end{problem}
 
 \begin{solution}
+$$\hat\beta=(X'X)^{-1}X'y$$
+$$X'X\hat\beta=X'y$$
+$$\hat\alpha=(D'X'XD)^{-1}D'X'y$$
+поэтому
+$$\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta$$
+$$D^{-1}=\left(\begin{array}{ccc}
+1 & -1 & 1\\ 
+0 & 1 & -1\\
+0 & 0 & 1
+\end{array}\right)$$
+
+$$\begin{cases}
+\hat\alpha_1=\beta_1-\beta_2+\beta_3\\
+\hat\alpha_2=\beta_2-\beta_3\\
+\hat\alpha_3=\beta_3
+\end{cases}$$
 \end{solution}
 
 
@@ -54,6 +145,22 @@ alpha2 <- matrix(as.integer(c(1,0,0,1,1,0,1,1,1)), nrow=3, ncol=3, byrow = FALSE
 \end{problem}
 
 \begin{solution}
+$$\hat\beta=(X'X)^{-1}X'y$$
+$$X'X\hat\beta=X'y$$
+$$\hat\alpha=(D'X'XD)^{-1}D'X'y$$
+поэтому
+$$\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta$$
+$$D^{-1}=\left(\begin{array}{ccc}
+1 & -1 & 0\\ 
+0 & 1 & -1\\
+0 & 0 & 1
+\end{array}\right)$$
+
+$$\begin{cases}
+\hat\alpha_1=\beta_1-\beta_2\\
+\hat\alpha_2=\beta_2-\beta_3\\
+\hat\alpha_3=\beta_3
+\end{cases}$$
 \end{solution}
 
 
@@ -65,6 +172,22 @@ alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE
 \end{problem}
 
 \begin{solution}
+$$\hat\beta=(X'X)^{-1}X'y$$
+$$X'X\hat\beta=X'y$$
+$$\hat\alpha=(D'X'XD)^{-1}D'X'y$$
+поэтому
+$$\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta$$
+$$D^{-1}=\left(\begin{array}{ccc}
+1 & 0 & 0\\ 
+0 & 1 & -1\\
+0 & 0 & 1
+\end{array}\right)$$
+
+$$\begin{cases}
+\hat\alpha_1=\beta_1\\
+\hat\alpha_2=\beta_2-\beta_3\\
+\hat\alpha_3=\beta_3
+\end{cases}$$
 \end{solution}
 
 
@@ -72,7 +195,16 @@ alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE
 Пусть $y = X\beta + \e$ --- регрессионная модель. Верно ли, что $\hat{\e}'\hat{y}=0$ и $\hat{y}'\hat{\e}=0$?
 \end{problem}
 \begin{solution}
-да, да
+Да, верно.
+\begin{multline*}
+\he'\hy=(y-\hy)'\hy=(y-X\hat\beta)'X\hat\beta=(y-X(X'X)^{-1}X'y)'X(X'X)^{-1}X'y=\\=
+((I-X(X'X)^{-1}X')y)'X(X'X)^{-1}X'y=y'(I-X(X'X)^{-1}X')X(X'X)^{-1}X'y=\\
+=y'(X(X'X)^{-1}X'-X(X'X)^{-1}X'X(X'X)^{-1}X')y=y'(X(X'X)^{-1}X'-X(X'X)^{-1}X')y=0
+\end{multline*}
+
+Да, верно.
+$$\hy'\he=(\he'\hy)'=0$$
+так как выше доказано, что $he'\hy=0$.
 \end{solution}
 
 \begin{problem}
@@ -128,6 +260,19 @@ alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE
 Верно ли, что при невырожденном преобразовании факторов $R^2$ не меняется? А именно, пусть заданы две регрессионные модели: $y = X\beta + \e$ и $y = Z\alpha + u$, где $y$ --- вектор размера $n \times 1$, $X$ и $Z$ --- матрицы размера $n \times k$, $\beta$ и $\alpha$ --- вектора рамзера $k \times 1$, $\e$ и $u$ --- вектора размера $n \times 1$, а также $Z=XD$, $\det(D) \not= 0.$ Верно ли, что коэффициенты детерминации представленных выше моделей равны между собой?
 \end{problem}
 \begin{solution}
+Да, верно.
+$$R^2=\frac{ESS}{TSS}=\frac{TSS-RSS}{TSS}=1-\frac{RSS}{TSS}$$
+$$TSS=\sum_{i=1}^n(y_i-\bar y)^2=y'\left(I-\frac{\overrightarrow{1}'}{\overrightarrow{1}^2}\right)y$$
+не зависит от $X$.
+$$RSS_a=\sum_{i=1}^n(y_i-\hat y_i)^2=y'(I-X(X'X)^{-1}X')y$$
+$$RSS_b=y'(I-Z(Z'Z)^{-1}Z')y=y'(I-XD(D'X'XD)^{-1}D'X')y=$$
+так как $D$ является квадратной и невырожденной, то используя формулу $(AB)^{-1}=B^{-1}A^{-1}$, получим:
+\begin{multline*}
+RSS_b=y'(I-XD(D'X'XD)^{-1}D'X')y=y'(I-XDD^{-1}(X'X)^{-1}D'^{-1}D'X')y=\\=y'(I-X(X'X)^{-1}X')y=RSS_a
+\end{multline*}
+
+Значит,
+$$R^2_a=1-\frac{RSS_a}{TSS_a}=1-\frac{RSS_b}{TSS_b}=R^2_b$$
 \end{solution}
 
 
@@ -135,6 +280,13 @@ alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE
 Верно ли, что при невырожденном преобразовании факторов $RSS$ не меняется. А именно, пусть заданы две регрессиионные модели: $y = X\beta + \e$ и $y = Z\alpha + u$, где $y$ --- вектор размера $n \times 1$, $X$ и $Z$ --- матрицы размера $n \times k$, $\beta$ и $\alpha$ --- вектора рамзера $k \times 1$, $\e$ и $u$ --- вектора размера $n \times 1$, а также $Z=XD$, $\det(D) \not= 0.$ Верно ли, что сумма квадратов остатков в представленных выше моделях равны между собой?
 \end{problem}
 \begin{solution}
+Да, верно.
+$$RSS_1=\sum_{i=1}^n(y_i-\hat y_i)^2=y'(I-X(X'X)^{-1}X')y$$
+$$RSS_2=y'(I-Z(Z'Z)^{-1}Z')y=y'(I-XD(D'X'XD)^{-1}D'X')y=$$
+так как $D$ является квадратной и невырожденной, то используя формулу $(AB)^{-1}=B^{-1}A^{-1}$, получим:
+\begin{multline*}
+RSS_2=y'(I-XD(D'X'XD)^{-1}D'X')y=y'(I-XDD^{-1}(X'X)^{-1}D'^{-1}D'X')y=\\=y'(I-X(X'X)^{-1}X')y=RSS_1
+\end{multline*}
 \end{solution}
 
 
@@ -675,8 +827,167 @@ M_1 y = M_1 X_2 \gamma_2 + u
 \end{enumerate}
 \end{problem}
 \begin{solution}
-да, да
-\end{solution}
+Подсказка: запишите матрицу $X$ как блочную и, пользуясь матричным выражением для $\hb$ и формулой Фробениуса, найдите $\hb_2$.
+
+1. Да, верно.
+$X=(X_1 X_2)$ --- блочная матрица. Аналогично, $\hat\beta=\left(\begin{array}{c}
+\hat\beta_1\\ 
+\hat\beta_2
+\end{array}\right)$ --- блочная матрица (хотя на самом деле вектор).
+
+\begin{multline*}
+\hat\beta=(X'X)^{-1}X'y=((X_1X_2)'(X_1X_2))^{-1}(X_1X_2)'y=(\left(\begin{array}{c}
+X_1'\\ 
+X_2'
+\end{array}\right)(X_1X_2))^{-1}(\left(\begin{array}{c}
+X_1'\\ 
+X_2'
+\end{array}\right)y=\\=
+\left(\begin{array}{cc}
+X_1'X_1 & X_1'X_2\\ 
+X_2'X_1 & X_2'X_2
+\end{array}\right)^{-1}\left(\begin{array}{c}
+X_1'\\ 
+X_2'
+\end{array}\right)y
+\end{multline*}
+
+Запишем и докажем формулу Фробениуса для обращения блочных матриц.
+
+Формула Фробениуса:
+$$\begin{bmatrix} A & B \\ C & D \\ \end{bmatrix}^{-1}=
+\begin{pmatrix} A^{-1} +A^{-1} BH^{-1} CA^{-1}  & -A^{-1} BH^{-1}\\ -H^{-1} CA^{-1}  & H^{-1}\end{pmatrix} $$
+где $H=D-CA^{-1}B$.
+
+Докажем формулу, обращая матрицу методом Гаусса. Умножим слева на $\left(\begin{array}{cc}
+A^{-1} & 0\\ 
+0 & I
+\end{array}\right)$
+\begin{multline*}
+\left(\begin{array}{cc|cc}
+A & B & I & 0\\ 
+C & D & 0 & I
+\end{array}\right)=
+\left(\begin{array}{cc|cc}
+I & A^{-1}B & A^{-1} & 0\\ 
+C & D & 0 & I
+\end{array}\right)=\\
+\end{multline*}
+вычтем из второй строки первую, умноженную на $C$
+\begin{multline*}
+=\left(\begin{array}{cc|cc}
+I & A^{-1}B & A^{-1} & 0\\ 
+0 & D-CA^{-1}B & -CA^{-1} & I
+\end{array}\right)=
+\end{multline*}
+умножим слева на $\left(\begin{array}{cc}
+I & 0\\ 
+0 & (D-CA^{-1}B)^{-1}
+\end{array}\right)$
+\begin{multline*}
+=\left(\begin{array}{cc|cc}
+I & A^{-1}B & A^{-1} & 0\\ 
+0 & I & -(D-CA^{-1}B)^{-1}CA^{-1} & (D-CA^{-1}B)^{-1}
+\end{array}\right)=
+\end{multline*}
+вычтем из первой строки вторую, умноженную на $A^{-1}B$. 
+\begin{multline*}
+=\left(\begin{array}{cc|cc}
+I & 0 & A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} & -A^{-1}B(D-CA^{-1}B)^{-1}\\ 
+0 & I & -(D-CA^{-1}B)^{-1}CA^{-1} & (D-CA^{-1}B)^{-1}
+\end{array}\right)
+\end{multline*}
+
+Значит,
+\begin{multline*}
+\begin{bmatrix} A & B \\ C & D \\ \end{bmatrix}^{-1}
+=\left(\begin{array}{cc}
+A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} & -A^{-1}B(D-CA^{-1}B)^{-1}\\ 
+-(D-CA^{-1}B)^{-1}CA^{-1} & (D-CA^{-1}B)^{-1}
+\end{array}\right)=\\=
+\begin{pmatrix} A^{-1} +A^{-1} BH^{-1} CA^{-1}  & -A^{-1} BH^{-1}\\ -H^{-1} CA^{-1}  & H^{-1}\end{pmatrix}
+\end{multline*}
+
+По формуле Фробениуса получим, что
+$$\left(\begin{array}{cc}
+X_1'X_1 & X_1'X_2\\ 
+X_2'X_1 & X_2'X_2
+\end{array}\right)^{-1}=
+\left(\begin{array}{cc}
+(X_1'X_1)^{-1}+(X_1'X_1)^{-1}X_1'X_2H^{-1}X_2'X_1(X_1'X_1)^{-1} & -(X_1'X_1)^{-1}X_1'X_2H^{-1}\\ 
+-H^{-1}X_2'X_1(X_1'X_1)^{-1} & H^{-1}
+\end{array}\right),$$
+где $H=X_2'X_2-X_2'X_1(X_1'X_1)^{-1}X_1'X_2$. Верхняя строка в данном пункте не важна, и сейчас её опустим. Заметим, что
+$$H=X_2'X_2-X_2'X_1(X_1'X_1)^{-1}X_1'X_2=X_2'(I-X_1(X_1'X_1)^{-1}X_1')X_2=X_2'M_1X_2$$
+Итак,
+\begin{multline*}
+\hat\beta=\left(\begin{array}{c}
+\hat\beta_1\\ 
+\hat\beta_2
+\end{array}\right)=
+\left(\begin{array}{cc}
+X_1'X_1 & X_1'X_2\\ 
+X_2'X_1 & X_2'X_2
+\end{array}\right)^{-1}\left(\begin{array}{c}
+X_1'\\ 
+X_2'
+\end{array}\right)y=\\=\left(\begin{array}{cc}
+? & ?\\
+-H^{-1}X_2'X_1(X_1'X_1)^{-1} & H^{-1}
+\end{array}\right)\left(\begin{array}{c}
+X_1'\\ 
+X_2'
+\end{array}\right)y=\\=\left(\begin{array}{c}
+?\\ 
+-H^{-1}X_2'X_1(X_1'X_1)^{-1}X_1'+H^{-1}X_2'
+\end{array}\right)y=\\=
+\left(\begin{array}{c}
+?\\ 
+H^{-1}X_2'(I-X_1(X_1'X_1)^{-1}X_1')
+\end{array}\right)y=\\=
+\left(\begin{array}{c}
+?\\ 
+H^{-1}X_2'M_1y
+\end{array}\right)=
+\left(\begin{array}{c}
+?\\ 
+(X_2'M_1X_2)^{-1}X_2'M_1y
+\end{array}\right)
+\end{multline*}
+
+$$\hb_2=(X_2'M_1X_2)^{-1}X_2'M_1y$$
+Заметим свойства матрицы-проектора $M_1$. 
+$$M_1'=(I-X_1(X_1'X_1)^{-1}X_1')'=I-X_1(X_1'X_1)^{-1}X_1'=M_1$$
+\begin{multline*}
+(M_1)^2=(I-X_1(X_1'X_1)^{-1}X_1')^2=I-2X_1(X_1'X_1)^{-1}X_1'+X_1(X_1'X_1)^{-1}X_1'\cdot X_1(X_1'X_1)^{-1}X_1'=\\
+=I-X_1(X_1'X_1)^{-1}X_1'=M_1
+\end{multline*}
+
+Значит,
+\begin{multline*}
+\hb_2=(X_2'M_1X_2)^{-1}X_2'M_1y=(X_2'M_1M_1X_2)^{-1}X_2'M_1M_1y=(X_2'M_1'M_1X_2)^{-1}X_2'M_1'M_1y=\\=
+((M_1X_2)'M_1X_2)^{-1}(M_1X_2)'M_1y
+\end{multline*}
+но ведь и
+$$
+\hat\gamma_2=
+((M_1X_2)'M_1X_2)^{-1}(M_1X_2)'M_1y
+$$
+Значит, $\hb_2=\hat\gamma_2=
+((M_1X_2)'M_1X_2)^{-1}(M_1X_2)'M_1y$
+, что и требовалось доказать.
+
+2. Да, верно.
+$$\hy=X_1\hb_1+X_2\hb_2$$
+
+$$M_1 \he=M_1y-M_1\hy=M_1y-M_1(X_1\hat\beta_1+X_2\hb_2)=M_1y-M_1X_2\hb_2-M_1X_1\hat\beta_1$$
+$$M_1X_1=(I-X_1(X_1'X_1)^{-1}X_1')X_1=X_1-X_1(X_1'X_1)^{-1}X_1'X_1=0$$
+$$M_1 \he=M_1y-M_1X_2\hb_2=M_1y-M_1X_2\hat\gamma_2=\hat u$$
+
+\begin{multline*}
+M_1\he=M_1(y-\hy)=M_1(I-X(X'X)^{-1}X')y=(I-X(X'X)^{-1}X')y
+\end{multline*}
+так как $M_1$ ортогональное дополнение к $X_1$, а $(I-X(X'X)^{-1}X')y$ уже лежит в ортогональном дополнении к $X_1$, так как $I-X(X'X)^{-1}X'$ ортогональное дополнение к к прямой сумме пространств $X_1$ и $X_2$ ---$X_1\oplus X_2$.\end{solution}
 
 
 
@@ -1005,6 +1316,30 @@ $t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3
 \end{problem}
 
 \begin{solution}
+
+Метод наименьших квадратов:
+$$\he'\he\rightarrow \min_{\hb}$$
+$$(y-\hy)'(y-\hy)\rightarrow\min_{\hb}$$
+$$(y-X\hb)'(y-X\hb)\rightarrow\min_{\hb}$$
+$$y'y-\hb' X'y-y'X\hb+\hb'X'X\hb\rightarrow\min_{\hb}$$
+
+Воспользуемся тем, что : $\frac{\partial x'A}{\partial x'}=A'$, $\frac{\partial Ax}{\partial x'}=A$,
+$\frac{\partial x'Ax}{\partial x'}=x'(A'+A)$
+Условие первого порядка:
+$$-2(X'y)'+(X'X+(X'X)')\hb'=0$$
+$$-2X'y+2\hb X'X=0$$
+и
+$$\hb=(X'X)^{-1}X'y$$
+
+\begin{multline*}
+\Var(\hat\beta)=\Var((X'X)^{-1}X'y)=(X'X)^{-1}X'\Var(y)((X'X)^{-1}X')'=\\
+=(X'X)^{-1}X'\Var(X\beta+\epsilon)X(X'X)^{-1}
+\end{multline*}
+Так как $\beta$ является константой, то $\Var(X\beta)=0$. Тогда 
+\begin{multline*}
+\Var(\hat\beta)=(X'X)^{-1}X'\Var(X\beta+\epsilon)X(X'X)^{-1}=\\=(X'X)^{-1}X'\Var(\epsilon)X(X'X)^{-1}=
+(X'X)^{-1}X'\sigma^2X(X'X)^{-1}=\\=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}=\sigma^2(X'X)^{-1}
+\end{multline*}
 \end{solution}
 
 \begin{problem}
@@ -1049,6 +1384,10 @@ xtable(vcov(model))
 \end{problem}
 
 \begin{solution}
+$$\widehat{Var}(\hb_1+\hb_2-\hb_3)=\Var(\hb1)+\Var(\hb2)+\Var(\hb3)+
+2\Cov(\hb1,\hb2)-2\Cov(\hb1,\hb3)-2\Cov(\hb2,\hb3)$$
+
+$$\widehat{Var}(\hb_1+\hb_2-\hb_3)=1/3+4/3+2-2/3+2=5$$
 \end{solution}
 
 \begin{problem}
@@ -1077,4 +1416,14 @@ xtable(vcov(model))
 \end{problem}
 
 \begin{solution}
+Из того, что $\widehat{Var}(\hb)=\sigma^2\cdot (X'X)^{-1}$ видно, что $\sigma^2=\frac13$.
+
+$RSS=\sigma^2\cdot(n-k)=1/3\cdot 2=2/3$
+$$R^2=49\frac13/50=148/150$$
+
+
+$F=\frac{R^2/(k-1)}{(1-R^2)/(n-k)}=\frac{148/2}{2/2}=74$
+$F^{crit}_{0.05, 2,2}=19<74$
+гипотеза отвергается, регрессия значима.
+
 \end{solution}
