@@ -8,7 +8,7 @@
 \newcommand{\hypo}{\mathcal{H}} 
 \newcommand{\simhypo}{\ensuremath{\mathrel{\stackrel{\hypo_0}{\sim}}}}
 
-\input{title_bor_utf8_knitr}
+%\input{title_bor_utf8_knitr}
 
 
 % чисто эконометрические сокращения:
@@ -44,7 +44,7 @@
 
 
 % для отдельной упаковки решений
-\input{prob_and_sol_2chap}
+%\input{prob_and_sol_2chap}
 
 
 \title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
