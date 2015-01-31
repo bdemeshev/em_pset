@@ -8,7 +8,7 @@
 \newcommand{\hypo}{\mathcal{H}} 
 \newcommand{\simhypo}{\ensuremath{\mathrel{\stackrel{\hypo_0}{\sim}}}}
 
-\input{title_bor_utf8_knitr}
+\input{title_bor_utf8_knitr_e}  % no embedfile in _e
 
 
 % чисто эконометрические сокращения:
@@ -44,7 +44,7 @@
 
 
 % для отдельной упаковки решений
-\input{prob_and_sol_2chap}
+\input{prob_and_sol_2chap_e} % secsolution patch instead of chapter master counter
 
 
 \title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
@@ -71,13 +71,8 @@
 <<"setup", echo=TRUE, message=FALSE,tidy=FALSE,warning=FALSE>>=
 library("knitr")
 library("tikzsetup")
-#tikzsetup()
-opts_chunk$set(cache=FALSE,
-               dev="png",dpi=300,
-               warning=FALSE,
-               tidy=FALSE, 
-               echo=TRUE,
-               out.height="7cm",out.width="7cm") 
+library("tikzDevice")
+tikzsetup()
 
 library("ggplot2")
 library("Hmisc")

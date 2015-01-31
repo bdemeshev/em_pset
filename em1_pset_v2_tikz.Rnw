@@ -1,5 +1,31 @@
 \documentclass[pdftex,11pt,openany]{book}
 
+
+<<"setup", echo=TRUE, message=FALSE,tidy=FALSE,warning=FALSE>>=
+library("knitr")
+library("tikzDevice")
+library("tikzsetup")
+tikzsetup()
+
+library("ggplot2")
+library("Hmisc")
+library("lmtest")
+library("apsrtable")
+library("xtable")
+library("MASS")
+library("car")
+library("texreg")
+library("memisc")
+
+library("econru")
+
+theme_set(theme_bw())
+
+load('pset_data.Rdata')
+@
+
+
+
 %\documentclass[11pt,openany]{book}
 
 % команды АК.
@@ -8,7 +34,7 @@
 \newcommand{\hypo}{\mathcal{H}} 
 \newcommand{\simhypo}{\ensuremath{\mathrel{\stackrel{\hypo_0}{\sim}}}}
 
-%\input{title_bor_utf8_knitr}
+\input{title_bor_utf8_knitr_e}
 
 
 % чисто эконометрические сокращения:
@@ -44,7 +70,7 @@
 
 
 % для отдельной упаковки решений
-%\input{prob_and_sol_2chap}
+\input{prob_and_sol_2chap_e}
 
 
 \title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
@@ -67,28 +93,6 @@
 
 \vspace{30pt}
 
-
-<<"setup", echo=TRUE, message=FALSE,tidy=FALSE,warning=FALSE>>=
-library("knitr")
-library("tikzsetup")
-tikzsetup()
-
-library("ggplot2")
-library("Hmisc")
-library("lmtest")
-library("apsrtable")
-library("xtable")
-library("MASS")
-library("car")
-library("texreg")
-library("memisc")
-
-library("econru")
-
-theme_set(theme_bw())
-
-load('pset_data.Rdata')
-@
 
 
 
