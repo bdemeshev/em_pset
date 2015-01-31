@@ -69,7 +69,9 @@
 
 
 <<"setup", echo=TRUE, message=FALSE,tidy=FALSE,warning=FALSE>>=
-require(knitr)
+library("knitr")
+library("tikzsetup")
+#tikzsetup()
 opts_chunk$set(cache=FALSE,
                dev="png",dpi=300,
                warning=FALSE,
@@ -78,7 +80,7 @@ opts_chunk$set(cache=FALSE,
                out.height="7cm",out.width="7cm") 
 
 library("ggplot2")
-require("Hmisc")
+library("Hmisc")
 library("lmtest")
 library("apsrtable")
 library("xtable")
