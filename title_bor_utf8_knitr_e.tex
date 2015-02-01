@@ -63,17 +63,36 @@
 
 \usepackage{textcomp}  % Чтобы в формулах можно было русские буквы писать через \text{}
 
-% размер листа бумаги
-\usepackage[paperwidth=145mm,paperheight=215mm,
-height=182mm,width=113mm,top=20mm,includefoot]{geometry}
-%\usepackage[paper=a4paper,top=13.5mm, bottom=13.5mm,left=16.5mm,right=13.5mm,includefoot]{geometry}
+% размер листа бумаги %%%%%%%%%%%%%%%%%%%%%%%% cropping problem of tikzsetup!!!!!!!!!!!!!!!!
+%\usepackage[paperwidth=165mm,
+%paperheight=215mm,
+%height=182mm,
+%width=113mm,
+%top=20mm,
+%includefoot]{geometry}
+
+%\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage{etoolbox}
+
+%\ifdef{\JustPlot}
+%{\usepackage[paperwidth=165mm,
+%paperheight=215mm,
+%height=182mm,
+%width=113mm,
+%top=20mm,
+%includefoot
+%]{geometry}}
+%{\usepackage[paper=a4paper]{geometry}}
+
+\ifdef{\JustPlot}{}{\usepackage[paper=a4paper,top=13.5mm, bottom=13.5mm,left=16.5mm,right=13.5mm,includefoot]{geometry}}
 
 \usepackage{xcolor}
 
 % \usepackage[pdftex]{graphicx} % для вставки графики, убрано, т.к. knitr похоже сам добавляет
 
-\usepackage{float,longtable}
-\usepackage{soulutf8}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{soulutf8}  %%% error if ommitted but does not interfere with knitr
 
 \usepackage{enumitem} % дополнительные плюшки для списков
 %  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
@@ -91,11 +110,13 @@ height=182mm,width=113mm,top=20mm,includefoot]{geometry}
 
 \usepackage{subfigure} % для создания нескольких рисунков внутри одного
 
-%e \usepackage{tikz}
-%e \usepackage{pgfplots} % язык для рисования графики из latex'a
-%e \usetikzlibrary{trees} % tikz-прибамбас для рисовки деревьев
-%e \usepackage{tikz-qtree} % альтернативный tikz-прибамбас для рисовки деревьев
-%e \usetikzlibrary{arrows} % tikz-прибамбас для рисовки стрелочек подлиннее
+\ifdef{\JustPlot}{}{
+\usepackage{tikz}
+\usepackage{pgfplots} % язык для рисования графики из latex'a
+\usetikzlibrary{trees} % tikz-прибамбас для рисовки деревьев
+\usepackage{tikz-qtree} % альтернативный tikz-прибамбас для рисовки деревьев
+\usetikzlibrary{arrows} % tikz-прибамбас для рисовки стрелочек подлиннее
+}
 
 \usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
 % \todo{Здесь надо коэффициенты исправить}
@@ -114,6 +135,19 @@ height=182mm,width=113mm,top=20mm,includefoot]{geometry}
 
 
 
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
 %\usepackage{asymptote} % пакет для рисовки графики, должен идти после graphics
 % но мы переходим на tikz :)
 
@@ -129,14 +163,16 @@ height=182mm,width=113mm,top=20mm,includefoot]{geometry}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%% КОНФЛИКТ с tikzsetup()
-% 130-165 ?? проблема при создании tikzmetrics, далее всё ок 
 %%%%%%%%%%%%%%%%%%%%%%%  Внедрение tex исходников в pdf файл  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%e \embedfile[desc={Main tex file}]{\jobname.tex} % Включение кода в выходной файл
-%e \embedfile[desc={title_bor}]{title_bor_utf8_knitr.tex}
-%e \embedfile[desc={emetrix}]{emetrix_preamble.tex}
+\ifdef{\JustPlot}{}{
+\embedfile[desc={Main tex file}]{\jobname.tex} % Включение кода в выходной файл
+\embedfile[desc={title_bor}]{title_bor_utf8_knitr.tex}
+\embedfile[desc={emetrix}]{emetrix_preamble.tex}
+}
 % виноват \embedfile!!!!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% боремся с отрезами! отрезы выше!!!!
 
 
 %%%%%%%%%%%%%%%%%%%%%%%  ПАРАМЕТРЫ  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

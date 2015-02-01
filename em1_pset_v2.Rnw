@@ -44,7 +44,7 @@
 
 
 % для отдельной упаковки решений
-\input{prob_and_sol_2chap_e} % secsolution patch instead of chapter master counter
+\ifdef{\JustPlot}{}{\input{prob_and_sol_2chap_e}} % secsolution patch instead of chapter master counter
 
 
 \title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
