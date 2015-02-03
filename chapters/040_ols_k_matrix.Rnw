@@ -335,8 +335,8 @@ $X^T X =  \begin{pmatrix}
 \item $\Var (\beta_2 - \beta_3)$
 \item $\Corr (\hb_2, \hb_3)$
 \item $\widehat{\Corr}(\hb_2, \hb_3)$
-\item $\E (\hat{\sigma}^2)$
-\item $\hat{\sigma}^2$
+\item $\E (\hs^2)$
+\item $\hs^2$
 \end{enumerate}
 \end{problem}
 \begin{solution}
@@ -488,7 +488,7 @@ x_x <- solve(xx)
 \item $p-value(T_{obs}) = \P (|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $F-$распределения c $k = 3$ и $n - k = 5 - 3 = 2$ степенями свободы в точке $T_{obs}$. $p-value(T_{obs}) = 1 - fcdf(-|T_{obs}|, n - k) = 1 - fcdf(4,2) = 0.2$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_2 = \beta_3 = 0$ не может быть отвергнута. Таким образом, регрессия <<в целом>> незначима
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
 \item $T \sim t(n-k); n = 5; k = 3$
 \item $\widehat{\Var}(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
 \item Нижняя граница $= - 4.3027$, верхняя граница $= 4.3027$
@@ -496,7 +496,7 @@ x_x <- solve(xx)
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
 \item $T \sim t(n-k); n = 5; k = 3$
 \item $\widehat{\Var}(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
 \item Нижняя граница $= - \infty$, верхняя граница $= 2.9200$
@@ -504,7 +504,7 @@ x_x <- solve(xx)
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
 \item $T \sim t(n-k); n = 5; k = 3$
 \item $\widehat{\Var}(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
 \item Нижняя граница $= - 2.9200$, верхняя граница $= + \infty$
@@ -1206,9 +1206,9 @@ y^T X(X^TX)^{-1}X^Ty= \\
 \end{multline}
 Итого, $RSS= 3924 - 3051.2 = 872.8$
  
-$\hat{\sigma}_{\e}^2 = \frac{RSS}{n-k} = \frac{872.8}{100-4} = 9.0917$
+$\hs_{\e}^2 = \frac{RSS}{n-k} = \frac{872.8}{100-4} = 9.0917$
 
-$\widehat{\Var}(\hb) = \hat{\sigma}_{\e}^2 (X^T X)^{-1} \Rightarrow \widehat{\Cov}(\hb_1, \hb_2) = -0.56939$, $\widehat{\Var}(\hb_1) = 0.34251$, $\widehat{\Var}(\hb_2) = 10.269$
+$\widehat{\Var}(\hb) = \hs_{\e}^2 (X^T X)^{-1} \Rightarrow \widehat{\Cov}(\hb_1, \hb_2) = -0.56939$, $\widehat{\Var}(\hb_1) = 0.34251$, $\widehat{\Var}(\hb_2) = 10.269$
 
 $\widehat{\Corr}(\hb_1, \hb_2) = \frac{\widehat{\Cov}(\hb_1, \hb_2)}{\sqrt{\widehat{\Var}(\hb_1)}\sqrt{\widehat{\Var}(\hb_2)}} = -0.30361$
 
@@ -1274,17 +1274,17 @@ $(X^T X)^{-1} = \begin{bmatrix}
 \hb_1 \\
 \hb_2 \\
 \hb_3 \\
-\end{bmatrix} = \hat{\sigma}_{\e}^2 (X^TX)^{-1}$ --- несмещённая оценка для ковариационной матрицы \\ МНК-коэффициентов. Действительно, $\E\widehat{\Cov}\begin{bmatrix}
+\end{bmatrix} = \hs_{\e}^2 (X^TX)^{-1}$ --- несмещённая оценка для ковариационной матрицы \\ МНК-коэффициентов. Действительно, $\E\widehat{\Cov}\begin{bmatrix}
 \hb_1 \\
 \hb_2 \\
 \hb_3 \\
-\end{bmatrix} = \E\hat{\sigma}_{\e}^2 (X^TX)^{-1} = \sigma_{\e}^2 (X^TX)^{-1} = \Cov\begin{bmatrix}
+\end{bmatrix} = \E\hs_{\e}^2 (X^TX)^{-1} = \sigma_{\e}^2 (X^TX)^{-1} = \Cov\begin{bmatrix}
 \hb_1 \\
 \hb_2 \\
 \hb_3 \\
-\end{bmatrix}$. Поэтому искомая оценка $\widehat{\Cov}(\hb_2, \hb_3) = \hat{\sigma}_{\e}^2 \left[ (X^T X)^{-1} \right]_{23}$, где $\left[ (X^T X)^{-1} \right]_{23}$ --- элемент матрицы $(X^T X)^{-1}$, расположенный во второй строке, 3-м столбце.
+\end{bmatrix}$. Поэтому искомая оценка $\widehat{\Cov}(\hb_2, \hb_3) = \hs_{\e}^2 \left[ (X^T X)^{-1} \right]_{23}$, где $\left[ (X^T X)^{-1} \right]_{23}$ --- элемент матрицы $(X^T X)^{-1}$, расположенный во второй строке, 3-м столбце.
 
-Заметим, что $\hat{\sigma}_{\hb_2}^2 = \hat{\sigma}_{\e}^2 \left[ (X^T X)^{-1} \right]_{22} \Rightarrow 0.7^2 = \hat{\sigma}_{\e}^2 \cdot (3030) \Rightarrow \hat{\sigma}_{\e}^2 = 0.00016172$
+Заметим, что $\hs_{\hb_2}^2 = \hs_{\e}^2 \left[ (X^T X)^{-1} \right]_{22} \Rightarrow 0.7^2 = \hs_{\e}^2 \cdot (3030) \Rightarrow \hs_{\e}^2 = 0.00016172$
 
 Значит, $\widehat{\Cov}(\hb_2, \hb_3) = 0.00016172 \cdot (-589) = -0.095253$.
 
@@ -1359,7 +1359,7 @@ hat.sigma <- model.sum$sigma
 @
 
 Исследователь оценил зависимость длины тормозного пути в футах от скорости автомобиля в милях в час по данным 1920-х годов.
-При построении парной регрессии у него получилась $\hat{\sigma}=\Sexpr{hat.sigma}$ и оценка ковариационной матрицы 
+При построении парной регрессии у него получилась $\hs=\Sexpr{hat.sigma}$ и оценка ковариационной матрицы 
 
 
 <<results="asis">>=
@@ -1421,7 +1421,7 @@ xtable(vcov(model))
 \end{pmatrix}, \; TSS=60
 \]
 
-Найдите $\hat{\sigma}^2$ и проверьте гипотезу о значимости регрессии в целом на уровне значимости 5\%.
+Найдите $\hs^2$ и проверьте гипотезу о значимости регрессии в целом на уровне значимости 5\%.
 \end{problem}
 
 \begin{solution}

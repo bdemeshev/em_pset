@@ -43,7 +43,7 @@ $c_i=c\cdot x_i$, где $c\neq 0$
 \item $ESS$
 \item $RSS$
 \item $R^2$
-\item $\hat{\sigma}^2$
+\item $\hs^2$
 \end{enumerate}
 
 Проверьте следующие гипотезы:
@@ -67,7 +67,7 @@ $c_i=c\cdot x_i$, где $c\neq 0$
 \item $ESS$
 \item $RSS$
 \item $R^2$
-\item $\hat{\sigma}^2$
+\item $\hs^2$
 \end{enumerate}
 
 Проверьте следующие гипотезы:
@@ -390,7 +390,7 @@ $R^2$ --- это отношение выборочных дисперсий $\hy
 
 \begin{problem}
  Модель регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, в которой ошибки
-$\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценивается по 22 наблюдениям. Найдите $\E(RSS)$, $\Var(RSS)$, $\P(10\sigma^2<RSS<30\sigma^2)$, $\P(10\hat{\sigma}^2<RSS<30\hat{\sigma}^2)$
+$\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценивается по 22 наблюдениям. Найдите $\E(RSS)$, $\Var(RSS)$, $\P(10\sigma^2<RSS<30\sigma^2)$, $\P(10\hs^2<RSS<30\hs^2)$
 \end{problem}
 
 \begin{solution}
