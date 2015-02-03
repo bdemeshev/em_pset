@@ -288,7 +288,42 @@ load('pset_data.Rdata')
 <<child='chapters/250_tables.Rnw'>>=
 @
 
+\chapter{Обозначения}
+
+$n$ --- количество наблюдений
+
+$k$ --- количество регрессоров, считая константу
+
+$X_{n\times k}$
+
+$y=
+\begin{pmatrix}
+y_1 \\
+y_2 \\
+\vdots \\
+y_n
+\end{pmatrix}$
+
+$\hy=
+\begin{pmatrix}
+\hy_1 \\
+\hy_2 \\
+\vdots \\
+\hy_n
+\end{pmatrix}$
 
 
+
+$\e=
+\begin{pmatrix}
+\e_1 \\
+\e_2 \\
+\vdots \\
+\e_n
+\end{pmatrix}$
+
+$\he=y-\hy$
+
+$\hs^2=RSS/(n-k)$
 
 \end{document}
