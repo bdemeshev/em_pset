@@ -8,7 +8,7 @@
 \newcommand{\hypo}{\mathcal{H}} 
 \newcommand{\simhypo}{\ensuremath{\mathrel{\stackrel{\hypo_0}{\sim}}}}
 
-\input{title_bor_utf8_solution}
+\input{title_bor_utf8_knitr_e}  % no embedfile in _e
 
 
 % чисто эконометрические сокращения:
@@ -28,6 +28,10 @@
 % симуляционные задачи на ошибки 1, 2 рода, мощность
 % E_t(X) или с указанием сигма-алгебры
 
+% по явному виду процесса определить подходит ли он
+% в заданное стохастическое разностное уравнение
+
+
 % выложить преамбулу
 
 
@@ -40,10 +44,10 @@
 
 
 % для отдельной упаковки решений
-\input{prob_and_sol_2chap}
+\ifdef{\JustPlot}{}{\input{prob_and_sol_2chap_e}} % secsolution patch instead of chapter master counter
 
 
-\title{Эконометрика в задачах и упражнениях \\ {\small Решебник с Монте-Карло и эконометрессами} }
+\title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
 \author{Дмитрий Борзых, Борис Демешев}
 \date{\today}
 
@@ -53,36 +57,33 @@
 
 \begin{document}
 
+\setcounter{page}{3}
+
+%\maketitle % печатаем заголовок
+\tableofcontents
 
 
-%\setcounter{page}{3}
-
-\maketitle % печатаем заголовок
-%\tableofcontents
-
-\parindent=0 pt % отступ равен 0
 
 
-%\vspace{30pt}
+\vspace{30pt}
 
 
-<<"setup", echo=FALSE, message=FALSE,tidy=FALSE,warning=FALSE>>=
-require(knitr)
-opts_chunk$set(cache=FALSE,
-               dev="png",dpi=300,
-               warning=FALSE,
-               tidy=FALSE, 
-               echo=TRUE,
-               out.height="7cm",out.width="7cm") 
+<<"setup", echo=TRUE, message=FALSE,tidy=FALSE,warning=FALSE>>=
+library("knitr")
+library("tikzsetup")
+library("tikzDevice")
+tikzsetup()
 
 library("ggplot2")
-require("Hmisc")
+library("Hmisc")
 library("lmtest")
 library("apsrtable")
 library("xtable")
 library("MASS")
 library("car")
 library("texreg")
+library("memisc")
+library("sandwich")
 
 library("econru")
 
@@ -91,9 +92,6 @@ theme_set(theme_bw())
 load('pset_data.Rdata')
 @
 
-%\listoftodos
-
-% МНК
 
 
 \chapter{Решения и ответы к избранным задачам}
