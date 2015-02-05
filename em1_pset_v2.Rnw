@@ -83,6 +83,7 @@ library("MASS")
 library("car")
 library("texreg")
 library("memisc")
+library("sandwich")
 
 library("econru")
 
@@ -325,5 +326,11 @@ $\e=
 $\he=y-\hy$
 
 $\hs^2=RSS/(n-k)$
+
+$RSS=\sum \he^2_i$
+
+$TSS=\sum_{i=1}^n (y_i - \bar{y})^2$
+
+$ESS=\sum_{i=1}^n (\hy_i - \bar{y})^2$
 
 \end{document}
