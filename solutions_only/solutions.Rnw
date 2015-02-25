@@ -4,8 +4,8 @@
 
 % команды АК.
 \newcommand{\calL}{\mathcal{L}}
-\newcommand{\bs}[1]{\boldsymbol{#1}} 
-\newcommand{\hypo}{\mathcal{H}} 
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\hypo}{\mathcal{H}}
 \newcommand{\simhypo}{\ensuremath{\mathrel{\stackrel{\hypo_0}{\sim}}}}
 
 \input{title_bor_utf8_knitr_e}  % no embedfile in _e
@@ -47,7 +47,8 @@
 \ifdef{\JustPlot}{}{\input{prob_and_sol_2chap_e}} % secsolution patch instead of chapter master counter
 
 
-\title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
+\title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях \\
+Решебник }
 \author{Дмитрий Борзых, Борис Демешев}
 \date{\today}
 
@@ -59,7 +60,7 @@
 
 \setcounter{page}{3}
 
-%\maketitle % печатаем заголовок
+\maketitle % печатаем заголовок
 \tableofcontents
 
 
@@ -165,7 +166,7 @@ load('pset_data.Rdata')
 <<child='../chapters/200_la.Rnw'>>=
 @
 <<child='../chapters/210_random_vectors.Rnw'>>=
-@ 
+@
 <<child='../chapters/220_multivariate_n.Rnw'>>=
 @
 <<child='../chapters/230_programming.Rnw'>>=
