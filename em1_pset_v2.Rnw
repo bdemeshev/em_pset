@@ -4,8 +4,8 @@
 
 % команды АК.
 \newcommand{\calL}{\mathcal{L}}
-\newcommand{\bs}[1]{\boldsymbol{#1}} 
-\newcommand{\hypo}{\mathcal{H}} 
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\hypo}{\mathcal{H}}
 \newcommand{\simhypo}{\ensuremath{\mathrel{\stackrel{\hypo_0}{\sim}}}}
 
 \input{title_bor_utf8_knitr_e}  % no embedfile in _e
@@ -188,7 +188,7 @@ load('pset_data.Rdata')
 <<child='chapters/200_la.Rnw'>>=
 @
 <<child='chapters/210_random_vectors.Rnw'>>=
-@ 
+@
 <<child='chapters/220_multivariate_n.Rnw'>>=
 @
 <<child='chapters/230_programming.Rnw'>>=
@@ -276,7 +276,7 @@ load('pset_data.Rdata')
 <<child='chapters/200_la.Rnw'>>=
 @
 <<child='chapters/210_random_vectors.Rnw'>>=
-@ 
+@
 <<child='chapters/220_multivariate_n.Rnw'>>=
 @
 <<child='chapters/230_programming.Rnw'>>=
