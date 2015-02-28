@@ -23,7 +23,7 @@
 \end{solution}
 
 
-\begin{problem}
+\begin{problem} % 3
  Рассматривается модель $y_i=\beta x_i+\e_i$, $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$.
 При каких значениях параметров $c_i$ несмещённая оценка $\hb=\frac{\sum_{i=1}^n {c_i y_i}}{\sum_{i=1}^n {c_i x_i}}$ имеет наименьшую дисперсию?
 \end{problem}
@@ -88,12 +88,12 @@ $c_i=c\cdot x_i$, где $c\neq 0$
 \begin{enumerate}
 \item $\hb = \frac{y_1}{x_1}$
 \item $\hb = \frac{1}{2} \frac{y_1}{x_1} + \frac{1}{2} \frac{y_n}{x_n}$
-\item $\hb = \frac{1}{n}  \frac{y_1}{x_1} + \ldots + \frac{y_n}{x_n} $
+\item $\hb = \frac{1}{n} \left(  \frac{y_1}{x_1} + \ldots + \frac{y_n}{x_n} \right) $
 \item $\hb = \frac{\overline{y}}{\overline{x}}$
 \item $\hb = \frac{y_n - y_1}{x_n - x_1}$
 \item $\hb = \frac{1}{2} \frac{y_2 - y_1}{x_2 - x_1} + \frac{1}{2} \frac{y_n - y_{n-1}}{x_n - x_{n-1}}$
 \item $\hb = \frac{1}{n} \frac{y_2 - y_1}{x_2 - x_1} + \frac{1}{n} \frac{y_3 - y_2}{x_3 - x_2} + \ldots + \frac{1}{n} \frac{y_n - y_{n-1}}{x_n - x_{n-1}}$
-\item $\hb = \frac{1}{n-1}  \frac{y_2 - y_1}{x_2 - x_1} + \frac{y_3 - y_2}{x_3 - x_2} + \ldots + \frac{y_n - y_{n-1}}{x_n - x_{n-1}} $
+\item $\hb = \frac{1}{n-1} \left( \frac{y_2 - y_1}{x_2 - x_1} + \frac{y_3 - y_2}{x_3 - x_2} + \ldots + \frac{y_n - y_{n-1}}{x_n - x_{n-1}} \right) $
 \item $\hb = \frac{x_1 y_1 + \ldots + x_n y_n}{x_1^2 + \ldots + x_n^2}$
 \item $\hb = \frac{1}{2} \frac{y_n - y_1}{x_n - x_1} + \frac{1}{2n}  \left( \frac{y_1}{x_1} + \ldots + \frac{y_n}{x_n} \right) $
 \item $\hb =  \frac{1}{2} \frac{y_n - y_1}{x_n - x_1} + \frac{1}{2} \frac{x_1 y_1 + \ldots + x_n y_n}{x_1^2 + \ldots + x_n^2}$
@@ -137,7 +137,7 @@ $c_i=c\cdot x_i$, где $c\neq 0$
 
 
 \begin{problem}
- Рассмотрите классическую линейную регрессионную модель $y_i = \beta \cdot i + \e_i$, $i=1, \ldots, n$. Какая из оценок $\hb$ и $\tilde{\beta}$ является более эффективной?
+Рассмотрите классическую линейную регрессионную модель $y_i = \beta \cdot i + \e_i$, $i=1, \ldots, n$. Какая из оценок $\hb$ и $\tilde{\beta}$ является более эффективной?
 
 \begin{enumerate}
 \item $\hb = y_1$ и $\tilde{\beta} = y_2/2$
@@ -216,12 +216,7 @@ $c_i=c\cdot x_i$, где $c\neq 0$
 \end{solution}
 
 \begin{problem}
- Рассмотрим классическую линейную регрессионную модель, $y_t=\b\cdot t+\e_t$. Какая из оценок, $\hb$ или $\hb'$ является более эффективной?
-\begin{enumerate}
-\item $\hb=y_1$, $\hb'=y_2/2$
-\item $\hb=y_1$, $\hb'=0.5y_1+0.5\frac{y_2}{2}$
-\item $\hb=\frac{1}{n}\left(y_1+\frac{y_2}{2}+\frac{y_3}{3}+\ldots+\frac{y_n}{n}\right)$, $\hb'=\frac{y_1+2y_2+\ldots+ny_n}{1^2+2^2+\ldots+n^2}$
-\end{enumerate}
+Тут был дубль задачи 2.8. Чтобы не сбивать нумерацию заменим на что-нибудь.
 \end{problem}
 
 \begin{solution}
@@ -283,7 +278,7 @@ $:
 
 
 \begin{problem}
- В модели $y_t=\beta_1+\beta_2 x_t$, где
+ В модели $y_t=\beta_1+\beta_2 x_t + \e_t$, где
 $x_t=\left\{
 \begin{array}{l}
 1,\, t=2k+1 \\
