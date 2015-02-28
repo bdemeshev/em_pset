@@ -1,7 +1,7 @@
 \chapter{МНК с матрицами и вероятностями}
 
 
-\begin{problem} 
+\begin{problem}
 Пусть $y = X\beta + \e$ --- регрессионная модель.
 \begin{enumerate}
 \item Сформулируйте теорему Гаусса-Маркова
@@ -12,7 +12,7 @@
 
 \begin{solution}
 \begin{enumerate}
-\item 
+\item
 В случае нестохастических регрессоров:
 
 Пусть дана регрессионная модель $y=X\beta+\epsilon$ с $k$ регрессорами, включая свободный член и $n$ наблюдениями, тогда если
@@ -37,7 +37,7 @@
 то $\hat\beta=(X'X)^{-1}X'y$ являются лучшими оценками в классе линейных несмещённых оценок, то есть BLUE-оценками.
 
 \item
-Да, верно. В самом деле, 
+Да, верно. В самом деле,
 \begin{multline*}
 \E(\hat\beta)=\E((X'X)^{-1}X'y)=(X'X)^{-1}X'\E(y)=(X'X)^{-1}X'\E(X\beta+\epsilon)=\\
 =(X'X)^{-1}X'X\E(\beta)+(X'X)^{-1}X'\underbrace{\E(\epsilon)}_{=0}=\beta
@@ -49,7 +49,7 @@
 \Var(\hat\beta)=\Var((X'X)^{-1}X'y)=(X'X)^{-1}X'\Var(y)((X'X)^{-1}X')'=\\
 =(X'X)^{-1}X'\Var(X\beta+\epsilon)X(X'X)^{-1}
 \end{multline*}
-Так как $\beta$ является константой, то $\Var(X\beta)=0$. Тогда 
+Так как $\beta$ является константой, то $\Var(X\beta)=0$. Тогда
 \begin{multline*}
 \Var(\hat\beta)=(X'X)^{-1}X'\Var(X\beta+\epsilon)X(X'X)^{-1}=\\=(X'X)^{-1}X'\Var(\epsilon)X(X'X)^{-1}=
 (X'X)^{-1}X'\sigma^2X(X'X)^{-1}=\\=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}=\sigma^2(X'X)^{-1}
@@ -58,7 +58,7 @@
 
 \end{solution}
 
-\begin{problem} 
+\begin{problem}
 Пусть $y = X\beta + \e$ --- регрессионная модель и $\tilde{\beta} = ((X'X)^{-1}X'+ A)y$ --- несмещённая оценка вектора неизвестных параметров $\beta$. Верно ли, что $AX=0$?
 \end{problem}
 
@@ -90,11 +90,11 @@ y <- c(1,2,3)
 
 \begin{solution}
 \[X'X=\left(\begin{array}{cc}
-3 & 2 \\ 
+3 & 2 \\
 2 & 2
 \end{array}\right) \]
 \[(X'X)^{-1}=\left(\begin{array}{cc}
-1 & -1 \\ 
+1 & -1 \\
 -1 & 1.5
 \end{array}\right) \]
 
@@ -110,7 +110,7 @@ y <- c(1,2,3)
 \end{solution}
 
 
-\begin{problem} 
+\begin{problem}
 Пусть $y = X\beta + \e$ --- регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите <<новую>> регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются <<новые>> МНК-коэффициенты через <<старые>>.
 <<echo=FALSE,results='asis'>>=
 alpha <- matrix(as.integer(c(1,0,0,1,1,0,0,1,1)), nrow=3, byrow = FALSE, dimnames = NULL)
@@ -124,7 +124,7 @@ alpha <- matrix(as.integer(c(1,0,0,1,1,0,0,1,1)), nrow=3, byrow = FALSE, dimname
 поэтому
 \[\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta\]
 \[D^{-1}=\left(\begin{array}{ccc}
-1 & -1 & 1\\ 
+1 & -1 & 1\\
 0 & 1 & -1\\
 0 & 0 & 1
 \end{array}\right)\]
@@ -151,7 +151,7 @@ alpha2 <- matrix(as.integer(c(1,0,0,1,1,0,1,1,1)), nrow=3, ncol=3, byrow = FALSE
 поэтому
 \[\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta\]
 \[D^{-1}=\left(\begin{array}{ccc}
-1 & -1 & 0\\ 
+1 & -1 & 0\\
 0 & 1 & -1\\
 0 & 0 & 1
 \end{array}\right)\]
@@ -178,7 +178,7 @@ alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE
 поэтому
 \[\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta\]
 \[D^{-1}=\left(\begin{array}{ccc}
-1 & 0 & 0\\ 
+1 & 0 & 0\\
 0 & 1 & -1\\
 0 & 0 & 1
 \end{array}\right)\]
@@ -219,29 +219,29 @@ alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE
 
 \begin{solution}
 \begin{enumerate}
-\item 
+\item
 \begin{multline}
 \hat{\gamma} = (Z'Z)^{-1}Z'y = A^{-1}(X'X)^{-1}(A')^{-1}A'X'y =\\
  A^{-1}(X'X)^{-1} X'y = A^{-1}\hb
 \end{multline}
 \item $\hat{u} = y - Z\hat{\gamma} = y - XAA^{-1}\hb = y - X\hb = \hat{\e}$
-\item Пусть $z^0 = \begin{pmatrix} 1 & z_1^0 & \dots & z_{k-1}^0 \end{pmatrix}$ --- вектор размера $1 \times k$ и $x^0 = \begin{pmatrix} 1 & x_1^0 & \dots & x_{k-1}^0 \end{pmatrix}$ --- вектор размера $1 \times k$. Оба эти вектора представляют собой значения факторов. Тогда $z^0 = x^0 A$ и прогнозное значение для регрессии с преобразованными факторами равно $z^0 \hat{\gamma} = x^0 AA^{-1} \hb = x^0 \hb$ прогнозному значению для регрессии с исходными факторами. 
+\item Пусть $z^0 = \begin{pmatrix} 1 & z_1^0 & \dots & z_{k-1}^0 \end{pmatrix}$ --- вектор размера $1 \times k$ и $x^0 = \begin{pmatrix} 1 & x_1^0 & \dots & x_{k-1}^0 \end{pmatrix}$ --- вектор размера $1 \times k$. Оба эти вектора представляют собой значения факторов. Тогда $z^0 = x^0 A$ и прогнозное значение для регрессии с преобразованными факторами равно $z^0 \hat{\gamma} = x^0 AA^{-1} \hb = x^0 \hb$ прогнозному значению для регрессии с исходными факторами.
 \end{enumerate}
 \end{solution}
 
 
 \begin{problem}
-Рассмотрим оценку вида $\tilde{\beta} = ((X'X)^{-1} + \gamma I)X'y$ для вектора коэффициентов регрессионного уравнения $y = X\beta + \e$, удовлетворяющего условиям классической регрессионной модели. Найдите $\E(\tilde{\beta})$ и $\Var(\tilde{\beta}).$ 
+Рассмотрим оценку вида $\tilde{\beta} = ((X'X)^{-1} + \gamma I)X'y$ для вектора коэффициентов регрессионного уравнения $y = X\beta + \e$, удовлетворяющего условиям классической регрессионной модели. Найдите $\E(\tilde{\beta})$ и $\Var(\tilde{\beta}).$
 \end{problem}
 
 \begin{solution}
 \begin{enumerate}
-\item 
+\item
 \begin{multline}
 \E(\tilde{\beta}) = ((X'X)^{-1} + \gamma I)X'\E(y) = \\
  ((X'X)^{-1} + \gamma I)X'X\beta = \beta + \gamma X'X\beta
 \end{multline}
-\item 
+\item
 \begin{multline}
 \Var(\tilde{\beta}) = \Var(((X'X)^{-1} + \gamma I)X'y) = \\
  \Var(((X'X)^{-1} + \gamma I)X'\e) = \\
@@ -339,7 +339,49 @@ $X^T X =  \begin{pmatrix}
 \item $\hs^2$
 \end{enumerate}
 \end{problem}
+
 \begin{solution}
+\begin{enumerate}
+\item $\Var(\epsilon_1)=\Var(\epsilon)_{(1,1)}=4\cdot I_{(1,1)}=4$
+\item $\Var(\beta_1)=0$, так как $\beta_1$ --- детерминированная величина.
+\item $\Var(\hb_1)=\sigma^2(X'X)^{-1}_{(1,1)}=0.5\sigma^2=0.5\cdot 4=2$
+\item $\widehat{\Var}(\hb_1)=\hat\sigma^2(X'X)^{-1}_{(1,1)}=0.5\hat\sigma^2_{(1,1)}=0.5\frac{RSS}{5-3}=0.25RSS=0.25y'(I-X(X'X)^{-1}X')y=0.25\cdot 1=0.25$
+
+$\hat\sigma^2=\frac{RSS}{n-k}=\frac12$.
+
+\item Так как оценки МНК являются несмещенными, то $\E(\hb)=\beta$, значит:
+\[
+\E(\hb_1)-\beta_1^2=\E(\hb_1)-(\E(\hb_1))^2=\widehat{\Var}(\hb_1)=0.25
+\]
+
+\item $\Cov(\hb_2,\hb_3)=\sigma^2(X'X)^{-1}_{(2,3)}=4\cdot\left(-\frac12\right)=-2$
+\item $\widehat{\Cov}(\hb_2,\hb_3)=\widehat{\Var}(\hat\beta)_{(2,3)}=\hat\sigma^2(X'X)^{-1}_{(2,3)}=\frac{1}{2}\cdot\left(-\frac12\right)=-\frac14$
+
+\item $\Var(\hb_2-\hb_3)=\Var(\hb_2)+\Var(\hb_3)+2\Cov(\hb_2,\hb_3)=\sigma^2((X'X)^{-1}_{(2,2)}+(X'X)^{-1}_{(3,3)}+2(X'X)^{-1}_{(2,3)}=4(1+1.5+2\cdot(-0.5))=6$
+
+\item $\widehat{\Var}(\hb_2-\hb_3)=\widehat{\Var}(\hb_2)+\widehat{\Var}(\hb_3)+2\widehat{\Cov}(\hb_2,\hb_3)=\hat\sigma^2((X'X)^{-1}_{(2,2)}+(X'X)^{-1}_{(3,3)}+2(X'X)^{-1}_{(2,3)}=\frac{1}{2}\cdot1.5=0.75$
+
+\item $\Var(\beta_2-\beta_3)=0$
+
+\item $\corr(\hb_2,\hb_3)=\frac{\Cov(\hb_2,\hb_3)}{\sqrt{\Var(\hb_2)\Var(\hb_3)}}=\frac{-2}{\sqrt{4\cdot6}}=-\frac{\sqrt6}{6}$
+
+\item $\widehat{\corr}(\beta_2,\beta_3)=\frac{\widehat{\Cov}(\hb_2,\hb_3)}{\sqrt{\widehat{\Var}(\hb_2)\widehat{\Var}(\hb_3)}}=\frac{-\frac14}{\sqrt{\frac12\cdot\frac34}}=-\frac{\sqrt6}{6}$
+
+\item $(n-k)\frac{\hat\sigma^2}{\sigma^2}\sim\chi^2_{n-k}$.
+\[
+\E\left((n-k)\frac{\hat\sigma^2}{\sigma^2}\right)=n-k
+\]
+\[
+\E\left(\frac{\hat\sigma^2}{2}\right)=1
+\]
+\[
+\E(\hat\sigma^2)=2
+\]
+
+\item $\hat\sigma^2=\frac{RSS}{n-k}=\frac12$
+
+\end{enumerate}
+
 \end{solution}
 
 
@@ -366,7 +408,7 @@ x_x <- solve(xx)
 \item Сформулируйте основную и альтернативную гипотезы, которые соответствуют тесту на значимость переменной $x_2$ в уравнении регрессии
 \item Протестируйте на значимость переменную $x_2$ в уравнении регрессии на уровне значимости $10\%$:
 \begin{enumerate}
-\item Приведите формулу для тестовой статистики 
+\item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики при верной $H_0$
 \item Вычислите наблюдаемое значение тестовой статистики
 \item Укажите границы области, где основная гипотеза не отвергается
@@ -375,7 +417,7 @@ x_x <- solve(xx)
 \item Найдите $P-$значение, соответствующее наблюдаемому значению тестовой статистики $(T_{obs})$ из предыдущего пункта. На основе полученного $P-$значения сделайте вывод о значимости переменной $x_2$
 \item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_2 = 1$ против альтернативной $H_a: \beta_2 \not= 1$:
 \begin{enumerate}
-\item Приведите формулу для тестовой статистики 
+\item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики при верной $H_0$
 \item Вычислите наблюдаемое значение тестовой статистики
 \item Укажите границы области, где основная гипотеза не отвергается
@@ -383,7 +425,7 @@ x_x <- solve(xx)
 \end{enumerate}
 \item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_2 = 1$ против альтернативной $H_a: \beta_2 > 1$:
 \begin{enumerate}
-\item Приведите формулу для тестовой статистики 
+\item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики при верной $H_0$
 \item Вычислите наблюдаемое значение тестовой статистики
 \item Укажите границы области, где основная гипотеза не отвергается
@@ -391,7 +433,7 @@ x_x <- solve(xx)
 \end{enumerate}
 \item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_2 = 1$ против альтернативной $H_a: \beta_2 < 1$:
 \begin{enumerate}
-\item Приведите формулу для тестовой статистики 
+\item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики при верной $H_0$
 \item Вычислите наблюдаемое значение тестовой статистики
 \item Укажите границы области, где основная гипотеза не отвергается
@@ -400,7 +442,7 @@ x_x <- solve(xx)
 \item Сформулируйте основную гипотезу, которая соответствует тесту на значимость регрессии <<в целом>>
 \item На уровне значимости $5\%$ проверьте гипотезу о значимости регрессии <<в целом>>:
 \begin{enumerate}
-\item Приведите формулу для тестовой статистики 
+\item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики при верной $H_0$
 \item Вычислите наблюдаемое значение тестовой статистики
 \item Укажите границы области, где основная гипотеза не отвергается
@@ -409,7 +451,7 @@ x_x <- solve(xx)
 \item Найдите $P-$значение, соответствующее наблюдаемому значению тестовой статистики $(T_{obs})$ из предыдущего пункта. На основе полученного $P-$значения сделайте вывод о значимости регрессии <<в целом>>
 \item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_2 + \beta_3 = 2$ против альтернативной $H_a: \beta_2 + \beta_3 \not= 2$:
 \begin{enumerate}
-\item Приведите формулу для тестовой статистики 
+\item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики при верной $H_0$
 \item Вычислите наблюдаемое значение тестовой статистики
 \item Укажите границы области, где основная гипотеза не отвергается
@@ -417,7 +459,7 @@ x_x <- solve(xx)
 \end{enumerate}
 \item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_2 + \beta_3 = 2$ против альтернативной $H_a: \beta_2 + \beta_3 > 2$:
 \begin{enumerate}
-\item Приведите формулу для тестовой статистики 
+\item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики при верной $H_0$
 \item Вычислите наблюдаемое значение тестовой статистики
 \item Укажите границы области, где основная гипотеза не отвергается
@@ -425,7 +467,7 @@ x_x <- solve(xx)
 \end{enumerate}
 \item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_2 + \beta_3 = 2$ против альтернативной $H_a: \beta_2 + \beta_3 < 2$:
 \begin{enumerate}
-\item Приведите формулу для тестовой статистики 
+\item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики при верной $H_0$
 \item Вычислите наблюдаемое значение тестовой статистики
 \item Укажите границы области, где основная гипотеза не отвергается
@@ -526,14 +568,22 @@ y <- matrix(as.integer(c(1,2,3,4,5)), nrow=5, ncol=1, byrow = FALSE, dimnames = 
 
 На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_a: \beta_1 + \beta_2 \not= 2$:
 \begin{enumerate}
-\item Приведите формулу для тестовой статистики 
+\item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики  при верной $H_0$
 \item Вычислите наблюдаемое значение тестовой статистики
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
 \end{problem}
+
 \begin{solution}
+\begin{enumerate}
+\item $T = \frac{\hb_1 + \hb_2 - (\beta_1 + \beta_2)}{\sqrt{\widehat{\Var}(\hb_1 + \hb_2)}}$, где $\widehat{\Var}(\hb_1 + \hb_2) = \widehat{\Var}(\hb_1) + \widehat{\Var}(\hb_2) + 2\widehat{\Cov}(\hb_1;\hb_2) = \hat{\sigma}^2 [(X'X)^{-1}]_{11} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{12} + \hat{\sigma}^2 [(X'X)^{-1}]_{22}= \frac{RSS}{n - k}([(X'X)^{-1}]_{11} + 2[(X'X)^{-1}]_{12} + [(X'X)^{-1}]_{22}), \beta_1 + \beta_2=2$
+\item $T \sim t_{n-k}; n = 5; k = 3$
+\item Смотри матрицы в номере 4.12. $\hb=(X'X)^{-1}X'y=(1.5\;2.0\;1.5)'$. $\widehat{\Var}(\hb_1 + \hb_2) =\frac12(0.5+1+2\cdot(-0.5))=\frac14$. $T=\frac{1.5+2-2}{\sqrt{\frac14}}=3$.
+\item Так как проверяется знак <<равно>> в гипотезе, то нижняя граница $-\infty$, а верхняя граница $+\infty$.
+\item $t_{0.95,2}=2.9199<T$, значит, гипотеза отвергается на уровне значимости 5\%.
+\end{enumerate}
 \end{solution}
 
 
@@ -545,9 +595,21 @@ y <- matrix(as.integer(c(1,2,3,4,5)), nrow=5, ncol=1, byrow = FALSE, dimnames = 
 \item Найдите $SSR$, $R^2$
 \item Как выглядит матрица $X(X'X)^{-1}X'$?
 \item Почему 13 --- несчастливое число?
-\end{enumerate} 
+\end{enumerate}
 \end{problem}
+
 \begin{solution}
+\begin{enumerate}
+\item $SSR=0$, $R^2=1$, так как в регрессии у Васи 13 (1+5+(4-1)+(5-1)) переменных, которые точно подстраиваются под данные.
+\item Эта матрица является единичной размер 13 на 13, что нетрудно понять из формулы $SSR=y'(I-X(X'X)^{-1}X')y$.
+\item На сегодняшний день среди исследователей нет единого мнения о происхождении трискаидекафобии (боязнь числа 13).
+
+По одной из версий, число 13 может считаться <<плохим>> уже только потому, что оно больше 12, числа, которое является священным у многих народов.
+
+Кроме того, существует библейское предание, косвенно связанное с числом 13 --- на тайной вечере Иуда Искариот, апостол, предавший Иисуса, сидел за столом тринадцатым. С этим преданием связывают самую распространенную в XIX веке примету, связанную с числом 13 — если за обеденным столом собрались 13 человек, один из них умрет в течение года после трапезы. Позже в христианстве распространилось апокрифическое убеждение, что Сатана был 13-м ангелом.
+
+Источник: \url{https://ru.wikipedia.org/wiki/\%D0\%A2\%D1\%80\%D0\%B8\%D1\%81\%D0\%BA\%D0\%B0\%D0\%B8\%D0\%B4\%D0\%B5\%D0\%BA\%D0\%B0\%D1\%84\%D0\%BE\%D0\%B1\%D0\%B8\%D1\%8F}
+\end{enumerate}
 \end{solution}
 
 
@@ -573,13 +635,13 @@ $(n-1)\sigma^2$, $(n-k)\sigma^2$
 Используя матрицы $P=X(X'X)^{-1}X'$ и $\pi=\v1(\v1'\v1)^{-1}\v1'$ запишите $RSS$, $TSS$ и $ESS$ в матричной форме
 \end{problem}
 \begin{solution}
-$TSS=y'(I-\pi)y$, $RSS=y'(I-P)y$, $ESS=y'(P-\pi)y$ 
+$TSS=y'(I-\pi)y$, $RSS=y'(I-P)y$, $ESS=y'(P-\pi)y$
 \end{solution}
 
 
 
 \begin{problem}
-Найдите $\E(TSS)$, $\E(ESS)$. Надо быть морально готовым к тому, что они выйдут громоздкие 
+Найдите $\E(TSS)$, $\E(ESS)$. Надо быть морально готовым к тому, что они выйдут громоздкие
 \end{problem}
 \begin{solution}
 $\E(TSS)=(n-1)\sigma^2+\beta'X'(I-\pi)X\beta$
@@ -599,7 +661,16 @@ $(n-1)\sigma^2$, $(n-k)\sigma^2$, $(k-1)\sigma^2$
 \begin{problem}
 Рассмотрим классическую линейную модель. Являются ли векторы $\he$ и $\hy$ перпендикулярными? Найдите $\Cov(\he,\hy)$
 \end{problem}
+
 \begin{solution}
+Вспомним, что $\Var(y)=\Var(X\beta+\epsilon)=\Var(\epsilon)=\sigma^2$
+\[
+\Cov(\he,\hy)=\Cov(y-\hy,\hy)=\Cov(y-X(X'X)^{-1}X'y,y)=\Var(y)-\Cov(X(X'X)^{-1}X'y,y)
+\]
+\[
+\Cov(\he,\hy)=\sigma^2-X(X'X)^{-1}X'\Var(y)X(X'X)^{-1}X'=\sigma^2(I-X(X'X)^{-1}X')
+\]
+и если $X(X'X)^{-1}X'$ не равна единичной, то векторы $\he$ и $\hy$ не являются перпендикулярными. Это может произойти только в случае, когда $RSS=0$, то есть в случае, когда существующие переменные абсолютно точно описывают данные.
 \end{solution}
 
 \begin{problem}
@@ -615,7 +686,7 @@ $\E(\e)=0$, $\E(\he)=0$, $\sum \e_i$ может оказаться равной 
 \end{problem}
 
 \begin{solution}
-$\sum y_i^2=\sum \hy_i^2+\sum \he_i^2$, $TSS=ESS+RSS$, 
+$\sum y_i^2=\sum \hy_i^2+\sum \he_i^2$, $TSS=ESS+RSS$,
 \end{solution}
 
 
@@ -623,6 +694,33 @@ $\sum y_i^2=\sum \hy_i^2+\sum \he_i^2$, $TSS=ESS+RSS$,
 Покажите на Картинке TSS, ESS, RSS, $R^2$, $\sCov(\hy,y)$
 \end{problem}
 \begin{solution}
+$\sCorr(\hat y, y)=\frac{\sCov(\hat y, y)}{\sqrt{\sVar(\hat y)\sVar{(y)}}}$
+
+$\sCorr(\hat y, y)^2=\frac{(\sCov(\hat y, y))^2}{\sVar(\hat y)\sVar{(y)}} $
+
+$R^2\cdot TSS/(n-1)\cdot ESS/(n-1)=(\sCov(\hat y, y))^2=(\sCov(\hat y-\bar y, y-\bar y))^2$
+Отсюда можно понять, что ковариация для двухмерного случая равна произведению длин векторов $\hat y-\bar y$ и $y-\bar y$ --- $\sqrt{ESS}$ и $\sqrt{TSS}$ на косинус угла между ними ($\sqrt{R^2}$). Геометрически скалярное произведение можно изобразить как произведение длин одного из векторов на проекцию второго вектора на первый. Если будет проецировать $y-\bar y\overrightarrow{1}$ на $\hat y-\bar y\overrightarrow{1}$, то получим как раз $ESS$ --- тот квадрат на рисунке, что уже построен.
+
+
+$\sCov(\hat y, y)=\sqrt{ESS^2/(n-1)^2}=ESS/(n-1)$
+
+Так как картинка нарисована в двумерном пространство, то $n=2$, и выборочна ковариация совпадает с $ESS$ визуально.
+
+$\pi=\frac1n\begin{pmatrix}
+1 & \ldots & 1 \\
+\vdots & \ddots & \vdots \\
+1 & \ldots & 1
+\end{pmatrix}_{n\times n} $
+
+
+Решение показано на графику \ref{ssgraph}.
+
+\begin{figure}\centering
+\def\svgwidth{15cm} % если надо изменить размер
+\input{tss_rss_ess_figure.tex}
+\caption{Решение задачи 4.24}
+\label{ssgraph}
+\end{figure}
 \end{solution}
 
 \begin{problem}
@@ -630,7 +728,7 @@ $\sum y_i^2=\sum \hy_i^2+\sum \he_i^2$, $TSS=ESS+RSS$,
 \end{problem}
 
 \begin{solution}
-Спроецируем единичный столбец на <<плоскость>>, обозначим его $1'$. Делаем проекцию $y$ на <<плоскость>> и на $1'$. Далее аналогично. 
+Спроецируем единичный столбец на <<плоскость>>, обозначим его $1'$. Делаем проекцию $y$ на <<плоскость>> и на $1'$. Далее аналогично.
 \end{solution}
 
 
@@ -639,7 +737,7 @@ $\sum y_i^2=\sum \hy_i^2+\sum \he_i^2$, $TSS=ESS+RSS$,
 \end{problem}
 
 \begin{solution}
-Проекция $y$ на $\hy$ это $\hy$, поэтому оценки коэффициентов будут 0 и 1. Оценка дисперсии $\frac{RSS}{(n-2)ESS}$. Нарушены предпосылки теоремы Гаусса-Маркова, например, ошибки новой модели в сумме дают 0, значит коррелированы. 
+Проекция $y$ на $\hy$ это $\hy$, поэтому оценки коэффициентов будут 0 и 1. Оценка дисперсии $\frac{RSS}{(n-2)ESS}$. Нарушены предпосылки теоремы Гаусса-Маркова, например, ошибки новой модели в сумме дают 0, значит коррелированы.
 \end{solution}
 
 
@@ -659,7 +757,7 @@ $\sum y_i^2=\sum \hy_i^2+\sum \he_i^2$, $TSS=ESS+RSS$,
 \end{problem}
 
 \begin{solution}
-Сами оценки коэффициентов никак детерминистически не связаны, но при большом размере подвыборок примерно равны. А ковариационные матрицы связаны соотношением $\Var(\hb_a)^{-1}+\Var(\hb_b)^{-1}=\Var(\hb_{tot})^{-1}$ 
+Сами оценки коэффициентов никак детерминистически не связаны, но при большом размере подвыборок примерно равны. А ковариационные матрицы связаны соотношением $\Var(\hb_a)^{-1}+\Var(\hb_b)^{-1}=\Var(\hb_{tot})^{-1}$
 \end{solution}
 
 
@@ -703,6 +801,88 @@ $
 \end{enumerate}
 \end{problem}
 \begin{solution}
+1.
+
+\[\he'\he\rightarrow \min_{\hb}\]
+\[(y-\hy)'(y-\hy)\rightarrow\min_{\hb}\]
+\[(y-X\hb)'(y-X\hb)\rightarrow\min_{\hb}\]
+\[y'y-\hb' X'y-y'X\hb+\hb'X'X\hb\rightarrow\min_{\hb}\]
+
+Воспользуемся тем, что : $\frac{\partial x'A}{\partial x'}=A'$, $\frac{\partial Ax}{\partial x'}=A$,
+$\frac{\partial x'Ax}{\partial x'}=x'(A'+A)$
+Условие первого порядка:
+
+\[-2(X'y)'+(X'X+(X'X)')\hb'=0\]
+\[-2X'y+2\hb X'X=0\]
+
+2.
+
+$X'X=\begin{pmatrix}
+x_{1,1}\ldots x_{n,1}\\
+x_{1,2}\ldots x_{n,2}
+\end{pmatrix}
+\begin{pmatrix}
+x_{1,1}& x_{1,2}\\
+\vdots&\vdots\\
+x_{n,1}& x_{n,2}
+\end{pmatrix}=
+\begin{pmatrix}
+\sum_{i=1}^n x^2_{n,1}& x_{1,1}x_{1,2}\ldots x_{n,1}x_{n,2}\\
+x_{1,1}x_{1,2}\ldots x_{n,1}x_{n,2}&\sum_{i=1}^nx^2_{n,2}
+\end{pmatrix}$
+
+$X'y=\begin{pmatrix}
+x_{1,1}\ldots x_{n,1}\\
+x_{1,2}\ldots x_{n,2}
+\end{pmatrix}
+\begin{pmatrix}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{pmatrix}=
+\begin{pmatrix}
+x_{1,1}y_1\ldots x_{n,1}y_n\\
+x_{1,2}y_1\ldots x_{n,2}y_n
+\end{pmatrix}$
+
+3.
+
+Условие первого порядка:
+\[-2(X'y)'+\hb'(X'X+(X'X)')=0\]
+\[-2X'y+2X'X \hb =0\]
+и
+\[X'y=X'X\hb\]
+\[\hb=(X'X)^{-1}X'y\]
+
+4.
+
+\begin{multline}
+\hb=(X'X)^{-1}X'y=
+\begin{pmatrix}
+\sum_{i=1}^n x^2_{n,1}& x_{1,1}x_{1,2}\ldots x_{n,1}x_{n,2}\\
+x_{1,1}x_{1,2}\ldots x_{n,1}x_{n,2}&\sum_{i=1}^nx^2_{n,2}
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+x_{1,1}y_1\ldots x_{n,1}y_n\\
+x_{1,2}y_1\ldots x_{n,2}y_n
+\end{pmatrix}=\\
+=\frac{1}{\sum_{i=1}^n x^2_{n,1}\sum_{i=1}^n x^2_{n,2}-(x_{1,1}x_{1,2}+\ldots+ x_{n,1}x_{n,2})^2}\cdot\\
+\begin{pmatrix}
+\sum_{i=1}^n x^2_{n,2}& -x_{1,1}x_{1,2}+\ldots+ x_{n,1}x_{n,2}\\
+-x_{1,1}x_{1,2}+\ldots +x_{n,1}x_{n,2}&\sum_{i=1}^nx^2_{n,1}
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+x_{1,1}y_1+\ldots +x_{n,1}y_n\\
+x_{1,2}y_1+\ldots +x_{n,2}y_n
+\end{pmatrix}=\\
+=\frac{1}{\sum_{i=1}^n x^2_{n,1}\sum_{i=1}^n x^2_{n,2}-(x_{1,1}x_{1,2}+\ldots+ x_{n,1}x_{n,2})^2}\cdot\\
+\begin{pmatrix}
+\sum_{i=1}^n x^2_{n,2}(x_{1,1}y_1+\ldots +x_{n,1}y_n) -(x_{1,1}x_{1,2}+\ldots+ x_{n,1}x_{n,2})(x_{1,2}y_1+\ldots +x_{n,2}y_n)\\
+-(x_{1,1}y_1+\ldots +x_{n,1}y_n)(x_{1,1}x_{1,2}+\ldots +x_{n,1}x_{n,2})+\sum_{i=1}^nx^2_{n,1}(x_{1,2}y_1+\ldots +x_{n,2}y_n)
+\end{pmatrix}
+\end{multline}
 \end{solution}
 
 
@@ -719,16 +899,16 @@ y_i=\b_1+\b_2 x_i + u_i
 y_i^*=\b_1'+\b_2' x^*_i + u_i'
 \]
 
-и 
+и
 \[
 y_i^*=\b_2'' x^*_i + u_i''
 \]
 
 В решении можно считать $s_x$ и $s_y$ известными.
- 
+
 \begin{enumerate}
 \item Найдите $\hb_1'$
-\item Как связаны между собой $\hb_2$, $\hb_2'$ и $\hb_2''$? 
+\item Как связаны между собой $\hb_2$, $\hb_2'$ и $\hb_2''$?
 \item Как связаны между собой $\hat{u}_i$, $\hat{u}_i'$ и $\hat{u}_i''$?
 \item Как связаны между собой $\hVar\left(\hb_2\right)$, $\hVar\left(\hb_2'\right)$ и $\hVar\left(\hb_2''\right)$?
 \item Как выглядит матрица $\hVar\left(\hb'\right)$?
@@ -738,6 +918,66 @@ y_i^*=\b_2'' x^*_i + u_i''
 \end{enumerate}
 \end{problem}
 \begin{solution}
+
+\begin{enumerate}
+\item $\hat\beta_1'=\bar y^* -\hb_2'\bar x^*=\overline{y-\bar y}-\hb_2'(\overline{x-\bar x})=0$
+
+\item $\hb_2'=\frac{\Cov(y^*,x^*)}{\Var(x^*)}=\frac{\Cov(y-\bar y,x-\bar x)s_x/s_y}{\Var(x-\bar x)}=\frac{\Cov(y,x)s_x/s_y}{\Var(x)}=\frac{s_x}{s_y}\hb_2$
+
+$\hb_2''=\frac{\overline{x^*y^*}}{\overline{\bar x^2}}=\frac{\Cov(x^*y^*)+\bar{x^*}\bar{y^*}}{\Var(x^*)+\bar{x^*}}=\frac{\Cov(y^*,x^*)}{\Var(x^*)}=\hb_2'=\frac{s_x}{s_y}\hb_2$
+
+\item $\hat u_i'=y_i^*-\hat y_i^*=y_i^*-\hb_1'-\hb_2'x_i^*=y_i^*-\frac{s_x}{s_y}\hb_2x_i^*=\frac{y_i-\bar y-\hb_2(x_i-\bar x)}{s_y}=\frac{y_i-\hb_2x_i-(\bar y-\hb_2\bar x)}{s_y}=\frac{y_i-\hb_2x_i-\hb_1}{s_y}=\frac{\hat u_i}{s_y}$
+
+$\hat u_i''=y_i^*-\hat y_i^*=y_i^*-\hb_2''x_i^*=y_i^*-\frac{s_x}{s_y}\hb_2'x_i^*=\frac{y_i-\bar y-\hb_2(x_i-\bar x)}{s_y}=\frac{y_i-\hb_2x_i-(\bar y-\hb_2\bar x)}{s_y}=\frac{y_i-\hb_2x_i-\hb_1}{s_y}=\frac{u_i}{s_y}=\hat u_i'$
+
+\item $RSS=\sum_{i=1}^n \hat u_i^2=s_y^2\sum_{i=1}^n \hat u_i'^2=s_y^2RSS'$, $RSS'=\sum_{i=1}^n \hat u_i'^2=RSS''$.
+
+$X'X=\begin{pmatrix}
+n&\sum^n_{i=1}x_i\\
+\sum^n_{i=1}x_i&\sum^n_{i=1}x_i^2
+\end{pmatrix}$
+
+$X'X_{new}=\begin{pmatrix}
+n&\sum^n_{i=1}(x_i-\bar x)/s_x\\
+\sum^n_{i=1}(x_i-\bar x)/s_x&\sum^n_{i=1}(x_i-\bar x)^2/s_x^2
+\end{pmatrix}=
+\begin{pmatrix}
+n&\sum^n_{i=1}(x_i-\bar x)/s_x\\
+(\sum^n_{i=1}x_i^2-\bar x^2)/s_x&\sum^n_{i=1}(x_i-\bar x)^2/s_x^2
+\end{pmatrix}=
+\begin{pmatrix}
+n&0\\
+0&(\sum^n_{i=1}x_i^2-n\bar x^2)/s_x^2
+\end{pmatrix}$
+
+$\widehat{\Var}(\hb_2)=\frac{RSS_1}{n-2}(X'X)_{(2,2)}^{-1}=\frac{RSS_2s_y^2}{n-2}\frac{1}{n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2}
+\begin{pmatrix}
+\sum^n_{i=1}x_i^2&-\sum^n_{i=1}x_i\\
+-\sum^n_{i=1}x_i&n
+\end{pmatrix}_{(2,2)}=\frac{RSS_2s_y^2}{n-2}\frac{n}{n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2}=\frac{RSS_2s_y^2}{n-2}\frac{n/s_x^2}{(n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2)/s_x^2}=\widehat{\Var}(\hb_2')\frac{s_y^2}{s_x^2}$
+
+$\widehat{\Var}(\hb'_2)=\frac{RSS_2}{n-2}(X'X_{new})_{(2,2)}^{-1}=\frac{RSS_3}{n-1}(X'X_{new})_{(2,2)}^{-1}\frac{n-1}{n-2}=\widehat{\Var}(\hb''_2)\frac{n-1}{n-2}$
+
+\item $\widehat{\Var}(\hb')=\frac{RSS_2}{n-2}(X'X_{new})^{-1}=\frac{\sum_{i=1}^n(y_i^*-\hb_1'-\hb_2'x_i^*)^2}{n-2}\begin{pmatrix}
+(\sum^n_{i=1}x_i^2-n\bar x^2)/s_x^2&0\\
+0&n
+\end{pmatrix}$
+где $\hb'=(X'X_{new})^{-1}\begin{pmatrix}
+0\\
+\sum_{i=1}^n(x_i-\bar x)y_i
+\end{pmatrix}$, в частности, $\hb_1'=0$.
+
+\item $t_{\hb_2}=\frac{\hat\beta}{\sqrt{\Var(\hb_2)}}=\frac{\hat\beta's_y/s_x}{\sqrt{\Var(\hb_2')}s_y/s_x}=t_{\hb_2'}=\sqrt{\frac{n-2}{n-1}}t_{\hb_2''}$
+
+\item $TSS'=TSS''=\frac{\sum_{i=1}^n(y_i-\bar y)^2}{s_y^2}=\frac{TSS}{s_y^2}$.
+
+$R'^2=R''^2$, так как соответствующие $TSS$ и $RSS$ равны.
+
+$R^2=\frac{RSS}{TSS}=\frac{s_y^2RSS'}{TSS's_y^2}=\frac{RSS}{TSS}=R'^2$
+
+\item При переходе к стандартизированным переменным изменяются оценки коэффициентов и остатки регрессии пропорционально стандартным отклонениям переменным. Также перестаёт играет роль регрессор-свободный член, так как матожидание эндогенной переменной становится равной 0. Также при переходе к стандартизированным переменным можно снизить оценку дисперсии переменных, так как можно убрать регрессор-свободный член. Качество регрессий по $R^2$ не изменяется.
+
+\end{enumerate}
 \end{solution}
 
 
@@ -745,35 +985,35 @@ y_i^*=\b_2'' x^*_i + u_i''
 \begin{problem}
 Регрессионная модель  задана в матричном виде при помощи уравнения $y=X\beta+\varepsilon$, где $\beta=(\beta_1,\beta_2,\beta_3)'$.
 Известно, что $\E(\varepsilon)=0$  и  $\Var(\varepsilon)=\sigma^2\cdot I$.
-Известно также, что 
+Известно также, что
 
 $y=\left(
-\begin{array}{c} 
-1\\ 
-2\\ 
-3\\ 
-4\\ 
+\begin{array}{c}
+1\\
+2\\
+3\\
+4\\
 5
-\end{array}\right)$, 
+\end{array}\right)$,
 $X=\left(\begin{array}{ccc}
 1 & 0 & 0 \\
 1 & 0 & 0 \\
 1 & 0 & 0 \\
 1 & 1 & 0 \\
-1 & 1 & 1 
+1 & 1 & 1
 \end{array}\right)$.
 
 
-Для удобства расчетов приведены матрицы 
+Для удобства расчетов приведены матрицы
 
 
 $X'X=\left(
-\begin{array}{ccc} 
-5 & 2 & 1\\ 
-2 & 2 & 1\\ 
-1 & 1 & 1 
+\begin{array}{ccc}
+5 & 2 & 1\\
+2 & 2 & 1\\
+1 & 1 & 1
 \end{array}\right)$ и $(X'X)^{-1}=\frac{1}{3}\left(
-\begin{array}{ccc} 
+\begin{array}{ccc}
 1 & -1 & 0 \\
 -1 & 4 & -3 \\
 0 & -3 & 6
@@ -788,7 +1028,7 @@ $X'X=\left(
 \item Чему равен $\he_5$, МНК-остаток регрессии, соответствующий 5-ому наблюдению?
 \item Чему равен $R^2$  в модели? Прокомментируйте полученное значение с точки зрения качества оцененного уравнения регрессии.
 \item Используя приведенные выше данные, рассчитайте несмещенную оценку для неизвестного параметра $\sigma^2$ регрессионной модели.
-\item Рассчитайте $\widehat{\Var}(\hb)$, оценку для ковариационной матрицы вектора МНК-коэффициентов $\hb$.  
+\item Рассчитайте $\widehat{\Var}(\hb)$, оценку для ковариационной матрицы вектора МНК-коэффициентов $\hb$.
 \item Найдите $\widehat{\Var}(\hb_1)$, несмещенную оценку дисперсии МНК-коэффициента $\hb_1$.
 \item Найдите $\widehat{\Var}(\hb_2)$, несмещенную оценку дисперсии МНК-коэффициента $\hb_2$.
 \item Найдите $\widehat{\Cov}(\hb_1,\hb_2)$, несмещенную оценку ковариации МНК-коэффициентов $\hb_1$ и $\hb_2$.
@@ -800,6 +1040,46 @@ $X'X=\left(
 \end{enumerate}
 \end{problem}
 \begin{solution}
+
+\begin{enumerate}
+\item $n=5$
+\item $k=3$
+\item $y_i=\beta_0+\beta_1x_1+\beta_2x_2+u_i$
+\item $RSS=y'(I-X(X'X)^{-1}X')y=2$, $TSS=(1-3)^2+(2-3)^2+(3-3)^2+(4-3)^2+(5-3)^2=4+1+0+1+4=10$, $ESS=TSS-RSS=8$.
+\item $\hb=X(X'X)^{-1}X'y=(2\>2\>1)'$
+\item $\hat\epsilon_5=y_5-\hy_5=5-2-2x^{(5)}_1-x^{(5)}_2=5-2-2-1=0$.
+\item $R^2=\frac{ESS}{TSS}\frac{8}{10}=0.8$. $R^2$ высок, модель регрессии хорошо описывает данные.
+\item Несмещённая оценка --- $\hat\sigma^2$. $\hat\sigma^2=\frac{RSS}{n-k}=\frac{2}{5-3}=1$.
+\item $\widehat{\Var}(\hb)=\hat\sigma^2(X'X)^{-1}=\frac13\begin{pmatrix}
+1&-1&0\\
+-1&4&-3\\
+0&-3&6
+\end{pmatrix}
+$
+\item $\widehat{\Var}(\hat\beta_1)=\frac13$
+\item $\widehat{\Var}(\hat\beta_2)=\frac43$
+\item $\widehat{\Cov}(\hat\beta_1,\hat\beta_2)=-\frac13$
+\item $\widehat{\Var}(\hat\beta_1+\hat\beta_2)=\widehat{\Var}(\hat\beta_1)+\widehat{\Var}(\hat\beta_2)+2\widehat{\Cov}(\hat\beta_1,\hat\beta_2)=\frac13+\frac43-2\cdot\frac13=1$
+
+$\widehat{\Var}(\hat\beta_1-\hat\beta_2)=\widehat{\Var}(\hat\beta_1)+\widehat{\Var}(\hat\beta_2)-2\widehat{\Cov}(\hat\beta_1,\hat\beta_2)=\frac13+\frac43+2\cdot\frac13=\frac73$
+
+$\widehat{\Var}(\hat\beta_1+\hat\beta_2+\hat\beta_3)=\widehat{\Var}(\hat\beta_1)+\widehat{\Var}(\hat\beta_2)+\widehat{\Var}(\hat\beta_3)+2\widehat{\Cov}(\hat\beta_1,\hat\beta_2)+2\widehat{\Cov}(\hat\beta_1,\hat\beta_3)+2\widehat{\Cov}(\hat\beta_2,\hat\beta_3)=\frac13(1+4+6-2-6)=1$
+
+$\widehat{\Var}(\hat\beta_1+\hat\beta_2-2\hat\beta_3)=\widehat{\Var}(\hat\beta_1)+\widehat{\Var}(\hat\beta_2)+4\widehat{\Var}(\hat\beta_3)+2\widehat{\Cov}(\hat\beta_1,\hat\beta_2)-4\widehat{\Cov}(\hat\beta_1,\hat\beta_3)-4\widehat{\Cov}(\hat\beta_2,\hat\beta_3)=\frac13(1+4+4\cdot 6-1+12)=\frac{40}{3}$
+\item $\hat\corr(\hat\beta_1,\hat\beta_2)=\frac{\widehat{\Cov}(\hat\beta_1,\hat\beta_2)}{\sqrt{\widehat{\Var}(\hat\beta_1)\cdot\widehat{\Var}(\hat\beta_1)}}=\frac{-\frac13}{\sqrt{\frac13\cdot\frac43}}=-\frac12$
+\item $s_{\hat\beta_1}=\sqrt{\widehat{\Var}(\hat\beta_1)}=\sqrt{\frac13}=\frac{\sqrt3}{3}$
+\item $\hat y=\begin{pmatrix}
+2\\
+2\\
+2\\
+4\\
+5
+\end{pmatrix}$, $\bar \hat y=3$
+
+ $\sCov(y,\hat y)=\frac{\sum_{i=1}^n(y_i-\bar y)(\hat y_i-\hat \bar y_i)}{n-1}=\frac{(1-3)(2-3)+(2-3)(2-3)+(3-3)(2-3)+(4-3)(4-3)+(5-3)(5-3)}{4}=\frac{2+1+1+4}{4}=2$
+\item $\sVar(y)=\frac{\sum_{i=1}^n(y-\bar y)^2}{n-1}=\frac{(1-3)^2+(2-3)^2+(3-3)^2+(4-3)^2+(5-3)^2}{4}=\frac{4+1+0+1+4}{4}=2.5$, $\sVar(\hat y)=\frac{\sum_{i=1}^n(\hat y- \bar\hat y)^2}{n-1}=\frac{(2-3)^2+(2-3)^2+(2-3)^2+(4-3)^2+(5-3)^2}{4}=2$.
+
+\end{enumerate}
 \end{solution}
 
 
@@ -807,12 +1087,12 @@ $X'X=\left(
 Теорема Фриша-Вау. Регрессоры разбиты на две группы: матрицу $X_1$ размера $n\times k_1$ и матрицу $X_2$ размера $n\times k_2$. Рассмотрим две процедуры:
 \begin{enumerate}
 \item[M1.] Строим регрессию вектора $y$ на все регрессоры, т.е. оцениваем модель:
-\[ 
-y=X\beta + \e = X_1 \beta_1 + X_2 \beta_2 +\e 
+\[
+y=X\beta + \e = X_1 \beta_1 + X_2 \beta_2 +\e
 \]
 \item[M2.] Процедура из двух шагов:
 \begin{enumerate}
-\item Строим регрессию вектора $y$ на все регрессоры первой группы и получаем вектор остатков $M_1 y$, где $M_1=I-X_1(X_1'X_1)^{-1}X_1'$. Строим регрессию каждого регрессора из второй группы на все регрессоры первой группы и получаем в каждом случае вектор остатков. Эти остатки можно записать матрицей $M_1 X_2$. 
+\item Строим регрессию вектора $y$ на все регрессоры первой группы и получаем вектор остатков $M_1 y$, где $M_1=I-X_1(X_1'X_1)^{-1}X_1'$. Строим регрессию каждого регрессора из второй группы на все регрессоры первой группы и получаем в каждом случае вектор остатков. Эти остатки можно записать матрицей $M_1 X_2$.
 \item Строим регрессию вектора $M_1 y$ на остатки $M_1 X_2$.
 \end{enumerate}
 Другими словами мы оцениваем модель:
@@ -831,23 +1111,23 @@ M_1 y = M_1 X_2 \gamma_2 + u
 
 1. Да, верно.
 $X=(X_1 X_2)$ --- блочная матрица. Аналогично, $\hat\beta=\left(\begin{array}{c}
-\hat\beta_1\\ 
+\hat\beta_1\\
 \hat\beta_2
 \end{array}\right)$ --- блочная матрица (хотя на самом деле вектор).
 
 \begin{multline*}
 \hat\beta=(X'X)^{-1}X'y=((X_1X_2)'(X_1X_2))^{-1}(X_1X_2)'y=(\left(\begin{array}{c}
-X_1'\\ 
+X_1'\\
 X_2'
 \end{array}\right)(X_1X_2))^{-1}(\left(\begin{array}{c}
-X_1'\\ 
+X_1'\\
 X_2'
 \end{array}\right)y=\\=
 \left(\begin{array}{cc}
-X_1'X_1 & X_1'X_2\\ 
+X_1'X_1 & X_1'X_2\\
 X_2'X_1 & X_2'X_2
 \end{array}\right)^{-1}\left(\begin{array}{c}
-X_1'\\ 
+X_1'\\
 X_2'
 \end{array}\right)y
 \end{multline*}
@@ -856,51 +1136,51 @@ X_2'
 
 Формула Фробениуса:
 \[
-\begin{bmatrix} A & B \\ 
-C & D \\ 
+\begin{bmatrix} A & B \\
+C & D \\
 \end{bmatrix}^{-1}=
-\begin{pmatrix} 
+\begin{pmatrix}
 A^{-1} +A^{-1} BH^{-1} CA^{-1}  & -A^{-1} BH^{-1}\\
  -H^{-1} CA^{-1}  & H^{-1}
-\end{pmatrix} 
+\end{pmatrix}
 \]
 где $H=D-CA^{-1}B$.
 
 Докажем формулу, обращая матрицу методом Гаусса. Умножим слева на $\left(\begin{array}{cc}
-A^{-1} & 0\\ 
+A^{-1} & 0\\
 0 & I
 \end{array}\right)$
 \begin{multline*}
 \left(\begin{array}{cc|cc}
-A & B & I & 0\\ 
+A & B & I & 0\\
 C & D & 0 & I
 \end{array}\right)=
 \left(\begin{array}{cc|cc}
-I & A^{-1}B & A^{-1} & 0\\ 
+I & A^{-1}B & A^{-1} & 0\\
 C & D & 0 & I
 \end{array}\right)=\\
 \end{multline*}
 вычтем из второй строки первую, умноженную на $C$
 \begin{multline*}
 =\left(\begin{array}{cc|cc}
-I & A^{-1}B & A^{-1} & 0\\ 
+I & A^{-1}B & A^{-1} & 0\\
 0 & D-CA^{-1}B & -CA^{-1} & I
 \end{array}\right)=
 \end{multline*}
 умножим слева на $\left(\begin{array}{cc}
-I & 0\\ 
+I & 0\\
 0 & (D-CA^{-1}B)^{-1}
 \end{array}\right)$
 \begin{multline*}
 =\left(\begin{array}{cc|cc}
-I & A^{-1}B & A^{-1} & 0\\ 
+I & A^{-1}B & A^{-1} & 0\\
 0 & I & -(D-CA^{-1}B)^{-1}CA^{-1} & (D-CA^{-1}B)^{-1}
 \end{array}\right)=
 \end{multline*}
-вычтем из первой строки вторую, умноженную на $A^{-1}B$. 
+вычтем из первой строки вторую, умноженную на $A^{-1}B$.
 \begin{multline*}
 =\left(\begin{array}{cc|cc}
-I & 0 & A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} & -A^{-1}B(D-CA^{-1}B)^{-1}\\ 
+I & 0 & A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} & -A^{-1}B(D-CA^{-1}B)^{-1}\\
 0 & I & -(D-CA^{-1}B)^{-1}CA^{-1} & (D-CA^{-1}B)^{-1}
 \end{array}\right)
 \end{multline*}
@@ -909,7 +1189,7 @@ I & 0 & A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} & -A^{-1}B(D-CA^{-1}B)^{-1}\\
 \begin{multline*}
 \begin{bmatrix} A & B \\ C & D \\ \end{bmatrix}^{-1}
 =\left(\begin{array}{cc}
-A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} & -A^{-1}B(D-CA^{-1}B)^{-1}\\ 
+A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} & -A^{-1}B(D-CA^{-1}B)^{-1}\\
 -(D-CA^{-1}B)^{-1}CA^{-1} & (D-CA^{-1}B)^{-1}
 \end{array}\right)=\\=
 \begin{pmatrix} A^{-1} +A^{-1} BH^{-1} CA^{-1}  & -A^{-1} BH^{-1}\\ -H^{-1} CA^{-1}  & H^{-1}\end{pmatrix}
@@ -917,11 +1197,11 @@ A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} & -A^{-1}B(D-CA^{-1}B)^{-1}\\
 
 По формуле Фробениуса получим, что
 \[\left(\begin{array}{cc}
-X_1'X_1 & X_1'X_2\\ 
+X_1'X_1 & X_1'X_2\\
 X_2'X_1 & X_2'X_2
 \end{array}\right)^{-1}=
 \left(\begin{array}{cc}
-(X_1'X_1)^{-1}+(X_1'X_1)^{-1}X_1'X_2H^{-1}X_2'X_1(X_1'X_1)^{-1} & -(X_1'X_1)^{-1}X_1'X_2H^{-1}\\ 
+(X_1'X_1)^{-1}+(X_1'X_1)^{-1}X_1'X_2H^{-1}X_2'X_1(X_1'X_1)^{-1} & -(X_1'X_1)^{-1}X_1'X_2H^{-1}\\
 -H^{-1}X_2'X_1(X_1'X_1)^{-1} & H^{-1}
 \end{array}\right),\]
 где $H=X_2'X_2-X_2'X_1(X_1'X_1)^{-1}X_1'X_2$. Верхняя строка в данном пункте не важна, и сейчас её опустим. Заметим, что
@@ -929,41 +1209,41 @@ X_2'X_1 & X_2'X_2
 Итак,
 \begin{multline*}
 \hat\beta=\left(\begin{array}{c}
-\hat\beta_1\\ 
+\hat\beta_1\\
 \hat\beta_2
 \end{array}\right)=
 \left(\begin{array}{cc}
-X_1'X_1 & X_1'X_2\\ 
+X_1'X_1 & X_1'X_2\\
 X_2'X_1 & X_2'X_2
 \end{array}\right)^{-1}\left(\begin{array}{c}
-X_1'\\ 
+X_1'\\
 X_2'
 \end{array}\right)y=\\=\left(\begin{array}{cc}
 ? & ?\\
 -H^{-1}X_2'X_1(X_1'X_1)^{-1} & H^{-1}
 \end{array}\right)\left(\begin{array}{c}
-X_1'\\ 
+X_1'\\
 X_2'
 \end{array}\right)y=\\=\left(\begin{array}{c}
-?\\ 
+?\\
 -H^{-1}X_2'X_1(X_1'X_1)^{-1}X_1'+H^{-1}X_2'
 \end{array}\right)y=\\=
 \left(\begin{array}{c}
-?\\ 
+?\\
 H^{-1}X_2'(I-X_1(X_1'X_1)^{-1}X_1')
 \end{array}\right)y=\\=
 \left(\begin{array}{c}
-?\\ 
+?\\
 H^{-1}X_2'M_1y
 \end{array}\right)=
 \left(\begin{array}{c}
-?\\ 
+?\\
 (X_2'M_1X_2)^{-1}X_2'M_1y
 \end{array}\right)
 \end{multline*}
 
 \[\hb_2=(X_2'M_1X_2)^{-1}X_2'M_1y\]
-Заметим свойства матрицы-проектора $M_1$. 
+Заметим свойства матрицы-проектора $M_1$.
 \[M_1'=(I-X_1(X_1'X_1)^{-1}X_1')'=I-X_1(X_1'X_1)^{-1}X_1'=M_1\]
 \begin{multline*}
 (M_1)^2=(I-X_1(X_1'X_1)^{-1}X_1')^2=I-2X_1(X_1'X_1)^{-1}X_1'+X_1(X_1'X_1)^{-1}X_1'\cdot X_1(X_1'X_1)^{-1}X_1'=\\
@@ -1012,6 +1292,45 @@ M_1\he=M_1(y-\hy)=M_1(I-X(X'X)^{-1}X')y=(I-X(X'X)^{-1}X')y
 \end{pmatrix}'$, $y'y=2500$. По первым 50-ти наблюдениям оценивается модель $y_i = \beta_1 + \beta_2 x_i + \e_i$, по последним 50-ти наблюдениям оценивается модель $y_i = \gamma_1 + \gamma_2 x_i + \e_i$. Предположеним, что во всех 100 наблюдениях $\e_i$ независимы и нормальны $N(0;\sigma^2)$. На уровне значимости 5\% проверьте гипотезу $H_0: \, \beta=\gamma$.
 \end{problem}
 \begin{solution}
+
+Подсказка: в задаче следует применить тест Чоу.
+
+Посчитаем $RSS$ в каждой из моделей
+\[
+RSS=y'(I-X(X'X)^{-1}X')y=y'y-y'X(X'X)^{-1}X'y=y'y-(X'y)'(X'X)^{-1}X'y
+\]
+
+$RSS_1=2000-1933.33=\frac{500}{3}$
+
+$RSS_2=2500-2333.33=\frac{500}{3}$
+
+$X'X=
+\begin{pmatrix}
+n&\sum^n_{i=1}x_i\\
+\sum^n_{i=1}x_i&\sum^n_{i=1}x_i^2
+\end{pmatrix}$, $X'y=
+\begin{pmatrix}
+\sum^{100}_{i=1}y_i\\
+\sum^{100}_{i=1}x_iy_i
+\end{pmatrix}$
+значит, новый
+$X'X=\begin{pmatrix}
+100&600\\
+600&4200
+\end{pmatrix}$
+а новый $X'y=
+\begin{pmatrix}
+600\\
+4200
+\end{pmatrix}$.
+
+$y'y=\sum^{100}_{i=1}y_i^2=(y'y)_{1st}+(y'y)_{2nd}=4600$
+
+$RSS_{pooled}=4600-4200=400$
+
+Тест Чоу
+$\frac{(RSS_{pooled}-RSS_1-RSS_2)/k}{(RSS_1+RSS_2)/(n-2k)}=\frac{(400-500/3-500/3)/2}{1000/3/96}=\frac{96}{10}=9.6>3.09=F_{2,96}$
+гипотеза о том, что $\beta=\gamma$ отвергается.
 \end{solution}
 
 
@@ -1044,7 +1363,7 @@ M_1\he=M_1(y-\hy)=M_1(I-X(X'X)^{-1}X')y=(I-X(X'X)^{-1}X')y
 Приведите пример несмещенной и линейной по переменной $y$ оценки, отличной от МНК.
 \end{problem}
 
-\begin{solution} 
+\begin{solution}
 $\tilde{\beta} = (X^T CX)^{-1} X^T Cy$, где
 \[C = \begin{bmatrix}
 1 & 0 & 0 & \cdots & 0 \\
@@ -1071,7 +1390,7 @@ $\tilde{\beta} = (X^T CX)^{-1} X^T Cy$, где
 \end{enumerate}
 \end{problem}
 
-\begin{solution} 
+\begin{solution}
 $Pi = i \Leftrightarrow P\pi = \pi$ поскольку, если матрицу $\pi$ записать по столбцам $\pi = \frac{1}{n}\begin{bmatrix}
 i & i & \ldots & i
 \end{bmatrix}$, то можно записать следующую цепочку равенств $P\pi = P\frac{1}{n}\begin{bmatrix}
@@ -1163,7 +1482,7 @@ X^T X = \begin{bmatrix}
 -0.06247 & 1.107 & 1.110 & \\
 0.1003 & -2.192 & -2.170 & 4.292 \\
 \end{bmatrix}
-\] 
+\]
 
 $X^Ty = \begin{bmatrix}
 460\\
@@ -1181,7 +1500,7 @@ $X^Ty = \begin{bmatrix}
 
 \begin{solution}
 \begin{enumerate}
-\item 
+\item
 \begin{multline}
 RSS = \hat{\e}^T\hat{\e} y^T (I - P) y = y^T y - y^TPy = y^Ty - y^T X(X^TX)^{-1}X^Ty ;
 \end{multline}
@@ -1196,7 +1515,7 @@ y^T X(X^TX)^{-1}X^Ty= \\
 -0.063 & 1.107 & 1.110 & -2.170 \\
 0.100 & -2.192 & -2.170 & 4.292 \\
 \end{bmatrix} \cdot \\
-\cdot 
+\cdot
 \begin{bmatrix}
 460\\
 810\\
@@ -1205,7 +1524,7 @@ y^T X(X^TX)^{-1}X^Ty= \\
 \end{bmatrix} = 3051.2
 \end{multline}
 Итого, $RSS= 3924 - 3051.2 = 872.8$
- 
+
 $\hs_{\e}^2 = \frac{RSS}{n-k} = \frac{872.8}{100-4} = 9.0917$
 
 $\widehat{\Var}(\hb) = \hs_{\e}^2 (X^T X)^{-1} \Rightarrow \widehat{\Cov}(\hb_1, \hb_2) = -0.56939$, $\widehat{\Var}(\hb_1) = 0.34251$, $\widehat{\Var}(\hb_2) = 10.269$
@@ -1250,7 +1569,7 @@ $t = \frac{\hb_2}{\sqrt{\Var(\hb_2)}} = \frac{6.1234}{\sqrt{10.269}} = 1.9109 \R
 
 
 \begin{problem}
-По данным для 15 фирм ($n = 15$) была оценена производственная функция Кобба-Дугласа: $\ln Q_i = \beta_1 + \beta_2 \ln L_i + \beta_3 \ln K_i + \e_i$. Полученные оценки: 
+По данным для 15 фирм ($n = 15$) была оценена производственная функция Кобба-Дугласа: $\ln Q_i = \beta_1 + \beta_2 \ln L_i + \beta_3 \ln K_i + \e_i$. Полученные оценки:
 \[\underset{s.e.}{\widehat{\ln Q}} = \underset{(4.48)}{0.5} + \underset{(0.7)}{0.76} \ln L + \underset{(0.138)}{0.19} \ln K\]
 где $Q$ --- выпуск, $L$ --- трудозатраты, $K$ --- капиталовложения. Матрица обратная к матрице регрессоров имеет вид:
 
@@ -1304,11 +1623,11 @@ $t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3
 
 \begin{multline}
 \P \left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \right| < t^* \right) = \\
-\P \left( -t^* se < \hb_2 + \hb_3 - \beta_2 - \beta_3 < t^* se \right) = \\ 
-\P \left( -t^*se  - (\hb_2 + \hb_3) < - \beta_2 - \beta_3  < -(\hb_2 + \hb_3) + t^* se \right) =\\ 
-\P \left( (\hb_2 + \hb_3) + t^* se 
-> \beta_2 + \beta_3 
-> (\hb_2 + \hb_3) - t^* se \right) 
+\P \left( -t^* se < \hb_2 + \hb_3 - \beta_2 - \beta_3 < t^* se \right) = \\
+\P \left( -t^*se  - (\hb_2 + \hb_3) < - \beta_2 - \beta_3  < -(\hb_2 + \hb_3) + t^* se \right) =\\
+\P \left( (\hb_2 + \hb_3) + t^* se
+> \beta_2 + \beta_3
+> (\hb_2 + \hb_3) - t^* se \right)
 \end{multline}
 Отсюда получаем доверительный интервал
 \begin{multline}
@@ -1344,7 +1663,7 @@ $\frac{\partial x'Ax}{\partial x'}=x'(A'+A)$
 \Var(\hat\beta)=\Var((X'X)^{-1}X'y)=(X'X)^{-1}X'\Var(y)((X'X)^{-1}X')'=\\
 =(X'X)^{-1}X'\Var(X\beta+\epsilon)X(X'X)^{-1}
 \end{multline*}
-Так как $\beta$ является константой, то $\Var(X\beta)=0$. Тогда 
+Так как $\beta$ является константой, то $\Var(X\beta)=0$. Тогда
 \begin{multline*}
 \Var(\hat\beta)=(X'X)^{-1}X'\Var(X\beta+\epsilon)X(X'X)^{-1}=\\=(X'X)^{-1}X'\Var(\epsilon)X(X'X)^{-1}=
 (X'X)^{-1}X'\sigma^2X(X'X)^{-1}=\\=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}=\sigma^2(X'X)^{-1}
@@ -1359,7 +1678,7 @@ hat.sigma <- model.sum$sigma
 @
 
 Исследователь оценил зависимость длины тормозного пути в футах от скорости автомобиля в милях в час по данным 1920-х годов.
-При построении парной регрессии у него получилась $\hs=\Sexpr{hat.sigma}$ и оценка ковариационной матрицы 
+При построении парной регрессии у него получилась $\hs=\Sexpr{hat.sigma}$ и оценка ковариационной матрицы
 
 
 <<results="asis">>=
@@ -1380,7 +1699,7 @@ xtable(vcov(model))
 
 
 \begin{problem}
-Дана оценка ковариацонной матрицы, 
+Дана оценка ковариацонной матрицы,
 \[
 \widehat{Var}(\hat{\beta})=\begin{pmatrix}
 1/3 & -1/3 & 0 \\
@@ -1407,16 +1726,16 @@ xtable(vcov(model))
 2 \\
 3
 \end{pmatrix}, \;
-(X'X)^{-1}= \begin{pmatrix} 
-1/3 & -1/3 & 0 \\ 
--1/3 & 4/3 & -1 \\ 
-0 & -1 & 2.0000 
+(X'X)^{-1}= \begin{pmatrix}
+1/3 & -1/3 & 0 \\
+-1/3 & 4/3 & -1 \\
+0 & -1 & 2.0000
 \end{pmatrix}
 \]
 \[
 \widehat{Var}(\hb)=\begin{pmatrix}
 1 & -1 & 0 \\
--1 & 4 & -3 \\ 
+-1 & 4 & -3 \\
 0 & -3 & 6
 \end{pmatrix}, \; TSS=60
 \]
@@ -1448,7 +1767,7 @@ X'X=\begin{pmatrix}
 \end{pmatrix}, \;
 X'y=\begin{pmatrix}
 40 \\
-70 
+70
 \end{pmatrix}, \;
 y'y=80
 \]
@@ -1461,6 +1780,83 @@ y'y=80
 \end{problem}
 
 \begin{solution}
+
+1.
+
+$\hb=(X'X)^{-1}X'y=
+\frac{1}{110}\begin{pmatrix}
+40&-10\\
+-10&30
+\end{pmatrix}
+\begin{pmatrix}
+40\\
+70
+\end{pmatrix}=
+\frac{1}{11}
+\begin{pmatrix}
+9\\
+17
+\end{pmatrix}
+$
+
+2.
+
+$X'X=
+\begin{pmatrix}
+n&\sum^n_{i=1}x_i\\
+\sum^n_{i=1}x_i&\sum^n_{i=1}x_i^2
+\end{pmatrix} $
+
+Теперь
+$X'X=\begin{pmatrix}
+31&11\\
+11&41
+\end{pmatrix}
+$,
+
+$X'y=\begin{pmatrix}
+1\ldots 1    &1\\
+X_{old, no\>ones}&1
+\end{pmatrix}
+\begin{pmatrix}
+y_{old}\\
+2
+\end{pmatrix}=
+\begin{pmatrix}
+42\\
+72
+\end{pmatrix}
+$
+
+\[
+\hb^*=\frac{1}{1150}\begin{pmatrix}
+41&-11\\
+-11&31
+\end{pmatrix}
+\begin{pmatrix}
+42\\
+72
+\end{pmatrix}=
+\frac{1}{115}
+\begin{pmatrix}
+93\\
+177
+\end{pmatrix}
+\]
+
+3.
+
+$RSS=y'(I-X(X'X)^{-1}X')y=y'y-y'X(X'X)^{-1}X'y=y'y-(X'y)'(X'X)^{-1}X'y$
+
+$RSS_{old}=80-\begin{pmatrix}
+40&70
+\end{pmatrix}\frac{1}{11}
+\begin{pmatrix}
+9\\
+17
+\end{pmatrix}<0
+$ что-то здесь не так\ldots
+
 \end{solution}
 
 
