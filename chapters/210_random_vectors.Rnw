@@ -157,15 +157,15 @@ $$y_3 = -2x_1 - x_2 + 4x_3$$
 \begin{enumerate}
 \item Выпишите математическое ожидание и ковариационную матрицу случайного вектора $x =  \begin{pmatrix}
 x_1 & x_2 & x_3\\
-\end{pmatrix} ^T$
+\end{pmatrix} '$
 \item Напишите матрицу $A$, которая позволяет перейти от случайного вектора $x =  \begin{pmatrix}
 x_1 & x_2 & x_3\\
-\end{pmatrix} ^T$ к случайному вектору $y =  \begin{pmatrix}
+\end{pmatrix} '$ к случайному вектору $y =  \begin{pmatrix}
 y_1 & y_2 & y_3\\
-\end{pmatrix} ^T$
+\end{pmatrix} '$
 \item С помощью матрицы $A$ найдите математическое ожидание и ковариационную матрицу случайного вектора $y =  \begin{pmatrix}
 y_1 & y_2 & y_3\\
-\end{pmatrix} ^T$
+\end{pmatrix} '$
 \end{enumerate}
 \end{problem}
 
@@ -179,7 +179,7 @@ y_1 & y_2 & y_3\\
 \begin{problem}
 Пусть $\xi_1, \xi_2, \xi_3$ --- случайные величины, такие что $\Var (\xi_1) = 2$, $\Var (\xi_2) = 3$, $\Var (\xi_3) = 4$, $\Cov (\xi_1, \xi_2) = 1$, $\Cov (\xi_1, \xi_3) = -1$, $\Cov (\xi_2, \xi_3) = 0$. Пусть $\xi =  \begin{pmatrix}
 \xi_1 & \xi_2 & \xi_3 \\
-\end{pmatrix} ^T$. Найдите $\Var (\xi)$ и $\Var (\xi_1 + \xi_2 + \xi_3)$.
+\end{pmatrix} '$. Найдите $\Var (\xi)$ и $\Var (\xi_1 + \xi_2 + \xi_3)$.
 \end{problem}
 
 \begin{solution}
@@ -301,7 +301,7 @@ $\Var (z_1) = \Var   \begin{pmatrix}
 \end{pmatrix}   \begin{pmatrix}
 0 & 0 \\
 0 & 1 \\
-\end{pmatrix} ^T =  \begin{pmatrix}
+\end{pmatrix} ' =  \begin{pmatrix}
 0 & 0 \\
 0 & 1 \\
 \end{pmatrix}   \begin{pmatrix}
@@ -310,7 +310,7 @@ $\Var (z_1) = \Var   \begin{pmatrix}
 \end{pmatrix}   \begin{pmatrix}
 0 & 0 \\
 0 & 1 \\
-\end{pmatrix} ^T = \\
+\end{pmatrix} ' = \\
 \begin{pmatrix}
 0 & 0 \\
 0 & 1 \\
@@ -472,9 +472,9 @@ $\E (z_3) = \E   \begin{pmatrix}
 \begin{problem}
 Пусть $r_1$, $r_2$ и $r_3$ --- годовые доходности трёх рисковых финансовых инструментов. Пусть $\alpha_1$, $\alpha_2$ и $\alpha_3$ --- доли, с которыми данные инструменты входят в портфель инвестора. Считаем, что $\sum_{i=1}^3 \alpha_i = 1$ и $\alpha_i \geqslant 0$ для всех $i=1,2,3$. Пусть $r =  \begin{pmatrix}
 r_1 & r_2 & r_3\\
-\end{pmatrix} ^T$, $\E (r) =  \begin{pmatrix}
+\end{pmatrix} '$, $\E (r) =  \begin{pmatrix}
 a_1 & a_2 & a_3\\
-\end{pmatrix} ^T$, $\Var (r) =  \begin{pmatrix}
+\end{pmatrix} '$, $\Var (r) =  \begin{pmatrix}
 c_{11} & c_{12} & c_{13} \\
 c_{21} & c_{22} & c_{23} \\
 c_{31} & c_{32} & c_{33} \\
@@ -485,9 +485,9 @@ c_{31} & c_{32} & c_{33} \\
 \item Докажите, что дисперсия доходности портфеля П равна $\sum_{i=1}^3 \sum_{j=1}^3 \alpha_i c_{ij} \alpha_j$
 \item Для случая $\alpha_1 = 0.1$, $\alpha_2 = 0.5$, $\alpha3 = 0.4$, $\E (r) =  \begin{pmatrix}
 a_1 & a_2 & a_3\\
-\end{pmatrix} ^T =  \begin{pmatrix}
+\end{pmatrix} ' =  \begin{pmatrix}
 0.10 & 0.06 & 0.05 \\
-\end{pmatrix} ^T$, 
+\end{pmatrix} '$, 
 \[
 \Var (r) =  \begin{pmatrix}
 0.04 & 0 & -0.005\\

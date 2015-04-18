@@ -368,7 +368,7 @@ $k(k+1)/2$
 \end{solution}
 
 \begin{problem}
-(Кирилл Фурманов) По 35 наблюдениям сотрудники НИИ оценили уравнение регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$ и рассчитали остатки $\e_i$. После того они приступили к диагностике возможных недостатков модели, обнаружили гетероскедастичность и решили её побороть.
+По 35 наблюдениям сотрудники НИИ оценили уравнение регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$ и рассчитали остатки $\e_i$. После того они приступили к диагностике возможных недостатков модели, обнаружили гетероскедастичность и решили её побороть.
 \begin{enumerate}
 \item[(a)] Самый младший научный сотрудник выдвинул предположение, что стандартное отклонение случайной составляющей может быть выражено так: $\sigma_{\e, i} = a x_i$, где $a$ --– неизвестный коэффициент. Каким образом нужно преобразовать исходное уравнение регрессии, чтобы избавиться от гетероскедастичности?
 \item[(b)] Профессор решил перепроверить результаты и оценил регрессию:
@@ -404,9 +404,9 @@ x_1 & 0\ldots0 & 0 \\
 
 \begin{solution}
 \begin{multline}
-\Cov(\hat{\beta}_{GLS}, \e) = \Cov \left( (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} y, \e \right) = \\
-\Cov \left( (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} \e, \e \right) = \\ = (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} \Cov(\e, \e) =\\
- (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} \Sigma = (X^T \Sigma^{-1} X)^{-1} X^T
+\Cov(\hat{\beta}_{GLS}, \e) = \Cov \left( (X' \Sigma^{-1} X)^{-1} X' \Sigma^{-1} y, \e \right) = \\
+\Cov \left( (X' \Sigma^{-1} X)^{-1} X' \Sigma^{-1} \e, \e \right) = \\ = (X' \Sigma^{-1} X)^{-1} X' \Sigma^{-1} \Cov(\e, \e) =\\
+ (X' \Sigma^{-1} X)^{-1} X' \Sigma^{-1} \Sigma = (X' \Sigma^{-1} X)^{-1} X'
 \end{multline}
 \end{solution}
 
@@ -439,12 +439,24 @@ $$\hat{\beta_1} = \frac{\sum_{i=1}^n (y_i \sqrt{x_i}/\sigma_{\e})(\sqrt{x_i}/\si
 
 
 \begin{problem}
-Фурманов Кирилл. Исследователь оценил регрессионную модель $y_i = \beta_1 + \beta_2 x_{i2} + \beta_3 x_{i3} + \beta_4 x_{i4} + \e_i$ и провёл диагностику различных проблемных явлений. Результаты его стараний приведены ниже:
+Исследователь оценил регрессионную модель $y_i = \beta_1 + \beta_2 x_{i2} + \beta_3 x_{i3} + \beta_4 x_{i4} + \e_i$ и провёл диагностику различных проблемных явлений. Результаты его стараний приведены ниже:
 
-%\todo[inline]{Две картинки с графиками остатков}
+<<fig.height=4>>=
+n <- 200
+x2 <- rnorm(n)
+x3 <- rnorm(n)
+x4 <- rnorm(n)
+eps <- abs(x2)*rnorm(n)
+y <- 2+3*x2-3*x3+1*x4 + eps
+model <- lm(y~x2+x3+x4)
+resid <- resid(model)
+plot1 <- qplot(x2,abs(resid),xlab="Переменная $x_2$", ylab="Модуль остатков")
+plot2 <- qplot(head(resid,-1),tail(resid,-1),xlab="Остаток $\\e_{t-1}$", ylab="Остаток $\\e_t$")
+grid.arrange(plot1, plot2, ncol=2)
+@
 
 
-Также $VIF_2 = 1.06$, $VIF_3 = 1.07$, $VIF_4 = 1.02$
+$VIF_2 = 1.06$, $VIF_3 = 1.07$, $VIF_4 = 1.02$
 \begin{enumerate}
 \item[(a)] Определите, какие проблемные явления обнаружил исследователь. Обоснуйте свой ответ.
 \item[(b)] Найдите коэффициент детерминации для регрессии: $x_{i2} = \gamma_1 + \gamma_2 x_{i3} + \gamma_3 x_{i4} + u_i$
@@ -538,12 +550,12 @@ solve(crossprod(X)) %*% t(X)  %*% S_hat_HC3 %*% X %*% solve(crossprod(X))
 \begin{problem}
 Имеются наблюдения
 
-```{r}
+<<results="asis">>=
 x <- c(0,2,2)
 y <- c(-1,1,0)
 df <- data.frame(x=x,y=y)
-pander(df)
-```
+xtable(df)
+@
 
 Предположим, что $y_i=\beta_1 + \beta_2 x_i + \e_i$ и регрессоры неслучайные.
 
@@ -551,41 +563,41 @@ pander(df)
 
 \[
 X'X=
-```{r, results='asis'}
+<<results='asis',echo=FALSE>>=
 X <- model.matrix(y~x, data=df)
 XX <- t(X) %*% X
 XX_inv <- solve(XX)
 XX_X <- XX_inv %*% t(X)
 H <- X %*% XX_X
 xmatrix(XX)
-```
+@
 , \;
 (X'X)^{-1}=
-```{r, results='asis'}
+<<results='asis',echo=FALSE>>=
 xmatrix(XX_inv)
-```
+@
 , \;
 (X'X)^{-1}X'=
-```{r, results='asis'}
+<<results='asis',echo=FALSE>>=
 xmatrix(XX_X)
-```
+@
 \]
 А также:
 \[
 H=X(X'X)^{-1}X'=
-```{r, results='asis'}
+<<results='asis',echo=FALSE>>=
 xmatrix(H)
-```
+@
 , \;
 y'y=
-```{r, results='asis'}
+<<results='asis',echo=FALSE>>=
 xmatrix(t(y) %*% y)
-```
+@
 , \;
 X'y=
-```{r, results='asis'}
+<<results='asis',echo=FALSE>>=
 xmatrix(t(X) %*% y)
-```
+@
 \]
 
 \begin{enumerate}

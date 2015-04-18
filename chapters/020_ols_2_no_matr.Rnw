@@ -473,8 +473,8 @@ $\tilde{X} = X \cdot D$, где $D = \begin{bmatrix}
 
 Итак, уравнение регрессии с новыми регрессорами имеет вид $y = \tilde{X}\beta + \e$ и МНК-оценки коэффициентов равны:
 \begin{multline}
-\hb = \left( \tilde{X}^T \tilde{X} \right)^{-1} \tilde{X}^T y = \left( [XD]^T [XD] \right)^{-1} [XD]^T y = \\
-D^{-1} (X^T X)^{-1} (D^T)^{-1} D^T X^T y = D^{-1} (X^T X)^{-1}X^T y
+\hb = \left( \tilde{X}' \tilde{X} \right)^{-1} \tilde{X}' y = \left( [XD]' [XD] \right)^{-1} [XD]' y = \\
+D^{-1} (X' X)^{-1} (D')^{-1} D' X' y = D^{-1} (X' X)^{-1}X' y
 \end{multline}
 \[
 \hb = D^{-1}\hb_{old} = \begin{bmatrix}
@@ -556,17 +556,17 @@ x_n\\
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} \Var(y) \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
-\end{bmatrix}^T =\\
+\end{bmatrix}' =\\
 \frac{1}{n^2} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} \Var(\e) \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
-\end{bmatrix}^T = \\
+\end{bmatrix}' = \\
  \frac{1}{n^2} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} \sigma_{\e}^2 I \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
-\end{bmatrix}^T =\\
+\end{bmatrix}' =\\
 \frac{\sigma^2_{\e}}{n^2}\sum_{k=1}^n \frac{1}{x_k^2}
 \end{multline}
 
@@ -660,25 +660,25 @@ $y_i = \hb_2 x_i + \hat{\e}_i$
 
 $\textbf{y} = \hb_2 \textbf{x} + \hat{\e}$, где $\textbf{y} = \begin{bmatrix}
 y_1 & \ldots & y_n
-\end{bmatrix}^T$, $\textbf{x} = \begin{bmatrix}
+\end{bmatrix}'$, $\textbf{x} = \begin{bmatrix}
 x_1 & \ldots & x_n
-\end{bmatrix}^T$, $\e = \begin{bmatrix}
+\end{bmatrix}'$, $\e = \begin{bmatrix}
 \e_1 & \ldots & \e_n
-\end{bmatrix}^T$
+\end{bmatrix}'$
 
-$\textbf{x}^T \textbf{y} = \hb_2 \textbf{x}^T \textbf{x} + \underbrace{\textbf{x}^T \hat{\e}}_{=0}$
+$\textbf{x}' \textbf{y} = \hb_2 \textbf{x}' \textbf{x} + \underbrace{\textbf{x}' \hat{\e}}_{=0}$
 
 \begin{equation}
-\label{task20:direct_ols}\hb_2 = \frac{\textbf{x}^T \textbf{y}}{\textbf{x}^T \textbf{x}}
+\label{task20:direct_ols}\hb_2 = \frac{\textbf{x}' \textbf{y}}{\textbf{x}' \textbf{x}}
 \end{equation}
 
 Аналогично получаем, что в обратной регрессии $X_i = \beta_3 + \beta_4 Y_i + \xi_i$, $i = 1, \ldots, n$
 
 \begin{equation}
-\label{task20:reverse_ols}\hb_4 = \frac{\textbf{y}^T \textbf{y}}{\textbf{y}^T \textbf{y}}
+\label{task20:reverse_ols}\hb_4 = \frac{\textbf{y}' \textbf{y}}{\textbf{y}' \textbf{y}}
 \end{equation}
 
-$ESS = (\hat{Y} - \overline{Y}_i)^T(\hat{Y} - \overline{Y}_i)$
+$ESS = (\hat{Y} - \overline{Y}_i)'(\hat{Y} - \overline{Y}_i)$
 
 Заметим, что $\hat{Y} - \overline{Y}_i = (I - \pi)(\hat{Y} - \overline{Y}_i)$.
 
@@ -688,11 +688,11 @@ $\hat{Y} - \overline{Y}_i = (P - \pi)Y = (I - \pi)(P - \pi)Y = (I-\pi)(\hat{Y} -
 
 Далее, $\hat{Y} - \overline{Y}_i = (I - \pi)(\hat{Y} - \overline{Y}_i) = (I - \pi)(\hb_1 + \hb_2 X - \overline{Y}_i) = \hb_2 \textbf{x}$
 
-Значит, $ESS = \hb_2^2 \textbf{x}^T \textbf{x}$.
+Значит, $ESS = \hb_2^2 \textbf{x}' \textbf{x}$.
 
 Получаем:
 \begin{equation}
-\label{task20:corr}R^2 = \frac{ESS}{TSS} = \frac{\hb_2^2 \textbf{x}^T \textbf{x}^{(2)}}{\textbf{y}^T \textbf{y}} = \frac{\textbf{x}^T \textbf{y}^{(2)}}{(\textbf{x}^T \textbf{x})(\textbf{y}^T \textbf{y})} = \Corr^2(X, Y)
+\label{task20:corr}R^2 = \frac{ESS}{TSS} = \frac{\hb_2^2 \textbf{x}' \textbf{x}^{(2)}}{\textbf{y}' \textbf{y}} = \frac{\textbf{x}' \textbf{y}^{(2)}}{(\textbf{x}' \textbf{x})(\textbf{y}' \textbf{y})} = \Corr^2(X, Y)
 \end{equation}
 
 Заметим также, что из формул (\ref{task20:direct_ols}), (\ref{task20:reverse_ols}) и (\ref{task20:corr}) следует, что $R^2 = \hb_2 \hb_4$.
