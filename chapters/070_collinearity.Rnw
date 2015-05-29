@@ -189,3 +189,19 @@ $1$, т.к. все главные компоненты ортогональны
 \end{solution}
 
 
+\begin{problem}
+С помощью трёх-кратной кросс-валидации выберите наилучшее из двух $\lambda$, $1$ или $10$, в гребневой регрессии $y_i=\beta x_i + \e_i$:
+\begin{tabular}{|c|c|}
+$y_i$ & $x_i$ \\ 
+\hline 
+1 & 1 \\ 
+5 & 1 \\ 
+5 & 2 \\ 
+\end{tabular} 
+\end{problem}
+
+\begin{solution}
+
+\end{solution}
+
+
