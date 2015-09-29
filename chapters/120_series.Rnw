@@ -91,7 +91,7 @@ ggplot(acfs.df,aes(x=lag,y=acf,fill=acf.type))+
 \begin{solution}
 
 <<echo=FALSE,include=FALSE>>=
-require(fUnitRoots) # critical values for adf test
+library("fUnitRoots") # critical values for adf test
 @
 
 \begin{enumerate}
@@ -850,3 +850,10 @@ d_t=\Delta w_t
 зачеркнуть одну цифру
 \end{solution}
 
+\begin{problem}
+Билл Гейтс оценил модель $y_t=\beta_1 + \beta_2 t + \beta_3 y_{t-1} + \e_t$ с помощью МНК. Значение статистики Дарбина-Уотсона оказалось равно $DW=0.55$. Какой из этого следует вывод об автокорреляции ошибок первого порядка?
+\end{problem}
+
+\begin{solution}
+В данном случае статистика $DW$ не применима, так как есть лаг $y_{t-1}$ среди регрессоров.
+\end{solution}

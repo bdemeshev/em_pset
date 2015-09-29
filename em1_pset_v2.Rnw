@@ -86,6 +86,8 @@ library("memisc")
 library("sandwich")
 library("gridExtra")
 library("pander")
+library("akima")
+library("fUnitRoots")
 
 library("econru")
 

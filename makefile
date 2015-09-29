@@ -1,19 +1,19 @@
-# makefile
-# for econometrics problem set
+# makefile: Rnw -> tex -> pdf
+# v 2.0
+# .Rnw extension is automatically added
+file_name = em1_pset_v2
 
-all: pset solutions
+$(file_name).pdf: $(file_name).tex
+	# protection against biber error
+	# http://tex.stackexchange.com/questions/140814/
+	rm -rf `biber --cache`
 
-pset: em1_pset_v2.Rnw solutions_only/solutions.Rnw
-	Rscript -e "library(knitr); knit('em1_pset_v2.Rnw')"
-	latexmk -pdf em1_pset_v2.tex # create pdf
-	latexmk -c em1_pset_v2.tex  # clean auxillary files
+	# create pdf
+	# will automatically run pdflatex/biber if necessary
+	latexmk -pdf $(file_name).tex
 
-solutions: em1_pset_v2.tex solutions_only/solutions.tex
-	# cd solutions_only/ # how can I change working folder???
-	Rscript -e "library(knitr); knit('solutions_only/solutions.Rnw')"
-	cp solutions.tex solutions_only/solutions.tex
-	latexmk -pdf solutions_only/solutions.tex # create pdf
-	latexmk -c solutions_only/solutions.tex  # clean auxillary files
+	# clean auxillary files
+	latexmk -c $(file_name).tex
 
-
-
+$(file_name).tex : $(file_name).Rnw
+	Rscript -e "library(knitr); knit('$(file_name).Rnw')"
