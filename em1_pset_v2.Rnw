@@ -70,7 +70,7 @@
 
 <<"setup", echo=TRUE, message=FALSE,tidy=FALSE,warning=FALSE>>=
 library("knitr")
-library("tikzsetup")
+library("tikzsetup") # devtools::install.github("bdemeshev/tikzsetup")
 library("tikzDevice")
 tikzsetup()
 
@@ -89,7 +89,7 @@ library("pander")
 library("akima")
 library("fUnitRoots")
 
-library("econru")
+library("econru") # devtools::install.github("bdemeshev/econru")
 
 theme_set(theme_bw())
 
