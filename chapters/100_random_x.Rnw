@@ -130,6 +130,69 @@ $x=2$ & 0 & 0 & 0.3 & 0.2 \\
 \end{problem}
 
 
+\begin{problem}
+Наблюдения представляют собой случайную выборку. Известна истинная ковариационная матрица и математическое ожидание:
+\[
+\Var
+\begin{pmatrix}
+x_i \\
+y_i
+\end{pmatrix}
+=
+\begin{pmatrix}
+9 & 1 \\
+1 & 16
+\end{pmatrix}, \;
+\E\begin{pmatrix}
+x_i \\
+y_i
+\end{pmatrix}
+=
+\begin{pmatrix}
+2 \\
+-3
+\end{pmatrix}
+\]
+
+\begin{enumerate}
+\item Найдите $\plim \hb_1$ и $\plim \hb_2$ в регрессии $\hy_i = \hb_1 + \hb_2 x_i$
+\item Найдите $\plim \hb_1$ и $\plim \hb_2$ в регрессии $\hat x_i = \hb_1 + \hb_2 y_i$
+\end{enumerate}
+
+\end{problem}
+
+
 \begin{solution}
 \end{solution}
 
+
+\begin{solution}
+\end{solution}
+
+\begin{problem}
+Наблюдения представляют собой случайную выборку. Известна истинная ковариационная матрица:
+\[
+\Var
+\begin{pmatrix}
+x_i \\
+y_i \\
+z_i
+\end{pmatrix}
+ =
+\begin{pmatrix}
+9 & 1 & 2 \\
+1 & 16 & -1 \\
+2 & -1 & 25
+\end{pmatrix}
+\]
+
+\begin{enumerate}
+\item Найдите $\plim \hb_2$ в модели $\hy_i = \hb_1 + \hb_2 z_i$
+\item Найдите $\plim \hat \mu_2$ в модели $\hat x_i = \hat \mu_1 + \hat \mu_2 z_i$
+\item Найдите $\plim \hat \gamma_2$ в модели $\hy_i = \hat \gamma_1 + \hat \gamma_2 x_i + \hat \gamma_3 z_i $
+\end{enumerate}
+
+\end{problem}
+
+\begin{solution}
+\end{solution}
