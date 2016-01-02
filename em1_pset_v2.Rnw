@@ -1,4 +1,4 @@
-\documentclass[pdftex,11pt,openany]{book}
+\documentclass[pdftex, 11pt, openany]{book}
 
 %\documentclass[11pt,openany]{book}
 
@@ -44,7 +44,7 @@
 
 
 % для отдельной упаковки решений
-\ifdef{\JustPlot}{}{\input{prob_and_sol_2chap_e}} % secsolution patch instead of chapter master counter
+% \ifdef{\JustPlot}{}{\input{prob_and_sol_2chap_e}} % secsolution patch instead of chapter master counter
 
 
 \title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
@@ -53,6 +53,19 @@
 
 \makeindex % команда для создания предметного указателя
 \bibliographystyle{plain} % стиль оформления ссылок
+
+
+\theoremstyle{definition}
+\newtheorem{problem}{Задача}
+\numberwithin{problem}{section}
+
+\Newassociation{sol}{solution}{solution_file}
+% sol --- имя окружения внутри задач
+% solution --- имя окружения внутри solution_file
+% solution_file --- имя файла в который будет идти запись решений
+% можно изменить далее по ходу
+
+
 
 
 \begin{document}
@@ -101,7 +114,6 @@ load('pset_data.Rdata')
 % МНК
 
 
-\problemonly
 
 \newpage
 \thispagestyle{empty}
@@ -204,90 +216,33 @@ load('pset_data.Rdata')
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%
-%%%%% Удвоим ставки!!!!!!!!!!!!!!!!!!!!
 
-
-\restorechapter
 \chapter{Решения и ответы к избранным задачам}
 \chaptermark{Избранные решения}
 
-\solutiononly
+\input{sols_010}
+\input{sols_020}
+\input{sols_030}
+\input{sols_040}
+\input{sols_050}
+\input{sols_060}
+\input{sols_070}
+\input{sols_080}
+\input{sols_090}
+\input{sols_100}
+\input{sols_110}
+\input{sols_120}
+\input{sols_130}
+\input{sols_140}
+\input{sols_150}
+\input{sols_160}
+\input{sols_200}
+\input{sols_210}
+\input{sols_220}
+\input{sols_230}
+\input{sols_240}
+\input{sols_250}
 
-
-% МНК
-
-<<child='chapters/010_ols_no_probs_no_matr.Rnw'>>=
-@
-<<child='chapters/020_ols_2_no_matr.Rnw'>>=
-@
-<<child='chapters/030_ols_k_no_matr.Rnw'>>=
-@
-<<child='chapters/040_ols_k_matrix.Rnw'>>=
-@
-
-% ML
-
-<<child='chapters/050_ml_general.Rnw'>>=
-@
-<<child='chapters/060_logit.Rnw'>>=
-@
-
-% Нарушения
-
-<<child='chapters/070_collinearity.Rnw'>>=
-@
-%%%%%%% здесь?... LASSO, rigdre regression
-
-
-<<child='chapters/080_hetero.Rnw'>>=
-@
-<<child='chapters/090_specification.Rnw'>>=
-@
-
-%
-
-<<child='chapters/100_random_x.Rnw'>>=
-@
-<<child='chapters/110_gmm.Rnw'>>=
-@
-
-% time series
-
-<<child='chapters/120_series.Rnw'>>=
-@
-
-% Нетрадиционная медицина
-
-<<child='chapters/130_svm.Rnw'>>=
-@
-<<child='chapters/140_forest.Rnw'>>=
-@
-<<child='chapters/150_nnetwork.Rnw'>>=
-@
-
-
-
-
-
-% байесовский подход
-
-<<child='chapters/160_ba.Rnw'>>=
-@
-
-% Приложения
-
-<<child='chapters/200_la.Rnw'>>=
-@
-<<child='chapters/210_random_vectors.Rnw'>>=
-@
-<<child='chapters/220_multivariate_n.Rnw'>>=
-@
-<<child='chapters/230_programming.Rnw'>>=
-@
-
-
-\restorechapter
 \chapter{Таблицы}
 
 <<child='chapters/250_tables.Rnw'>>=

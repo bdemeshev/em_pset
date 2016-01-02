@@ -1,6 +1,9 @@
+\Opensolutionfile{solution_file}[sols_050]
+% в квадратных скобках фактическое имя файла
+
 \chapter{Метод максимального правдоподобия} % --- общая теория}
 
-\begin{problemtext}
+
 Пусть
 
 $X = (X_1,\ldots,X_n)$ --- случайная выборка
@@ -77,7 +80,7 @@ $LR := -2(l(\hat{\theta}_{R}) - l(\hat{\theta}_{UR})) \overset{a}{\sim} \chi^2_r
 $W := g'(\hat{\theta}_{UR}) \cdot \left[ \frac{\partial g}{\partial \theta'}(\hat{\theta}_{UR}) \cdot I^{-1}(\hat{\theta}_{UR}) \cdot \frac{\partial g'}{\partial \theta}(\hat{\theta}_{UR}) \right]^{-1} g(\hat{\theta}_{UR}) \overset{a}{\sim} \chi^2_r$ --- статистика Вальда
 
 $LM := \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdot I^{-1}(\hat{\theta}_{R}) \cdot \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right] \overset{a}{\sim} \chi^2_r$ --- статистика множителей Лагранжа
-\end{problemtext}
+
 
 
 \begin{problem}
@@ -88,8 +91,8 @@ $LM := \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdo
 \item Постройте 95\% доверительный интервал для $\lambda$
 \item Проверьте гипотезу о том, что средний дневной заработок равен 2 чатла с помощью теста отношения правдоподобия, теста Вальда, теста множителей Лагранжа
 \end{enumerate}
-\end{problem}
-\begin{solution}
+
+\begin{sol}
 
 (1) Пусть $X_i$ --- количество чатлов, заработанное в $i$-ый день. Запишем функцию правдоподобия:
 
@@ -145,7 +148,9 @@ $LM := \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdo
 	Нулевая гипотеза отвергается и с помощью последнего теста.
 
 \end{itemize}
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 
@@ -157,9 +162,9 @@ $LM := \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdo
 \item Постройте 95\% доверительный интервал для $\lambda$
 \item Проверьте гипотезу о том, что средняя продолжительность сеанса связи равна 5 минутам с помощью теста отношения правдоподобия, теста Вальда, теста множителей Лагранжа
 \end{enumerate}
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 Эта задача решается в том же ключе, что и предыдущая!
 
 (1) Пусть $X_i$ --- продолжительность $i$-го сеанса связи. Запишем функцию правдоподобия для экспоненциально распределенных случайных величин, возьмем логарифм, найдем максимум полученной функции (в минутах):
@@ -191,7 +196,9 @@ $LM := \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdo
 
 	\[\text{LM} = \left( \frac{\partial l}{\partial\lambda}\right)_R^2 \left( \left(\frac{\partial^2l}{\partial \lambda^2}\right)_{R}\right)^{-1} = 10.24 > 3.84 \]
 \end{itemize}
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 
@@ -207,10 +214,12 @@ $LM := \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdo
 \item Постройте доверительные интервалы для оценённых параметров в обоих моделях
 \item Постройте доверительный интервал для вероятности полного отсутствия аварий по обеим моделям
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -223,11 +232,13 @@ f(x,y)=\frac{\theta(\beta y)^x e^{-(\theta+\beta)y}}{x!}
 \item С помощью метода максимального правдоподобия оцените $\theta$ и $\beta$
 \item С помощью метода максимального правдоподобия оцените $a=\theta/(\beta+\theta)$
 \end{enumerate}
+
+
+\begin{sol}
+$\hat{\theta}=1/\bar{Y}$, $\hat{\beta}=\bar{X}/\bar{Y}$, $\hat{a}=1/(1+\bar{X})$
+\end{sol}
 \end{problem}
 
-\begin{solution}
-$\hat{\theta}=1/\bar{Y}$, $\hat{\beta}=\bar{X}/\bar{Y}$, $\hat{a}=1/(1+\bar{X})$
-\end{solution}
 
 
 
@@ -241,9 +252,9 @@ $$H_0: \begin{cases}
 \nu = 1 \\
 \end{cases}$$
 на уровне значимости 5\%.
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 В данном примере мы имеем
 
 $\theta = \begin{bmatrix}
@@ -389,7 +400,9 @@ $LM_{\text{набл}} = \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{
 \end{bmatrix} = 52.1354$
 
 Тест множителей Лагранжа также указывает на то, что гипотеза $H_0$ должна быть отвергнута.
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 \begin{problem}
@@ -399,9 +412,9 @@ $LM_{\text{набл}} = \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{
 \item теста Вальда
 \item теста множителей Лагранжа
 \end{enumerate}
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 В данной задаче мы имеем:
 
 $\theta = p$ --- вектор неизвестных параметров
@@ -462,7 +475,9 @@ $\frac{\partial l}{\partial \theta}(\hat{\theta}_R) = \frac{\sum_{i=1}^n x_i}{\h
 $LM_{\text{набл}} = \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdot I^{-1}(\hat{\theta}_{R}) \cdot \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right] = [-32]' \cdot [400]^{-1} \cdot [-32] = 2.56$
 
 Согласно тесту множителей Лагранжа, основная гипотеза $H_0$ не может быть отвергнута.
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 \begin{problem}
@@ -472,10 +487,10 @@ $LM_{\text{набл}} = \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{
 \item теста Вальда
 \item теста множителей Лагранжа
 \end{enumerate}
-\end{problem}
 
 
-\begin{solution}
+
+\begin{sol}
 В данной задаче мы имеем
 
 $\theta = \lambda$ --- вектор неизвестных параметров
@@ -536,16 +551,18 @@ $\frac{\partial l}{\partial \theta}(\hat{\theta}_R) = \frac{\sum_{i=1}^n x_i}{\h
 $LM_{\text{набл}} = \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdot I^{-1}(\hat{\theta}_{R}) \cdot \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right] = [-12]' \cdot [40]^{-1} \cdot [-12] = 3.6$
 
 Согласно тесту множителей Лагранжа, основная гипотеза $H_0$ не может быть отвергнута.
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 
 \begin{problem}
 Выпишите в явном виде функцию максимального правдоподобия для модели $y=\b_1+\b_2 x+\e$, если $\e\sim N(0,A)$.
 Матрица $A$ устроена по принципу: $\Cov(\e_i,\e_j)=0$ при $i\neq j$, и $\Var(\e_i)=\sigma^2 x_i^2$.
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 Для того чтобы записать функцию правдоподобия, найдем параметры распределения случайных величин $y_i$. Величины распределены нормально, так как задаются линейной функцией только от нормально распределенных случайных величин $\epsilon_i$. Посчитаем математическое ожидание и дисперсию:
 
 \[\E(y_i) = \E(\beta_1 + \beta_2x_i + \epsilon_i) = \beta_1 + \beta_2x_i\]
@@ -556,15 +573,17 @@ $LM_{\text{набл}} = \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{
 
 \[\text{L} = \prod_{i=1}^{n} \frac{1}{\sigma |x_i|\sqrt{2\pi}}\exp\left( \frac{-(y_i - \beta_1 - \beta_2x_i)^2}{2\sigma^2x_i^2}\right) \]
 
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 \begin{problem}
 Выпишите в явном виде функцию максимального правдоподобия для модели $y=\b_1+\b_2 x+\e$, если $\e\sim N(0,A)$.
 Матрица $A$ устроена по принципу: $\Cov(\e_i,\e_j)=0$ при $i\neq j$, и $\Var(\e_i)=\sigma^2 |x_i|$.
-\end{problem}
 
-\begin{solution}
- Посчитаем математическое ожидание и дисперсию:
+
+\begin{sol}
+Посчитаем математическое ожидание и дисперсию:
 
 \[\E(y_i) = \E(\beta_1 + \beta_2x_i + \epsilon_i) = \beta_1 + \beta_2x_i\]
 \[\Var(y_i)= \Var(\beta_1 + \beta_2x_i + \epsilon_i) = \Var(\epsilon_i) = \sigma^2|x_i|\]
@@ -573,7 +592,9 @@ $LM_{\text{набл}} = \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{
 Функция правдоподобия:
 
 \[\text{L} = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi \sigma^2|x_i|}}\exp\left( \frac{-(y_i - \beta_1 - \beta_2x_i)^2}{2\sigma^2|x_i|}\right) \]
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 \begin{problem}
@@ -587,9 +608,9 @@ y_i=\beta_1+\beta_2 x_{2,i}+\ldots+\beta_k x_{k,i}+\e_i
 \item Являются ли полученные оценки $\hb_{ML}$ и $\hs^2_{ML}$ несмещенными?
 \item Выведите формулу $LR$-статистики у теста отношения правдоподобия для тестирования гипотезы об адекватности регрессии $H_0$: $\beta_2=\beta_3=\ldots=\beta_k=0$.
 \end{enumerate}
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 (1) Для того, чтобы найти оценки для $\beta$ и $\sigma^2$ методом максимального правдоподобия, составим сначала функцию правдоподобия:
 
 \[\E(y_i) = \beta_1 + \beta_2x_{2i}+\dots+\beta_kx_{ki}\]
@@ -616,7 +637,9 @@ y_i=\beta_1+\beta_2 x_{2,i}+\ldots+\beta_k x_{k,i}+\e_i
 
 \[\E(\hs^2_{ML}) = \E\left( \frac{\text{RSS}}{n}\right) = \frac{n-k}{n}\E(\hs^2_{OLS}) = \frac{n-k}{n}s^2\]
 
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 \begin{problem}
@@ -627,9 +650,9 @@ y_i=\beta_1+\beta_2 x_{2,i}+\ldots+\beta_k x_{k,i}+\e_i
 \item Проверьте гипотезу о том, что $\mu=3$ против альтернативной $\mu\neq 3$ с помощью тестов Вальда, множителей Лагранжа и отношения правдоподобия
 \item Постройте 95\% доверительный интервал для неизвестной величины $\P(X_i>2.5)$
 \end{enumerate}
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 (1) Оценим параметр $\mu$ с помощью метода максимального правдоподобия. Функция правдоподобия:
 
 \[
@@ -668,7 +691,9 @@ y_i=\beta_1+\beta_2 x_{2,i}+\ldots+\beta_k x_{k,i}+\e_i
 Таким образом, c 95\% уверенностью искомая вероятность лежит в пределах:
 
 \[0.24 \leqslant \P(X_i>2.5) \leqslant 0.38\]
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 \begin{problem}
@@ -679,9 +704,9 @@ y_i=\beta_1+\beta_2 x_{2,i}+\ldots+\beta_k x_{k,i}+\e_i
 \item Проверьте гипотезу о том, что $\sigma^2=4$ против альтернативной $\sigma^2\neq 4$ с помощью тестов Вальда, множителей Лагранжа и отношения правдоподобия
 \item Постройте 95\% доверительный интервал для неизвестной величины $\P(X_i>2.5)$
 \end{enumerate}
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 (1) Оценим параметр $\sigma^2$ с помощью метода максимального правдоподобия. Функция правдоподобия:
 
 \[\text{L} = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left( \frac{- X_i ^2}{2\sigma^2}\right) \]
@@ -719,7 +744,9 @@ y_i=\beta_1+\beta_2 x_{2,i}+\ldots+\beta_k x_{k,i}+\e_i
 Таким образом, c 95\% уверенностью искомая вероятность лежит в пределах:
 
 \[0.17 \leqslant \P(X_i>2.5) \leqslant 0.24\]
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 \begin{problem}
 Наблюдения $X_1$, \ldots, $X_n$ независимы и нормальны $N(\mu,\sigma^2)$. По 100 наблюдениям оказалось, что $\sum x_i=200$, $\sum x_i^2=900$.
@@ -731,9 +758,9 @@ y_i=\beta_1+\beta_2 x_{2,i}+\ldots+\beta_k x_{k,i}+\e_i
 \item \useR Постройте 95\% доверительный интервал для неизвестной величины $\P(X_i>2.5)$
 \item \useR На графике постройте двумерную 95\% доверительную область для вектора $(\mu,\sigma^2)$
 \end{enumerate}
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 (1) Оценим параметры $\mu$, $\sigma^2$ с помощью метода максимального правдоподобия. Функция правдоподобия:
 
 \[\text{L} = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left( \frac{- \left( X_i-\mu\right)^2}{2\sigma^2}\right)\]
@@ -767,7 +794,9 @@ y_i=\beta_1+\beta_2 x_{2,i}+\ldots+\beta_k x_{k,i}+\e_i
 
 \[3.84 \leqslant \sigma^2 \leqslant 6.8\]
 
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 \begin{problem}
 \useR Эконометрессе Зульфие нравятся жёлтые и красные эмэндэмсины. Она записала цвета сотни случайно выбранных эмэндэмсин. Из сотни оказалось $X_1$ жёлтых и $X_2$ красных. Настоящие вероятности обнаружить жёлтую и красную эмэндэмсину неизвестны и равны $p_1$ и $p_2$, $p_1+p_2<1$.
@@ -781,11 +810,13 @@ y_i=\beta_1+\beta_2 x_{2,i}+\ldots+\beta_k x_{k,i}+\e_i
 \item С помощью теста отношения правдоподобия, теста множителей Лагранжа, теста Вальда проверьте гипотезу $H_0$: $p_1+p_2=0.5$. Постройте 95\%-ый доверительный интервал для суммы $p_1+p_2$
 \end{enumerate}
 
+
+
+\begin{sol}
+$\hat{p}_1=X_1/n$, $\hat{p}_2=X_2/n$.
+\end{sol}
 \end{problem}
 
-\begin{solution}
-$\hat{p}_1=X_1/n$, $\hat{p}_2=X_2/n$.
-\end{solution}
 
 
 \begin{problem}
@@ -796,11 +827,11 @@ $\hat{p}_1=X_1/n$, $\hat{p}_2=X_2/n$.
 \item Постройте 95\% доверительный интервал для $\theta$
 \item С помощью LR, LM и W теста проверьте гипотезу о том, что $\theta=1$.
 \end{enumerate}
-\end{problem}
 
 
-\begin{solution}
- Функция правдоподобия: \[\calL = \prod_{i=1}^{n} \frac{\theta (\ln X_i)^{\theta-1}}{X_i}\]
+
+\begin{sol}
+Функция правдоподобия: \[\calL = \prod_{i=1}^{n} \frac{\theta (\ln X_i)^{\theta-1}}{X_i}\]
 
 Логарифм функции правдоподобия: \[\ln \calL = \sum\limits_{i=1}^{n} \bigl[\ln \bigl(\theta (\ln X_i)^{\theta-1} \bigr) - \ln X_i \bigr] = \sum\limits_{i=1}^{n} [\ln \theta + (\theta-1) \ln\ln X_i - \ln X_i] \hm= n \ln \theta + (\theta-1) \sum\limits_{i=1}^{n} \ln \ln X_i - \sum\limits_{i=1}^{n} \ln X_i\]
 
@@ -851,20 +882,22 @@ LM = 70\cdot \frac{1}{100} \cdot 70 = 49
 
 Для уровня значимости 5\,\% критическое значение $\chi^2_1$ равно $\approx3{,}84$, поэтому во всех трёх тестах гипотеза $\hypo_0\colon \theta=1$ отвергается.
 
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 \begin{problem}
- Величины $X_{1}$, ..., $X_{n}$ --- независимы и нормально распределены, $N(\mu,\sigma^2)$. По 100 наблюдениям $\sum X_i=100$ и  $\sum X_i^2=900$.
+Величины $X_{1}$, ..., $X_{n}$ --- независимы и нормально распределены, $N(\mu,\sigma^2)$. По 100 наблюдениям $\sum X_i=100$ и  $\sum X_i^2=900$.
 \begin{enumerate}
 \item Найдите ML оценки неизвестных параметров $\mu$ и $\sigma^2$.
 \item Постройте 95\%-ые доверительные интервалы для $\mu$ и $\sigma^2$
 \item С помощью LR, LM и W теста проверьте гипотезу о том, что $\sigma^2=1$.
 \item С помощью LR, LM и W теста проверьте гипотезу о том, что $\sigma^2=1$ и одновременно $\mu=2$.
 \end{enumerate}
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 \[
 \bs\theta =
 \begin{pmatrix} \mu \\ \sigma^2 \end{pmatrix}, \quad
@@ -979,7 +1012,9 @@ LM =  \begin{pmatrix} -100 & 400 \end{pmatrix}  \begin{pmatrix}  \frac{1}{100} &
 
 Для уровня значимости 5\,\% критическое значение $\chi^2_2$ равно $\approx5{,}99$, поэтому во всех трёх тестах гипотеза $\hypo_0\colon \bs\theta=\bs\theta_0$ отвергается.
 
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 
@@ -1009,12 +1044,14 @@ y_3
 \end{pmatrix}
 \end{equation}
 , где $\e_1$, $\e_2$, $\e_3$ независимы и равновероятно принимаю значения $+1$ и $-1$. При помощи метода максимального правдоподобия оцените $\b_1$, $\b_2$, если $y'=(-1,1,2)$.
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 Заметим, что $y_1=\b_1+\e_1$ и $y_2=\b_1 + \e_2$, Но $\e_1$ может отличаться от $\e_2$ максимум на два, поэтому получаем, что $\e_1=-1$, $\e_2=+1$ и $\hb_1=0$. Стоит отметить, что в данной модели и $\b_1=0$.
 Далее получаем, что $y_3=1+\beta_2 + \e_3$ и отсюда следует два варианта для $\hb_2$. То есть единственной оценки $\hb_2$ методом правдоподобия не получается, существует два максимума у функции правдоподобия, $\hb_2=0$ и $\hb_2=2$.
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 \begin{problem}
@@ -1028,8 +1065,12 @@ y_3
 \item Найдите все глобальные экстремумы функции правдоподобия 
 \item Какой из экстремумов выглядит наиболее логичным?
 \end{enumerate}
+
+
+\begin{sol}
+Увы, никакой. Все экстремумы имеют вид $\hat{\mu}=x_i$, $\hat{\sigma}=0$, при этом функция правдподобия равна бесконечности. 
+\end{sol}
 \end{problem}
 
-\begin{solution}
-Увы, никакой. Все экстремумы имеют вид $\hat{\mu}=x_i$, $\hat{\sigma}=0$, при этом функция правдподобия равна бесконечности. 
-\end{solution}
+\Closesolutionfile{solution_file}
+

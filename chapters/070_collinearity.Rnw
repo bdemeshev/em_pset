@@ -1,11 +1,16 @@
+\Opensolutionfile{solution_file}[sols_070]
+% в квадратных скобках фактическое имя файла
+
 \chapter{Мультиколлинеарность}
 
 
 \begin{problem}
 Сгенерируйте данные так, чтобы при оценке модели $\hat{y}=\hat{\beta_1}+\hat{\beta_2}x+\hat{\beta_3}z$ оказывалось, что по отдельности оценки коэффициентов $\hat{\beta_2}$ и $\hat{\beta_3}$ незначимы, но модель в целом --- значима.
+
+\begin{sol}
+\end{sol}
 \end{problem}
-\begin{solution}
-\end{solution}
+
 
 \begin{problem}
 В этом задании нужно сгенерировать зависимую переменную $y$ и два регрессора $x$ и $z$.
@@ -14,10 +19,12 @@
 \item А теперь сгенерируйте данные так, чтобы корреляция между регрессорами была по-прежнему больше $0.9$, но проблемы мультиколлинеарности бы не было, т.е. все коэффициенты были бы значимы.
 \item Есть несколько способов, как изменить генерации случайных величин, чтобы перейти от ситуации <<a>> к ситуации <<b>>. Назовите хотя бы два.
 \end{enumerate}
-\end{problem}
-\begin{solution}
+
+\begin{sol}
 увеличить количество наблюдений, уменьшить дисперсию случайной ошибки
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 \begin{problem}
@@ -62,10 +69,12 @@ xtable(cars.vcov)
 \item Как выглядит уравнение регрессии, если вместо $speed$ использовать центрированную скорость? Известно, что средняя скорость равна $\Sexpr{speed.mean}$
 \item С помощью регрессии с центрированной скоростью ответьте на предыдущие вопросы.
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -75,9 +84,11 @@ xtable(cars.vcov)
 \item Вычислите одну или две главные компоненты (выразите их через вектор-столбцы матрицы $\tilde{X}$), объясняющие не менее 70\% общей выборочной дисперсии регрессоров
 \item Шпионка Шапокляк пытается смоделировать ежедневный выпуск танков, $y$. Выразите оценки коэффициентов регрессии $y = \beta_1 + \beta_2 g +\beta_3 h +\beta_4 x+\varepsilon$ через оценки коэффициентов регрессии на главные компоненты, объясняющие не менее 70\% общей выборочной дисперсии.
 \end{enumerate}
+
+\begin{sol}
+\end{sol}
 \end{problem}
-\begin{solution}
-\end{solution}
+
 
 
 
@@ -91,9 +102,11 @@ xtable(cars.vcov)
 \item Всегда ли оценка $\hb_{RR}$ имеет меньшую дисперсию, чем $\hb_{ols}$?
 \item Найдите такое $\lambda$, что $MSE(\hb_{RR})<MSE(\hb_{ols})$
 \end{enumerate}
+
+\begin{sol}
+\end{sol}
 \end{problem}
-\begin{solution}
-\end{solution}
+
 
 
 
@@ -104,16 +117,20 @@ xtable(cars.vcov)
 \item Выведите $\hb_{rr}$ в явном виде
 \item Как связаны между собой $\hb_{rr}$ и $\hb_{ols}$?
 \end{enumerate}
+
+\begin{sol}
+\end{sol}
 \end{problem}
-\begin{solution}
-\end{solution}
+
 
 
 \begin{problem}
 Для модели $y_i=\beta x_i + \e_i$ выведите в явном виде $\hb_{lasso}$.
+
+\begin{sol}
+\end{sol}
 \end{problem}
-\begin{solution}
-\end{solution}
+
 
 
 \begin{problem}
@@ -135,11 +152,13 @@ r & r & 1
 \item Найдите число обусловленности матрицы $C$ при корреляции равной найденному $r^*$.
 \item Сделайте вывод о наличии мультиколлинеарности в модели при корреляции равной найденному $r^*$.
 \end{enumerate}
+
+
+\begin{sol}
+$r^* = -1/2$
+\end{sol}
 \end{problem}
 
-\begin{solution}
-$r^* = -1/2$
-\end{solution}
 
 
 
@@ -164,29 +183,35 @@ r & r & r & 1
 \item Найдите число обусловленности матрицы $C$ при корреляции равной найденному $r^*$.
 \item Сделайте вывод о наличии мультиколлинеарности в модели при корреляции равной найденному $r^*$.
 \end{enumerate}
+
+
+\begin{sol}
+$r^* = -1/3$
+\end{sol}
 \end{problem}
 
-\begin{solution}
-$r^* = -1/3$
-\end{solution}
 
 \begin{problem}
 Эконометресса Фатима оценивает модель $y_i=\beta_1 +\beta_2 x_i + \beta_3 z_i + \e_i$. Известно, что $\e_i \sim N(0,76)$. Про регрессоры известно, что $\sum (x_i-\bar{x})^2=10$, $\sum (z_i-\bar{z})^2=20$, а выборочная корреляция между ними равна $sCorr(x,z)=0.9$.
 
 Найдите $\Var(\hb_2)$, $\Var(\hb_3)$
+
+
+\begin{sol}
+$\Var(\hb_2)=\frac{\sigma^2}{RSS_2}=40$, $\Var(\hb_3)=\frac{\sigma^2}{RSS_3}=20$, а $RSS_j=(1-R^2_j) \cdot TSS_j$. При этом в парной регрессии $x$ на $z$ или $z$ на $x$ коэффициенты $R^2$ равны и равны квадрату выборочной корреляции, то есть $R^2_j=0.81$.
+\end{sol}
 \end{problem}
 
-\begin{solution}
-$\Var(\hb_2)=\frac{\sigma^2}{RSS_2}=40$, $\Var(\hb_3)=\frac{\sigma^2}{RSS_3}=20$, а $RSS_j=(1-R^2_j) \cdot TSS_j$. При этом в парной регрессии $x$ на $z$ или $z$ на $x$ коэффициенты $R^2$ равны и равны квадрату выборочной корреляции, то есть $R^2_j=0.81$.
-\end{solution}
 
 \begin{problem}
 Эконометресса Алевтина перешла от исходных регрессоров к трём главным компонентам, $z_1$, $z_2$ и $z_3$. И далее посчитала коэффициенты вздутия дисперсии, $VIF_j$, для главных компонент. Чему они оказались равны?
+
+
+\begin{sol}
+$1$, т.к. все главные компоненты ортогональны
+\end{sol}
 \end{problem}
 
-\begin{solution}
-$1$, т.к. все главные компоненты ортогональны
-\end{solution}
 
 
 \begin{problem}
@@ -198,11 +223,13 @@ $y_i$ & $x_i$ \\
 5 & 1 \\
 5 & 2 \\
 \end{tabular}
+
+
+\begin{sol}
+
+\end{sol}
 \end{problem}
 
-\begin{solution}
-
-\end{solution}
 
 
 \begin{problem}
@@ -211,9 +238,14 @@ $y_i$ & $x_i$ \\
 \item Найдите коэффициенты VIF для $x$ и $z$ в регрессии $y_i=\beta_1 + \beta_2 x_i + \beta_3 z_i + \e_i$
 \item В каких пределах могут лежать коэффициенты VIF для $x$ и $z$ в регрессии $y_i=\beta_1 + \beta_2 x_i + \beta_3 z_i + \beta_4 w_i + \e_i$?
 \end{enumerate}
+
+
+\begin{sol}
+$VIF=1/0.19$, $VIF\geq 1/0.19$
+\end{sol}
 \end{problem}
 
-\begin{solution}
-$VIF=1/0.19$, $VIF\geq 1/0.19$
-\end{solution}
+
+
+\Closesolutionfile{solution_file}
 

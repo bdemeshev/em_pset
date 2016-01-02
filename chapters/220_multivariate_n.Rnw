@@ -1,3 +1,6 @@
+\Opensolutionfile{solution_file}[sols_220]
+% в квадратных скобках фактическое имя файла
+
 \chapter{Многомерное нормальное распределение} % и квадратичные формы}
 \chaptermark{Многомерное нормальное}
 
@@ -56,10 +59,12 @@ $\begin{pmatrix} 0.2 & -0.4 & 0 \\ -0.4 & 0.8 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
 d <- matrix(c(0.2, -0.4, 0, -0.4, 0.8, 0, 0, 0, 0), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
 @
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 \begin{problem}
 Пусть $i = (1,\dots,1)'$ --- вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$ и $\e = (\e_1,\dots,\e_n)'\sim N (0,I)$.
@@ -68,11 +73,13 @@ d <- matrix(c(0.2, -0.4, 0, -0.4, 0.8, 0, 0, 0, 0), nrow=3, ncol=3, byrow = FALS
 \item Как распределены случайные величины $\e'\pi\e$ и $\e'(I-\pi)\e$?
 \item Запишите выражения $\e'\pi\e$ и $\e'(I-\pi)\e$, используя знак суммы
 \end{enumerate}
+
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -85,10 +92,12 @@ a <- matrix(as.integer(c(1,2,3,4)), nrow=4, ncol=1, byrow = FALSE, dimnames = NU
 \item Найдите $\E(\e'P\e)$
 \item При помощи таблиц найдите такое число $q$, что $\P(\e'P\e > q)=0.1$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -101,10 +110,12 @@ b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow=4, ncol=2, byrow = FALSE, dimna
 \item Найдите $\E(\e'P\e)$
 \item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -117,10 +128,12 @@ c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALS
 \item Найдите $\E(\e'P\e)$.
 \item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$. 
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 \begin{problem}
 Пусть $\e = (\e_1, \e_2, \e_3)'\sim N (0,I)$. Найдите $\E(\e'P\e)$ и распределение случайной величины $\e'P\e$, если $P = X(X'X)^{-1}X'$ и матрица $X'$ представлена ниже.
@@ -151,10 +164,12 @@ E <- matrix(as.integer(c(1,0,0,1,1,0,1,1,1)), nrow=3, ncol=3, byrow = FALSE, dim
 xmatrix(E)
 @
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -166,10 +181,12 @@ $X$ --- матрица размера ${n \times k}$, $P = X(X'X)^{-1}X'$. На�
 \item $\E(\e'P \e)$
 \item $\E(\sum_{i=1}^n {(\e_i - \bar{\e})}^2)$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 \begin{problem}
 Пусть $\e = (\e_1, \e_2, \e_3)'\sim N (0,4I)$, $A = \begin{pmatrix} 4 & 1 & 1 \\ 1 & 3 & 1 \\ 1 & 1 & 2 \end{pmatrix}$. Найдите:
@@ -182,10 +199,12 @@ m_a <- matrix(as.integer(c(4,1,1,1,3,1,1,1,2)), nrow=3, ncol=3, byrow = FALSE, d
 \item $\E(\e'A\e)$
 \item $\E(\e'(I - A)\e)$ 
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -206,10 +225,12 @@ x_1 & x_2\\
 \item Какое распределение имеет вектор $y$ из предыдущего пункта?
 \item Найдите распределение случайной величины $q = (x- \mu)' \cdot \Sigma^{-1} \cdot (x - \mu)$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -235,10 +256,12 @@ $A =  \begin{bmatrix}
 \item Найдите $\E q$ случайной величины $q = z' \cdot K \cdot z$
 \item Найдите распределение случайной величины $q$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -251,11 +274,13 @@ $A =  \begin{bmatrix}
 \item Найдите $\E(\e'A\e)$
 \item Как распределена случайная величина $\e' A\e$?
 \end{enumerate}
+
+
+\begin{sol}
+по $\chi^2$-распределению 
+\end{sol}
 \end{problem}
 
-\begin{solution}
-по $\chi^2$-распределению 
-\end{solution}
 
 
 \begin{problem}
@@ -271,8 +296,13 @@ $A =  \begin{bmatrix}
 \item Найдите $A^{-1/2}$
 \item Как распределен вектор $u=A^{-1/2}\e$?
 \end{enumerate}
+
+
+\begin{sol}
+$u\sim N(0,I)$ 
+\end{sol}
 \end{problem}
 
-\begin{solution}
-$u\sim N(0,I)$ 
-\end{solution}
+
+\Closesolutionfile{solution_file}
+

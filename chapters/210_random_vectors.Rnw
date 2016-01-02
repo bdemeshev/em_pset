@@ -1,3 +1,6 @@
+\Opensolutionfile{solution_file}[sols_210]
+% в квадратных скобках фактическое имя файла
+
 \chapter{Случайные векторы}
 
 
@@ -24,11 +27,13 @@
 \end{enumerate}
 \item Составьте из данных бумаг пять некоррелированных портфелей 
 \end{enumerate}
+
+
+\begin{sol}
+\newpage
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\newpage
-\end{solution}
 
 
 \begin{problem}
@@ -38,10 +43,12 @@
 \item Как распределены случайные величины $\e'\pi\e$ и $\e'(I-\pi)\e$?
 \item Запишите выражения $\e'\pi\e$ и $\e'(I-\pi)\e$, используя знак суммы
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 
@@ -55,10 +62,12 @@ a <- matrix(as.integer(c(1,2,3,4)), nrow=4, ncol=1, byrow = FALSE, dimnames = NU
 \item Найдите $\E(\e'P\e)$
 \item При помощи таблиц найдите такое число $q$, что $\P(\e'P\e > q)=0.1$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 
@@ -72,10 +81,12 @@ b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow=4, ncol=2, byrow = FALSE, dimna
 \item Найдите $\E(\e'P\e)$
 \item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -88,10 +99,12 @@ c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALS
 \item Найдите $\E(\e'P\e)$.
 \item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$. 
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 
@@ -112,10 +125,12 @@ c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALS
 ex <- c(1,2)
 varx <- matrix(as.integer(c(2,1,1,2)), nrow=2, byrow = FALSE, dimnames = NULL)
 @
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -135,10 +150,12 @@ varx <- matrix(as.integer(c(2,1,1,2)), nrow=2, byrow = FALSE, dimnames = NULL)
 ex1 <- c(1,4)
 varx1 <- matrix(as.integer(c(4,1,1,4)), nrow=2, byrow = FALSE, dimnames = NULL)
 @
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 
@@ -167,10 +184,12 @@ y_1 & y_2 & y_3\\
 y_1 & y_2 & y_3\\
 \end{pmatrix} '$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 
@@ -180,9 +199,9 @@ y_1 & y_2 & y_3\\
 Пусть $\xi_1, \xi_2, \xi_3$ --- случайные величины, такие что $\Var (\xi_1) = 2$, $\Var (\xi_2) = 3$, $\Var (\xi_3) = 4$, $\Cov (\xi_1, \xi_2) = 1$, $\Cov (\xi_1, \xi_3) = -1$, $\Cov (\xi_2, \xi_3) = 0$. Пусть $\xi =  \begin{pmatrix}
 \xi_1 & \xi_2 & \xi_3 \\
 \end{pmatrix} '$. Найдите $\Var (\xi)$ и $\Var (\xi_1 + \xi_2 + \xi_3)$.
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 По определению ковариационной матрицы:
 
 $\Var (\xi) =  \begin{pmatrix}
@@ -228,13 +247,15 @@ $\Var (\xi) =  \begin{pmatrix}
 1 \\
 \end{pmatrix}  = 9
 \end{multline}
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 
 
 \begin{problem}
-  Пусть $h =  \begin{pmatrix}
+ Пусть $h =  \begin{pmatrix}
 \xi_1 \\
 \xi_2 \\
 \end{pmatrix} $; $\E (h) =  \begin{pmatrix}
@@ -253,9 +274,9 @@ $\Var (\xi) =  \begin{pmatrix}
 \xi_1 \\
 \xi_2 \\
 \end{pmatrix} $. Найдите $\E (z_1)$ и $\Var (z_1)$.
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 \begin{multline}
 \E (z_1) = \E   \begin{pmatrix}
  \begin{pmatrix}
@@ -321,7 +342,9 @@ $\Var (z_1) = \Var   \begin{pmatrix}
 0 & 0 \\
 0 & 2 \\
 \end{pmatrix} $
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 
@@ -353,9 +376,9 @@ $\Var (z_1) = \Var   \begin{pmatrix}
 1\\
 1\\
 \end{pmatrix} $. Найдите $\E (z_2)$ и $\Var (z_2)$
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 $\E (z_2) = \E   \begin{pmatrix}
  \begin{pmatrix}
 0 & 0 \\
@@ -400,7 +423,9 @@ $\E (z_2) = \E   \begin{pmatrix}
 1\\
 1\\
 \end{pmatrix} $, где $z_1$ --- случайный вектор из предыдущей задачи, то $\Var (z_2) = \Var (z_1)$. Сдвиг случайного вектора на вектор-константу не меняет его ковариационную матрицу. 
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 
@@ -428,9 +453,9 @@ $\E (z_2) = \E   \begin{pmatrix}
 \E \xi_1 \\
 \E \xi_2 \\
 \end{pmatrix} $. Найдите $\E (z_3)$ и $\Var (z_3)$
-\end{problem}
 
-\begin{solution}
+
+\begin{sol}
 \textit{В данном примере проиллюстрирована процедура центрирования случайного вектора --- процедура вычитания из случайного вектора его математического ожидания.}
 
 $\E (z_3) = \E   \begin{pmatrix}
@@ -462,7 +487,9 @@ $\E (z_3) = \E   \begin{pmatrix}
 \E  \xi_1 \\
 \E  \xi_2 \\
 \end{pmatrix} $, поэтому $\Var (z_3) = \Var (z_1)$.
-\end{solution}
+\end{sol}
+\end{problem}
+
 
 
 
@@ -497,11 +524,13 @@ a_1 & a_2 & a_3\\
 \]
 найдите $\E (\text{П})$ и $\Var (\text{П})$
 \end{enumerate}
+
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -524,10 +553,12 @@ a_1 & a_2 & a_3\\
 \E \xi_1 \\
 \E \xi_2 \\
 \end{pmatrix} $; $z_4 = \Var (h)^{-1/2} z_3$. Найдите $\E (z_4)$ и $\Var (z_4)$
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 
@@ -551,10 +582,12 @@ a_1 & a_2 & a_3\\
 \E \xi_1 \\
 \E \xi_2 \\
 \end{pmatrix} $; $z_4 = \Var (h)^{-1/2} z_3$. Найдите $\E (z_4)$ и $\Var (z_4)$
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 \begin{problem}
 Случайные величины $w_1$ и $w_2$ независимы с нулевым ожиданием и единичной дисперсией. Из них составлено два вектора, 
@@ -574,10 +607,12 @@ w_1
 \item Найдите $\E(w)$, $\E(z)$
 \item Найдите $\Var(w)$, $\Var(z)$, $\Cov(w,z)$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -588,11 +623,13 @@ w_1
 \item Возможно ли, что $E(w)=0$ и $\sum w_i \neq 0$?
 \item Возможно ли, что $E(w)\neq 0$ и $\sum w_i \neq 0$?
 \end{enumerate}
+
+
+\begin{sol}
+Каждый из вариантов возможен
+\end{sol}
 \end{problem}
 
-\begin{solution}
-Каждый из вариантов возможен
-\end{solution}
 
 
 \begin{problem}
@@ -607,8 +644,13 @@ w_1
 \]
 
 Найдите четыре различных матрицы $A$, таких что вектор $v=A\e$ имеет некоррелированные компоненты с единичной дисперсией, то есть $\Var(A\e)=I$.
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
+
+
+\Closesolutionfile{solution_file}
 

@@ -1,3 +1,6 @@
+\Opensolutionfile{solution_file}[sols_200]
+% в квадратных скобках фактическое имя файла
+
 \chapter{Линейная алгебра}
 
 
@@ -15,10 +18,12 @@ m1 <- matrix(as.integer(c(4,1,1,2)), nrow=2, ncol=2, byrow = FALSE, dimnames = N
 xmatrix(m1)
 @
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -28,10 +33,12 @@ xmatrix(m1)
 \item $\begin{matrix} u_1 = (2 & 2 & 2 & 2), u_2 = (1 & 0 & 0 & 1) \end{matrix}$
 \item $\begin{matrix} u_1 = (1 & 1 & 1 & 1), u_2 = (7 & 0 & 0 & 7) \end{matrix}$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -58,10 +65,12 @@ D <- matrix(c(0,1,0,0,0,1,"a",0,0), nrow=3, ncol=3, byrow = FALSE, dimnames = NU
 xmatrix(D)
 @
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -74,11 +83,13 @@ xmatrix(D)
 \item $\begin{pmatrix} \lambda & 1 & -1 & -1 \\ 1 & \lambda & -1 & -1 \\ 1 & 1 & -\lambda & -1
 \\ 1 & 1 & -1 & -\lambda \end{pmatrix}$
 \end{enumerate}
+
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-
-\begin{solution}
-\end{solution}
 
 
 
@@ -88,66 +99,82 @@ xmatrix(D)
 \item $\tr(\pi)$ и $\rk(\pi)$
 \item $\tr(I-\pi)$ и $\rk(I-\pi)$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 \begin{problem}
 Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, и пусть $\rk(X) = k$. Верно ли, что матрица $P = X(X'X)^{-1}X'$ симметрична и идемпотентна?
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
 Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, и пусть $\rk(X) = k$. Верно ли, что каждый столбец матрицы $P = X(X'X)^{-1}X'$ является собственным вектором матрицы $P$, отвечающим собственному значению 1?
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
 Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, пусть $\rk(X) = k$ и $P = X(X'X)^{-1}X'$. Верно ли, что каждый вектор-столбец $u$, такой что $X'u=0$, является собственным вектором матрицы $P$? Если да, то какое собственное число ему соответствует?
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
 Верно ли, что для любых матриц $A$ размера $m\times n$ и матриц $B$ размера
 ${n \times m}$ выполняется равенство $\tr(AB) = \tr(BA)$?
+
+
+\begin{sol}
+да
+\end{sol}
 \end{problem}
 
-\begin{solution}
-да
-\end{solution}
 
 \begin{problem}
 Какие собственные значения могут быть у симметричной и идемпотентной матрицы?
+
+
+\begin{sol}
+только 0 или 1
+\end{sol}
 \end{problem}
 
-\begin{solution}
-только 0 или 1
-\end{solution}
 
 \begin{problem}
 Пусть $P$ --- матрица размера ${n \times n}$, $P'= P$, $P^2 = P$. Верно ли, что $\rk(P) = \tr(P)$?
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
-  Верно ли, что для симметричной матрицы собственные векторы, отвечающие различным собственным значениям, ортогональны?
+ Верно ли, что для симметричной матрицы собственные векторы, отвечающие различным собственным значениям, ортогональны?
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -171,26 +198,32 @@ d <- matrix(as.integer(c(1,1,1,1,0,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=4, byro
 @
 \item $X = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 1 & 1 & 1 & 0  \\ 1 & 1 & 1 & 1 \end{pmatrix}$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 \begin{problem}
 Приведите пример таких $A$ и $B$, что $\det(AB)\neq \det(BA)$.
+
+
+\begin{sol}
+Например, $A=(1,2,3)$, $B=(1,0,1)'$
+\end{sol}
 \end{problem}
 
-\begin{solution}
-Например, $A=(1,2,3)$, $B=(1,0,1)'$
-\end{solution}
 
 \begin{problem}
 Для матриц-проекторов $\pi=\v1(\v1'\v1)^{-1}\v1'$ и $P=X(X'X)^{-1}X'$ найдите $\tr(\pi)$, $\tr(P)$, $\tr(I-\pi)$, $\tr(I-P)$.
+
+
+\begin{sol}
+$\tr(I)=n$, $\tr(\pi)=1$, $\tr(P)=k$
+\end{sol}
 \end{problem}
 
-\begin{solution}
-$\tr(I)=n$, $\tr(\pi)=1$, $\tr(P)=k$
-\end{solution}
 
 
 \begin{problem}
@@ -210,18 +243,22 @@ $X=\left(
 \vdots & \vdots \\
 1 & x_n
 \end{array}\right)$
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
 Выпишите в явном виде матрицы $\pi$, $\pi y$, $\pi \e$, $I-\pi$, если $\pi=\v1(\v1'\v1)^{-1}\v1'$.
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -236,20 +273,24 @@ B_{21} & B_{22}
 \item Каковы размеры кусков $A_{12}$ и $A_{21}$?
 \item Чему равно $B_{22}(A_{22}-A_{21}A_{11}^{-1}A_{12})$?
 \end{enumerate}
+
+
+\begin{sol}
+$n\times m$, $m\times n$, $I$
+\end{sol}
 \end{problem}
 
-\begin{solution}
-$n\times m$, $m\times n$, $I$
-\end{solution}
 
 
 
 \begin{problem}
 Спектральное разложение. Симметричная матрица $A$ размера $n\times n$ имеет $n$ собственных чисел $\lambda_1$, \ldots, $\lambda_n$ с собственными векторами $u_1$, \ldots, $u_n$. Докажите, что $A$ можно представить в виде $A=\sum \lambda_i u_i u_i'$.
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -300,10 +341,12 @@ $n\times m$, $m\times n$, $I$
 2 & 0 & 7
 \end{pmatrix}$
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -316,33 +359,44 @@ $n\times m$, $m\times n$, $I$
 \item Приведите пример матрицы для которой определитель не равен произведению собственных значений.
 \item Верно ли, что для симметричной матрицы определитель всегда равен произведению собственных значений?
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
 Найдите собственные числа и собственные векторы матрицы строевого леса размера $n\times n$. Матрица строевого леса --- это матрица, состоящая только из единиц.
+
+
+\begin{sol}
+Собственные векторы --- все векторы с нулевой суммой компонент, $\lambda=0$, векторы из одинаковых чисел, $\lambda=n$.
+\end{sol}
 \end{problem}
 
-\begin{solution}
-Собственные векторы --- все векторы с нулевой суммой компонент, $\lambda=0$, векторы из одинаковых чисел, $\lambda=n$.
-\end{solution}
 
 \begin{problem}
 Найдите собственные числа и собственные векторы матрицы $A=vv'$, где $v$ --- вектор-столбец размера $n\times 1$.
+
+
+\begin{sol}
+Собственные векторы --- все векторы перпендикулярные $v$, $\lambda=0$, векторы пропорциональные $v$, $\lambda=|v|^2$.
+\end{sol}
 \end{problem}
 
-\begin{solution}
-Собственные векторы --- все векторы перпендикулярные $v$, $\lambda=0$, векторы пропорциональные $v$, $\lambda=|v|^2$.
-\end{solution}
 
 \begin{problem}
 Пусть $S$ --- матрица строевого леса, т.е. матрица размера $n\times n$, состоящая только из единиц, а $y$ --- вектор размера $n\times 1$. Найдите $Sy$, $S^2$, $S^{2015}$, $(I-\frac{1}{n}S)^2$, $(I-\frac{1}{n}S)^{2015}$.
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
+
+
+\Closesolutionfile{solution_file}
 

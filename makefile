@@ -17,3 +17,9 @@ $(file_name).pdf: $(file_name).tex
 
 $(file_name).tex : $(file_name).Rnw chapters/*.Rnw
 	Rscript -e "library(knitr); knit('$(file_name).Rnw')"
+
+
+clean:
+	rm em1_pset_v2-tikzDictionary
+	rm em1_pset_v2.tex
+	rm em1_pset_v2.pdf

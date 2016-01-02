@@ -1,3 +1,6 @@
+\Opensolutionfile{solution_file}[sols_140]
+% в квадратных скобках фактическое имя файла
+
 \chapter{Деревья и Random Forest}
 
 
@@ -15,10 +18,12 @@ $Y$ & $0$ & $1$ & $5$ \\
 \hline 
 $\P()$ & $0.2$ & $0.3$ & $0.5$ \\ 
 \end{tabular} 
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 \begin{problem}
 Случайная величина $X$ принимает значение $1$ с вероятностью $p$ и значение $0$ с вероятностью $1-p$.
@@ -26,10 +31,12 @@ $\P()$ & $0.2$ & $0.3$ & $0.5$ \\
 \item Постройте график зависимости индекса Джини и энтропии от $p$
 \item При каком $p$ энтропия и индекс Джини будут максимальны?
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -39,7 +46,6 @@ set.seed(1975)
 x <- sample(c("yes","no"),size=20,rep=TRUE)
 y <- sample(c("yes","no"),size=20,rep=TRUE)
 z <- sample(c("yes","no"),size=20,rep=TRUE)
-library(xtable)
 xtable(data.frame(x,y,z))
 @
 
@@ -48,10 +54,12 @@ xtable(data.frame(x,y,z))
 \item Какой фактор нужно использовать при прогнозировании $y$, чтобы минимизировать энтропию?
 \item Какой фактор нужно использовать при прогнозировании $y$, чтобы минимизировать индекс Джини?
 \end{enumerate}
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 
@@ -69,10 +77,12 @@ $100$ & $3$ \\
 \end{tabular} 
 
 Критерий деления узла на два --- минимизация $RSS$. Дерево строится до трёх терминальных узлов.
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 \begin{problem}
@@ -80,11 +90,13 @@ $100$ & $3$ \\
 
 Как изменились индекс Джини и энтропия в результате такого разбиения?
 
+
+
+\begin{sol}
+
+\end{sol}
 \end{problem}
 
-\begin{solution}
-
-\end{solution}
 
 
 \begin{problem}
@@ -101,20 +113,24 @@ $y_i$ & $x_i$ \\
 \end{tabular} 
 
 Дерево строится до идеальной классификации. Критерий деления узла на два --- максимальное падение индекса Джини.
+
+
+\begin{sol}
+\end{sol}
 \end{problem}
 
-\begin{solution}
-\end{solution}
 
 
 
 \begin{problem}
 У Винни-Пуха есть 100 песенок (кричалок, вопелок, пыхтелок и сопелок). Каждый день он выбирает и поёт одну из них равновероятно наугад. Одну и ту же песенку он может петь несколько раз. Сколько в среднем песенок оказываются неспетыми за 100 дней?
+
+
+\begin{sol}
+$100\cdot \left(\frac{99}{100} \right)^{100}\approx 100/e \approx 37$
+\end{sol}
 \end{problem}
 
-\begin{solution}
-$100\cdot \left(\frac{99}{100} \right)^{100}\approx 100/e \approx 37$
-\end{solution}
 
 \begin{problem}
 По данной диаграмме рассеяния постройте классификационное дерево для зависимой переменной $y$: 
@@ -126,12 +142,17 @@ qplot(data=df, x=x, y=z, col=y) + geom_vline(x=0.25) + geom_hline(y=0.5)
 @
 Дерево необходимо построить до идеальной классификации, в качестве критерия деления узла на два используйте минимизацию индекса Джини:
 
+
+
+\begin{sol}
+Сначала делим по $z$, потом по $x$, так как индекс Джини в таком порядке падает сильнее.
+\end{sol}
 \end{problem}
 
-\begin{solution}
-Сначала делим по $z$, потом по $x$, так как индекс Джини в таком порядке падает сильнее.
-\end{solution}
 
 
 
+
+
+\Closesolutionfile{solution_file}
 

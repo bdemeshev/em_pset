@@ -1,0 +1,6 @@
+\Opensolutionfile{solution_file}[sols_110]
+% в квадратных скобках фактическое имя файла
+
+
+\Closesolutionfile{solution_file}
+
