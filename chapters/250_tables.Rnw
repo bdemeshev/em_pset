@@ -1,6 +1,3 @@
-\Opensolutionfile{solution_file}[sols_250]
-% в квадратных скобках фактическое имя файла
-
 % источник:
 
 Таблицы с разрешения автора взяты со страницы \\
@@ -769,6 +766,4 @@ $\infty$
 
 
 } % {\fontesize
-
-\Closesolutionfile{solution_file}
 
