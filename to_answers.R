@@ -1,8 +1,6 @@
 library("stringr")
 
-all_files <- list.files("~/Documents/em_pset/chapters/", 
-                        pattern = "Rnw$",
-                        full.names = TRUE)
+
 
 # move sol environment inside problem environment
 # to use answers latex package
@@ -53,13 +51,20 @@ TransformFile <- function(file_name) {
   return(0)
 }
 
+
+all_files <- list.files("~/Documents/em_pset/chapters/", 
+                        pattern = "Rnw$",
+                        full.names = TRUE)
 for (file_name in all_files) {
   cat("Transforming ", file_name, "\n")
   res <- TransformFile(file_name)
 }
 
 
-
-
+all_files <- list.files("~/Documents/em_pset/", 
+                        pattern = "^sols_")
+all_files_no_ext <- str_sub(all_files, end = -5)
+res <- paste0("\\input{", all_files_no_ext, "}", collapse = "\n")
+cat(res)
 
 

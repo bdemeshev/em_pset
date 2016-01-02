@@ -15,7 +15,7 @@ $(file_name).pdf: $(file_name).tex
 	# clean auxillary files
 	latexmk -c $(file_name).tex
 
-$(file_name).tex : $(file_name).Rnw chapters/*.Rnw
+$(file_name).tex : $(file_name).Rnw chapters/*.Rnw emetrix_preamble.tex
 	Rscript -e "library(knitr); knit('$(file_name).Rnw')"
 
 

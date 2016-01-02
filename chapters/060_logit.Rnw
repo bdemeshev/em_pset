@@ -258,11 +258,13 @@ $x_i$ & 1 & 2 & 3
 \end{sol}
 \end{problem}
 
-
-
+\begin{problem}
+Опишите логит-модель упорядоченного выбора. Выведите выражения для предельных эффектов.
+\begin{sol}
+\end{sol}
+\end{problem}
 
 
 
 
 \Closesolutionfile{solution_file}
-

@@ -213,7 +213,85 @@ z_i
 \item Найдите $\plim \hat \gamma_2$ в модели $\hy_i = \hat \gamma_1 + \hat \gamma_2 x_i + \hat \gamma_3 z_i $
 \end{enumerate}
 
+\begin{sol}
+\end{sol}
+\end{problem}
 
+
+\begin{problem}
+Рассмотрим классическую линейную регрессионную модель:
+\[
+y_i = \b_1 + \b_2 x_i + \b_3 z_i + \e_i
+\]
+
+\begin{enumerate}
+\item Огюст Люмьер утверждает, что при нестохастических регрессорах математические ожидания $\E(y_i)$ различны. Луи Люмьер утверждает, что при стохастических регрессорах и предпосылке о том, что наблюдения являются случайной выборкой, все $\E(y_i)$ равны между собой. Кто из них прав?
+\item Помогите Луи Люмьеру найти $\plim \he_1$ и $\plim \hy_1$
+\end{enumerate}
+
+\begin{sol}
+Оба правы, $\plim \he_1 = \e_1$ и $\plim \hy_1= \b_1 + \b_2 x_i + \b_3 z_i$
+\end{sol}
+\end{problem}
+
+
+\begin{problem}
+Рассмотрим классическую линейную регрессионную модель:
+\[
+y_i = \b_1 + \b_2 x_i + \b_3 z_i + \e_i
+\]
+
+Наблюдения является случайной выборкой. Истинная ковариция $\Cov(x_i, z_i)$ равна нулю. Мы оцениваем с помощью МНК две регрессии.
+
+Регрессия 1:
+\[
+\hy_i = \hb_1 + \hb_2 x_i + \hb_3 z_i
+\]
+
+Регрессия 2:
+\[
+\hy_i = \hat \gamma_1 + \hat \gamma_2 x_i
+\]
+
+\begin{enumerate}
+\item Верно ли, что $\hb_2$ совпадает с $\hat \gamma_2$?
+\item Верно ли, что $\plim \hb_2 = \plim \hat \gamma_2$?
+\end{enumerate}
+
+\begin{sol}
+В общем случае $\hb_2 \neq \hat \gamma_2$, однако $\plim \hb_2 = \plim \hat \gamma_2$.
+\end{sol}
+\end{problem}
+
+
+\begin{problem}
+Наблюдения представляют собой случайную выборку. Зависимые переменные $y_{t1}$ и $y_{t2}$ находятся из системы:
+
+\[
+\begin{cases}
+y_{t1} = \beta_{11} + \beta_{12} x_t + \e_{t1} \\
+y_{t2} = \beta_{21} + \beta_{22} z_t + \beta_{23} y_{t1} + \e_{t2}
+\end{cases},
+\]
+где вектор ошибок $\e_t$ имеет совместное нормальное распределение
+\[
+\e_t \sim \cN\left(
+\begin{pmatrix}
+  0 \\
+  0
+\end{pmatrix};
+\begin{pmatrix}
+  1 & \rho \\
+  \rho & 1
+\end{pmatrix}
+\right)
+\]
+
+Эконометресса Анжела оценивает с помощью МНК первое уравнение, а эконометресса Эвридика --- второе.
+\begin{enumerate}
+\item Найдите пределы по вероятности получаемых ими оценок
+\item Будут ли оценки состоятельными?
+\end{enumerate}
 
 \begin{sol}
 \end{sol}
@@ -221,4 +299,3 @@ z_i
 
 
 \Closesolutionfile{solution_file}
-
