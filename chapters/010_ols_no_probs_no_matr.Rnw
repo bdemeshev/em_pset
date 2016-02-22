@@ -14,7 +14,13 @@
 
 
 \begin{sol}
-да, да, да, нет
+\begin{enumerate}
+\item Верно: \[\sum_{i=1}^{n}(a_i-\bar{a}) = \sum_{i=1}^{n}a_i - n\cdot\bar{a} = \sum_{i=1}^{n}a_i - \sum_{i=1}^{n}a_i = 0\]
+\item Верно: \[\sum_{i=1}^{n}(a_i-\bar{a})^2 = \sum_{i=1}^{n}(a_i-\bar{a})(a_i+\bar{a}) = \sum_{i=1}^{n}(a_i-\bar{a})a_i + \bar{a}\underbrace{\sum_{i=1}^{n}(a_i-\bar{a})}_{=0} = \sum_{i=1}^{n}(a_i-\bar{a})a_i \]
+
+\item Верно: \[\sum_{i=1}^{n}(a_i-\bar{a})(b_i-\bar{b}) = \sum_{i=1}^{n}(a_i-\bar{a})b_i - \bar{b}\underbrace{\sum_{i=1}^{n}(a_i-\bar{a})}_{=0} = \sum_{i=1}^{n}(a_i-\bar{a})b_i \]
+\item А вот это неверно! (следует из предыдущего пункта)
+\end{enumerate}
 \end{sol}
 \end{problem}
 
@@ -32,11 +38,34 @@
 \item $y_i = \theta + x_i + \e_i$
 \item $y_i = 1 + \theta x_i + \e_i$
 \item $y_i = \theta / x_i + \e_i$
-\item $y_i = \theta x_{i1} + (1-\theta)x_{i2}+\e_i$
+\item $y_i = \theta x_i + (1-\theta)x_{i2}+\e_i$
 \end{enumerate}
 
 
 \begin{sol}
+\begin{enumerate}
+\item \(\htheta = \sum y_i (1 + x_i) / \sum (1 + x_i)^2\)
+
+Стандартная процедура МНК:
+\[RSS = \sum \e_i^2 = \sum \left(y_i - \theta - \theta x_i\right)^2 \rightarrow \min \limits_\theta\]
+\[\frac{\partial RSS}{\partial \theta} = 2 \sum \left(y_i - \theta - \theta x_i\right)(-1 - x_i) \]
+\[\sum \left(y_i - \htheta - \htheta x_i\right)(-1 - x_i) = 0\]
+\[\sum y_i (-1 - x_i) + \htheta \sum (-1 - x_i)^2 = 0 \]
+\[\htheta = \frac{\sum y_i (1 + x_i)}{\sum (1 + x_i)^2} \]
+
+\item \(\htheta = \sum \left(y_i (1 - x_i)\right) / \sum (1 - x_i)^2\)
+
+\item \(\htheta = \left( \sum \text{ln} (y_i / x_i) \right) / n \)
+
+\item \(\htheta = \left( \sum (y_i - x_i) \right) / n \)
+
+\item \(\htheta = \sum \left((y_i - 1) x_i\right) / \sum x_i^2\)
+
+\item \(\htheta = \sum (y_i / x_i^2) / \sum (1 /x^3)\)
+
+\item \(\htheta = \sum \left((y_i - x_{i2})(x_i - x_{i2}) \right) / \sum \left(x_i - x_{i2}\right)^2 \)
+
+\end{enumerate}
 \end{sol}
 \end{problem}
 
@@ -46,6 +75,9 @@
 
 
 \begin{sol}
+Заметим, что $y_i + z_i = \underbrace{(\alpha + \gamma)}_{\mu} + \underbrace{(\beta+\delta)}_{\lambda}x_i + u_i$. 
+
+Если оценить данную модель при помощи МНК, получим как раз то, что нужно доказать.
 \end{sol}
 \end{problem}
 
@@ -55,6 +87,7 @@
 
 
 \begin{sol}
+\(\hat{\alpha} = 0, \ \hb = 1 \)
 \end{sol}
 \end{problem}
 
@@ -67,8 +100,17 @@
 \end{enumerate}
 
 
-\begin{sol}
+\begin{sol} % 1.5. 
 $\hat{\alpha} + \hat{\gamma} = 0$ и $\hat{\beta} + \hat{\delta} = 1$
+
+
+
+\begin{enumerate}
+\item Это одно и то же, просто названия разные.
+\item См. пункт 1.
+\end{enumerate}
+\todo[inline]{Проверить!}
+
 \end{sol}
 \end{problem}
 
@@ -80,15 +122,48 @@ $\hat{\alpha} + \hat{\gamma} = 0$ и $\hat{\beta} + \hat{\delta} = 1$
 
 
 \begin{sol}
+
+Исходя из условия, нужно оценить методом МНК коэффициенты двух следующих моделей:
+\[y_i = \alpha + \beta x_i + \e_i \]
+\[y_i = \frac{\gamma}{2} + \frac{\delta}{2} x_i + \frac{1}{2} v_i \]
+
+Заметим, что на минимизацию суммы квадратов остатков коэффициент \(1/2\) не влияет, следовательно:
+\[\hat{\gamma} = 2\hat{\alpha}, \ \hat{\delta} = 2 \hb  \]
+
 \end{sol}
 \end{problem}
 
 
 \begin{problem}
-Для модели $y_i = \beta_1 x_{i1} + \beta_2 x_{i2} + \e_i$ решите условную задачу о наименьших квадратах: $Q(\beta_1, \beta_2) := \sum_{i=1}^n (y_i - \beta_1 x_{i1} - \beta_2 x_{i2})^2 \rightarrow \underset{\beta_1 + \beta_2 = 1}{\min}$
+Для модели $y_i = \beta_1 x_i + \beta_2 z_i + \e_i$ решите условную задачу о наименьших квадратах: $Q(\beta_1, \beta_2) := \sum_{i=1}^n (y_i - \beta_1 x_i - \beta_2 z_i)^2 \rightarrow \underset{\beta_1 + \beta_2 = 1}{\min}$
 
 
 \begin{sol}
+Выпишем задачу:
+\[
+\begin{cases}
+RSS = \sum\limits_{i=1}^{n}(y_i - \beta_1x_i - \beta_2z_i)^2 \rightarrow \min\limits_{\beta_1, \beta_2}\\
+\beta_1 + \beta_2 = 1
+\end{cases}
+\]
+
+Можем превратить ее в задачу минимизации функции одного аргумента:
+\[
+RSS =  \sum\limits_{i=1}^{n}(y_i - x_i - \beta_2(z_i-x_i))^2 \rightarrow \min_{\beta_2}
+\]
+
+Выпишем условия первого порядка:
+\[
+\frac{\partial RSS}{\partial \beta_2} = \sum\limits_{i=1}^{n}2(y_i-x_i-\hb_2(z_i-x_i))(x_i-z_i)=0
+\]
+
+Отсюда:
+\[
+\sum\limits_{i=1}^{n}(y_i-x_i)(x_i-z_i) + \hb_2\sum\limits_{i=1}^{n}(z_i-x_i)^2 = 0 \Rightarrow \hb_2 = \frac{\sum\limits_{i=1}^n (y_i-x_i)(z_i-x_i)}{\sum\limits_{i=1}^n (z_i-x_i)^2}
+\]
+
+А $\beta_1$ найдется из соотношения $\hb_1+\hb_2 = 1$.
+
 \end{sol}
 \end{problem}
 
@@ -109,12 +184,25 @@ $\hb=\sum x_i y_i/\sum x_i^2$
 Даны $n$ чисел: $y_1$, \ldots, $y_n$. Мы прогнозируем $y_i$ по формуле $\hy_i=\hb$. Найдите $\hb$ методом наименьших квадратов.
 
 \begin{sol}
-$\hb=\bar{y}$
+Нужно решить задачу:
+\[
+RSS = \sum\limits_{i=1}^n(y_i-\beta)^2 \rightarrow \min\limits_{\beta}
+\]
+
+Условия первого порядка:
+\[
+\frac{\partial RSS}{\partial \beta} = \sum\limits_{i=1}^{n}2(y_i-\hb) = 0 \Rightarrow \sum\limits_{i=1}^n y_i-n\hb = 0
+\]
+
+Поэтому
+\[
+\hb = \frac{\sum_{i=1}^ny_i}{n} = \bar{y}
+\]
 \end{sol}
 \end{problem}
 
 
-\begin{problem}
+\begin{problem} % 1.10 
 Даны $n$ пар чисел: $(x_1, y_1)$, \ldots, $(x_n,y_n)$. Мы прогнозируем $y_i$ по формуле $\hy_i=\hb_1+\hb_2 x_i$. Найдите $\hb_1$ и $\hb_2$ методом наименьших квадратов.
 
 \begin{sol}
@@ -127,7 +215,18 @@ $\hb_2=\sum (x_i-\bar{x})(y_i-\bar{y})/\sum(x_i-\bar{x})^2$, $\hb_1=\bar{y}-\hb_
 Даны $n$ пар чисел: $(x_1, y_1)$, \ldots, $(x_n,y_n)$. Мы прогнозируем $y_i$ по формуле $\hy_i=1+\hb x_i$. Найдите $\hb$ методом наименьших квадратов.
 
 \begin{sol}
-$\hb=\sum x_i (y_i-1)/\sum x_i^2$
+Имеем следующую задачу:
+\[
+RSS = \sum\limits_i(y_i-1-\beta x_i)^2 \rightarrow \min\limits_{\beta}
+\]
+
+Откуда сразу все находим:
+\[
+\frac{\partial RSS}{\partial \beta} = \sum\limits_i2(y_i-1-\hb x_i)(-x_i) = 0 \Rightarrow \sum\limits_i (y_i-1-\hb x_i)x_i=0 \Rightarrow
+\]
+\[
+\sum\limits_i x_iy_i-\sum\limits_ix_i - \hb\sum\limits_ix_i^2 = 0 \Rightarrow \hb = \frac{\sum_ix_i(y_i-1)}{\sum_ix_i^2}
+\]
 \end{sol}
 \end{problem}
 
@@ -136,7 +235,12 @@ $\hb=\sum x_i (y_i-1)/\sum x_i^2$
 Перед нами два золотых слитка и весы, производящие взвешивания с ошибками. Взвесив первый слиток, мы получили результат $300$ грамм, взвесив второй слиток --- $200$ грамм, взвесив оба слитка --- $400$ грамм. Оцените вес каждого слитка методом наименьших квадратов.
  
 \begin{sol}
-$(300-\hb_1)^2+(200-\hb_2)^2+(400-\hb_1-\hb_2)^2\to\min$
+Обозначив вес первого слитка за \(\beta_1\), вес второго слитка за \(\beta_2\), а показания весов за \(y_i\), получим, что
+\[y_1 = \beta_1 + \e_1, \ y_2 = \beta_2 + \e_2, \ y_3 = \beta_1 + \beta_2 + \e_3\]
+
+Тогда
+\[(300 - \beta_1)^2 + (200 - \beta_2)^2 + (400 - \beta_1 - \beta_2)^2 \rightarrow \min \limits_{\beta_1,\  \beta_2} \]
+\[\hb_1 = \frac{800}{3}, \ \hb_2 = \frac{500}{3} \]
 \end{sol}
 \end{problem}
 
@@ -146,7 +250,13 @@ $(300-\hb_1)^2+(200-\hb_2)^2+(400-\hb_1-\hb_2)^2\to\min$
 Аня и Настя утверждают, что лектор опоздал на 10 минут. Таня считает, что лектор опоздал на 3 минуты. С помощью мнк оцените на сколько опоздал лектор.
 
 \begin{sol}
-$2\cdot (10-\hb)^2+(3-\hb)^2\to\min$
+Можем воспользоваться результатом задачи 9:
+\[
+\hb = \bar{y} = \frac{10+10+3}{3} = 23/3
+\]
+
+(можно решить задачу $2(10-\beta)^2 + (3-\beta)^2\rightarrow \min$)
+
 \end{sol}
 \end{problem}
 
@@ -164,6 +274,8 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 \[
 \hb = \frac{\int_0^1 x f(x)\, dx} {\int_0^1 x^2 \, dx}
 \]
+
+\(\hb = \left(\int \limits_0^1 f(x) x dx\right) / \left(\int \limits_0^1 x^2 dx\right)\)
 \end{sol}
 \end{problem}
 
@@ -179,7 +291,54 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 
 
 \begin{sol}
-да, возможно. Два вытянутых облачка точек. Первое облачко даёт первую регрессию, второе --- вторую. Прямая, соединяющая центры облачков, --- общую.
+\begin{enumerate}
+\item Проявите воображение! Все зависит от данных. Например, может быть вот так:
+<<>>=
+n <- 100; 
+s <- rep(c(0, 4), c(n/2, n/2)); 
+x <- c(1 + runif(n/2), runif(n/2)); 
+y <- 2 * x + s + rnorm(n, sd = 0.15)
+
+plot(x, y, type = "n", frame = "FALSE")
+points(x[1 : (n/2)], y[1 : (n/2)], pch = 21,
+       col = "black", bg = "ForestGreen", cex = 2)
+points(x[(n/2 + 1) : n], y[(n/2 + 1) : n],
+       pch = 21, col = "black", bg = "SkyBlue", cex = 2)
+
+modelV1 <- lm(y ~ x + s)                      
+# модели по 1:100 и 101:200 в отдельности                   
+abline(coef(modelV1)[1], coef(modelV1)[2], lwd = 3)
+abline(coef(modelV1)[1] + 4 * coef(modelV1)[3], 
+       coef(modelV1)[2], lwd = 3)
+modelV2 <- lm(y ~ x)                          
+# общая модель
+abline(modelV2, lwd = 2, col = "red")
+@
+
+\item или так:
+<<>>=
+n <- 100; 
+s <- rep(c(0, 4), c(n/2, n/2)); 
+x <- c(runif(n/2), 1 + runif(n/2)); 
+y <- -2 * x + s + rnorm(n, sd = 0.15)
+
+plot(x, y, type = "n", frame = FALSE)
+points(x[1 : (n/2)], y[1 : (n/2)], pch = 21, 
+       col = "black", bg = "ForestGreen", cex = 2)
+points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, 
+       col = "black", bg = "SkyBlue", cex = 2)
+
+modelV1 <- lm(y ~ x + s)                      
+# модели по 1:100 и 101:200 в отдельности                   
+abline(coef(modelV1)[1], coef(modelV1)[2], lwd = 3)
+abline(coef(modelV1)[1] + 4 * coef(modelV1)[3], coef(modelV1)[2], lwd = 3)
+modelV2 <- lm(y ~ x)                          
+# общая модель
+abline(modelV2, lwd = 2, col = "red")
+@
+
+\item а вот так не бывает!
+\end{enumerate}
 \end{sol}
 \end{problem}
 
@@ -191,7 +350,7 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 
 
 \begin{sol}
-Нет. Коэффициенты можно интерпретировать только <<при прочих равных>>, т.е. при равных $x$. Из-за разных $x$ может оказаться, что у мужчин $\bar{y}$ меньше, чем $\bar{y}$ для женщин.
+Нет. Коэффициенты можно интерпретировать только «при прочих равных», т.е. при равных $x$. Из-за разных $x$ может оказаться, что у мужчин $\bar{y}$ меньше, чем $\bar{y}$ для женщин.
 \end{sol}
 \end{problem}
 
@@ -211,7 +370,15 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 
 
 \begin{sol}
-\newpage
+Модель можно представить в линейном виде, когда неизвестные параметры входят в нее линейно.
+\begin{enumerate}
+\item Обозначим $z_i = 1/x_i$, и готово.
+\item Возьмем логарифм от обеих частей...
+\item Вычтем единицу из обеих частей и снова логарифм...
+\item Перевернем обе части уравнения, вычтем единицу и прологарифмируем...
+\item Вместо $x_i$ возьмем $e^{x_i}$ и прологарифмируем...
+\item Вместо $\beta_1$ возьмем $e^{\beta_1}$ и прологарифмируем...
+\end{enumerate}
 \end{sol}
 \end{problem}
 
@@ -229,6 +396,39 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 
 
 \begin{sol}
+Пусть \(\bar{y}_m\) --- среднее значение \(y\) по выборке для мужчин, \(\bar{y}_f\) --- среднее значение \(y\) по выборке для женщин. Тогда
+
+\begin{enumerate}
+\item \(\hy = \bar{y}_m + \left( \bar{y}_m -  \bar{y}_f \right) \cdot 1_f \)
+
+Оцениваемая модель:
+\[y_i = \beta_0 + \beta_1 1_{f, i} + \e_i \]
+
+Стандартная процедура МНК:
+\[RSS = \sum \e_i^2 = \sum \left(y_i - \beta_0 - \beta_1 \cdot 1_f \right)^2 \rightarrow \min \limits_{\beta_0, \beta_1}\]
+\[\frac{\partial RSS}{\partial \beta_0} = 2 \sum \left(y_i - \beta_0 - \beta_1 x_i\right)(-1) \]
+\[\frac{\partial RSS}{\partial \beta_1} = 2 \sum \left(y_i - \beta_0 - \beta_1 x_i\right)(-1_f) \]
+
+Условия первого порядка:
+\[\sum \left(y_i - \hb_0 - \hb_1 \cdot 1_f\right) = 0\]
+\[\sum \left(\left(y_i - \hb_0 - \hb_1 \cdot 1_f\right)\cdot 1_f\right)= 0\]
+
+Осталось немного поработать с оператором суммирования. Обозначим за \(k\) --- число женщин в нашей выборке объемом \(n\), мужчин тогда будет \(n - k\). Тогда
+\[\sum \left(y_i - \hb_0 - \hb_1 \cdot 1_f\right) = m \bar{y}_f + (n - m) \bar{y}_m - n \hb_0 - m \hb_1 = 0\]
+\[\sum \left(\left(y_i - \hb_0 - \hb_1 \cdot 1_f\right)\cdot 1_f\right) = m    \bar{y}_f - m \hb_0 - m \hb_1 =0\]
+
+Отсюда легко ищутся оценки коэффициентов:
+\[\hb_0 = \bar{y}_m, \ \hb_1 = \bar{y}_f - \bar{y}_m  \]
+
+Следовательно:
+\[\hy = \bar{y}_m + \left( \bar{y}_f -  \bar{y}_m \right) \cdot 1_f \]
+
+\item \(\hy = \bar{y}_f + \left( \bar{y}_m -  \bar{y}_f \right) \cdot 1_m \)
+
+\item \(\hy = \bar{y}_m \cdot 1_m + \bar{y}_f \cdot 1_f \)
+
+\item Условия первого порядка линейного зависимы --- мультиколлинеарность. МНК здесь неприменим. 
+\end{enumerate}
 \end{sol}
 \end{problem}
 
@@ -248,7 +448,7 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 
 
 \begin{sol}
-Оценки МНК линейны по объясняемой переменной. Если сложить объясняемые переменные в этих двух моделях, то получится вектор из единичек. Если строить регрессию вектора из единичек на константу и $r$, то получатся оценки коэффициентов 1 и 0. Значит, $\hb_1+\hat{\gamma}_1=1$, $\hb_2+\hat{\gamma}_2=0$
+Если сложить попарно $m_i$ и $f_i$, то в сумме всегда выйдет единица. А оценки, полученные при помощи метода наименьших квадратов линейны по объясняемой переменной, то есть оценки коэффициентов модели $m_i+f_i \sim \dots$ это суммы соответствующих оценок из двух разных моделей. Но они должны получиться равными 1 и 0 соответствнно (так как зависимая переменная --- вектор из единиц). Поэтому $\hb_1 + \hat{\gamma}_1 = 1$, $\hb_2 + \hat{\gamma}_2 = 0$.
 \end{sol}
 \end{problem}
 
@@ -260,7 +460,7 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 
 
 \begin{sol}
-Увеличатся в 100 раз
+Все оценки коэффициентов увеличатся в 100 раз.
 \end{sol}
 \end{problem}
 
@@ -271,7 +471,19 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 
 
 \begin{sol}
-да
+Да, возможно:
+<<>>=
+x <- c(rnorm(n, mean = 4, sd = 2))
+y <- x - 7 + runif(n, min = -1, max = 1) 
+plot(x,y, pch = 21, bg = "ForestGreen", 
+     col = "black", xlim = c(0,10), ylim = c(-5,3))
+abline(coef(lm(y ~ x))[1], coef(lm(y ~ x))[2], lwd = 2)
+abline(0, coef(lm(y ~ 0 + x))[1] , lwd = 2)
+labels <- c("With intercept", "Without intercept")
+text(c(7.5, 1.5), c(2, 0.4), labels)
+coef(lm(y ~ x))
+coef(lm(y ~ 0 + x))
+@
 \end{sol}
 \end{problem}
 
@@ -283,7 +495,7 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 
 
 \begin{sol}
-$R^2=0$
+Так как \(\hat{y} = \hb = \bar{y} \), то \(R^2 = 0\).
 \end{sol}
 \end{problem}
 
@@ -295,7 +507,20 @@ $R^2=0$
 
 
 \begin{sol}
-$TSS_1=TSS_2$, $R_2^2\geq R_2^1$, $ESS_2\geq ESS_1$, $RSS_2\leq RSS_1$
+Вспомним формулу для  $TSS$:
+\[
+TSS = \sum\limits_{i=1}^n (y_i-\bar{y})^2
+\]
+Так как значения $y$ остались теми же, $TSS_1 = TSS_2$.
+
+\[
+RSS = \sum\limits_{i=1}^n (y_i-\hy_i)^2 \hspace{2cm} ESS = \sum\limits_{i=1}^n (\hy_i-\bar{y})^2
+\]
+
+Добавление еще одного регрессора не уменьшит точность оценки, то есть $RSS_2\leqslant RSS_1$, $ESS_2 \geqslant ESS_1$. 
+
+Соответственно, коэффициент $R^2 = ESS/TSS$ не уменьшится, то есть $R^2_2 \geqslant R^2_1$.
+
 \end{sol}
 \end{problem}
 
@@ -308,6 +533,16 @@ $TSS_1=TSS_2$, $R_2^2\geq R_2^1$, $ESS_2\geq ESS_1$, $RSS_2\leq RSS_1$
 
 
 \begin{sol}
+Интересный результат: смена знака коэффициента перед \(x\) при удалении переменной \(z\) не может произойти, если абсолютное значение \(t\)-статистики коэффициента перед \(z\) в регрессии с регрессорами \(x\) и \(z\) меньше абсолютного значения \(t\)-статистики коэффициента перед \(x\).\footnote{Leamer, E. E., 1975. A Result on the Sign of Restricted Least-Squares Estimates. Journal of Econometrics, 3, 387--390.} 
+
+Пример такого набора данных:
+<<>>=
+y <- 1:50
+z <- y + rnorm(length(y), 0, 0.01)
+x <- y + rnorm(length(y), 0, 1)
+coef(lm(y ~ x))
+coef(lm(y ~ x + z))
+@
 \end{sol}
 \end{problem}
 
@@ -320,6 +555,13 @@ $TSS_1=TSS_2$, $R_2^2\geq R_2^1$, $ESS_2\geq ESS_1$, $RSS_2\leq RSS_1$
 \begin{sol}
 $y_i^*=7+3(y_i-\bar{y})/s_y$
 % эта задача не использует понятия вероятностей, хотя близка. Пусть будет в невероятностной секции.
+Нужно вспомнить свойства математического ожидания и дисперсии и провести следующие преобразования:
+\[
+\tilde{y}_i = \frac{y_i-\bar{y}}{s_y} \Rightarrow \mathbb{E}[\tilde{y}] = 0, \hspace{2mm} \mathbb{V}ar(\tilde{y}) = 1
+\]
+\[
+y^*_i = \tilde{y}_i\cdot3 + 7 \Rightarrow \mathbb{E}[y^*] = 7, \hspace{2mm} \mathbb{V}ar(y^*) = 9
+\]
 \end{sol}
 \end{problem}
 
