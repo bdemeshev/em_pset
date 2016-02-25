@@ -20,6 +20,19 @@ $(file_name).tex : $(file_name).Rnw chapters/*.Rnw emetrix_preamble.tex
 
 
 clean:
-	rm em1_pset_v2-tikzDictionary
-	rm em1_pset_v2.tex
-	rm em1_pset_v2.pdf
+	# with minus before rm make will ignore errors if file does not exist
+	-rm $(file_name)-tikzDictionary
+	-rm $(file_name).tex
+	-rm $(file_name).pdf
+	-rm $(file_name).aux
+	-rm $(file_name).idx
+	-rm $(file_name).ind
+	-rm $(file_name).out
+	-rm $(file_name).fls
+	-rm $(file_name).ilg
+	-rm $(file_name).log
+	-rm $(file_name).toc
+	
+
+	
+	

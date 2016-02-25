@@ -54,15 +54,34 @@
 
 
 \ifdef{\JustPlot}{}{ % этот блок не включается в tikz-файлы по которым строятся графики
-   \theoremstyle{definition}
-   \newtheorem{problem}{Задача}
-   \numberwithin{problem}{chapter}
-   
-   \Newassociation{sol}{solution}{solution_file}
-   % sol --- имя окружения внутри задач
-   % solution --- имя окружения внутри solution_file
-   % solution_file --- имя файла в который будет идти запись решений
-   % можно изменить далее по ходу
+  \theoremstyle{definition}
+  %\newtheorem{problem}{Задача}
+  %\numberwithin{problem}{chapter}
+
+  \Newassociation{sol}{solution}{solution_file}
+  % sol --- имя окружения внутри задач
+  % solution --- имя окружения внутри solution_file
+  % solution_file --- имя файла в который будет идти запись решений
+  % можно изменить далее по ходу
+
+  % very useful during de-bugging!
+  \usepackage[left]{showlabels}
+  \showlabels{hypertarget}
+  \showlabels{hyperlink}
+
+  \newlist{myenum}{enumerate}{3}
+  \newcounter{problem}
+  \newenvironment{problem}%
+    {%
+    \refstepcounter{problem}%
+    %  hyperlink to solution
+         \hypertarget{problem:{\theproblem}}{}%
+         \Writetofile{solution_file}{\protect\hypertarget{soln:\theproblem}{}}%
+         \begin{myenum}[label=\bfseries\protect\hyperlink{soln:\theproblem}{\theproblem},ref=\theproblem]
+         \item%
+        }%
+        {%
+        \end{myenum}}
 }
 
 
@@ -156,7 +175,7 @@ load('pset_data.Rdata')
 <<child='chapters/060_logit.Rnw'>>=
 @
 
-% Нарушения
+% Нарушения предпосылог тГМ
 
 <<child='chapters/070_collinearity.Rnw'>>=
 @
@@ -190,9 +209,6 @@ load('pset_data.Rdata')
 @
 
 
-
-
-
 % байесовский подход
 
 <<child='chapters/160_ba.Rnw'>>=
@@ -212,12 +228,21 @@ load('pset_data.Rdata')
 @
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Решения и ответы к избранным задачам}
 \chaptermark{Избранные решения}
+
+
+% для гиперссылок на условия
+% http://tex.stackexchange.com/questions/45415
+\renewenvironment{solution}[1]{%
+         % add some glue
+         \vskip .5cm plus 2cm minus 0.1cm%
+         {\bfseries \hyperlink{problem:#1}{#1.}}%
+}%
+{%
+}%
 
 \input{sols_010}
 \input{sols_020}
