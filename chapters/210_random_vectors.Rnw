@@ -12,7 +12,7 @@
 0 & 1 & 0.3 & -0.2 & 0.1 \\
 0 & 0.3 & 1 & 0.3 & -0.2 \\
 0 & -0.2 & 0.3& 1 & 0.3 \\
-0 & 0.1 & -0.2 & 0.3 & 1 
+0 & 0.1 & -0.2 & 0.3 & 1
 \end{pmatrix}
 \]
 С помощью компьютера найдите ответы на вопросы:
@@ -25,7 +25,7 @@
 \item $\alpha=(0.0, 0.1, 0.2, 0.3, 0.4)'$
 \item $\alpha=(0.0, 0.4, 0.3, 0.2, 0.1)'$
 \end{enumerate}
-\item Составьте из данных бумаг пять некоррелированных портфелей 
+\item Составьте из данных бумаг пять некоррелированных портфелей
 \end{enumerate}
 
 
@@ -97,7 +97,7 @@ c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALS
 \begin{enumerate}
 \item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$.
 \item Найдите $\E(\e'P\e)$.
-\item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$. 
+\item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$.
 \end{enumerate}
 
 
@@ -160,7 +160,7 @@ varx1 <- matrix(as.integer(c(4,1,1,4)), nrow=2, byrow = FALSE, dimnames = NULL)
 
 
 \begin{problem}
-Известно, что случайные величины $x_1$, $x_2$ и $x_3$ имеют следующие характеристики: 
+Известно, что случайные величины $x_1$, $x_2$ и $x_3$ имеют следующие характеристики:
 \begin{enumerate}
 \item $\E(x_1) = 5$, $\E(x_2) = 10$, $\E(x_3) = 8$
 \item $\Var  (x_1) = 6$, $\Var  (x_2) = 14$, $\Var  (x_3) = 1$
@@ -215,15 +215,15 @@ $\Var (\xi) =  \begin{pmatrix}
 \end{pmatrix} $
 
 \begin{multline}
-\Var (\xi_1 + \xi_2 + \xi_3)  = \Var   \begin{pmatrix} 
+\Var (\xi_1 + \xi_2 + \xi_3)  = \Var   \begin{pmatrix}
  \begin{pmatrix}
 1 & 1 & 1 \\
 \end{pmatrix}  &  \begin{pmatrix}
 \xi_1 \\
 \xi_2 \\
 \xi_3 \\
-\end{pmatrix} 
-\end{pmatrix}  = \\  
+\end{pmatrix}
+\end{pmatrix}  = \\
 \begin{pmatrix}
 1 & 1 & 1 \\
 \end{pmatrix}  \Var   \begin{pmatrix}
@@ -302,7 +302,7 @@ $\Var (\xi) =  \begin{pmatrix}
 \end{pmatrix}  =  \begin{pmatrix}
 0\\
 2\\
-\end{pmatrix} 
+\end{pmatrix}
 \end{multline}
 
 $\Var (z_1) = \Var   \begin{pmatrix}
@@ -422,7 +422,7 @@ $\E (z_2) = \E   \begin{pmatrix}
 Поскольку $z_2 = z_1 +  \begin{pmatrix}
 1\\
 1\\
-\end{pmatrix} $, где $z_1$ --- случайный вектор из предыдущей задачи, то $\Var (z_2) = \Var (z_1)$. Сдвиг случайного вектора на вектор-константу не меняет его ковариационную матрицу. 
+\end{pmatrix} $, где $z_1$ --- случайный вектор из предыдущей задачи, то $\Var (z_2) = \Var (z_1)$. Сдвиг случайного вектора на вектор-константу не меняет его ковариационную матрицу.
 \end{sol}
 \end{problem}
 
@@ -514,13 +514,13 @@ c_{31} & c_{32} & c_{33} \\
 a_1 & a_2 & a_3\\
 \end{pmatrix} ' =  \begin{pmatrix}
 0.10 & 0.06 & 0.05 \\
-\end{pmatrix} '$, 
+\end{pmatrix} '$,
 \[
 \Var (r) =  \begin{pmatrix}
 0.04 & 0 & -0.005\\
 0 & 0.01 & 0\\
 -0.005 & 0 & 0.0025\\
-\end{pmatrix} 
+\end{pmatrix}
 \]
 найдите $\E (\text{П})$ и $\Var (\text{П})$
 \end{enumerate}
@@ -590,13 +590,13 @@ a_1 & a_2 & a_3\\
 
 
 \begin{problem}
-Случайные величины $w_1$ и $w_2$ независимы с нулевым ожиданием и единичной дисперсией. Из них составлено два вектора, 
+Случайные величины $w_1$ и $w_2$ независимы с нулевым ожиданием и единичной дисперсией. Из них составлено два вектора,
 $w=\left(
 \begin{array}{c}
 w_1 \\
 w_2
 \end{array}\right)$
-и 
+и
 $z=\left(
 \begin{array}{c}
 -w_2 \\
@@ -616,7 +616,7 @@ w_1
 
 
 \begin{problem}
-Есть случайный вектор $w=(w_1, w_2, \ldots, w_n)'$. 
+Есть случайный вектор $w=(w_1, w_2, \ldots, w_n)'$.
 \begin{enumerate}
 \item Возможно ли, что $E(w)=0$ и $\sum w_i=0$?
 \item Возможно ли, что $E(w)\neq 0$ и $\sum w_i=0$?
@@ -651,6 +651,14 @@ w_1
 \end{problem}
 
 
+\begin{problem}
+Известно, что $\Corr(X, Z) = 0.7$, $\Corr(X, Y)= 0.6$. В каких пределах может лежать корреляция $\Corr(Y, Z)$?
+
+\begin{sol}
+Корреляционная матрица должна быть положительно определена. Получаем квадратное неравенство.
+\end{sol}
+\end{problem}
+
+
 
 \Closesolutionfile{solution_file}
-

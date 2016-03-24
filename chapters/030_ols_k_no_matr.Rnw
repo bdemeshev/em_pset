@@ -1798,5 +1798,18 @@ $0$
 \end{sol}
 \end{problem}
 
+\begin{problem}
+Известно, что $\Corr(y_i, x_i)=0$, $\Corr(y_i, z_i)=0$.
+\begin{enumerate}
+\item Какое максимальное значение может принять корреляция между $y_i$ и линейной комбинацией $x_i$ и $z_i$?
+\item Как изменится ответ, если $\Corr(y_i, z_i)=0.0001$?
+\end{enumerate}
+
+
+\begin{sol}
+$0$ и $1$
+\end{sol}
+\end{problem}
+
 
 \Closesolutionfile{solution_file}

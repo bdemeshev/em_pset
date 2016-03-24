@@ -1134,7 +1134,7 @@ $\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценив�
 \[
 \P(\hb_1>\beta_1) = \P\left(\frac{\hb_1 - \beta_1}{se(\hb_1)}>0\right) = \frac{1}{2}
 \]
-$\P(\beta_1>0)$ равна либа 0 либо 1, но мы этого не знаем и никогда не узнаем.
+$\P(\beta_1>0)$ равна либо 0 либо 1, но мы этого не знаем и никогда не узнаем.
 
 \[
 \P(|\hb_1-\beta_1|<se(\hb_1)) = P(|Z|<1), \hspace{2mm}Z \sim t_{12-2}
@@ -1360,7 +1360,7 @@ D^{-1} (X' X)^{-1} (D')^{-1} D' X' y = D^{-1} (X' X)^{-1}X' y
 \begin{sol}
 
 \[ \tilde{\beta}_2^a = \frac{1}{n} \sum_{i = 1}^n \frac{y_i}{x_i} = \frac{1}{n} \sum_{i = 1}^n \frac{\beta_1 + \beta_2 x_i + \e_i}{x_i} = \beta_2 + \frac{1}{n} \beta_1 \sum_{i = 1}^n \frac{1}{x_i} + \frac{1}{n} \sum_{i = 1}^n \frac{\e_i}{x_i}   \]
-\[ \text{Bias}_{\beta_2} \left[\tilde{\beta}_2^a\right] = \left(\frac{1}{n} \sum_{i = 1}^n \frac{1}{x_i} \right) \beta_1 = \overline{\left(\frac{1}{x}\right)} \cdot \beta_1\]    
+\[ \text{Bias}_{\beta_2} \left[\tilde{\beta}_2^a\right] = \left(\frac{1}{n} \sum_{i = 1}^n \frac{1}{x_i} \right) \beta_1 = \overline{\left(\frac{1}{x}\right)} \cdot \beta_1\]
 \[ \Var\tilde{\beta}_2^a = \left(\frac{1}{n^2} \sum_{i = 1}^n \frac{1}{x_i^2} \right) \sigma^2 = \overline{\left(\frac{1}{x^2}\right)} \cdot \frac{\sigma^2}{n}  \]
 
 \[ \tilde{\beta}_2^b = \frac{\bar{y}}{\bar{x}} = \frac{\sum_{i=1}^n y_i}{\sum_{i=1}^n x_i} = \frac{n\beta_1 + \beta_2 \sum_{i = 1}^n x_i + \sum_{i = 1}^n \e_i}{\sum_{i=1}^n x_i} = \beta_2 + \frac{\beta_1}{\bar{x}} + \frac{\bar{\e}}{\bar{x}}  \]
