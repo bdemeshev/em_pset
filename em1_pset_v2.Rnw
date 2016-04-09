@@ -1,6 +1,5 @@
-\documentclass[pdftex, 11pt, openany]{book}
-
-%\documentclass[11pt,openany]{book}
+\documentclass[11pt, openany]{book}
+% moving to xelatex: pdftex option removed
 
 % команды АК.
 \newcommand{\calL}{\mathcal{L}}
@@ -99,11 +98,20 @@
 \vspace{30pt}
 
 
-<<"setup", echo=TRUE, message=FALSE,tidy=FALSE,warning=FALSE>>=
+<<"setup", echo = TRUE, message = FALSE, tidy = FALSE, warning = FALSE>>=
 library("knitr")
-library("tikzsetup") # devtools::install.github("bdemeshev/tikzsetup")
-library("tikzDevice")
-tikzsetup()
+
+# library("tikzsetup") # devtools::install.github("bdemeshev/tikzsetup")
+# library("tikzDevice")
+# tikzsetup()
+
+# knit_hooks$set(document = function(x) {
+#  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
+# })
+options(tikzDefaultEngine = 'xetex')
+opts_chunk$set(dev = "tikz")
+
+
 
 library("ggplot2")
 library("Hmisc")
@@ -119,6 +127,8 @@ library("gridExtra")
 library("pander")
 library("akima")
 library("fUnitRoots")
+library("zoo")
+library("tseries")
 
 library("econru") # devtools::install.github("bdemeshev/econru")
 
@@ -161,12 +171,15 @@ load('pset_data.Rdata')
 
 <<child='chapters/010_ols_no_probs_no_matr.Rnw'>>=
 @
+
+\begin{comment}
 <<child='chapters/020_ols_2_no_matr.Rnw'>>=
 @
 <<child='chapters/030_ols_k_no_matr.Rnw'>>=
 @
 <<child='chapters/040_ols_k_matrix.Rnw'>>=
 @
+
 
 % ML
 
@@ -175,17 +188,20 @@ load('pset_data.Rdata')
 <<child='chapters/060_logit.Rnw'>>=
 @
 
+
+
 % Нарушения предпосылог тГМ
 
 <<child='chapters/070_collinearity.Rnw'>>=
 @
-%%%%%%% здесь?... LASSO, rigdre regression
+%%%%%%% здесь?... LASSO, ridge regression
 
 
 <<child='chapters/080_hetero.Rnw'>>=
 @
 <<child='chapters/090_specification.Rnw'>>=
 @
+
 
 %
 
@@ -207,6 +223,7 @@ load('pset_data.Rdata')
 @
 <<child='chapters/150_nnetwork.Rnw'>>=
 @
+
 
 
 % байесовский подход
@@ -244,6 +261,9 @@ load('pset_data.Rdata')
 {%
 }%
 
+
+
+
 \input{sols_010}
 \input{sols_020}
 \input{sols_030}
@@ -266,6 +286,7 @@ load('pset_data.Rdata')
 \input{sols_230}
 \input{sols_240}
 
+\end{comment}
 
 \chapter{Таблицы}
 

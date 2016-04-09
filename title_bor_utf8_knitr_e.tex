@@ -40,8 +40,33 @@
 \usepackage{verbatim} % для многострочных комментариев
 \usepackage{makeidx} % для создания предметных указателей
 \usepackage[X2,T2A]{fontenc}
-\usepackage[utf8]{inputenc} % задание utf8 кодировки исходного tex файла
-\usepackage[russian]{babel} % выбор языка для документа
+
+
+%%%%% russian pdflatex
+% \usepackage[utf8]{inputenc} % задание utf8 кодировки исходного tex файла
+% \usepackage[russian]{babel} % выбор языка для документа
+%%%%% end russian pdflatex
+
+%%%%% russian zetex
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+%%%%% end russian zetex
+
+
+
+
+
+
 \usepackage{setspace}
 \usepackage{amsmath,amsfonts,amssymb,amsthm}
 \usepackage{mathrsfs} % sudo yum install texlive-rsfs
@@ -57,7 +82,8 @@
 \usepackage{dcolumn} % центрирование по разделителю для apsrtable
 
 % создание гиперссылок в pdf
-\usepackage[pdftex,unicode,colorlinks=true,urlcolor=blue,hyperindex,breaklinks]{hyperref}
+\usepackage[unicode,colorlinks=true,urlcolor=blue,hyperindex,breaklinks]{hyperref}
+% moving to xelatex: pdftex option removed
 
 % свешиваем пунктуацию
 % теперь знаки пунктуации могут вылезать за правую границу текста, при этом текст выглядит ровнее
@@ -108,7 +134,8 @@
 \usepackage{numprint} % sudo yum install texlive-numprint
 \npthousandsep{,}\npthousandthpartsep{}\npdecimalsign{.}
 
-\usepackage{embedfile} % Чтобы код LaTeXа включился как приложение в PDF-файл
+%\usepackage{embedfile} % Чтобы код LaTeXа включился как приложение в PDF-файл
+% публично выложен в репозитории, поэтому ну нафиг!
 
 \usepackage{subfigure} % для создания нескольких рисунков внутри одного
 
@@ -167,15 +194,15 @@
 
 %%%%%%%%%%%%% КОНФЛИКТ с tikzsetup()
 %%%%%%%%%%%%%%%%%%%%%%%  Внедрение tex исходников в pdf файл  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ifdef{\JustPlot}{}{
-\embedfile[desc={Main tex file}]{\jobname.tex} % Включение кода в выходной файл
-\embedfile[desc={title_bor}]{title_bor_utf8_knitr_e.tex}
-\embedfile[desc={emetrix}]{emetrix_preamble.tex}
-}
-% виноват \embedfile!!!!
+% \ifdef{\JustPlot}{}{
+%\embedfile[desc={Main tex file}]{\jobname.tex} % Включение кода в выходной файл
+%\embedfile[desc={title_bor}]{title_bor_utf8_knitr_e.tex}
+%\embedfile[desc={emetrix}]{emetrix_preamble.tex}
+%}
+%% виноват \embedfile!!!!
+% удалено при попытке перехода на xelatex, тк всё равно код открыто выложен
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% боремся с отрезами! отрезы выше!!!!
 
 
 %%%%%%%%%%%%%%%%%%%%%%%  ПАРАМЕТРЫ  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

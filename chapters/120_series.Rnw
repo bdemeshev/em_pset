@@ -17,37 +17,34 @@
 \begin{problem}
 На графике представлены данные по уровню озера Гур\'{о}н в футах в 1875-1972 годах:
 
-<<include=FALSE>>=
-library(zoo)
-library(tseries)
-library(ggplot2)
+<<include = FALSE>>=
 level <- LakeHuron
-df <- data.frame(level,obs=1875:1972)
+df <- data.frame(level, obs = 1875:1972)
 n <- nrow(df) # used later for answers
-v.acf <- acf(level,plot=FALSE)$acf
-v.pacf <- pacf(level,plot=FALSE)$acf
-acfs.df <- data.frame(lag=c(1:15,1:15),
-    acf=c(v.acf[2:16],v.pacf[1:15]),
-    acf.type=rep(c("ACF","PACF"),each=15))
-model <- arima(level,order=c(1,0,1))
+v.acf <- acf(level, plot = FALSE)$acf
+v.pacf <- pacf(level, plot = FALSE)$acf
+acfs.df <- data.frame(lag = c(1:15, 1:15),
+    acf=c(v.acf[2:16], v.pacf[1:15]),
+    acf.type=rep(c("ACF", "PACF"), each = 15))
+model <- arima(level, order = c(1, 0, 1))
 resids <- model$residuals
-resid.acf <- acf(resids,plot=FALSE)$acf
+resid.acf <- acf(resids, plot = FALSE)$acf
 @
 
-<<warning=FALSE,message=FALSE>>=
-ggplot(df,aes(x=obs,y=level))+geom_line()+
-    labs(x="Год",y="Уровень озера (футы)")
+<<"huron_ts", warning = FALSE, message = FALSE>>=
+ggplot(df, aes(x = obs, y = level)) + geom_line() +
+    labs(x = "Год", y = "Уровень озера (футы)")
 @
 
 График автокорреляционной и частной автокорреляционной функций:
 
-<<warning=FALSE>>=
-ggplot(acfs.df,aes(x=lag,y=acf,fill=acf.type))+
-    geom_histogram(position="dodge",stat="identity")+
-  xlab("Лаг")+ylab("Корреляция") +
-  guides(fill=guide_legend(title=NULL))+
-  geom_hline(yintercept=1.96/sqrt(nrow(df)))+
-  geom_hline(yintercept=-1.96/sqrt(nrow(df)))
+<<"huron_acf", warning = FALSE>>=
+ggplot(acfs.df, aes(x = lag, y = acf, fill = acf.type))+
+    geom_histogram(position = "dodge", stat = "identity")+
+  xlab("Лаг") + ylab("Корреляция") +
+  guides(fill = guide_legend(title = NULL))+
+  geom_hline(yintercept = 1.96/sqrt(nrow(df)))+
+  geom_hline(yintercept = -1.96/sqrt(nrow(df)))
 @
 
 
@@ -63,13 +60,13 @@ ggplot(acfs.df,aes(x=lag,y=acf,fill=acf.type))+
 \item Можно использовать одну из двух статистик
 \[
 \text{Ljung-Box}=n(n+2)\sum_{k=1}^3\frac{\hat{\rho}_k^2}{n-k}=
-\Sexpr{n*(n+2)*(resid.acf[2]^2/(n-1)+resid.acf[3]^2/(n-2)+resid.acf[4]^2/(n-3))}
+\Sexpr{n * (n + 2) * (resid.acf[2]^2/(n - 1) + resid.acf[3]^2/(n - 2) + resid.acf[4]^2/(n - 3))}
 \]
 \[
 \text{Box-Pierce}=n\sum_{k=1}^3\hat{\rho}_k^2=
-\Sexpr{n*(resid.acf[2]^2+resid.acf[3]^2+resid.acf[4]^2)}
+\Sexpr{n * (resid.acf[2]^2 + resid.acf[3]^2 + resid.acf[4]^2)}
 \]
-Критическое значение хи-квадрат распределения с 3-мя степенями свободы для $\alpha=0.05$ равно $\chi^2_{3,crit}=\Sexpr{qchisq(0.95,df=3)}$.
+Критическое значение хи-квадрат распределения с 3-мя степенями свободы для $\alpha=0.05$ равно $\chi^2_{3,crit}=\Sexpr{qchisq(0.95, df = 3)}$.
 Вывод: гипотеза $H_0$ об отсутствии корреляции ошибок модели не отвергается.
 \end{enumerate}
 \end{sol}
@@ -847,7 +844,7 @@ x_n
 
 
 \begin{problem}
-Имеется временной ряд, $\e_1$, $\e_2$, \ldots, $\e_{101}$. Величины $\e_t$ нормально распределены, $N(0,\sigma^2)$, и независимы. Построим график этого процесса. 
+Имеется временной ряд, $\e_1$, $\e_2$, \ldots, $\e_{101}$. Величины $\e_t$ нормально распределены, $N(0,\sigma^2)$, и независимы. Построим график этого процесса.
 \begin{enumerate}
 \item Является ли этот процесс белым шумом?
 \item Сколько в среднем раз график пересекает ось абсцисс?
@@ -857,7 +854,7 @@ x_n
 
 
 \begin{sol}
-да, это белый шум. Величина $N$ распределена биномиально, $Bin(n=100,p=1/2)$, $\E(N)=50$. 
+да, это белый шум. Величина $N$ распределена биномиально, $Bin(n=100,p=1/2)$, $\E(N)=50$.
 \end{sol}
 \end{problem}
 
@@ -867,7 +864,7 @@ x_n
 
 
 \begin{sol}
-Среднее количество пересечений равно 50 помножить на вероятность того, что два соседних $y_t$ разного знака. Найдём вдвое меньшу вероятность, $\P(y_1>0, y_2 <0)$. 
+Среднее количество пересечений равно 50 помножить на вероятность того, что два соседних $y_t$ разного знака. Найдём вдвое меньшу вероятность, $\P(y_1>0, y_2 <0)$.
 \end{sol}
 \end{problem}
 
@@ -914,7 +911,7 @@ d_t=\Delta w_t
 \]
 \end{enumerate}
 
-Для каждого из процессов найдите $\E(y_t)$, $\Var(y_t)$, $\Corr(y_t,y_{t-k})$. 
+Для каждого из процессов найдите $\E(y_t)$, $\Var(y_t)$, $\Corr(y_t,y_{t-k})$.
 
 Являются ли процессы стационарными?
 
@@ -953,4 +950,3 @@ d_t=\Delta w_t
 \end{problem}
 
 \Closesolutionfile{solution_file}
-

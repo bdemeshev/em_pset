@@ -10,7 +10,7 @@ $(file_name).pdf: $(file_name).tex
 
 	# create pdf
 	# will automatically run pdflatex/biber if necessary
-	latexmk -pdf $(file_name).tex
+	latexmk -xelatex -pdf $(file_name).tex
 
 	# clean auxillary files
 	latexmk -c $(file_name).tex
@@ -32,7 +32,4 @@ clean:
 	-rm $(file_name).ilg
 	-rm $(file_name).log
 	-rm $(file_name).toc
-	
-
-	
-	
+	-rm figure/*.*

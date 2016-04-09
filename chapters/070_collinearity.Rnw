@@ -27,16 +27,20 @@
 
 
 
+
 \begin{problem}
 Исследуем зависимость длины тормозного пути автомобиля от скорости по историческим данным 1920-х годов.
 
-<<message=FALSE>>=
+
+
+<<"cars_scatter", message=FALSE>>=
 h <- cars
-ggplot(h,aes(x=speed,y=dist))+geom_point()+
-    labs(title="Зависимость длины тормозного пути",
-    x="Скорость, миль в час",y="Длина пути, футов")
+ggplot(h, aes(x = speed, y = dist)) + geom_point() +
+    labs(title = "Зависимость длины тормозного пути",
+    x = "Скорость, миль в час", y = "Длина пути, футов")
 speed.mean <- mean(h$speed)
 @
+
 
 Построим результаты оценивания нецентрированной регрессии:
 <<>>=
@@ -74,7 +78,6 @@ xtable(cars.vcov)
 \begin{sol}
 \end{sol}
 \end{problem}
-
 
 
 \begin{problem}
