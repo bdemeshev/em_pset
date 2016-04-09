@@ -100,16 +100,14 @@
 
 <<"setup", echo = TRUE, message = FALSE, tidy = FALSE, warning = FALSE>>=
 library("knitr")
+library("tikzDevice")
 
-# library("tikzsetup") # devtools::install.github("bdemeshev/tikzsetup")
-# library("tikzDevice")
-# tikzsetup()
 
-# knit_hooks$set(document = function(x) {
-#  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
-# })
-options(tikzDefaultEngine = 'xetex')
-opts_chunk$set(dev = "tikz")
+knit_hooks$set(document = function(x) {
+  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
+})
+# options(tikzDefaultEngine = 'xetex')
+# opts_chunk$set(dev = "tikz")
 
 
 
@@ -167,7 +165,7 @@ load('pset_data.Rdata')
 Дмитрий Борзых, Борис Демешев
 \end{flushright}
 
-\begin{comment}
+
 %\parindent=0 pt % отступ равен 0
 
 <<child='chapters/010_ols_no_probs_no_matr.Rnw'>>=
@@ -176,6 +174,9 @@ load('pset_data.Rdata')
 
 <<child='chapters/020_ols_2_no_matr.Rnw'>>=
 @
+
+
+
 <<child='chapters/030_ols_k_no_matr.Rnw'>>=
 @
 <<child='chapters/040_ols_k_matrix.Rnw'>>=
@@ -287,7 +288,7 @@ load('pset_data.Rdata')
 \input{sols_230}
 \input{sols_240}
 
-\end{comment}
+
 
 \chapter{Таблицы}
 

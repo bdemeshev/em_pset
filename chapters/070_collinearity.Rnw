@@ -33,13 +33,21 @@
 
 
 
-<<"cars_scatter", message=FALSE>>=
+<<"cars_scatter", include = FALSE>>=
 h <- cars
+tikz("../R_plots/cars_scatter.tikz", standAlone = FALSE, bareBones = TRUE)
 ggplot(h, aes(x = speed, y = dist)) + geom_point() +
     labs(title = "Зависимость длины тормозного пути",
     x = "Скорость, миль в час", y = "Длина пути, футов")
 speed.mean <- mean(h$speed)
+dev.off()
 @
+
+\begin{figure}
+\begin{tikzpicture}[scale = 0.025]
+\input{R_plots/cars_scatter.tikz}
+\end{tikzpicture}
+\end{figure}
 
 
 Построим результаты оценивания нецентрированной регрессии:

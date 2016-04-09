@@ -10,7 +10,7 @@
 
 \begin{sol}
 Даешь симуляции!
-<<"uniform_errors">>=
+<<"uniform_errors", include = FALSE>>=
 n <- 100 # количество наблюдений
 m <- 100 # можно менять количество прогонов
          # и радоваться!
@@ -34,6 +34,7 @@ for(i in 1:m)
   Cov[i] <- vcov(lm(y ~ x))[1, 2]
 }
 
+tikz("../R_plots/uniform_errors.tikz", standAlone = FALSE, bareBones = TRUE)
 palette(c("ForestGreen", "olivedrab", "SkyBlue", "tomato3", "navy", "brown"))
 par(mfrow = c(2,3))
 
@@ -46,7 +47,14 @@ for(i in 1:ncol(toPlot))           # построим все одним махо
        xlab = colnames(toPlot)[i], ylim = c(0, max(density(toPlot[, i])$y)) )
   lines(density(toPlot[, i]), col = i, lwd = 4)
 }
+dev.off()
 @
+
+\begin{figure}
+\begin{tikzpicture}[scale = 0.025]
+\input{R_plots/uniform_errors.tikz}
+\end{tikzpicture}
+\end{figure}
 
 \end{sol}
 \end{problem}

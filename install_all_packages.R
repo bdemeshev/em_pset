@@ -20,4 +20,4 @@ install.packages("akima")
 install.packages("fUnitRoots")
 
 devtools::install_github("bdemeshev/econru")
-devtools::install_github("bdemeshev/tikzsetup")
+# devtools::install_github("bdemeshev/tikzsetup")
