@@ -10,6 +10,13 @@
 \item $\sum_{i=1}^n {(a_i-\bar a)^2} = \sum_{i=1}^n {(a_i-\bar a)a_i}$
 \item $\sum_{i=1}^n {(a_i-\bar a)(b_i-\bar b)} = \sum_{i=1}^n {(a_i-\bar a)b_i}$
 \item $\sum_{i=1}^n {(a_i-\bar a)(b_i-\bar b)} = \sum_{i=1}^n {a_i b_i}$
+\item $\sum_{i=1}^n a_i = n\bar a$
+\item $\sum_{i=1}^n (a_i - \bar a)^2 = \sum_{i=1}^n a_i^2 - n \bar a^2$
+\item $\sum_{i=1}^n a_i^2 = \left( \sum_{i=1}^n a_i \right)^2$
+\item $\sum_{i=1}^n a_i^2 = (n\bar a)^2$
+\item $\sum_{i=1}^n \bar a = n \bar a$
+\item $\sum_{i=1}^n a_i \bar a = n \bar a^2$
+\item $\sum_{i=1}^n {(a_i-\bar a)b_i} = 0$
 \end{enumerate}
 
 
@@ -20,6 +27,8 @@
 
 \item Верно: \[\sum_{i=1}^{n}(a_i-\bar{a})(b_i-\bar{b}) = \sum_{i=1}^{n}(a_i-\bar{a})b_i - \bar{b}\underbrace{\sum_{i=1}^{n}(a_i-\bar{a})}_{=0} = \sum_{i=1}^{n}(a_i-\bar{a})b_i \]
 \item А вот это неверно! (следует из предыдущего пункта)
+\item Верно
+\item Верно
 \end{enumerate}
 \end{sol}
 \end{problem}
