@@ -64,19 +64,19 @@
   % можно изменить далее по ходу
 
   % very useful during de-bugging!
-  \usepackage[left]{showlabels}
-  \showlabels{hypertarget}
-  \showlabels{hyperlink}
+  % \usepackage[left]{showlabels}
+  % \showlabels{hypertarget}
+  % \showlabels{hyperlink}
 
   \newlist{myenum}{enumerate}{3}
-  \newcounter{problem}
+  \newcounter{problem}[chapter]
   \newenvironment{problem}%
     {%
     \refstepcounter{problem}%
     %  hyperlink to solution
-         \hypertarget{problem:{\theproblem}}{}%
-         \Writetofile{solution_file}{\protect\hypertarget{soln:\theproblem}{}}%
-         \begin{myenum}[label=\bfseries\protect\hyperlink{soln:\theproblem}{\theproblem},ref=\theproblem]
+         \hypertarget{problem:{\thechapter.\theproblem}}{}%
+         \Writetofile{solution_file}{\protect\hypertarget{soln:\thechapter.\theproblem}{}}%
+         \begin{myenum}[label=\bfseries\protect\hyperlink{soln:\thechapter.\theproblem}{\thechapter.\theproblem},ref=\thechapter.\theproblem]
          \item%
         }%
         {%
