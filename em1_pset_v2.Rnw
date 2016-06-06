@@ -128,7 +128,7 @@ library("fUnitRoots")
 library("zoo")
 library("tseries")
 
-library("econru") # devtools::install.github("bdemeshev/econru")
+library("econru") # devtools::install_github("bdemeshev/econru")
 
 theme_set(theme_bw())
 
