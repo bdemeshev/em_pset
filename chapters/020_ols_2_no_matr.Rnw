@@ -47,7 +47,7 @@ for(i in 1:ncol(toPlot))           # построим все одним махо
        xlab = colnames(toPlot)[i], ylim = c(0, max(density(toPlot[, i])$y)) )
   lines(density(toPlot[, i]), col = i, lwd = 4)
 }
-dev.off()
+invisible(dev.off())
 @
 
 \begin{figure}
@@ -170,8 +170,10 @@ H_a: \beta_2 \ne 2
 
 Критические значения при выбранном уровне значимости:
 <<>>=
-qcrit1 <- qt(0.05/2, df = 5 - 2); qcrit1
-qcrit2 <- qt(1 - 0.05/2, df = 5 - 2); qcrit2
+qcrit1 <- qt(0.05/2, df = 5 - 2)
+qcrit1
+qcrit2 <- qt(1 - 0.05/2, df = 5 - 2)
+qcrit2
 @
 
 Проверяем, попадает ли наблюдаемое значение статистики в область, в которой \(H_0\) не отвергается:
@@ -184,7 +186,7 @@ T_obs <- 0.6
 
 P-value:
 <<>>=
-p.value <- 2*(1 - pt(T_obs, df = 3))
+p.value <- 2 * (1 - pt(T_obs, df = 3))
 p.value
 @
 
@@ -219,8 +221,10 @@ H_a: \beta_1 + \beta_2 \ne 1
 
 Критические значения при выбранном уровне значимости:
 <<>>=
-qcrit1 <- qt(0.05/2, df = 5 - 2); qcrit1
-qcrit2 <- qt(1 - 0.05/2, df = 5 - 2); qcrit2
+qcrit1 <- qt(0.05/2, df = 5 - 2)
+qcrit1
+qcrit2 <- qt(1 - 0.05/2, df = 5 - 2)
+qcrit2
 @
 
 Проверяем, попадает ли наблюдаемое значение статистики в область, в которой \(H_0\) не отвергается:
@@ -233,7 +237,7 @@ T_obs <- 5.692
 
 P-value:
 <<>>=
-p.value <- 2*(1 - pt(T_obs, df = 3))
+p.value <- 2 * (1 - pt(T_obs, df = 3))
 p.value
 @
 
@@ -563,9 +567,9 @@ crit < 12.3
 \[\Var \hb = \sigma^2 \]
 \[Var \tilde{\beta} = \Var \left(\frac{1}{2} y_1 + \frac{1}{2} \frac{y_2}{2} \right) = \frac{1}{4} \sigma^2 + \frac{1}{16} \sigma^2 = \frac{5}{16} \sigma^2\]
 \item \(\tilde{\beta}\)
-\[\Var \hb = \frac{1}{n^2} \left(1 + \frac{1}{4} + ... + \frac{1}{n^2} \right) \sigma^2 \]
-\[\Var \tilde{\beta} = \frac{\sigma^2}{1 + 4 + ... + n^2} \]
-\[\frac{1 + 4 + ... + n^2}{n^2} \left(1 + \frac{1}{4} + ... + \frac{1}{n^2} \right) > 1 \Rightarrow \Var \hb > \Var \tilde{\beta}\]
+\[\Var \hb = \frac{1}{n^2} \left(1 + \frac{1}{4} + \ldots + \frac{1}{n^2} \right) \sigma^2 \]
+\[\Var \tilde{\beta} = \frac{\sigma^2}{1 + 4 + \ldots + n^2} \]
+\[\frac{1 + 4 + \ldots + n^2}{n^2} \left(1 + \frac{1}{4} + \ldots + \frac{1}{n^2} \right) > 1 \Rightarrow \Var \hb > \Var \tilde{\beta}\]
 \end{enumerate}
 
 \end{sol}
@@ -719,10 +723,26 @@ qt(0.005, df = 43)
 
 
 \begin{problem}
-Тут был дубль задачи 2.8. Чтобы не сбивать нумерацию заменим на что-нибудь.
-
+Рассмотрим модель с линейным трендом, $y_t=\beta_1 + \beta_2 t +\e_t$.
+\begin{enumerate}
+\item Найдите МНК оценки коэффициентов
+\item Рассчитайте $\E(\hb_i)$ и $\Var(\hb_i)$ в предположениях теоремы Гаусса-Маркова
+\item Верно ли, что оценки $\hb_i$ состоятельны?
+\end{enumerate}
 
 \begin{sol}
+\begin{enumerate}
+\item Классические формулы для парной регрессии:
+\[
+\hb_2 = \frac{\sum(x_i - \bar x)(y_i - \bar y)}{\sum (x_i - \bar x)^2}
+\]
+
+\item Оценки несмещенны, дисперсия задаётся стандартными формулами.
+
+
+\item Несмещённые оценки, дисперсия стремится к нулю, следовательно, оценки состоятельны.
+
+\end{enumerate}
 \end{sol}
 \end{problem}
 
@@ -821,38 +841,7 @@ $\mathbf{P}(\cdot)$ & 0.5  & $\frac{1}{4}$ & $\frac{1}{4}$\\[2pt]
 
 
 
-\begin{problem}
-Рассмотрим модель с линейным трендом, $y_t=\beta_1 + \beta_2 t +\e_t$.
-\begin{enumerate}
-\item Найдите МНК оценки коэффициентов
-\item Рассчитайте $\E(\hb_i)$ и $\Var(\hb_i)$ в предположениях теоремы Гаусса-Маркова
-\item Верно ли, что оценки $\hb_i$ состоятельны?
-\end{enumerate}
 
-\begin{sol}
-\begin{enumerate}
-\item
-\[
-\hb_2 =\frac{\sum\limits_ix_iy_i -n\bar{x}\bar{y}}{\sum\limits_i x_i^2 - n\bar{x}^2} = \frac{y_1 + \sum\limits_i y_i - \frac{n+1}{n}\sum\limits_i y_i}{n+3 -\frac{(n+1)^2}{n}} = \frac{ny_1-\sum\limits_i y_i}{n-1} =
-\]
-\[
-= \frac{(n-1)(\beta_1 + 2\beta_2+\varepsilon_1) - \sum\limits_{i>1}(\beta_1 + \beta_2 + \varepsilon_i)}{n-1} = \beta_2 + \varepsilon_1 - \frac{1}{n-1}\sum\limits_i \varepsilon_i
-\]
-
-\item
-\[
-\E(\hb_2) = \beta, \hspace{3mm} \Var(\hb_2) = \Var\left( \beta_2 + \varepsilon_1 -\frac{1}{n-1}\sum\limits_{i>1} \varepsilon_i\right) = \Var(\varepsilon_1) +
-\]
-
-\[
-+ \frac{1}{(n-1)^2}\sum\limits_{i>1}\Var(\varepsilon_i) - \underbrace{\frac{2}{n-1}\sum\limits_{i>1}\Cov(\varepsilon_1, \varepsilon_i)}_{=0} = \sigma^2 + \frac{\sigma^2}{n-1}
-\]
-
-\item Заметим, что $\hb_2 \rightarrow \beta_2 + \varepsilon_1$, при $n \rightarrow \infty$, то есть $\hb_2$ --- не состоятельна!
-
-\end{enumerate}
-\end{sol}
-\end{problem}
 
 \begin{problem}
 В модели $y_t=\beta_1+\beta_2 x_t+\e_t$, где
@@ -864,7 +853,7 @@ $x_t=\left\{
 \right.
 $:
 \begin{enumerate}
-\item Найдите мнк-оценку $\hb_2$
+\item Найдите МНК-оценку $\hb_2$
 \item Рассчитайте $\E(\hb_2)$ и $\Var(\hb_2)$ в предположениях теоремы Гаусса-Маркова
 \item Верно ли, что оценка $\hb_2$ состоятельна?
 \end{enumerate}
@@ -887,7 +876,7 @@ $x_t=\left\{
 \right.
 $:
 \begin{enumerate}
-\item Найдите мнк-оценку $\hb_2$
+\item Найдите МНК-оценку $\hb_2$
 \item Рассчитайте $\E(\hb_2)$ и $\Var(\hb_2)$ в предположениях теоремы Гаусса-Маркова
 \item Верно ли, что оценка $\hb_2$ состоятельна?
 \end{enumerate}
@@ -969,11 +958,11 @@ y_0 = \hb_1 + \hb_2x_0
 
 
 \begin{problem}
-Мы предполагаем, что $y_t$ растёт с линейным трендом, т.е. $y_t=\b_1+\b_2 t+\e_t$. Все предпосылки теоремы Гаусса-Маркова выполнены. В качестве оценки $\hb_2$ предлагается $\hb_2=(y_T-y_1)/(T-1)$, где $T$ --- общее количество наблюдений.
+Мы предполагаем, что $y_t$ растёт с линейным трендом, то есть $y_t=\b_1+\b_2 t+\e_t$. Все предпосылки теоремы Гаусса-Маркова выполнены. В качестве оценки $\hb_2$ предлагается $\hb_2=(y_T-y_1)/(T-1)$, где $T$ --- общее количество наблюдений.
 \begin{enumerate}
 \item Найдите $\E(\hb_2)$ и $\Var(\hb_2)$
-\item Совпадает ли оценка $\hb_2$ с классической мнк-оценкой?
-\item У какой оценки дисперсия выше, у $\hb_2$ или классической мнк-оценки?
+\item Совпадает ли оценка $\hb_2$ с классической МНК-оценкой?
+\item У какой оценки дисперсия выше, у $\hb_2$ или классической МНК-оценки?
 \end{enumerate}
 
 
@@ -1336,10 +1325,10 @@ $\tilde{X} = X \cdot D$, где $D = \begin{bmatrix}
 \end{bmatrix}$.
 
 Итак, уравнение регрессии с новыми регрессорами имеет вид $y = \tilde{X}\beta + \e$ и МНК-оценки коэффициентов равны:
-\begin{multline}
+\begin{multline*}
 \hb = \left( \tilde{X}' \tilde{X} \right)^{-1} \tilde{X}' y = \left( [XD]' [XD] \right)^{-1} [XD]' y = \\
-D^{-1} (X' X)^{-1} (D')^{-1} D' X' y = D^{-1} (X' X)^{-1}X' y
-\end{multline}
+= D^{-1} (X' X)^{-1} (D')^{-1} D' X' y = D^{-1} (X' X)^{-1}X' y
+\end{multline*}
 \[
 \hb = D^{-1}\hb_{old} = \begin{bmatrix}
 1 & -1994 \\
@@ -1378,7 +1367,7 @@ D^{-1} (X' X)^{-1} (D')^{-1} D' X' y = D^{-1} (X' X)^{-1}X' y
 
 Мы можем существенно упростить решение, воспользовавшись матричным представлением:
 
-\begin{multline}
+\begin{multline*}
 \tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{y_i}{x_i} = \frac{1}{n} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} \begin{bmatrix}
@@ -1390,9 +1379,9 @@ y_n\\
  \frac{1}{n} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} y
-\end{multline}
+\end{multline*}
 
-\begin{multline}
+\begin{multline*}
 \E\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{\E y_i}{x_i} = \frac{1}{n} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} \begin{bmatrix}
@@ -1422,11 +1411,11 @@ x_2\\
 \vdots\\
 x_n\\
 \end{bmatrix} \right] = \frac{\beta_1}{n}\sum_{k=1}^n \frac{1}{x_k} + \beta_2
-\end{multline}
+\end{multline*}
 
 Значит, смещение для первой оценки равно $\frac{\beta_1}{n}\sum_{k=1}^n \frac{1}{x_k}$.
 
-\begin{multline}
+\begin{multline*}
 \Var(\tilde{\beta}_2^a) = \Var\left(\frac{1}{n} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} y\right) =\\
@@ -1446,7 +1435,7 @@ x_n\\
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix}' =\\
 \frac{\sigma^2_{\e}}{n^2}\sum_{k=1}^n \frac{1}{x_k^2}
-\end{multline}
+\end{multline*}
 
 Перейдём ко второй оценке.
 
@@ -1455,7 +1444,7 @@ $\tilde{\beta}_2^b = \frac{\bar{y}}{\bar{x}} = \frac{1}{\bar{x}} \frac{1}{n} \be
 \end{bmatrix} y$
 
 
-\begin{multline}
+\begin{multline*}
 \E\tilde{\beta}_2^b = \frac{\bar{y}}{\bar{x}} = \frac{1}{\bar{x}} \frac{1}{n} \begin{bmatrix}
 1 & 1 & \ldots & 1
 \end{bmatrix} \E y = \frac{1}{\bar{x}} \frac{1}{n} \begin{bmatrix}
@@ -1480,11 +1469,11 @@ x_2\\
 x_n\\
 \end{bmatrix} \right] = \\
 \frac{1}{n} \frac{\beta_1 n}{\bar{x}} + \frac{1}{n} \frac{\beta_2 \sum x_i}{\bar{x}} = \frac{\beta_1}{\bar{x}} + \beta_2
-\end{multline}
+\end{multline*}
 
 Значит, смещение равно $\frac{\beta_1}{\bar{x}}$.
 
-\begin{multline}
+\begin{multline*}
 \Var(\tilde{\beta}_2^b) = \frac{1}{\bar{x}^2} \frac{1}{n^2} \begin{bmatrix}
 1 & 1 & \ldots & 1
 \end{bmatrix} \Var(y) \begin{bmatrix}
@@ -1501,7 +1490,7 @@ x_n\\
 \vdots\\
 1\\
 \end{bmatrix} = \frac{\sigma_{\e}^2}{\bar{x}^2 n}
-\end{multline}
+\end{multline*}
 \end{sol}
 \end{problem}
 
@@ -1688,15 +1677,15 @@ $Y_i = (\overline{Y} - \hb_2 \overline{X}) + \hb_2 X_i = \hb_1 + \hb_2 X_i$
 
 
 \begin{problem}
-Рассматривается модель линейной регрессии $y_i = \beta_1 + \beta_2x_i + \e_i$, в которой ошибки $\e_1, \ldots, \e_n$ являются независимыми нормально распределенными случайными величинами с математическим ожиданием $0$ и дисперсией $\sigma^2$. Найдите
+Рассматривается модель линейной регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, в которой ошибки $\e_1, \ldots, \e_n$ являются независимыми нормально распределенными случайными величинами с математическим ожиданием $0$ и дисперсией $\sigma^2$. Найдите
 
 \begin{enumerate}
-  \item $\mathbb{P}\{\e_1 > 0\}$,
-  \item $\mathbb{P}\{\e_1^2 + \e_2^2 > 2\sigma^2\}$,
-  \item $\mathbb{P}\left\{\frac{\e_1}{\sqrt{\e_2^2 + \e_3^2}} > 2 \right\}$,
-  \item $\mathbb{P}\left\{\frac{\e_1}{\sqrt{\e_2^2 + \e_3^2 + \e_4^2}} > \frac{5}{4\sqrt{3}} \right\}$,
-  \item $\mathbb{P}\left\{\frac{\e_1 + 2\e_2}{\sqrt{\e_3^2 + \e_4^2 + \e_5^2}} < \frac{9}{2} \right\}$,
-  \item $\mathbb{P}\left\{\frac{\e_1^2}{\e_2^2 + \e_3^2} > 17 \right\}$.
+  \item $\P\left(\e_1 > 0\right)$,
+  \item $\P\left(\e_1^2 + \e_2^2 > 2\sigma^2\right)$,
+  \item $\P\left(\frac{\e_1}{\sqrt{\e_2^2 + \e_3^2}} > 2 \right)$,
+  \item $\P\left(\frac{\e_1}{\sqrt{\e_2^2 + \e_3^2 + \e_4^2}} > \frac{5}{4\sqrt{3}} \right)$,
+  \item $\P\left(\frac{\e_1 + 2\e_2}{\sqrt{\e_3^2 + \e_4^2 + \e_5^2}} < \frac{9}{2} \right)$,
+  \item $\P\left(\frac{\e_1^2}{\e_2^2 + \e_3^2} > 17 \right)$.
 \end{enumerate}
 
 
@@ -1891,7 +1880,7 @@ $\Var(\bar\e)=\sigma^2/n$,  $\plim \bar{\e}=0$
 \begin{problem}
 В модели $y_t=\beta_1+\beta_2 x_t + \e_t$, где $x_t=1/t$.
 \begin{enumerate}
-\item Найдите мнк-оценку $\hb_2$
+\item Найдите МНК-оценку $\hb_2$
 \item Рассчитайте $\E(\hb_2)$ и $\Var(\hb_2)$ в предположениях теоремы Гаусса-Маркова
 \item Верно ли, что оценка $\hb_2$ состоятельна?
 \end{enumerate}

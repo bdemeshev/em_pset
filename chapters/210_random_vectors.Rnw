@@ -54,7 +54,8 @@
 
 \begin{problem}
 <<results='asis', echo=FALSE>>=
-a <- matrix(as.integer(c(1,2,3,4)), nrow=4, ncol=1, byrow = FALSE, dimnames = NULL)
+a <- matrix(as.integer(c(1, 2, 3, 4)), nrow = 4, ncol = 1,
+  byrow = FALSE, dimnames = NULL)
 @
 Пусть $X = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
 \begin{enumerate}
@@ -73,7 +74,8 @@ a <- matrix(as.integer(c(1,2,3,4)), nrow=4, ncol=1, byrow = FALSE, dimnames = NU
 
 \begin{problem}
 <<results='asis', echo=FALSE>>=
-b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow=4, ncol=2, byrow = FALSE, dimnames = NULL)
+b <- matrix(as.integer(c(1, 1, 1, 1, 1, 2, 3, 4)), nrow = 4, ncol = 2,
+  byrow = FALSE, dimnames = NULL)
 @
 Пусть $X = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \end{pmatrix}$, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
 \begin{enumerate}
@@ -91,7 +93,8 @@ b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow=4, ncol=2, byrow = FALSE, dimna
 
 \begin{problem}
 <<results='asis', echo=FALSE>>=
-c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALSE, dimnames = NULL)
+c <- matrix(as.integer(c(1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1)), nrow = 4, ncol = 3,
+  byrow = FALSE, dimnames = NULL)
 @
 Пусть $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0  \\ 1 & 1 & 1 \end{pmatrix} $, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
 \begin{enumerate}
@@ -122,8 +125,9 @@ c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALS
 \item $z = x'\Var(x)^{-1}x$
 \end{enumerate}
 <<echo=FALSE>>=
-ex <- c(1,2)
-varx <- matrix(as.integer(c(2,1,1,2)), nrow=2, byrow = FALSE, dimnames = NULL)
+ex <- c(1, 2)
+varx <- matrix(as.integer(c(2, 1, 1, 2)), nrow = 2,
+  byrow = FALSE, dimnames = NULL)
 @
 
 
@@ -147,8 +151,9 @@ varx <- matrix(as.integer(c(2,1,1,2)), nrow=2, byrow = FALSE, dimnames = NULL)
 \item $z = x'\Var(x)^{-1}x$
 \end{enumerate}
 <<echo=FALSE>>=
-ex1 <- c(1,4)
-varx1 <- matrix(as.integer(c(4,1,1,4)), nrow=2, byrow = FALSE, dimnames = NULL)
+ex1 <- c(1, 4)
+varx1 <- matrix(as.integer(c(4, 1, 1, 4)), nrow = 2,
+  byrow = FALSE, dimnames = NULL)
 @
 
 
@@ -214,7 +219,7 @@ $\Var (\xi) =  \begin{pmatrix}
 -1 & 0 & 4 \\
 \end{pmatrix} $
 
-\begin{multline}
+\begin{multline*}
 \Var (\xi_1 + \xi_2 + \xi_3)  = \Var   \begin{pmatrix}
  \begin{pmatrix}
 1 & 1 & 1 \\
@@ -246,7 +251,7 @@ $\Var (\xi) =  \begin{pmatrix}
 1 \\
 1 \\
 \end{pmatrix}  = 9
-\end{multline}
+\end{multline*}
 \end{sol}
 \end{problem}
 
@@ -277,7 +282,7 @@ $\Var (\xi) =  \begin{pmatrix}
 
 
 \begin{sol}
-\begin{multline}
+\begin{multline*}
 \E (z_1) = \E   \begin{pmatrix}
  \begin{pmatrix}
 0 & 0 \\
@@ -303,7 +308,7 @@ $\Var (\xi) =  \begin{pmatrix}
 0\\
 2\\
 \end{pmatrix}
-\end{multline}
+\end{multline*}
 
 $\Var (z_1) = \Var   \begin{pmatrix}
  \begin{pmatrix}
@@ -483,10 +488,10 @@ $\E (z_3) = \E   \begin{pmatrix}
 0\\
 \end{pmatrix} $
 
-Заметим, что вектор $z_3$ отличается от вектора $z_1$ (из задачи 15) сдвигом на вектор-константу $ \begin{pmatrix}
+Заметим, что вектор $z_3$ отличается от вектора $h$ сдвигом на вектор-константу $ \begin{pmatrix}
 \E  \xi_1 \\
 \E  \xi_2 \\
-\end{pmatrix} $, поэтому $\Var (z_3) = \Var (z_1)$.
+\end{pmatrix} $, поэтому $\Var (z_3) = \Var (h)$.
 \end{sol}
 \end{problem}
 

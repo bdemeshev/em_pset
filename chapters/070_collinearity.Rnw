@@ -40,7 +40,7 @@ ggplot(h, aes(x = speed, y = dist)) + geom_point() +
     labs(title = "Зависимость длины тормозного пути",
     x = "Скорость, миль в час", y = "Длина пути, футов")
 speed.mean <- mean(h$speed)
-dev.off()
+invisible(dev.off())
 @
 
 \begin{figure}

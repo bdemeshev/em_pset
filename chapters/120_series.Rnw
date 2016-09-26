@@ -32,21 +32,37 @@ resid.acf <- acf(resids, plot = FALSE)$acf
 @
 
 <<"huron_ts", warning = FALSE, message = FALSE>>=
+tikz("../R_plots/huron_level.tikz", standAlone = FALSE, bareBones = TRUE)
 ggplot(df, aes(x = obs, y = level)) + geom_line() +
     labs(x = "Год", y = "Уровень озера (футы)")
+invisible(dev.off())
 @
+
+\begin{figure}
+\begin{tikzpicture}[scale = 0.025]
+\input{R_plots/huron_level.tikz}
+\end{tikzpicture}
+\end{figure}
+
 
 График автокорреляционной и частной автокорреляционной функций:
 
 <<"huron_acf", warning = FALSE>>=
-ggplot(acfs.df, aes(x = lag, y = acf, fill = acf.type))+
-    geom_histogram(position = "dodge", stat = "identity")+
+tikz("../R_plots/huron_acf.tikz", standAlone = FALSE, bareBones = TRUE)
+ggplot(acfs.df, aes(x = lag, y = acf, fill = acf.type)) +
+    geom_bar(position = "dodge", stat = "identity") +
   xlab("Лаг") + ylab("Корреляция") +
   guides(fill = guide_legend(title = NULL))+
   geom_hline(yintercept = 1.96/sqrt(nrow(df)))+
   geom_hline(yintercept = -1.96/sqrt(nrow(df)))
+invisible(dev.off())
 @
 
+\begin{figure}
+\begin{tikzpicture}[scale = 0.025]
+\input{R_plots/huron_acf.tikz}
+\end{tikzpicture}
+\end{figure}
 
 \begin{enumerate}
 \item Судя по графикам, какие модели класса ARMA или ARIMA имеет смысл оценить?
@@ -292,7 +308,7 @@ $\sigma^{2}_{t}=1+0.8\varepsilon^{2}_{t-1}$\\
 %%%%%%%%%%%%%%%%% Оператор лага
 
 \begin{problem}
-Пусть $x_{t}$, $t=0,1,2,...$ - случайный процесс и $y_{t}=(1+\L )^{t}x_{t}$.
+Пусть $x_{t}$, $t=0,1,2,\ldots$ - случайный процесс и $y_{t}=(1+\L )^{t}x_{t}$.
 Выразите $x_{t}$ с помощью $y_{t}$ и оператора лага $\L $.
 
 
@@ -317,7 +333,7 @@ $ F_{n}=\L (1+\L )F_{n} $, значит $ F_{n}=\L ^{k}(1+\L )^{k}F_{n} $ или
 
 
 \begin{problem}
-Пусть $y_{t}$, $t=...-2,-1,0,1,2,...$ - случайный процесс. И $y_{t}=x_{-t}$. Являются ли верными рассуждения?
+Пусть $y_{t}$, $t=\ldots -2, -1, 0, 1, 2, \ldots$ - случайный процесс. И $y_{t}=x_{-t}$. Являются ли верными рассуждения?
 \begin{enumerate}
 \item $\L y_{t}=\L x_{-t}=x_{-t-1}$
 \item $\L y_{t}=y_{t-1}=x_{-t+1}$
@@ -338,19 +354,21 @@ $ F_{n}=\L (1+\L )F_{n} $, значит $ F_{n}=\L ^{k}(1+\L )^{k}F_{n} $ или
 \begin{problem}
 Представьте процесс AR(1),
 $y_{t}=0.9y_{t-1}-0.2y_{t-2}+\varepsilon_{t}$,
-$\varepsilon\sim$WN(0;1) в виде модели состояние-наблюдение. \\
-а) Выбрав в качестве состояний вектор $\left(%
+$\varepsilon\sim$WN(0;1) в виде модели состояние-наблюдение.
+\begin{enumerate}
+\item  Выбрав в качестве состояний вектор $\left(%
 \begin{array}{c}
   y_{t} \\
   y_{t-1} \\
 \end{array}%
 \right)$ \\
-б) Выбрав в качестве состояний вектор $\left(%
+\item Выбрав в качестве состояний вектор $\left(%
 \begin{array}{c}
   y_{t} \\
   \hat{y}_{t,1} \\
 \end{array}%
-\right)$ \\
+\right)$
+\end{enumerate}
 Найдите дисперсии ошибок состояний
 
 
@@ -362,19 +380,21 @@ $\varepsilon\sim$WN(0;1) в виде модели состояние-наблю�
 \begin{problem}
 Представьте процесс MA(1),
 $y_{t}=\varepsilon_{t}+0.5\varepsilon_{t-1}$,
-$\varepsilon\sim$WN(0;1) в виде модели состояние-наблюдение. \\
-a) $\left(%
+$\varepsilon\sim$WN(0;1) в виде модели состояние-наблюдение.
+\begin{enumerate}
+\item $\left(%
 \begin{array}{c}
   \varepsilon_{t} \\
   \varepsilon_{t-1} \\
 \end{array}%
 \right)$ \\
-b) $\left(%
+\item $\left(%
 \begin{array}{c}
   \varepsilon_{t}+0.5\varepsilon_{t-1} \\
   0.5\varepsilon_{t}
 \end{array}%
 \right)$
+\end{enumerate}
 
 
 \begin{sol}

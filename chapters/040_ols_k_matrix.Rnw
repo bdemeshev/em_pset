@@ -90,8 +90,9 @@
 \begin{problem}
 Пусть $y = X\beta + \e$ --- регрессионная модель, $X = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \end{pmatrix}$, $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$. Найдите коэффициент корреляции $\Corr(\hb_1,\hb_2)$.
 <<echo=FALSE>>=
-X <- matrix(as.integer(c(1,1,1,0,1,1)), nrow=3, byrow = FALSE, dimnames = NULL)
-y <- c(1,2,3)
+X <- matrix(as.integer(c(1, 1, 1, 0, 1, 1)), nrow = 3,
+  byrow = FALSE, dimnames = NULL)
+y <- c(1, 2, 3)
 @
 
 
@@ -120,9 +121,10 @@ y <- c(1,2,3)
 
 
 \begin{problem}
-Пусть $y = X\beta + \e$ --- регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите <<новую>> регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются <<новые>> МНК-коэффициенты через <<старые>>.
-<<echo=FALSE,results='asis'>>=
-alpha <- matrix(as.integer(c(1,0,0,1,1,0,0,1,1)), nrow=3, byrow = FALSE, dimnames = NULL)
+Пусть $y = X\beta + \e$ --- регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются «новые» МНК-коэффициенты через «старые».
+<<echo=FALSE, results='asis'>>=
+alpha <- matrix(as.integer(c(1, 0, 0, 1, 1, 0, 0, 1, 1)),
+  nrow = 3, byrow = FALSE, dimnames = NULL)
 @
 
 
@@ -149,9 +151,10 @@ alpha <- matrix(as.integer(c(1,0,0,1,1,0,0,1,1)), nrow=3, byrow = FALSE, dimname
 
 
 \begin{problem}
-Пусть $y = X\beta + \e$ --- регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите <<новую>> регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются <<новые>> МНК-коэффициенты через <<старые>>.
-<<echo=FALSE,results='asis'>>=
-alpha2 <- matrix(as.integer(c(1,0,0,1,1,0,1,1,1)), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+Пусть $y = X\beta + \e$ --- регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются «новые» МНК-коэффициенты через «старые».
+<<echo=FALSE, results='asis'>>=
+alpha2 <- matrix(as.integer(c(1, 0, 0, 1, 1, 0, 1, 1, 1)), nrow = 3,
+  ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 
 
@@ -178,9 +181,10 @@ alpha2 <- matrix(as.integer(c(1,0,0,1,1,0,1,1,1)), nrow=3, ncol=3, byrow = FALSE
 
 
 \begin{problem}
-Пусть $y = X\beta + \e$ --- регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите <<новую>> регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются <<новые>> МНК-коэффициенты через <<старые>>.
-<<echo=FALSE,results='asis'>>=
-alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+Пусть $y = X\beta + \e$ --- регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются «новые» МНК-коэффициенты через «старые».
+<<echo=FALSE, results='asis'>>=
+alpha3 <- matrix(as.integer(c(1, 0, 0, 0, 1, 0, 0, 1, 1)), nrow = 3,
+  ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 
 
@@ -237,10 +241,10 @@ alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE
 \begin{sol}
 \begin{enumerate}
 \item
-\begin{multline}
+\begin{multline*}
 \hat{\gamma} = (Z'Z)^{-1}Z'y = A^{-1}(X'X)^{-1}(A')^{-1}A'X'y =\\
  A^{-1}(X'X)^{-1} X'y = A^{-1}\hb
-\end{multline}
+\end{multline*}
 \item $\hat{u} = y - Z\hat{\gamma} = y - XAA^{-1}\hb = y - X\hb = \hat{\e}$
 \item Пусть $z^0 = \begin{pmatrix} 1 & z_1^0 & \dots & z_{k-1}^0 \end{pmatrix}$ --- вектор размера $1 \times k$ и $x^0 = \begin{pmatrix} 1 & x_1^0 & \dots & x_{k-1}^0 \end{pmatrix}$ --- вектор размера $1 \times k$. Оба эти вектора представляют собой значения факторов. Тогда $z^0 = x^0 A$ и прогнозное значение для регрессии с преобразованными факторами равно $z^0 \hat{\gamma} = x^0 AA^{-1} \hb = x^0 \hb$ прогнозному значению для регрессии с исходными факторами.
 \end{enumerate}
@@ -256,12 +260,12 @@ alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE
 \begin{sol}
 \begin{enumerate}
 \item
-\begin{multline}
+\begin{multline*}
 \E(\tilde{\beta}) = ((X'X)^{-1} + \gamma I)X'\E(y) = \\
  ((X'X)^{-1} + \gamma I)X'X\beta = \beta + \gamma X'X\beta
-\end{multline}
+\end{multline*}
 \item
-\begin{multline}
+\begin{multline*}
 \Var(\tilde{\beta}) = \Var(((X'X)^{-1} + \gamma I)X'y) = \\
  \Var(((X'X)^{-1} + \gamma I)X'\e) = \\
  (((X'X)^{-1} + \gamma I)X')\Var(\e)(((X'X)^{-1} + \gamma I)X')'=  \\
@@ -269,7 +273,7 @@ alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE
   \sigma_{\e}^2((X'X)^{-1} + \gamma I)X'X((X'X)^{-1} + \gamma I) = \\
   \sigma_{\e}^2((X'X)^{-1} + \gamma I)(I + \gamma X'X) =\\
    \sigma_{\e}^2((X'X)^{-1} + 2\gamma I + \gamma ^2 X'X)
-\end{multline}
+\end{multline*}
 \end{enumerate}
 \end{sol}
 \end{problem}
@@ -412,15 +416,18 @@ $\hat\sigma^2=\frac{RSS}{n-k}=\frac12$.
 
 
 
-
+% 4.13
 \begin{problem}
 Пусть $y_i = \beta_1 + \beta_2 x_{i2} + \beta_3 x_{i3} + \e_i$ --- регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, ошибки $\e_i$ независимы и нормально распределены с $\E(\e)$ = 0, $Var(\e) = \sigma^2 I$. Для удобства расчётов даны матрицы: $X'X = \begin{pmatrix} 5 & 2 & 1 \\ 2 & 2 & 1\\ 1 & 1 & 1 \end{pmatrix}$ и $(X'X)^{-1}= \begin{pmatrix} 0.3333 & -0.3333 & 0.0000 \\ -0.3333 & 1.3333 & -1.0000 \\ 0.0000 & -1.0000 & 2.0000 \end{pmatrix}$
 
 
-<<echo=FALSE,results='asis'>>=
-x <- matrix(as.integer(c(1,1,1,1,1,0,0,0,1,1,0,0,0,0,1)), nrow=5, ncol=3, byrow = FALSE, dimnames = NULL)
-y <- matrix(as.integer(c(1,2,3,4,5)), nrow=5, ncol=1, byrow = FALSE, dimnames = NULL)
-xx <- matrix(as.integer(c(5,2,1,2,2,1,1,1,1)), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+<<echo=FALSE, results='asis'>>=
+x <- matrix(as.integer(c(1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1)),
+  nrow = 5, ncol = 3, byrow = FALSE, dimnames = NULL)
+y <- matrix(as.integer(c(1, 2, 3, 4, 5)), nrow = 5,
+  ncol = 1, byrow = FALSE, dimnames = NULL)
+xx <- matrix(as.integer(c(5, 2, 1, 2, 2, 1, 1, 1, 1)),
+  nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
 x_x <- solve(xx)
 @
 
@@ -466,8 +473,8 @@ x_x <- solve(xx)
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
-\item Сформулируйте основную гипотезу, которая соответствует тесту на значимость регрессии <<в целом>>
-\item На уровне значимости $5\%$ проверьте гипотезу о значимости регрессии <<в целом>>:
+\item Сформулируйте основную гипотезу, которая соответствует тесту на значимость регрессии «в целом»
+\item На уровне значимости $5\%$ проверьте гипотезу о значимости регрессии «в целом»:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики при верной $H_0$
@@ -475,7 +482,7 @@ x_x <- solve(xx)
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
-\item Найдите $P-$значение, соответствующее наблюдаемому значению тестовой статистики $(T_{obs})$ из предыдущего пункта. На основе полученного $P-$значения сделайте вывод о значимости регрессии <<в целом>>
+\item Найдите $P-$значение, соответствующее наблюдаемому значению тестовой статистики $(T_{obs})$ из предыдущего пункта. На основе полученного $P-$значения сделайте вывод о значимости регрессии «в целом»
 \item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_2 + \beta_3 = 2$ против альтернативной $H_a: \beta_2 + \beta_3 \not= 2$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики
@@ -510,7 +517,7 @@ x_x <- solve(xx)
 \item $TSS = 10$
 \item $RSS = 2$
 \item $\hb = \begin{pmatrix} \hb_1 \\ \hb_2 \\ \hb_3 \end{pmatrix} = (X'X)^{-1}X'y = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix}$
-\item $R^2 = 1 - \frac {RSS}{TSS} = 0.8.$ $R^2$ высокий, построенная эконометрическая модель <<хорошо>> описывает данные
+\item $R^2 = 1 - \frac {RSS}{TSS} = 0.8.$ $R^2$ высокий, построенная эконометрическая модель хорошо описывает данные
 \item Основная гипотеза --- $H_0: \beta_2 = 0$, альтернативная гипотеза --- $H_a: \beta_2 \not= 0$
 \item Проверка гипотезы
 \begin{enumerate}
@@ -552,9 +559,9 @@ x_x <- solve(xx)
 \item $T \sim F(n-k); n = 5; k = 3$
 \item $T_{obs} = \frac{R^2}{1 - R^2} \cdot \frac{n-k}{k} = \frac{0.8}{1 - 0.8} \cdot \frac{5-3}{2} = 4$
 \item Нижняя граница $= 0$, верхняя граница $= 19$
-\item Поскольку $T_{obs} = 4$, что принадлежит промежутку от $0$ до $19$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$. Следовательно, регрессия в целом незначима. Напомним, что $R^2 = 0.8$, то есть он высокий. Но при этом регрессия <<в целом>> незначима. Такой эффект может возникать при малом объёме выборки, например, таком, как в данной задаче
+\item Поскольку $T_{obs} = 4$, что принадлежит промежутку от $0$ до $19$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$. Следовательно, регрессия в целом незначима. Напомним, что $R^2 = 0.8$, то есть он высокий. Но при этом регрессия в целом незначима. Такой эффект может возникать при малом объёме выборки, например, таком, как в данной задаче
 \end{enumerate}
-\item $p-value(T_{obs}) = \P (|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $F-$распределения c $k = 3$ и $n - k = 5 - 3 = 2$ степенями свободы в точке $T_{obs}$. $p-value(T_{obs}) = 1 - fcdf(-|T_{obs}|, n - k) = 1 - fcdf(4,2) = 0.2$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_2 = \beta_3 = 0$ не может быть отвергнута. Таким образом, регрессия <<в целом>> незначима
+\item $p-value(T_{obs}) = \P (|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $F-$распределения c $k = 3$ и $n - k = 5 - 3 = 2$ степенями свободы в точке $T_{obs}$. $p-value(T_{obs}) = 1 - fcdf(-|T_{obs}|, n - k) = 1 - fcdf(4,2) = 0.2$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_2 = \beta_3 = 0$ не может быть отвергнута. Таким образом, регрессия в целом незначима
 \item Проверка гипотезы
 \begin{enumerate}
 \item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
@@ -586,13 +593,15 @@ x_x <- solve(xx)
 
 
 
-
+% 4.14
 \begin{problem}
 Пусть $y = X\beta + \e$ --- регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, $\E(\e)$ = 0, $Var(\e) = \sigma^2 I$.
 
-<<echo=FALSE,results='asis'>>=
-x <- matrix(as.integer(c(1,1,1,1,1,0,0,1,1,1,0,0,0,0,1)), nrow=5, ncol=3, byrow = FALSE, dimnames = NULL)
-y <- matrix(as.integer(c(1,2,3,4,5)), nrow=5, ncol=1, byrow = FALSE, dimnames = NULL)
+<<echo=FALSE, results='asis'>>=
+x <- matrix(as.integer(c(1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1)),
+  nrow = 5, ncol = 3, byrow = FALSE, dimnames = NULL)
+y <- matrix(as.integer(c(1, 2, 3, 4, 5)), nrow = 5,
+  ncol = 1, byrow = FALSE, dimnames = NULL)
 @
 
 На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_a: \beta_1 + \beta_2 \not= 2$:
@@ -610,7 +619,7 @@ y <- matrix(as.integer(c(1,2,3,4,5)), nrow=5, ncol=1, byrow = FALSE, dimnames = 
 \item $T = \frac{\hb_1 + \hb_2 - (\beta_1 + \beta_2)}{\sqrt{\widehat{\Var}(\hb_1 + \hb_2)}}$, где $\widehat{\Var}(\hb_1 + \hb_2) = \widehat{\Var}(\hb_1) + \widehat{\Var}(\hb_2) + 2\widehat{\Cov}(\hb_1;\hb_2) = \hat{\sigma}^2 [(X'X)^{-1}]_{11} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{12} + \hat{\sigma}^2 [(X'X)^{-1}]_{22}= \frac{RSS}{n - k}([(X'X)^{-1}]_{11} + 2[(X'X)^{-1}]_{12} + [(X'X)^{-1}]_{22}), \beta_1 + \beta_2=2$
 \item $T \sim t_{n-k}; n = 5; k = 3$
 \item Смотри матрицы в номере 4.12. $\hb=(X'X)^{-1}X'y=(1.5\;2.0\;1.5)'$. $\widehat{\Var}(\hb_1 + \hb_2) =\frac12(0.5+1+2\cdot(-0.5))=\frac14$. $T=\frac{1.5+2-2}{\sqrt{\frac14}}=3$.
-\item Так как проверяется знак <<равно>> в гипотезе, то нижняя граница $-\infty$, а верхняя граница $+\infty$.
+\item Так как проверяется знак «равно» в гипотезе, то нижняя граница $-\infty$, а верхняя граница $+\infty$.
 \item $t_{0.95,2}=2.9199<T$, значит, гипотеза отвергается на уровне значимости 5\%.
 \end{enumerate}
 \end{sol}
@@ -618,12 +627,12 @@ y <- matrix(as.integer(c(1,2,3,4,5)), nrow=5, ncol=1, byrow = FALSE, dimnames = 
 
 
 
-
+% 4.15
 \begin{problem}
 По 13 наблюдениям Вася оценил модель со свободным членом, пятью количественными регрессорами и двумя качественными. Качественные регрессоры Вася правильно закодировал с помощью дамми-переменных. Одна качественная переменная принимала четыре значения, другая --- пять.
 
 \begin{enumerate}
-\item Найдите $SSR$, $R^2$
+\item Найдите $RSS$, $R^2$
 \item Как выглядит матрица $X(X'X)^{-1}X'$?
 \item Почему 13 --- несчастливое число?
 \end{enumerate}
@@ -631,15 +640,15 @@ y <- matrix(as.integer(c(1,2,3,4,5)), nrow=5, ncol=1, byrow = FALSE, dimnames = 
 
 \begin{sol}
 \begin{enumerate}
-\item $SSR=0$, $R^2=1$, так как в регрессии у Васи 13 (1+5+(4-1)+(5-1)) переменных, которые точно подстраиваются под данные.
-\item Эта матрица является единичной размер 13 на 13, что нетрудно понять из формулы $SSR=y'(I-X(X'X)^{-1}X')y$.
+\item $RSS=0$, $R^2=1$, так как в регрессии у Васи 13 (1+5+(4-1)+(5-1)) переменных, которые точно подстраиваются под данные.
+\item Эта матрица является единичной размер 13 на 13, что нетрудно понять из формулы $RSS=y'(I-X(X'X)^{-1}X')y$.
 \item На сегодняшний день среди исследователей нет единого мнения о происхождении трискаидекафобии (боязнь числа 13).
 
-По одной из версий, число 13 может считаться <<плохим>> уже только потому, что оно больше 12, числа, которое является священным у многих народов.
+По одной из версий, число 13 может считаться «плохим» уже только потому, что оно больше 12, числа, которое является священным у многих народов.
 
 Кроме того, существует библейское предание, косвенно связанное с числом 13 --- на тайной вечере Иуда Искариот, апостол, предавший Иисуса, сидел за столом тринадцатым. С этим преданием связывают самую распространенную в XIX веке примету, связанную с числом 13 — если за обеденным столом собрались 13 человек, один из них умрет в течение года после трапезы. Позже в христианстве распространилось апокрифическое убеждение, что Сатана был 13-м ангелом.
 
-Источник: \url{https://ru.wikipedia.org/wiki/\%D0\%A2\%D1\%80\%D0\%B8\%D1\%81\%D0\%BA\%D0\%B0\%D0\%B8\%D0\%B4\%D0\%B5\%D0\%BA\%D0\%B0\%D1\%84\%D0\%BE\%D0\%B1\%D0\%B8\%D1\%8F}
+Источник: \href{https://ru.wikipedia.org/wiki/%D0%A2%D1%80%D0%B8%D1%81%D0%BA%D0%B0%D0%B9%D0%B4%D0%B5%D0%BA%D0%B0%D1%84%D0%BE%D0%B1%D0%B8%D1%8F}{https://ru.wikipedia.org/wiki/Трискайдекафобия}
 \end{enumerate}
 \end{sol}
 \end{problem}
@@ -758,7 +767,7 @@ $\sum y_i^2=\sum \hy_i^2+\sum \he_i^2$, $TSS=ESS+RSS$,
 
 
 \begin{problem}
-Покажите на картинке TSS, ESS, RSS, $R^2$, $\sCov(\hy,y)$
+Покажите на картинке TSS, ESS, RSS, $R^2$, $\sCorr(\hy,y)$, $\sCov(\hy,y)$
 
 \tdplotsetmaincoords{70}{110}
 \begin{tikzpicture}[tdplot_main_coords]
@@ -789,23 +798,7 @@ $R^2\cdot TSS/(n-1)\cdot ESS/(n-1)=(\sCov(\hat y, y))^2=(\sCov(\hat y-\bar y, y-
 
 $\sCov(\hat y, y)=\sqrt{ESS^2/(n-1)^2}=ESS/(n-1)$
 
-Так как картинка нарисована в двумерном пространство, то $n=2$, и выборочна ковариация совпадает с $ESS$ визуально.
 
-$\pi=\frac1n\begin{pmatrix}
-1 & \ldots & 1 \\
-\vdots & \ddots & \vdots \\
-1 & \ldots & 1
-\end{pmatrix}_{n\times n} $
-
-
-% Решение показано на графике \ref{ssgraph}.
-
-%\begin{figure}\centering
-%\def\svgwidth{15cm} % если надо изменить размер
-%\input{tss_rss_ess_figure.tex}
-%\caption{Решение задачи 4.24}
-%\label{ssgraph}
-%\end{figure}
 \end{sol}
 \end{problem}
 
@@ -815,7 +808,7 @@ $\pi=\frac1n\begin{pmatrix}
 
 
 \begin{sol}
-Спроецируем единичный столбец на <<плоскость>>, обозначим его $1'$. Делаем проекцию $y$ на <<плоскость>> и на $1'$. Далее аналогично.
+Спроецируем единичный столбец на «плоскость», обозначим его $1'$. Делаем проекцию $y$ на «плоскость» и на $1'$. Далее аналогично.
 \end{sol}
 \end{problem}
 
@@ -952,7 +945,7 @@ x_{1,2}y_1\ldots x_{n,2}y_n
 
 4.
 
-\begin{multline}
+\begin{multline*}
 \hb=(X'X)^{-1}X'y=
 \begin{pmatrix}
 \sum_{i=1}^n x^2_{n,1}& x_{1,1}x_{1,2}\ldots x_{n,1}x_{n,2}\\
@@ -977,7 +970,7 @@ x_{1,2}y_1+\ldots +x_{n,2}y_n
 \sum_{i=1}^n x^2_{n,2}(x_{1,1}y_1+\ldots +x_{n,1}y_n) -(x_{1,1}x_{1,2}+\ldots+ x_{n,1}x_{n,2})(x_{1,2}y_1+\ldots +x_{n,2}y_n)\\
 -(x_{1,1}y_1+\ldots +x_{n,1}y_n)(x_{1,1}x_{1,2}+\ldots +x_{n,1}x_{n,2})+\sum_{i=1}^nx^2_{n,1}(x_{1,2}y_1+\ldots +x_{n,2}y_n)
 \end{pmatrix}
-\end{multline}
+\end{multline*}
 \end{sol}
 \end{problem}
 
@@ -1557,7 +1550,7 @@ i & i & \ldots & i
 
 
 \begin{sol}
-\begin{multline}
+\begin{multline*}
 \E(\e' \pi \e) = \E(\tr[\e' \pi \e]) = \E(\tr[\pi \e \e']) = \tr[\pi \E(\e\e')]  =\\
 \tr[\pi \Var(\e)] = \tr\left[ \frac{1}{n} \begin{bmatrix}
 1 & 1 & 1 & 1 \\
@@ -1576,7 +1569,7 @@ i & i & \ldots & i
 \ldots & \ldots & \ldots & \ldots \\
 \sigma_1^2 & \sigma_2^2 & \ldots & \sigma_n^2 \\
 \end{bmatrix} = \frac{1}{n} \sum_{i=1}^n \sigma_i^2
-\end{multline}
+\end{multline*}
 \end{sol}
 \end{problem}
 
@@ -1618,11 +1611,11 @@ $X'y = \begin{bmatrix}
 \begin{sol}
 \begin{enumerate}
 \item
-\begin{multline}
+\begin{multline*}
 RSS = \hat{\e}'\hat{\e} y' (I - P) y = y' y - y'Py = y'y - y' X(X'X)^{-1}X'y ;
-\end{multline}
+\end{multline*}
 При этом $y'y=3924$,  а
-\begin{multline}
+\begin{multline*}
 y' X(X'X)^{-1}X'y= \\
  \begin{bmatrix}
 460 & 810 & 615 & 712
@@ -1639,7 +1632,7 @@ y' X(X'X)^{-1}X'y= \\
 615\\
 712\\
 \end{bmatrix} = 3051.2
-\end{multline}
+\end{multline*}
 Итого, $RSS= 3924 - 3051.2 = 872.8$
 
 $\hs_{\e}^2 = \frac{RSS}{n-k} = \frac{872.8}{100-4} = 9.0917$
@@ -1734,25 +1727,25 @@ $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) +
 
 $t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} = \frac{0.76 + 0.19 - 1}{\sqrt{0.319044}} = -0.088520674$
 
-Значит, гипотеза не отвергается на любом <<разумном>> уровне значимости.
+Значит, гипотеза не отвергается на любом разумном уровне значимости.
 
 \item Мы знаем, что $\frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \sim t_{n-k} = t_{15-3}$, поэтому построить доверительный интервал для $\beta_2 + \beta_3$ не составляет труда. $\P \left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \right| < t^* \right) = 0.95$
 
 Обозначим $se=\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}$, тогда:
 
-\begin{multline}
+\begin{multline*}
 \P \left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \right| < t^* \right) = \\
 \P \left( -t^* se < \hb_2 + \hb_3 - \beta_2 - \beta_3 < t^* se \right) = \\
 \P \left( -t^*se  - (\hb_2 + \hb_3) < - \beta_2 - \beta_3  < -(\hb_2 + \hb_3) + t^* se \right) =\\
 \P \left( (\hb_2 + \hb_3) + t^* se
 > \beta_2 + \beta_3
 > (\hb_2 + \hb_3) - t^* se \right)
-\end{multline}
+\end{multline*}
 Отсюда получаем доверительный интервал
-\begin{multline}
+\begin{multline*}
 \beta_2 + \beta_3 \in \\
 [(0.76 + 0.19) - 2.16 \cdot 0.319;  (0.76 + 0.19) + 2.16 \cdot 0.319 ]
-\end{multline}
+\end{multline*}
 Или $0.26< \beta_2 + \beta_3  < 1.639  $
 \end{enumerate}
 \end{sol}
@@ -1795,7 +1788,7 @@ $\frac{\partial x'Ax}{\partial x'}=x'(A'+A)$
 
 \begin{problem}
 <<>>=
-model <- lm(dist~speed,data=cars)
+model <- lm(dist ~ speed, data = cars)
 model.sum <- summary(model)
 hat.sigma <- model.sum$sigma
 @
@@ -2044,8 +2037,8 @@ $ что-то здесь не так\ldots
 \begin{sol}
 \begin{enumerate}
 \item $H = \frac{1}{n} S$, где $S$ "--- матрица строевого леса, то есть матрица из единиц размера $n\times n$.
-\item ...
-\item ...
+\item \ldots
+\item \ldots
 \end{enumerate}
 \end{sol}
 

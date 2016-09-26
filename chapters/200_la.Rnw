@@ -9,12 +9,14 @@
 \begin{enumerate}
 \item
 <<results='asis', echo=FALSE>>=
-ma1 <- matrix(as.integer(c(1,1,1,2)), nrow=2, ncol=2, byrow = FALSE, dimnames = NULL)
+ma1 <- matrix(as.integer(c(1, 1, 1, 2)), nrow = 2, ncol = 2,
+  byrow = FALSE, dimnames = NULL)
 xmatrix(ma1)
 @
 \item
 <<results='asis', echo=FALSE>>=
-m1 <- matrix(as.integer(c(4,1,1,2)), nrow=2, ncol=2, byrow = FALSE, dimnames = NULL)
+m1 <- matrix(as.integer(c(4, 1, 1, 2)), nrow = 2, ncol = 2,
+  byrow = FALSE, dimnames = NULL)
 xmatrix(m1)
 @
 \end{enumerate}
@@ -45,23 +47,27 @@ xmatrix(m1)
 Найдите обратные матрицы ко всем матрицам, представленным ниже.
 \begin{enumerate}
 \item
-<<results='asis',echo=FALSE>>=
-A <- matrix(as.integer(c(1,0,0,1,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+<<results='asis', echo=FALSE>>=
+A <- matrix(as.integer(c(1, 0, 0, 1, 1, 0, 0, 1, 1)), nrow = 3, ncol = 3,
+  byrow = FALSE, dimnames = NULL)
 xmatrix(A)
 @
 \item
-<<results='asis',echo=FALSE>>=
-B <- matrix(as.integer(c(1,1,0,0,1,1,0,0,1)), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+<<results='asis', echo=FALSE>>=
+B <- matrix(as.integer(c(1, 1, 0, 0, 1, 1, 0, 0, 1)), nrow = 3, ncol = 3,
+  byrow = FALSE, dimnames = NULL)
 xmatrix(B)
 @
 \item
-<<results='asis',echo=FALSE>>=
-C <- matrix(as.integer(c(0,1,0,0,0,1,1,0,0)), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+<<results='asis', echo=FALSE>>=
+C <- matrix(as.integer(c(0, 1, 0, 0, 0, 1, 1, 0, 0)), nrow = 3, ncol = 3,
+  byrow = FALSE, dimnames = NULL)
 xmatrix(C)
 @
 \item
-<<results='asis',echo=FALSE>>=
-D <- matrix(c(0,1,0,0,0,1,"a",0,0), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+<<results='asis', echo=FALSE>>=
+D <- matrix(c(0, 1, 0, 0, 0, 1, "a", 0, 0), nrow = 3, ncol = 3,
+  byrow = FALSE, dimnames = NULL)
 xmatrix(D)
 @
 \end{enumerate}
@@ -185,19 +191,20 @@ ${n \times m}$ выполняется равенство $\tr(AB) = \tr(BA)$?
 
 \begin{enumerate}
 <<results='asis', echo=FALSE>>=
-a <- matrix(as.integer(c(1,2,3,4)), nrow=4, ncol=1, byrow = FALSE, dimnames = NULL)
+a <- matrix(as.integer(c(1, 2, 3, 4)), nrow = 4, ncol = 1,
+  byrow = FALSE, dimnames = NULL)
 @
 \item $X = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$
 <<results='asis', echo=FALSE>>=
-b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow=4, ncol=2, byrow = FALSE, dimnames = NULL)
+b <- matrix(as.integer(c(1, 1, 1, 1, 1, 2, 3, 4)), nrow = 4, ncol = 2, byrow = FALSE, dimnames = NULL)
 @
 \item $X = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \end{pmatrix}$
 <<results='asis', echo=FALSE>>=
-c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALSE, dimnames = NULL)
+c <- matrix(as.integer(c(1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1)), nrow = 4, ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 \item $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0  \\ 1 & 1 & 1 \end{pmatrix}$
 <<results='asis', echo=FALSE>>=
-d <- matrix(as.integer(c(1,1,1,1,0,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=4, byrow = FALSE, dimnames = NULL)
+d <- matrix(as.integer(c(1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1)), nrow = 4, ncol=4, byrow = FALSE, dimnames = NULL)
 @
 \item $X = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 1 & 1 & 1 & 0  \\ 1 & 1 & 1 & 1 \end{pmatrix}$
 \end{enumerate}
@@ -213,7 +220,7 @@ d <- matrix(as.integer(c(1,1,1,1,0,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=4, byro
 
 
 \begin{sol}
-Например, $A=(1,2,3)$, $B=(1,0,1)'$
+Например, $A=(1,2,3)$, $B=(1,0, 1)'$
 \end{sol}
 \end{problem}
 

@@ -256,7 +256,7 @@ RSS = \sum\limits_i(y_i-1-\beta x_i)^2 \rightarrow \min\limits_{\beta}
 
 
 \begin{problem}
-Аня и Настя утверждают, что лектор опоздал на 10 минут. Таня считает, что лектор опоздал на 3 минуты. С помощью мнк оцените на сколько опоздал лектор.
+Аня и Настя утверждают, что лектор опоздал на 10 минут. Таня считает, что лектор опоздал на 3 минуты. С помощью МНК оцените на сколько опоздал лектор.
 
 \begin{sol}
 Можем воспользоваться результатом задачи 9:
@@ -273,9 +273,9 @@ RSS = \sum\limits_i(y_i-1-\beta x_i)^2 \rightarrow \min\limits_{\beta}
 
 \begin{problem}
 Функция $f(x)$ непрерывна на отрезке $[0;1]$. Найдите аналог МНК-оценок для регрессии без свободного члена в непрерывном случае. Более подробно: найдите минимум по $\hb$ для функции
-\begin{equation}
+\begin{equation*}
 Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
-\end{equation}
+\end{equation*}
 
 
 \begin{sol}
@@ -323,7 +323,7 @@ abline(coef(modelV1)[1] + 4 * coef(modelV1)[3],
 modelV2 <- lm(y ~ x)
 # общая модель
 abline(modelV2, lwd = 2, col = "red")
-dev.off()
+invisible(dev.off())
 @
 
 \begin{figure}
@@ -354,7 +354,7 @@ abline(coef(modelV1)[1] + 4 * coef(modelV1)[3], coef(modelV1)[2], lwd = 3)
 modelV2 <- lm(y ~ x)
 # общая модель
 abline(modelV2, lwd = 2, col = "red")
-dev.off()
+invisible(dev.off())
 @
 
 \begin{figure}
@@ -399,11 +399,11 @@ dev.off()
 Модель можно представить в линейном виде, когда неизвестные параметры входят в нее линейно.
 \begin{enumerate}
 \item Обозначим $z_i = 1/x_i$, и готово.
-\item Возьмем логарифм от обеих частей...
-\item Вычтем единицу из обеих частей и снова логарифм...
-\item Перевернем обе части уравнения, вычтем единицу и прологарифмируем...
-\item Вместо $x_i$ возьмем $e^{x_i}$ и прологарифмируем...
-\item Вместо $\beta_1$ возьмем $e^{\beta_1}$ и прологарифмируем...
+\item Возьмем логарифм от обеих частей\ldots
+\item Вычтем единицу из обеих частей и снова логарифм\ldots
+\item Перевернем обе части уравнения, вычтем единицу и прологарифмируем\ldots
+\item Вместо $x_i$ возьмем $e^{x_i}$ и прологарифмируем\ldots
+\item Вместо $\beta_1$ возьмем $e^{\beta_1}$ и прологарифмируем\ldots
 \end{enumerate}
 \end{sol}
 \end{problem}
@@ -511,7 +511,7 @@ labels <- c("With intercept", "Without intercept")
 text(c(7.5, 1.5), c(2, 0.4), labels)
 coef(lm(y ~ x))
 coef(lm(y ~ 0 + x))
-dev.off()
+invisible(dev.off())
 @
 
 

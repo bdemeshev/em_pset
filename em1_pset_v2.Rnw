@@ -209,8 +209,7 @@ load('pset_data.Rdata')
 
 <<child='chapters/100_random_x.Rnw'>>=
 @
-<<child='chapters/110_gmm.Rnw'>>=
-@
+
 
 % time series
 
@@ -243,6 +242,14 @@ load('pset_data.Rdata')
 @
 <<child='chapters/230_programming.Rnw'>>=
 @
+
+
+<<child='chapters/110_gmm.Rnw'>>=
+@
+
+%%% не задачи:
+
+
 <<child='chapters/240_ustav_test.Rnw'>>=
 @
 
@@ -276,7 +283,7 @@ load('pset_data.Rdata')
 \input{sols_080}
 \input{sols_090}
 \input{sols_100}
-\input{sols_110}
+
 \input{sols_120}
 \input{sols_130}
 \input{sols_140}
@@ -286,6 +293,9 @@ load('pset_data.Rdata')
 \input{sols_210}
 \input{sols_220}
 \input{sols_230}
+
+\input{sols_110}
+
 \input{sols_240}
 
 

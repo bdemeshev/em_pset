@@ -201,3 +201,7 @@ R_plots/uniform_errors.tikz
 R_plots/with_and_without_c.tikz
 
 .Rapp.history
+
+R_plots/huron_acf.tikz
+
+R_plots/huron_level.tikz
