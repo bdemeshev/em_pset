@@ -948,14 +948,28 @@ d_t=\Delta w_t
 \begin{problem}
 Эконометресса Антуанетта построила график автоковариационной функции временного ряда и распечатала его:
 
-здесь график
+<<"acf_rescale", warning=FALSE>>=
+acf.df <- data.frame(lag = 1:10, acf = c(11, 5, 3, 1, -2, 2, 1, 2, 0, 1))
+tikz("../R_plots/acf_rescale.tikz", standAlone = FALSE, bareBones = TRUE)
+ggplot(acf.df, aes(x = lag, y = acf)) +
+    geom_bar(stat = "identity") +
+  xlab("Лаг") + ylab("ACF") +
+  guides(fill = guide_legend(title = NULL))
+invisible(dev.off())
+@
+
+\begin{figure}
+\begin{tikzpicture}[scale = 0.025]
+\input{R_plots/acf_rescale.tikz}
+\end{tikzpicture}
+\end{figure}
+
 
 Потом она с ужасом обнаружила, что до презентации исследования остается совсем мало времени, а распечатать надо было график автокорреляционной функции. Что надо исправить Антуанетте на графике, чтобы успеть еще сделать причёску и макияж (это очень важно для презентации)?
 
 
-
 \begin{sol}
-зачеркнуть одну цифру
+приписать нолики и точки на вертикальной оси
 \end{sol}
 \end{problem}
 

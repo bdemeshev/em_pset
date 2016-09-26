@@ -127,12 +127,13 @@ library("akima")
 library("fUnitRoots")
 library("zoo")
 library("tseries")
+library("dplyr")
 
 library("econru") # devtools::install_github("bdemeshev/econru")
 
 theme_set(theme_bw())
 
-load('pset_data.Rdata')
+load("pset_data.Rdata")
 @
 
 %\listoftodos
