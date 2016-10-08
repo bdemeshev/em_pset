@@ -4,7 +4,7 @@
 install.packages("knitr")
 install.packages("tikzDevice")
 
-install.packages("ggplot2")
+install.packages("tidyverse")
 install.packages("Hmisc")
 install.packages("lmtest")
 install.packages("apsrtable")
@@ -19,5 +19,5 @@ install.packages("pander")
 install.packages("akima")
 install.packages("fUnitRoots")
 
-devtools::install_github("bdemeshev/econru")
+# devtools::install_github("bdemeshev/econru")
 # devtools::install_github("bdemeshev/tikzsetup")
