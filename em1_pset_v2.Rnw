@@ -102,16 +102,10 @@
 library("knitr")
 library("tikzDevice")
 
-
-knit_hooks$set(document = function(x) {
-  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
-})
 # options(tikzDefaultEngine = 'xetex')
 # opts_chunk$set(dev = "tikz")
 
-
-
-library("ggplot2")
+library("tidyverse")
 library("Hmisc")
 library("lmtest")
 library("apsrtable")
@@ -127,18 +121,136 @@ library("akima")
 library("fUnitRoots")
 library("zoo")
 library("tseries")
-library("dplyr")
-
-library("econru") # devtools::install_github("bdemeshev/econru")
 
 theme_set(theme_bw())
 
 load("pset_data.Rdata")
 @
 
-%\listoftodos
+<<"hidden_chunk", include=FALSE>>=
+knit_hooks$set(document = function(x) {
+  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
+})
 
-% МНК
+
+#' convert an R matrix into a LaTeX output
+#' @param a the matrix to be converted
+#' @param environment 'pmatrix' or 'bmatrix' from amsmath LaTeX package
+#' @param output T/F, whether the output should be printed
+#' @return invisible the LaTeX formula
+#' @export
+#' @examples
+#' b <- matrix(1:9, nrow = 3)
+#' xmatrix(b)
+xmatrix <- function(a, environment = "pmatrix", output = TRUE) {
+
+  # override default alignment for xtable
+  xa <- xtable(a, align = rep("", ncol(a) + 1))
+
+  res <- print(xa,
+               floating = FALSE,
+               tabular.environment = environment,
+               hline.after = NULL,
+               include.rownames = FALSE,
+               include.colnames = FALSE,
+               file = "junk.txt")
+
+  res <- paste0("\\ensuremath{", res, "}")
+
+  if (output) {
+    cat(res)
+  }
+  return(invisible(res))
+}
+
+
+
+#' convert OLS model into LaTeX formula with se or t-stats below coefficients
+#' @param model the estimated model
+#' @param below 'se' for standard errors, 't' for t-statistics, '' for nothing
+#' @param index 'i', any other letter or nothing
+#' @param coef.names character vector of alternative coefficient names
+#' @param y.name alternative name for the dependent variable
+#' @param output T/F, whether the output should be printed
+#' @return invisible the LaTeX formula
+#' @export
+#' @examples
+#' x <- rnorm(100)
+#' y <- rnorm(100)
+#' model <- lm(y ~ x)
+#' xmodel(model)
+#' xmodel(model, below = "t")
+#' xmodel(model, index = "")
+xmodel <- function(model,
+                   below = "se", index = "i", coef.names = NULL,
+                   y.name = NULL, output = TRUE) {
+
+  if (is.null(y.name)) {
+    y.name <- as.character(formula(model))[2]
+  }
+
+  if (is.null(coef.names)) {
+    # get Left Hand Side, lhs, of the formula
+    lhs <- as.character(formula(model))[3]
+    # split by "+" sign
+    coef.names <- strsplit(lhs, split = "+", fixed = TRUE)[[1]]
+    # remove spaces
+    coef.names <- gsub(" ","",coef.names)
+  }
+
+  beta.hat <- coef(model)
+  k <- length(beta.hat)
+
+  # construct the left hand side of the result
+  res.left <- paste0("\\widehat{", y.name, "}")
+  if (!index=="") {
+    res.left <- paste0(res.left, "_", index)
+  }
+
+  if (below=="se") {
+    terms.below <- format(coef(summary(model))[, 2], digits = 3)
+  }
+  if (below=="t") {
+    terms.below <- format(coef(summary(model))[, 3], digits = 3)
+  }
+
+  # construct the right hand side of the result
+  term.left <- format(abs(beta.hat[1]), digits = 3)
+  pm <- ifelse(beta.hat[1] < 0, "-", "")
+  if (!below == "") {
+    term.left <- paste("\\underset{(", terms.below[1], ")}{",
+                                     term.left, "}")
+  }
+  res.right <- paste0(pm, term.left)
+
+  for (i in 2:k) {
+    term.left <- format(abs(beta.hat[i]), digits = 3)
+    pm <- ifelse(beta.hat[i] < 0, "-", "+")
+
+    if (!below == "") {
+      term.left <- paste0("\\underset{(", terms.below[i], ")}{",
+                                       term.left, "}")
+    }
+
+    term.right <- coef.names[i - 1]
+    if (!index == "") {
+      term.right <- paste0(term.right, "_", index)
+    }
+    term <- paste0(term.left, "\\cdot ", term.right)
+    res.right <- paste0(res.right, pm, term)
+  }
+
+  res <- paste0("\\ensuremath{", res.left, "=", res.right, "}")
+
+  if (output) {
+    cat(res)
+  }
+  return(invisible(res))
+}
+
+@
+
+
 
 
 
@@ -180,8 +292,14 @@ load("pset_data.Rdata")
 
 <<child='chapters/030_ols_k_no_matr.Rnw'>>=
 @
+
+
+
+
 <<child='chapters/040_ols_k_matrix.Rnw'>>=
 @
+
+
 
 
 % ML
@@ -210,6 +328,9 @@ load("pset_data.Rdata")
 
 <<child='chapters/100_random_x.Rnw'>>=
 @
+
+
+
 
 
 % time series
