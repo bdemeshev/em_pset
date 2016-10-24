@@ -78,7 +78,7 @@ invisible(dev.off())
 \item \(\E \left(\sum (y_i - \bar{y})^2 /n \right) = \sigma^2 (n-1)/n\)
 \[\E \left(\frac{1}{n} \sum (y_i - \bar{y})^2  \right) = \E \left(\frac{1}{n} \sum y_i^2 - \frac{2}{n} \bar{y} \sum y_i + \bar{y}^2 \right) = \E \left(\frac{1}{n} \sum y_i^2 - \bar{y}^2\right) =   \]
 \[= \mu^2 + \sigma^2 - \mu^2 - \frac{1}{n}\sigma^2 = \sigma^2 \frac{n-1}{n} \]
-\item
+\item Сумма $\sum_{i=1}^n {(y_i-\bar{y})}^2$ имеет хи-квадрат распределение с $(n-1)$ степенью свободы, её дисперсия равна $2(n-1)\cdot \sigma^4$.
 \end{enumerate}
 \end{sol}
 \end{problem}
@@ -103,43 +103,33 @@ invisible(dev.off())
 
 
 \begin{problem}
-Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ — классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 3, \sum_{i=1}^5 x_iy_i = 12, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 3.$ Используя их, найдите:
+Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ — классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 3, \sum_{i=1}^5 x_iy_i = 12, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 3$.
 
 \begin{enumerate}
-\item $\hat{\beta_1}$ и $\hat{\beta_2}$
-\item $\Corr(\hat{\beta_1}, \hat{\beta_2})$
-\item $TSS$
-\item $ESS$
-\item $RSS$
-\item $R^2$
-\item $\hs^2$
+\item Найдите $\hat{\beta_1}$, $\hat{\beta_2}$, $\Corr(\hat{\beta_1}, \hat{\beta_2})$
+\item Найдите $TSS$, $ESS$, $RSS$, $R^2$, $\hs^2$
+\item Проверьте гипотезу $\begin{cases}  H_0: \beta_2 = 2  \\ H_a: \beta_2 \not= 2 \end{cases}$
+\item Проверьте гипотезу $\begin{cases}  H_0: \beta_1 + \beta_2 = 1  \\ H_a: \beta_1 + \beta_2 \not= 1 \end{cases}$
 \end{enumerate}
-
-Проверьте следующие гипотезы:
-\begin{enumerate}
-\item $\begin{cases}  H_0: \beta_2 = 2  \\ H_a: \beta_2 \not= 2 \end{cases}$
-\item $\begin{cases}  H_0: \beta_1 + \beta_2 = 1  \\ H_a: \beta_1 + \beta_2 \not= 1 \end{cases}$
-\end{enumerate}
-
 
 \begin{sol}
 \begin{enumerate}
-\item \(\hb_1 = 1.5, \ \hb_2 = 2.5\)
+\item
 \[\hb_2 = \frac{\sum (x_i - \bar{x}) (y_i - \bar{y})}{\sum (x_i-\bar{x})^2} = \frac{\sum (x_i - \bar{x})y_i}{\sum (x_i-\bar{x})^2} = \frac{\sum x_i y_i - \bar{y} \sum x_i}{\sum x_i^2 - 2 \bar{x} \sum x_i + n \bar{x}^2}=2.5\]
 \[\hb_1 = \bar{y} - \hb_2 \bar{x} = 1.5 \]
-\item \(Corr (\hb_1, \hb_2) = -1\)
+\item
 \[Corr(\hb_1, \hb_2) = \frac{\Cov (\hb_1, \hb_2)}{\sqrt{\Var (\hb_1)\cdot \Var (\hb_2)}}=\frac{\Cov (\bar{y}-\hb_2 \bar{x}, \hb_2)}{\sqrt{\Var (\bar{y}-\hb_2 \bar{x})\cdot \Var (\hb_2)}} = \]
 \[ = \frac{-\bar{x} \cdot \Cov(\hb_2,\hb_2)}{\bar{x}\cdot\sqrt{\left(\Var (\hb_2) \right)^2}} = -1  \]
-\item \(TSS = 10\)
+\item
 \[TSS = \sum (y_i - \bar{y})^2 = \sum y_i^2 - 2 \bar{y} \sum y_i + n \bar{y}^2 = 10 \]
-\item \(ESS = 7.5 \)
+\item
 \[ESS = \sum (\hy_i - \bar{y})^2 = \sum (\hb_1 + \hb_2 x_i)^2 - 2\bar{y} \sum (\hb_1 + \hb_2 x_i) + n \hat{y}^2 = \]
 \[ =n\cdot \hb_1^2 +2 \cdot \hb_1 \cdot \hb_2 \sum x_i + \hb_2^2 \sum x_i^2 - 2\bar{y} \left(n\hb_1 + \hb_2 \sum x_i \right) + n \bar{y}^2 = 7.5 \]
-\item \(RSS = 2.5\)
+\item
 \[RSS = TSS - ESS = 2.5 \]
-\item \(R^2 = 0.75\)
+\item
 \[R^2 = \frac{ESS}{TSS} = 0.75 \]
-\item \(\hat{\sigma}^2 =  5/6\)
+\item
 \[\hat{\sigma}^2 = \frac{RSS}{n - 2} = \frac{5}{6} \]
 \end{enumerate}
 
@@ -321,11 +311,11 @@ H_{al}: \hspace{2mm} \beta_1 + \beta_2 \ne 1
 \end{cases}
 $
 То есть, гипотеза $H_0$ говорит, что верна ограниченная модель, а гипотеза $H_{al}$ утверждает обратное.
-Оценим ограниченную (restricted) модель и посчитаем статистику:
+Оценим ограниченную модель и посчитаем статистику:
 \[
-\frac{\dfrac{RSS_r-RSS_{un}}{q}}{\dfrac{RSS_{un}}{n-k}} \sim F_{q, n-k}
+\frac{(RSS_r-RSS_{un})/q}{RSS_{un}/(n-k)} \sim F_{q, n-k}
 \]
-где $q$ — количество ЛНЗ ограничений (в нашем случае $q=1$), $n$ — количество наблюдений (одинаковое для обеих моделей) и $k$ —  количество оцениваемых коэффициентов в неограниченной (unrestricted) модели ($k=2$). Итак, $\beta_1 = 1-\beta_2$:
+где $q$ — количество ЛНЗ ограничений (в нашем случае $q=1$), $n$ — количество наблюдений (одинаковое для обеих моделей) и $k$ —  количество оцениваемых коэффициентов в неограниченной модели ($k=2$). Итак, $\beta_1 = 1-\beta_2$:
 
 \[
 RSS = \sum_{i=1}^5 (y_i-1+\beta_2 - \beta_2x_i)^2 \rightarrow \min\limits_{\beta_2}
@@ -350,7 +340,7 @@ RSS = \sum_{i=1}^5 \left(y_i-\frac{4}{7} - \frac{3}{7}x_i\right)^2 = \dots = \su
 Соответственно, статистика:
 
 \[
-\frac{\frac{23-4.5}{1}}{\frac{4.5}{5-2}} \approx 12.3
+\frac{(23-4.5)/1}{4.5/(5-2)} \approx 12.3
 \]
 По построению статистики, гипотеза $H_0$ должна быть отвергнута, если значение статистики слишком сильно отличается от нуля. Найдем критическое значение при уровне значимости 5\%:
 <<>>=
@@ -708,9 +698,9 @@ qt(0.005, df = 43)
 
 \begin{sol}
 
-Оценка, имеющая наименьшую дисперсию в каком-то классе оценок, называется эффективной оценкой в этом классе. В данной модели выполняются все предпосылки теоремы Гаусса-Маркова, поэтому МНК оценка будет эффективной. Воспользуемся результатом залачи 1.9:
+Оценка, имеющая наименьшую дисперсию в каком-то классе оценок, называется эффективной оценкой в этом классе. В данной модели выполняются все предпосылки теоремы Гаусса-Маркова, поэтому МНК оценка будет эффективной. Для случая регрессии на константу оценка имеет вид:
 \[
-\hat{mu} = \frac{\sum\limits_i y_i}{n}
+\hat{\mu} = \frac{\sum\limits_i y_i}{n}
 \]
 
 Отсюда сразу получаем: $c_i = \frac{1}{n}$.
@@ -806,7 +796,7 @@ $\mathbf{P}(\cdot)$ & 0.5  & $\frac{1}{4}$ & $\frac{1}{4}$\\[2pt]
 \end{center}
 
 \item
-Очевидно, что $\Var(\varepsilon_i) = \E(\varepsilon_i^2) = 1$, $\E(\varepsilon_1\varepsilon_2) = 0$. Поэтому:
+Заметим, что $\Var(\varepsilon_i) = \E(\varepsilon_i^2) = 1$, $\E(\varepsilon_1\varepsilon_2) = 0$. Поэтому:
 \[
 \E(\hb) = \beta, \hspace{3mm} \Var(\hb) = \Var\left(\beta + \frac{\varepsilon_1 + 2\varepsilon_2}{5} \right) = \frac{5\Var(\varepsilon_i)}{25} = \frac{1}{5}, \hspace{3mm} \E(RSS) = 1
 \]
@@ -995,7 +985,10 @@ y_0 = \hb_1 + \hb_2x_0
 \end{enumerate}
 
 \begin{sol}
-Не прав. Ковариация $\Cov(y_i,\hy_i)$ зависит от $i$, это не одно неизвестное число, для которого можно предложить одну оценку.
+\begin{enumerate}
+\item Не прав. Ковариация $\Cov(y_i,\hy_i)$ зависит от $i$, это не одно неизвестное число, для которого можно предложить одну оценку.
+\item
+\end{enumerate}
 \end{sol}
 \end{problem}
 
@@ -1502,20 +1495,20 @@ x_n\\
 
 
 \begin{sol}
-Известно, что для парной регрессии $t_{\hb_2}^2 = \frac{R^2}{(1 - R^2)/(n-2)}$. Поэтому из выражения $t_{\hb_2}^2 = \frac{0.05^2}{(1 - 0.05^2)/(n-2)} = \frac{0.05^2 (n-2)}{1 - 0.05^2}$ становится очевидным, что при надлежащем выборе числа наблюдений можно сделать величину $t_{\hb_2}$ сколь угодно большой.
+Известно, что для парной регрессии $t_2^2 = \frac{R^2}{(1 - R^2)/(n-2)}$. Поэтому из выражения $t_2^2 = \frac{0.05^2}{(1 - 0.05^2)/(n-2)} = \frac{0.05^2 (n-2)}{1 - 0.05^2}$ становится очевидным, что при надлежащем выборе числа наблюдений можно сделать величину $t_{\hb_2}$ сколь угодно большой.
 
 Например, сгенерируем такие данные искусственно:
-<<>>=
+<<"small_r2_big_t">>=
 set.seed(777) # на удачу!
-x <- rnorm(100000, mean=0, sd=1)
-eps <- rnorm(100000, mean=0, sd=10)
-y <- 0+1*x + eps
-model <- lm(y~x)
+x <- rnorm(100000, mean = 0, sd = 1)
+eps <- rnorm(100000, mean = 0, sd = 10)
+y <- 0 + 1 * x + eps
+model <- lm(y ~ x)
 report <- summary(model)
 report$r.squared
 @
 
-Здесь $R^2=\Sexpr{report$r.squared}$, а $t=\Sexpr{report$coefficients[2,3]}$.
+Здесь $R^2=\Sexpr{round(report$r.squared, 2)}$, а $t=\Sexpr{round(report$coefficients[2,3], 2)}$.
 
 \end{sol}
 \end{problem}
@@ -1561,25 +1554,25 @@ $x_i \equiv X_i -  \overline{X}$, $i = 1, \ldots, n$
 
 $y_i = \hb_2 x_i + \hat{\e}_i$
 
-$\textbf{y} = \hb_2 \textbf{x} + \hat{\e}$, где $\textbf{y} = \begin{bmatrix}
+$y = \hb_2 x + \hat{\e}$, где $y = \begin{bmatrix}
 y_1 & \ldots & y_n
-\end{bmatrix}'$, $\textbf{x} = \begin{bmatrix}
+\end{bmatrix}'$, $x = \begin{bmatrix}
 x_1 & \ldots & x_n
 \end{bmatrix}'$, $\e = \begin{bmatrix}
 \e_1 & \ldots & \e_n
 \end{bmatrix}'$
 
-$\textbf{x}' \textbf{y} = \hb_2 \textbf{x}' \textbf{x} + \underbrace{\textbf{x}' \hat{\e}}_{=0}$
+$x' y = \hb_2 x' x + \underbrace{x' \hat{\e}}_{=0}$
 
-\begin{equation}
-\label{task20:direct_ols}\hb_2 = \frac{\textbf{x}' \textbf{y}}{\textbf{x}' \textbf{x}}
-\end{equation}
+\[
+\label{task20:direct_ols}\hb_2 = \frac{x' y}{x' x}
+\]
 
 Аналогично получаем, что в обратной регрессии $X_i = \beta_3 + \beta_4 Y_i + \xi_i$, $i = 1, \ldots, n$
 
-\begin{equation}
-\label{task20:reverse_ols}\hb_4 = \frac{\textbf{y}' \textbf{y}}{\textbf{y}' \textbf{y}}
-\end{equation}
+\[
+\label{task20:reverse_ols}\hb_4 = \frac{x' y}{y'y}
+\]
 
 $ESS = (\hat{Y} - \overline{Y}_i)'(\hat{Y} - \overline{Y}_i)$
 
@@ -1589,16 +1582,16 @@ $ESS = (\hat{Y} - \overline{Y}_i)'(\hat{Y} - \overline{Y}_i)$
 
 $\hat{Y} - \overline{Y}_i = (P - \pi)Y = (I - \pi)(P - \pi)Y = (I-\pi)(\hat{Y} - \overline{Y}_i)$.
 
-Далее, $\hat{Y} - \overline{Y}_i = (I - \pi)(\hat{Y} - \overline{Y}_i) = (I - \pi)(\hb_1 + \hb_2 X - \overline{Y}_i) = \hb_2 \textbf{x}$
+Далее, $\hat{Y} - \overline{Y}_i = (I - \pi)(\hat{Y} - \overline{Y}_i) = (I - \pi)(\hb_1 + \hb_2 X - \overline{Y}_i) = \hb_2 x$
 
-Значит, $ESS = \hb_2^2 \textbf{x}' \textbf{x}$.
+Значит, $ESS = \hb_2^2 x' x$.
 
 Получаем:
-\begin{equation}
-\label{task20:corr}R^2 = \frac{ESS}{TSS} = \frac{\hb_2^2 \textbf{x}' \textbf{x}^{(2)}}{\textbf{y}' \textbf{y}} = \frac{\textbf{x}' \textbf{y}^{(2)}}{(\textbf{x}' \textbf{x})(\textbf{y}' \textbf{y})} = \Corr^2(X, Y)
-\end{equation}
+\[
+\label{task20:corr}R^2 = \frac{ESS}{TSS} = \frac{\hb_2^2 x' x^{(2)}}{y' y} = \frac{x' y^{(2)}}{(x' x)(y' y)} = \Corr^2(X, Y)
+\]
 
-Заметим также, что из формул (\ref{task20:direct_ols}), (\ref{task20:reverse_ols}) и (\ref{task20:corr}) следует, что $R^2 = \hb_2 \hb_4$.
+Заметим также, что $R^2 = \hb_2 \hb_4$.
 
 Если $\Corr^2(X, Y) = 1$, то $R^2 = \hb_2 \hb_4 = 1$.
 
@@ -1843,7 +1836,7 @@ write.mtable(mt, forLaTeX=TRUE)
 \begin{sol}
 \begin{enumerate}
 \item $R^2$ упал до нуля
-\item Да, можно. Если добавить точку далеко слева внизу от исходного набора данных, то наклон линии регрессии будет положительный. Если — далеко справа внизу, то отрицательный. Будем двигать точку так, чтобы поймать нулевой наклон прямой. Получим $ESS=0$.
+\item Да, можно. Если добавить точку далеко слева внизу от исходного набора данных, то наклон линии регрессии будет положительный. Если далеко справа внизу, то отрицательный. Будем двигать точку так, чтобы поймать нулевой наклон прямой. Получим $ESS=0$.
 \end{enumerate}
 \end{sol}
 \end{problem}

@@ -104,10 +104,10 @@ xtable(cars.vcov)
 
 
 \begin{problem}
-Для модели $y_i=\beta x_i+\e$ рассмотрите модель Ridge regression с коэффициентом $\lambda$.
+Для модели $y_i=\beta x_i+\e$ рассмотрите модель гребневой регрессии с коэффициентом $\lambda$.
 \begin{enumerate}
 \item Выведите формулу для $\hb_{RR}$
-\item Найдите $\E(\hb_{RR})$, смещение оценки $\hb_{RR}$,
+\item Найдите $\E(\hb_{RR})$, смещение оценки $\hb_{RR}$
 \item Найдите $\Var(\hb_{RR})$, $MSE(\hb_{RR})$
 \item Всегда ли оценка $\hb_{RR}$ смещена?
 \item Всегда ли оценка $\hb_{RR}$ имеет меньшую дисперсию, чем $\hb_{ols}$?
