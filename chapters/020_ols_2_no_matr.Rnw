@@ -315,7 +315,7 @@ $
 \[
 \frac{(RSS_r-RSS_{un})/q}{RSS_{un}/(n-k)} \sim F_{q, n-k}
 \]
-где $q$ — количество ЛНЗ ограничений (в нашем случае $q=1$), $n$ — количество наблюдений (одинаковое для обеих моделей) и $k$ —  количество оцениваемых коэффициентов в неограниченной модели ($k=2$). Итак, $\beta_1 = 1-\beta_2$:
+где $q$ — количество линейно-независимых ограничений (в нашем случае $q=1$), $n$ — количество наблюдений (одинаковое для обеих моделей) и $k$ —  количество оцениваемых коэффициентов в неограниченной модели ($k=2$). Итак, $\beta_1 = 1-\beta_2$:
 
 \[
 RSS = \sum_{i=1}^5 (y_i-1+\beta_2 - \beta_2x_i)^2 \rightarrow \min\limits_{\beta_2}
@@ -1767,15 +1767,13 @@ $y$ & $x$ \\
 
 \begin{sol}
 <<results="asis">>=
-df1 <- data.frame(x = c(1,2,3,4), y = c(5,3,3,4) )
-df2 <- data.frame(y = rep(df1$y,10), x = rep(df1$x,10))
-m1 <- lm(data=df1, y~x)
-m2 <- lm(data=df2, y~x)
-library(memisc)
-mt <- mtable(m1,m2,
-  summary.stats=c("N",
-    "Deviance","R-squared", "sigma", "F", "p"))
-write.mtable(mt, forLaTeX=TRUE)
+df1 <- data.frame(x = c(1, 2, 3, 4), y = c(5, 3, 3, 4) )
+df2 <- data.frame(y = rep(df1$y, 10), x = rep(df1$x, 10))
+m1 <- lm(data=df1, y ~ x)
+m2 <- lm(data=df2, y ~ x)
+mt <- mtable(m1, m2, summary.stats = c("N",
+    "Deviance", "R-squared", "sigma", "F", "p"))
+write.mtable(mt, forLaTeX = TRUE)
 @
 
 
