@@ -388,7 +388,7 @@ crit < 12.3
 
 \begin{enumerate}
 \item Несмещенная.
-\[\E \hb = \E \left(\frac{y_1}{x_1} \right)= \E \left(\frac{\beta x_1 + \e_1}{x_1}\right) = \beta + \frac{1}{x_1} \E e_1 = \beta \]
+\[\E \hb = \E \left(\frac{y_1}{x_1} \right)= \E \left(\frac{\beta x_1 + \e_1}{x_1}\right) = \beta + \frac{1}{x_1} \E \e_1 = \beta \]
 \item Несмещенная.
 \item Несмещенная.
 \item Несмещенная.
@@ -1841,7 +1841,7 @@ write.mtable(mt, forLaTeX = TRUE)
 
 
 \begin{problem}
-В рамках стандартных предпосылок на $\e_i$ найдите $\E(\bar\e)$ и $\Var(\bar\e)$. Вспомните неравенство Чебышёва и найдите $\plim \bar{\e}$, $\plim \frac{e_1+2\e_2+3\e_3 + \ldots + n\e_n}{1+2+3+\ldots+n}$
+В рамках стандартных предпосылок на $\e_i$ найдите $\E(\bar\e)$ и $\Var(\bar\e)$. Вспомните неравенство Чебышёва и найдите $\plim \bar{\e}$, $\plim \frac{\e_1+2\e_2+3\e_3 + \ldots + n\e_n}{1+2+3+\ldots+n}$
 
 
 \begin{sol}
