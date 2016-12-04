@@ -17,18 +17,22 @@
 \def \hCov{\widehat{\Cov}}
 \def \cN{\mathcal{N}}
 
-
 %% лаг
 \renewcommand{\L}{\mathrm{L}}
+
+
+
+
+
 
 %% алая и белая розы
 %% запускается так: \WhiteRose[масштаб], например, \WhiteRose[0.5]
 \newcommand{\WhiteRose}[1]{\begingroup
-\setbox0=\hbox{\includegraphics[scale=#1]{/home/boris/science/econometrix/em301/roses/Yorkshire_rose.pdf}}%
+\setbox0=\hbox{\includegraphics[scale=#1]{Yorkshire_rose.pdf}}%
 \parbox{\wd0}{\box0}\endgroup}
 
 \newcommand{\RedRose}[1]{\begingroup
-\setbox0=\hbox{\includegraphics[scale=#1]{/home/boris/science/econometrix/em301/roses/Lancashire_rose.pdf}}%
+\setbox0=\hbox{\includegraphics[scale=#1]{Lancashire_rose.pdf}}%
 \parbox{\wd0}{\box0}\endgroup}
 
 \newcommand{\WhiteRoseLine}{

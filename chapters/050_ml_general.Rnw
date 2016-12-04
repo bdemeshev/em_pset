@@ -6,9 +6,9 @@
 
 Пусть
 
-$X = (X_1,\ldots,X_n)$ — случайная выборка
+$X = (X_1, \ldots, X_n)$ — случайная выборка
 
-$x = (x_1,\ldots,x_n)$ — реализация данной случайной выборки
+$x = (x_1, \ldots, x_n)$ — реализация данной случайной выборки
 
 $f_{X_i}(x_i, \theta)$ — плотность распределения случайной величины $X_i$, $i = 1,\ldots, n$
 
@@ -1179,6 +1179,78 @@ y_3
 \end{enumerate}
 
 \begin{sol}
+\end{sol}
+\end{problem}
+
+\begin{problem}
+Рассматривается модель линейной регрессии $Y_i = \mu + \e_i$, $i = 1, \, \ldots, \, n$, где $\e_i$ — случайные ошибки, представляющие собой независимые нормально распределенные случайные величины с нулевым математическим ожиданием и дисперсией $\sigma^2$. При помощи метода максимального правдоподобия найдите оценки неизвестных параметров $\mu$ и  $\sigma^2$.
+
+\begin{sol}
+$\widehat{\mu} = \tfrac{1}{n}\sum_{i=1}^{n}Y_i = \bar{Y}$, \;\; $\hs^2 = \tfrac{1}{n}\sum_{i=1}^{n}\bigl(Y_i - \bar{Y}\bigr)^2 = \tfrac{RSS}{n}$.
+\end{sol}
+\end{problem}
+
+\begin{problem}
+Рассматривается модель линейной регрессии $Y_i = \beta x_i + \e_i$, $i = 1, \, \ldots, \, n$, где $\e_i$ — случайные ошибки, представляющие собой независимые нормально распределенные случайные величины с нулевым математическим ожиданием и дисперсией $\sigma^2$. При помощи метода максимального правдоподобия найдите оценки неизвестных параметров $\beta$ и  $\sigma^2$.
+
+\begin{sol}
+$\hb = \tfrac{\bigl. \sum_{i=1}^{n}x_i Y_i}{\bigl. \sum_{i=1}^{n}x_i^2}$, \;\; $\hs^2 = \tfrac{1}{n}\sum_{i=1}^{n}\bigl(Y_i - \hb x_i\bigr)^2 = \tfrac{RSS}{n}$.
+\end{sol}
+\end{problem}
+
+\begin{problem}
+Рассматривается модель линейной регрессии $Y_i = \beta / x_i + \e_i$, $i = 1, \, \ldots, \, n$, где $\e_i$ — случайные ошибки, представляющие собой независимые нормально распределенные случайные величины с нулевым математическим ожиданием и дисперсией $\sigma^2$. При помощи метода максимального правдоподобия найдите оценки неизвестных параметров $\beta$ и  $\sigma^2$.
+
+\begin{sol}
+$\hb = \tfrac{\bigl. \sum_{i=1}^{n}\tfrac{Y_i}{x_i}}{\bigl. \sum_{i=1}^{n}\tfrac{1}{x_i^2}}$, \;\; $\hs^2 = \tfrac{1}{n}\sum_{i=1}^{n}\bigl(Y_i - \hb / x_i\bigr)^2 = \tfrac{RSS}{n}$.
+\end{sol}
+\end{problem}
+
+\begin{problem}
+Рассматривается модель линейной регрессии $Y_i = \theta x_i + (1 - \theta) z_i + \e_i$, $i = 1, \, \ldots, \, n$, где $x_i$ и $z_i$ — заданные числа, а $\e_i$ — случайные ошибки, представляющие собой независимые нормально распределенные случайные величины с нулевым математическим ожиданием и дисперсией $\sigma^2$. При помощи метода максимального правдоподобия найдите оценки неизвестных параметров $\theta$ и  $\sigma^2$.
+
+\begin{sol}
+Поскольку $\e_i \sim N(0, \, \sigma^2)$, то $Y_i = \theta x_i + (1 - \theta) z_i + \e_i \sim N(\theta x_i + (1 - \theta) z_i, \, \sigma^2)$, а значит,
+\[
+    f_{Y_i}(y_i; \, \theta, \, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\biggl\{-\tfrac{\bigl(y_i - \theta x_i - (1 - \theta) z_i\bigr)^2}{2\sigma^2}\biggr\} \text{, \quad} i = 1, \, \ldots, \, n \text{.}
+\]
+Стало быть, функция правдоподобия имеет вид
+\[
+    L(y_1, \, \ldots, \, y_n; \, \theta, \, \sigma^2) = f_{Y_1, \, \ldots, \, Y_n}(y_1, \, \ldots, \, y_n; \, \theta, \, \sigma^2) =
+\]
+\[
+    = \prod_{i=1}^{n}f_{Y_i}(y_i; \, \theta, \, \sigma^2) = \prod_{i=1}^{n}\frac{1}{\sqrt{2\pi\sigma^2}} \exp\biggl\{-\tfrac{\bigl(y_i - \theta x_i - (1 - \theta) z_i\bigr)^2}{2\sigma^2}\biggr\} =
+\]
+\[
+    = (2\pi)^{-n/2} \cdot (\sigma^2)^{-n/2} \cdot \exp\biggl\{-\tfrac{\sum_{i=1}^{n}\bigl(y_i - \theta x_i - (1 - \theta) z_i\bigr)^2}{2\sigma^2}\biggr\} \text{,}
+\]
+а значит, логарифмическая функция правдоподобия
+\[
+    l(y_1, \, \ldots, \, y_n; \, \theta, \, \sigma^2) = -\tfrac{n}{2}\ln{2\pi} -\tfrac{n}{2}\ln{\sigma^2} -\tfrac{\sum_{i=1}^{n}\bigl(y_i - \theta x_i - (1 - \theta) z_i\bigr)^2}{2\sigma^2} \text{.}
+\]
+Найдем точку максимума логарифмической функции правдоподобия:
+\[
+    \left\{
+      \begin{array}{ll}
+        \biggl. \frac{\partial l}{\partial \theta} = 0 \text{,} \\
+                \frac{\partial l}{\partial \sigma^2} = 0 \text{;}
+      \end{array}
+    \right. \;\; \Leftrightarrow \;\;
+    \left\{
+      \begin{array}{ll}
+        \biggl. \frac{\partial l}{\partial \theta} = -\tfrac{\sum_{i=1}^{n}2\bigl(y_i - \theta x_i - (1 - \theta) z_i\bigr)\cdot \bigl(- x_i + z_i\bigr)}{2\sigma^2} = 0 \text{,} \\
+                \frac{\partial l}{\partial \sigma^2} = -\tfrac{n}{2\sigma^2} +\tfrac{\sum_{i=1}^{n}\bigl(y_i - \theta x_i - (1 - \theta) z_i\bigr)^2}{2\sigma^4} \text{.}
+      \end{array}
+    \right.
+\]
+Решением первого уравнения системы является
+\[
+    \widehat{\theta} = \frac{\sum_{i=1}^{n}(x_i - z_i)(y_i - z_i)}{\sum_{i=1}^{n}(x_i - z_i)^2} \text{.}
+\]
+Выражая из второго уравнения системы параметр $\sigma^2$ и подставляя в полученную формулу вместо параметра $\theta$ найденную выше оценку $\widehat{\theta}$, приходим к выражению для оценки параметра~$\sigma^2$:
+\[
+    \hs^2 = \tfrac{1}{n}\sum_{i=1}^{n}\bigl(y_i - \widehat{\theta} x_i - (1 - \widehat{\theta}) z_i\bigr)^2 \text{.}
+\]
 \end{sol}
 \end{problem}
 
