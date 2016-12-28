@@ -45,12 +45,12 @@ $t$-статистики
 Решение в R:
 <<>>=
 df <- 1:200
-a <- qchisq(0.1,df)
-b <- qchisq(0.9,df)
-c <- b/a
-d <- 87.942/45
-penalty <- (c-d)^2
-df.ans <- df[which(penalty==min(penalty))]
+a <- qchisq(0.1, df)
+b <- qchisq(0.9, df)
+c <- b / a
+d <- 87.942 / 45
+penalty <- (c - d)^2
+df.ans <- df[which(penalty == min(penalty))]
 @
 Количество степеней свободы $n-5$ должно быть равно $\verb|df.ans|=\Sexpr{df.ans}$.
 

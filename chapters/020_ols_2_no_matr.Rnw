@@ -762,10 +762,11 @@ qt(0.005, df = 43)
 \def\arraystretch{1.5}
 
 \begin{center}
-\begin{tabular}{c|c|c|c|c}
+\begin{tabular}{c|cccc}
+\toprule
 $\hb$ & $\beta - \frac{3}{5}$ & $\beta - \frac{1}{5}$ & $\beta + \frac{1}{5}$ & $\beta + \frac{3}{5}$ \\
-\hline
-$\mathbf{P}(\cdot)$ & $\frac{1}{4}$ & $\frac{1}{4}$ & $\frac{1}{4}$ & $\frac{1}{4}$
+$\mathbf{P}(\cdot)$ & $\frac{1}{4}$ & $\frac{1}{4}$ & $\frac{1}{4}$ & $\frac{1}{4}$ \\
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -775,10 +776,11 @@ RSS = (y_1 - \hy_1)^2 + (y_2 - \hy_2)^2 = \frac{\varepsilon_1^2 + 4\varepsilon_1
 \]
 
 \begin{center}
-\begin{tabular}{c|c|c}
-$RSS$ & $\frac{7}{5}$ & $\frac{3}{5}$ \\[2pt]
-\hline
-$\mathbf{P}(\cdot)$ & $\frac{1}{2}$ & $\frac{1}{2}$\\[2pt]
+\begin{tabular}{c|cc}
+\toprule
+$RSS$ & $\frac{7}{5}$ & $\frac{3}{5}$ \\
+$\mathbf{P}(\cdot)$ & $\frac{1}{2}$ & $\frac{1}{2}$\\
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -788,10 +790,11 @@ TSS = \left( \frac{\varepsilon_1 -\varepsilon_2-\beta}{2} \right)^2 + \left( \fr
 \]
 
 \begin{center}
-\begin{tabular}{c|c|c|c}
-$\hb$ & $ \frac{\beta^2}{2}$ & $\frac{(\beta-2)^2}{2}$ & $\frac{(\beta+2)^2}{2}$\\[2pt]
-\hline
-$\mathbf{P}(\cdot)$ & 0.5  & $\frac{1}{4}$ & $\frac{1}{4}$\\[2pt]
+\begin{tabular}{c|ccc}
+\toprule
+$\hb$ & $ \frac{\beta^2}{2}$ & $\frac{(\beta-2)^2}{2}$ & $\frac{(\beta+2)^2}{2}$\\
+$\mathbf{P}(\cdot)$ & 0.5  & $\frac{1}{4}$ & $\frac{1}{4}$\\
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1747,12 +1750,14 @@ y_i = \beta_1 + \lambda + \beta_2x_i + \tilde{\varepsilon}_i, \hspace{2mm} \text
 У Эконометрессы Глафиры было четыре наблюдения и она решила оценить модель парной регрессии:
 
 \begin{tabular}{cc}
+\toprule
 $y$ & $x$ \\
-\hline
+\midrule
 5 & 1 \\
 4 & 2 \\
 4 & 3 \\
 3 & 4 \\
+\bottomrule
 \end{tabular}
 
 Эконометресса Анжелла решила, что четыре наблюдения — мало, и поэтому учла каждое наблюдение 10 раз, так что в результате у неё вышло 40 наблюдений.
@@ -1988,18 +1993,41 @@ $\Var(\bar\e)=\sigma^2/n$,  $\plim \bar{\e}=0$
 
 
 \begin{problem}
-  график. Две точки на прямой с положительным наклоном. Найти все $\hy_i$, $RSS$ и прочее
-\begin{sol}
-\end{sol}
-\end{problem}
-
-
-\begin{problem}
   Три точки, прямая $\hy_i = \hb_1 + \hb_2 x_i$. Даны два расстояния, надо найти третье.
 \begin{sol}
 \end{sol}
 \end{problem}
 
+\begin{problem}
+На работе Эконометресса Эвридика построила парную регрессию по трём наблюдениям. На листочек она переписала фактические значения $y_i$ и прогнозные $\hy_i$. К сожалению, когда Эвридика пришла домой, она обнаружила, что слишком неразборчиво записала два значения $\hy_i$:
+
+\begin{tabular}{rr}
+\toprule
+$y_i$ & $\hy_i$ \\
+\midrule
+$0$ & $5$ \\
+$10$ & ? \\
+$20$ & ? \\
+\bottomrule
+\end{tabular}
+
+\begin{enumerate}
+\item Восстановите пропущенные значения
+\item Найдите $RSS$, $ESS$, $TSS$, $R^2$
+\end{enumerate}
+
+
+\begin{sol}
+Остатки $\hat u_i = y_i - \hy_i$ должны быть ортогональны вектору из единичек и вектору $\hy$. То есть получаем систему уравнений
+\[
+\begin{cases}
+\sum_i (y_i - \hy_i) = 0 \\
+\sum_i (y_i - \hy_i) \hy_i = 0 \\
+\end{cases}
+\]
+
+\end{sol}
+\end{problem}
 
 
 
