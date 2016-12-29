@@ -10,6 +10,11 @@
 
 \begin{sol}
 Даешь симуляции!
+
+<<include=FALSE>>=
+tikz("../R_plots/uniform_errors.tikz", standAlone = FALSE, bareBones = TRUE)
+@
+
 <<"uniform_errors", include = FALSE>>=
 n <- 100 # количество наблюдений
 m <- 100 # можно менять количество прогонов
@@ -34,7 +39,6 @@ for(i in 1:m)
   Cov[i] <- vcov(lm(y ~ x))[1, 2]
 }
 
-tikz("../R_plots/uniform_errors.tikz", standAlone = FALSE, bareBones = TRUE)
 palette(c("ForestGreen", "olivedrab", "SkyBlue", "tomato3", "navy", "brown"))
 par(mfrow = c(2,3))
 
@@ -47,6 +51,9 @@ for(i in 1:ncol(toPlot))           # построим все одним махо
        xlab = colnames(toPlot)[i], ylim = c(0, max(density(toPlot[, i])$y)) )
   lines(density(toPlot[, i]), col = i, lwd = 4)
 }
+@
+
+<<include=FALSE>>=
 invisible(dev.off())
 @
 
@@ -1974,19 +1981,94 @@ $\Var(\bar\e)=\sigma^2/n$,  $\plim \bar{\e}=0$
   \begin{enumerate}
   \item Добавляем средние арифметические, $(\bar x, \bar y)$
   \item Да, если зафиксировать добавляемый $y_{+}$ и плавно менять добавляемый $x_{+}$, то можно поймать момент, когда новый наклон совпадёт со старым.
-  \item Возьмём произвольный набор точек. Добавим точку «от фонаря». Помеяется наклон и новая прямая пересечёт старую. Перенесём вдоль оси $x$ точки так, чтобы новая точка пересечения легла на вертикальную ось.
+  \item Возьмём произвольный набор точек. Добавим точку «от фонаря». Поменяется наклон и новая прямая пересечёт старую. Перенесём вдоль оси $x$ точки так, чтобы новая точка пересечения легла на вертикальную ось.
   \end{enumerate}
 \end{sol}
 \end{problem}
 
 \begin{problem}
-  график. Две точки на прямой с нулевым наклоном. Найти все $\hy_i$, $RSS$ и прочее
+На плоскости изображены оба наблюдения:
+
+<<"two_points_zero_slope", echo=FALSE>>=
+tikz("../R_plots/two_points_zero_slope.tikz", standAlone = FALSE, bareBones = TRUE)
+data_2d <- data_frame(
+  x = c(10, 20),
+  y = c(7, 7))
+
+qplot(data = data_2d, x = x, y = y) + theme_bw() +
+  xlab("$x_i$") + ylab("$y_i$") +
+  scale_y_continuous(limits = c(0, 15)) +
+  scale_x_continuous(limits = c(0, 30))
+invisible(dev.off())
+@
+
+<<eval=FALSE>>=
+data_2d <- data_frame(
+  x = c(10, 20),
+  y = c(7, 7))
+
+qplot(data = data_2d, x = x, y = y) + theme_bw() +
+  xlab("$x_i$") + ylab("$y_i$") +
+  scale_y_continuous(limits = c(0, 15)) +
+  scale_x_continuous(limits = c(0, 30))
+@
+
+
+\begin{figure}
+\begin{tikzpicture}[scale = 0.025]
+\input{R_plots/two_points_zero_slope.tikz}
+\end{tikzpicture}
+\end{figure}
+
+\begin{enumerate}
+\item Проведите линию регрессии
+\item Найдите все $\hy_i$, $RSS$, $R^2$
+\end{enumerate}
+
 \begin{sol}
 \end{sol}
 \end{problem}
 
 \begin{problem}
-  график. Две точки на прямой с положительным наклоном. Найти все $\hy_i$, $RSS$ и прочее
+На плоскости изображены оба наблюдения:
+
+<<"two_points_positive_slope", echo=FALSE>>=
+tikz("../R_plots/two_points_positive_slope.tikz", standAlone = FALSE, bareBones = TRUE)
+data_2d <- data_frame(
+  x = c(10, 20),
+  y = c(7, 12))
+
+qplot(data = data_2d, x = x, y = y) + theme_bw() +
+  xlab("$x_i$") + ylab("$y_i$") +
+  scale_y_continuous(limits = c(0, 20)) +
+  scale_x_continuous(limits = c(0, 30))
+invisible(dev.off())
+@
+
+<<eval=FALSE>>=
+data_2d <- data_frame(
+  x = c(10, 20),
+  y = c(7, 12))
+
+qplot(data = data_2d, x = x, y = y) + theme_bw() +
+  xlab("$x_i$") + ylab("$y_i$") +
+  scale_y_continuous(limits = c(0, 20)) +
+  scale_x_continuous(limits = c(0, 30))
+@
+
+
+
+\begin{figure}
+\begin{tikzpicture}[scale = 0.025]
+\input{R_plots/two_points_positive_slope.tikz}
+\end{tikzpicture}
+\end{figure}
+
+\begin{enumerate}
+\item Проведите линию регрессии
+\item Найдите $RSS$, $R^2$
+\end{enumerate}
+
 \begin{sol}
 \end{sol}
 \end{problem}
@@ -2029,6 +2111,59 @@ $20$ & ? \\
 \end{sol}
 \end{problem}
 
+\begin{problem}
+На плоскости изображены наблюдения и линия регрессии:
+
+
+
+<<"regression_on_plot", echo=FALSE>>=
+tikz("../R_plots/regression_on_plot.tikz", standAlone = FALSE, bareBones = TRUE)
+set.seed(94)
+n_obs <- 20
+data_2d <- data_frame(
+  x = -20 + rbinom(n_obs, size = 50, prob = 0.5),
+  y = 5 + 3 * x + rbinom(n_obs, size = 160, prob = 0.5))
+
+x_bar <- mean(data_2d$x)
+
+qplot(data = data_2d, x = x, y = y) + theme_bw() +
+  scale_x_continuous(breaks = c(0, data_2d$x[20], x_bar),
+                     labels = c("$0$", "$x_{20}$", "$\\bar x$")) +
+  stat_smooth(method = "lm", se = FALSE, col = I("gray")) +
+  xlab("") + ylab("$y_i$")
+invisible(dev.off())
+@
+
+<<eval=FALSE>>=
+set.seed(94)
+n_obs <- 20
+data_2d <- data_frame(
+  x = -20 + rbinom(n_obs, size = 50, prob = 0.5),
+  y = 5 + 3 * x + rbinom(n_obs, size = 160, prob = 0.5))
+
+x_bar <- mean(data_2d$x)
+
+qplot(data = data_2d, x = x, y = y) + theme_bw() +
+  scale_x_continuous(breaks = c(0, data_2d$x[20], x_bar),
+                     labels = c("$0$", "$x_{20}$", "$\\bar x$")) +
+  stat_smooth(method = "lm", se = FALSE, col = I("gray")) +
+  xlab("") + ylab("$y_i$")
+@
+
+
+
+\begin{figure}
+\begin{tikzpicture}[scale = 0.025]
+\input{R_plots/regression_on_plot.tikz}
+\end{tikzpicture}
+\end{figure}
+
+
+Изобразите на плоскости $\hat y_{20}$, $y_{20}$, $\bar y$, $\hat u_{20}$, $\hb_1$.
+\begin{sol}
+
+\end{sol}
+\end{problem}
 
 
 

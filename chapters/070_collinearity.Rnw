@@ -31,16 +31,24 @@
 \begin{problem}
 Исследуем зависимость длины тормозного пути автомобиля от скорости по историческим данным 1920-х годов.
 
-
-
-<<"cars_scatter", include = FALSE>>=
-h <- cars
+<<"cars_scatter", include=FALSE>>=
 tikz("../R_plots/cars_scatter.tikz", standAlone = FALSE, bareBones = TRUE)
+h <- cars
 ggplot(h, aes(x = speed, y = dist)) + geom_point() +
     labs(title = "Зависимость длины тормозного пути",
     x = "Скорость, миль в час", y = "Длина пути, футов")
 speed.mean <- mean(h$speed)
 invisible(dev.off())
+@
+
+
+<<eval=FALSE>>=
+tikz("../R_plots/cars_scatter.tikz", standAlone = FALSE, bareBones = TRUE)
+h <- cars
+ggplot(h, aes(x = speed, y = dist)) + geom_point() +
+    labs(title = "Зависимость длины тормозного пути",
+    x = "Скорость, миль в час", y = "Длина пути, футов")
+speed.mean <- mean(h$speed)
 @
 
 \begin{figure}

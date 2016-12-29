@@ -1,0 +1,148 @@
+% Created by tikzDevice version 0.10.1 on 2016-12-29 15:29:24
+% !TEX encoding = UTF-8 Unicode
+\definecolor{fillColor}{RGB}{255,255,255}
+\path[use as bounding box,fill=fillColor,fill opacity=0.00] (0,0) rectangle (505.89,505.89);
+\begin{scope}
+\path[clip] (  0.00,  0.00) rectangle (505.89,505.89);
+\definecolor{drawColor}{RGB}{255,255,255}
+\definecolor{fillColor}{RGB}{255,255,255}
+
+\path[draw=drawColor,line width= 0.6pt,line join=round,line cap=round,fill=fillColor] (  0.00,  0.00) rectangle (505.89,505.89);
+\end{scope}
+\begin{scope}
+\path[clip] ( 34.68, 32.00) rectangle (500.39,500.39);
+\definecolor{fillColor}{RGB}{255,255,255}
+
+\path[fill=fillColor] ( 34.68, 32.00) rectangle (500.39,500.39);
+\definecolor{drawColor}{gray}{0.92}
+
+\path[draw=drawColor,line width= 0.3pt,line join=round] ( 34.68,106.52) --
+	(500.39,106.52);
+
+\path[draw=drawColor,line width= 0.3pt,line join=round] ( 34.68,212.97) --
+	(500.39,212.97);
+
+\path[draw=drawColor,line width= 0.3pt,line join=round] ( 34.68,319.42) --
+	(500.39,319.42);
+
+\path[draw=drawColor,line width= 0.3pt,line join=round] ( 34.68,425.87) --
+	(500.39,425.87);
+
+\path[draw=drawColor,line width= 0.3pt,line join=round] (126.41, 32.00) --
+	(126.41,500.39);
+
+\path[draw=drawColor,line width= 0.3pt,line join=round] (267.54, 32.00) --
+	(267.54,500.39);
+
+\path[draw=drawColor,line width= 0.3pt,line join=round] (408.66, 32.00) --
+	(408.66,500.39);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] ( 34.68, 53.29) --
+	(500.39, 53.29);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] ( 34.68,159.75) --
+	(500.39,159.75);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] ( 34.68,266.20) --
+	(500.39,266.20);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] ( 34.68,372.65) --
+	(500.39,372.65);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] ( 34.68,479.10) --
+	(500.39,479.10);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] ( 55.85, 32.00) --
+	( 55.85,500.39);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] (196.97, 32.00) --
+	(196.97,500.39);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] (338.10, 32.00) --
+	(338.10,500.39);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] (479.22, 32.00) --
+	(479.22,500.39);
+\definecolor{drawColor}{RGB}{0,0,0}
+\definecolor{fillColor}{RGB}{0,0,0}
+
+\path[draw=drawColor,line width= 0.4pt,line join=round,line cap=round,fill=fillColor] (196.97,202.33) circle (  1.96);
+
+\path[draw=drawColor,line width= 0.4pt,line join=round,line cap=round,fill=fillColor] (338.10,308.78) circle (  1.96);
+\definecolor{drawColor}{gray}{0.20}
+
+\path[draw=drawColor,line width= 0.6pt,line join=round,line cap=round] ( 34.68, 32.00) rectangle (500.39,500.39);
+\end{scope}
+\begin{scope}
+\path[clip] (  0.00,  0.00) rectangle (505.89,505.89);
+\definecolor{drawColor}{gray}{0.30}
+
+\node[text=drawColor,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  0.80] at ( 29.73, 50.28) {0};
+
+\node[text=drawColor,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  0.80] at ( 29.73,156.73) {5};
+
+\node[text=drawColor,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  0.80] at ( 29.73,263.18) {10};
+
+\node[text=drawColor,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  0.80] at ( 29.73,369.63) {15};
+
+\node[text=drawColor,anchor=base east,inner sep=0pt, outer sep=0pt, scale=  0.80] at ( 29.73,476.08) {20};
+\end{scope}
+\begin{scope}
+\path[clip] (  0.00,  0.00) rectangle (505.89,505.89);
+\definecolor{drawColor}{gray}{0.20}
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] ( 31.93, 53.29) --
+	( 34.68, 53.29);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] ( 31.93,159.75) --
+	( 34.68,159.75);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] ( 31.93,266.20) --
+	( 34.68,266.20);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] ( 31.93,372.65) --
+	( 34.68,372.65);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] ( 31.93,479.10) --
+	( 34.68,479.10);
+\end{scope}
+\begin{scope}
+\path[clip] (  0.00,  0.00) rectangle (505.89,505.89);
+\definecolor{drawColor}{gray}{0.20}
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] ( 55.85, 29.25) --
+	( 55.85, 32.00);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] (196.97, 29.25) --
+	(196.97, 32.00);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] (338.10, 29.25) --
+	(338.10, 32.00);
+
+\path[draw=drawColor,line width= 0.6pt,line join=round] (479.22, 29.25) --
+	(479.22, 32.00);
+\end{scope}
+\begin{scope}
+\path[clip] (  0.00,  0.00) rectangle (505.89,505.89);
+\definecolor{drawColor}{gray}{0.30}
+
+\node[text=drawColor,anchor=base,inner sep=0pt, outer sep=0pt, scale=  0.80] at ( 55.85, 21.02) {0};
+
+\node[text=drawColor,anchor=base,inner sep=0pt, outer sep=0pt, scale=  0.80] at (196.97, 21.02) {10};
+
+\node[text=drawColor,anchor=base,inner sep=0pt, outer sep=0pt, scale=  0.80] at (338.10, 21.02) {20};
+
+\node[text=drawColor,anchor=base,inner sep=0pt, outer sep=0pt, scale=  0.80] at (479.22, 21.02) {30};
+\end{scope}
+\begin{scope}
+\path[clip] (  0.00,  0.00) rectangle (505.89,505.89);
+\definecolor{drawColor}{RGB}{0,0,0}
+
+\node[text=drawColor,anchor=base,inner sep=0pt, outer sep=0pt, scale=  1.00] at (267.54,  7.98) {$x_i$};
+\end{scope}
+\begin{scope}
+\path[clip] (  0.00,  0.00) rectangle (505.89,505.89);
+\definecolor{drawColor}{RGB}{0,0,0}
+
+\node[text=drawColor,rotate= 90.00,anchor=base,inner sep=0pt, outer sep=0pt, scale=  1.00] at ( 13.04,266.20) {$y_i$};
+\end{scope}

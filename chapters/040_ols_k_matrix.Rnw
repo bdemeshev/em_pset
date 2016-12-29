@@ -2083,5 +2083,14 @@ $d'C^{-1}d$
 \end{sol}
 \end{problem}
 
+\begin{problem}
+  Имеется всего два наблюдения, $y_1 = 1$, $y_2 = -3$. С помощью критериев $AIC$ и $BIC$ сравните две модели. Модель А: $y_i \sim \cN(0; 1)$ и независимы, модель Б: $y_i \sim \cN(\mu; 1)$ и независимы.
+\begin{sol}
+  $RSS_A = 1^2 + (-3)^2 = 10$, $RSS_B= 2^2 + 2^2 = 8$. $k_A = 0$, $k_B=1$.
+\end{sol}
+\end{problem}
+
+
+
 
 \Closesolutionfile{solution_file}

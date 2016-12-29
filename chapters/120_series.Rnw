@@ -17,7 +17,7 @@
 \begin{problem}
 На графике представлены данные по уровню озера Гур\'{о}н в футах в 1875-1972 годах:
 
-<<include = FALSE>>=
+<<include=FALSE>>=
 level <- LakeHuron
 df <- data.frame(level, obs = 1875:1972)
 n <- nrow(df) # used later for answers
@@ -31,7 +31,7 @@ resids <- model$residuals
 resid.acf <- acf(resids, plot = FALSE)$acf
 @
 
-<<"huron_ts", warning = FALSE, message = FALSE>>=
+<<"huron_ts", warning=FALSE, message=FALSE>>=
 tikz("../R_plots/huron_level.tikz", standAlone = FALSE, bareBones = TRUE)
 ggplot(df, aes(x = obs, y = level)) + geom_line() +
     labs(x = "Год", y = "Уровень озера (футы)")
@@ -47,7 +47,7 @@ invisible(dev.off())
 
 График автокорреляционной и частной автокорреляционной функций:
 
-<<"huron_acf", warning = FALSE>>=
+<<"huron_acf", warning=FALSE>>=
 tikz("../R_plots/huron_acf.tikz", standAlone = FALSE, bareBones = TRUE)
 ggplot(acfs.df, aes(x = lag, y = acf, fill = acf.type)) +
     geom_bar(position = "dodge", stat = "identity") +

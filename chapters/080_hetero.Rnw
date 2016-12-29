@@ -69,12 +69,18 @@ $\Var(\e_i)=c x_i$
 \begin{problem}
 Диаграмма рассеяния стоимости квартиры в Москве (в 1000\$) и общей площади квартиры имеет вид:
 
-<<"flats_scatter", include = FALSE>>=
+<<"flats_scatter", include=FALSE>>=
 tikz("../R_plots/flats_scatter.tikz", standAlone = FALSE, bareBones = TRUE)
 ggplot(flats, aes(x = totsp, y = price)) + geom_point() +
     labs(x = "Общая площадь, кв. м.",
     y = "Цена квартиры, 1000\\$")
 invisible(dev.off())
+@
+
+<<eval=FALSE>>=
+ggplot(flats, aes(x = totsp, y = price)) + geom_point() +
+    labs(x = "Общая площадь, кв. м.",
+    y = "Цена квартиры, 1000\\$")
 @
 
 \begin{figure}
@@ -521,7 +527,10 @@ $$\hat{\beta_1} = \frac{\sum_{i=1}^n (y_i \sqrt{x_i}/\sigma_{\e})(\sqrt{x_i}/\si
 \begin{problem}
 Исследователь оценил регрессионную модель $y_i = \beta_1 + \beta_2 x_{i2} + \beta_3 x_{i3} + \beta_4 x_{i4} + \e_i$ и провёл диагностику различных проблемных явлений. Результаты его стараний приведены ниже:
 
-<<"residual_plot", include = FALSE>>=
+
+
+<<"residual_plot", include=FALSE>>=
+tikz("../R_plots/residual_plot.tikz", standAlone = FALSE, bareBones = TRUE)
 n <- 200
 x2 <- rnorm(n)
 x3 <- rnorm(n)
@@ -530,7 +539,6 @@ eps <- abs(x2)*rnorm(n)
 y <- 2 + 3 * x2 - 3 * x3 + 1 * x4 + eps
 model <- lm(y ~ x2 + x3 + x4)
 resid <- resid(model)
-tikz("../R_plots/residual_plot.tikz", standAlone = FALSE, bareBones = TRUE)
 plot1 <- qplot(x2, abs(resid),
   xlab = "Переменная $x_2$",
   ylab = "Модуль остатков")
@@ -541,6 +549,26 @@ plot2 <- qplot(head(resid, -1),
 grid.arrange(plot1, plot2, ncol = 2)
 invisible(dev.off())
 @
+
+<<eval=FALSE>>=
+n <- 200
+x2 <- rnorm(n)
+x3 <- rnorm(n)
+x4 <- rnorm(n)
+eps <- abs(x2)*rnorm(n)
+y <- 2 + 3 * x2 - 3 * x3 + 1 * x4 + eps
+model <- lm(y ~ x2 + x3 + x4)
+resid <- resid(model)
+plot1 <- qplot(x2, abs(resid),
+  xlab = "Переменная $x_2$",
+  ylab = "Модуль остатков")
+plot2 <- qplot(head(resid, -1),
+       tail(resid, -1),
+       xlab = "Остаток $\\varepsilon_{t-1}$",
+       ylab = "Остаток $\\varepsilon_{t}$")
+grid.arrange(plot1, plot2, ncol = 2)
+@
+
 
 
 \begin{figure}

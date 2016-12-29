@@ -166,6 +166,15 @@ qplot(data = df, x = x, y = z, col = y, shape = y) +
 invisible(dev.off())
 @
 
+<<eval=FALSE>>=
+set.seed(42)
+df <- data.frame(x = runif(400), z = runif(400))
+df$y <- factor(ifelse( df$x > 0.25 & df$z > 0.5, "yes", "no"))
+qplot(data = df, x = x, y = z, col = y, shape = y) +
+    geom_vline(xintercept = 0.25) + geom_hline(yintercept = 0.5)
+@
+
+
 \begin{figure}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/tree_scatter_data.tikz}
