@@ -9,14 +9,16 @@
 
 
 \begin{tabular}{ccc}
+\toprule
 $X$ & $0$ & $1$ \\
-\hline
 $\P()$ & $0.2$ & $0.8$ \\
+\bottomrule
 \end{tabular},
 \begin{tabular}{cccc}
+\toprule
 $Y$ & $0$ & $1$ & $5$ \\
-\hline
 $\P()$ & $0.2$ & $0.3$ & $0.5$ \\
+\bottomrule
 \end{tabular}
 
 

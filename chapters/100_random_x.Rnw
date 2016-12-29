@@ -60,10 +60,12 @@ x+y, \; x\in[0;1], \; y\in [0;1] \\
 Задан совместный закон распределения случайных величин $x$ и $\e$:
 
 \begin{tabular}{c|cccc}
+\toprule
  & $\e=-2$ & $\e=-1$ & $\e=1$ & $\e=-2$ \\
-\hline
+\midrule
 $x=1$ & 0.2 & 0.3 & 0 & 0 \\
 $x=2$ & 0 & 0 & 0.3 & 0.2 \\
+\bottomrule
 \end{tabular}
 
 Найдите $\E(\varepsilon)$, $\E(\varepsilon \mid x)$, $\Cov(\varepsilon,x)$, $\Cov(\varepsilon,x|x)$
