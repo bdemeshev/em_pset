@@ -2152,11 +2152,11 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
 
 
 
-\begin{figure}
+\begin{minipage}{\textwidth}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/regression_on_plot.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{minipage}
 
 
 \begin{enumerate}
@@ -2167,6 +2167,94 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
 Добавляемое наблюдение лежит на линии регрессии, поэтому ничего не изменится.
 \end{sol}
 \end{problem}
+
+
+\begin{problem}
+  Имеется всего два наблюдения, $y_1 = 1$, $y_2 = -3$. С помощью критериев $AIC$ и $BIC$ сравните две модели. Модель А: $y_i \sim \cN(0; 1)$ и независимы, модель Б: $y_i \sim \cN(\mu; 1)$ и независимы.
+\begin{sol}
+  $RSS_A = 1^2 + (-3)^2 = 10$, $RSS_B= 2^2 + 2^2 = 8$. $k_A = 0$, $k_B=1$.
+\end{sol}
+\end{problem}
+
+
+\begin{problem}
+Постройте парную регрессию по четырём наблюдениям:
+
+<<"4_observations", echo=FALSE>>=
+tikz("../R_plots/4_observations.tikz", standAlone = FALSE, bareBones = TRUE)
+data_2d <- data_frame(
+  x = c(1, 2, 2, 2),
+  y = c(3, 1, 2, 3))
+
+qplot(data = data_2d, x = x, y = y) + theme_bw() + 
+  scale_x_continuous(breaks = c(0, 1, 2),
+  labels = c("$0$", "$1$", "$2$")) +
+  xlab("$x_i$") + ylab("$y_i$")
+invisible(dev.off())
+@
+
+<<eval=FALSE>>=
+data_2d <- data_frame(
+  x = c(1, 2, 2, 2),
+  y = c(3, 1, 2, 3))
+
+qplot(data = data_2d, x = x, y = y) + theme_bw() +
+  scale_x_continuous(breaks = c(0, 1, 2),
+  labels = c("$0$", "$1$", "$2$")) +
+  xlab("$x_i$") + ylab("$y_i$")
+@
+
+\begin{minipage}{\textwidth}
+\begin{tikzpicture}[scale = 0.025]
+\input{R_plots/4_observations.tikz}
+\end{tikzpicture}
+\end{minipage}
+
+
+\begin{sol}
+$\hy_i = 4 - x_i$
+\end{sol}
+\end{problem}
+
+
+\begin{problem}
+Исследователь Василий изучает следующий случайный эксперимент. Подбрасывается 10 стандартных игральных кубиков. Количество выпавших единиц — случайная величина $X$, количество выпавших двоек — $Z$, суммарное количество четвёрок, пятёрок и шестёрок — $Y$. 
+
+
+Василий провёл данный эксперимент четыре раза и собрал фактические данные:
+\begin{tabular}{ccc}
+\toprule
+$x_i$ & $y_i$ & $z_i$ \\
+\midrule
+2 & 6 & 1 \\
+1 & 7 & 0 \\
+1 & 4 & 3 \\
+2 & 5 & 2 \\
+\bottomrule
+\end{tabular}
+
+Найдите:
+
+\begin{enumerate}
+\item Теоретическое математическое ожидание $\E(X)$ и выборочное среднее $\bar x$.
+\item Теоретическую дисперсию $\Var(X)$ и выборочную дисперсию $\hVar(x)$.
+\item Теоретическую ковариацию $\Cov(X, Y)$ и выборочную ковариацию $\hCov(x, y)$.
+\item Теоретическую корреляцию $\Corr(X, Y)$ и выборочную корреляцию $\hCorr(x, y)$.
+\item Истинные коэффициенты $\beta_1$ и $\beta_2$ в модели $y_i = \beta_1 + \beta_2 x_i + u_i$ и оценки коэффициентов $\hb_1$ и $\hb_2$.
+\item Истинные коэффициенты $\gamma_1$ и $\gamma_2$ в модели $x_i = \gamma_1 + \gamma_2 y_i + u_i$ и оценки коэффициентов $\hat\gamma_1$ и $\hat\gamma_2$.
+\item Как связаны между собой $\Corr(X, Y)$, $\beta_2$ и $\gamma_2$?
+\item Как связаны между собой $\hCorr(X, Y)$, $\hat\beta_2$ и $\hat\gamma_2$?
+\item Истинные коэффициенты $\alpha_1$, $\alpha_2$ и $\alpha_3$ в модели $y_i = \alpha_1 + \alpha_2 x_i + \alpha_3 z_i +  u_i$ и оценки коэффициентов $\hat\alpha_1$, $\hat\alpha_2$ и $\hat\alpha_3$.
+\item Истинные коэффициенты $\delta_1$, $\delta_2$ и $\delta_3$ в модели $x_i = \delta_1 + \delta_2 y_i + \delta_3 z_i +  u_i$ и оценки коэффициентов $\hat\delta_1$, $\hat\delta_2$ и $\hat\delta_3$.
+\item Теоретическую частную корреляцию $\pCorr(X, Y; Z)$ и выборочную частную корреляцию $\hpCorr(x, y; z)$.
+\end{enumerate}
+
+\begin{sol}
+$\E(X)=10/6$, $\Var(X)=50/6$.
+\end{sol}
+\end{problem}
+
+
 
 
 

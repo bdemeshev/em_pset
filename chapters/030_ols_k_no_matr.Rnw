@@ -1821,5 +1821,29 @@ $0$ и $1$
 \end{problem}
 
 
+\begin{problem}
+У эконометрессы Агнессы есть дамми-переменная $male_i$, равная 1 для мужчин, и дамми-переменная $female_i$, равная 1 для женщин. Зависимая переменная $y_i$ — доход индивида.
+\[
+A: \hy_i = \hat{\beta}male_i
+\]
+\[
+B: \hy_i = \hat{\gamma}female_i
+\]
+\[
+C: \hy_i = \hat{\alpha}_1male_i+\hat{\alpha}_2 female_i
+\]
+\[
+D: \hy_i =  \hat{\delta}_1 + \hat{\delta}_2male_i
+\]
+
+\begin{enumerate}
+\item Проинтерпретируйте оценки коэффициентов во всех регрессиях.
+\item Как связаны между собой оценки коэффициентов в регрессиях C и D?
+\end{enumerate}
+\begin{sol}
+\end{sol}
+\end{problem}
+
+
 
 \Closesolutionfile{solution_file}
