@@ -668,4 +668,13 @@ y^*_i = \tilde{y}_i\cdot3 + 7 \Rightarrow \mathbb{E}[y^*] = 7, \hspace{2mm} \mat
 \end{problem}
 
 
+
+\begin{problem}
+Эконометресса Анжела оценила две парных регрессии $\hy_i = 2 - 3 x_i$  и $\hat x_i = 5 - \frac{1}{12}y_i$. Найдите $R^2$ в каждой регрессии и выборочную корреляцию между $x_i$ и $y_i$.
+\begin{sol}
+  $R^2 = -3 \cdot \frac{-1}{13}=\frac{1}{4}$. Выборочная корреляция равна $-1/2$, так как коэффициенты отрицательные.
+\end{sol}
+\end{problem}
+
+
 \Closesolutionfile{solution_file}

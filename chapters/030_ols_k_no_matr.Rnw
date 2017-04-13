@@ -1845,5 +1845,22 @@ D: \hy_i =  \hat{\delta}_1 + \hat{\delta}_2male_i
 \end{problem}
 
 
+\begin{problem}
+  Рассмотрим множественную регрессию с $n$ наблюдениями, $k$ оцениваемыми коэффициентами регрессии и нормально распределёнными ошибками $u_i$. Исследователь Рустам хочет оценить неизвестный параметр $\sigma^2=\Var(u_i)$.
+  \begin{enumerate}
+    \item При каком $c$ оценка  $\hs^2=с\cdot RSS$ будет несмещённой для параметра $\sigma^2$?
+    \item При каком $c$ оценка  $\hs^2=с\cdot RSS$ будет обладать наименьшей среднеквадратичной ошибкой MSE?
+  \end{enumerate}
+
+\begin{sol}
+$c=1/(n-k)$.
+Заметим, что $RSS/\sigma^2 \sim \chi^2_{n-k}$, поэтому:
+\[
+MSE = \Var(\hs^2) + bias^2(\hs^2)=\sigma^4 \cdot (c^2 2(n-k) + (c(n-k)-1)^2).
+\]
+Минимизируя по $c$ получаем $с=1/(n-k+2)$.
+\end{sol}
+\end{problem}
+
 
 \Closesolutionfile{solution_file}

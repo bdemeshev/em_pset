@@ -52,7 +52,7 @@
 \bibliographystyle{plain} % стиль оформления ссылок
 
 
-%\ifdef{\JustPlot}{}{ % этот блок не включается в tikz-файлы по которым строятся графики
+
   \theoremstyle{definition}
   %\newtheorem{problem}{Задача}
   %\numberwithin{problem}{chapter}
@@ -81,7 +81,7 @@
         }%
         {%
         \end{myenum}}
-%} % end of justplot
+
 
 
 
