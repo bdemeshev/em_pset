@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_200]
+\Opensolutionfile{solution_file}[solutions/sols_200]
 % в квадратных скобках фактическое имя файла
 
 \chapter{Линейная алгебра}
@@ -432,6 +432,14 @@ $X'Xv=\lambda v$, следовательно $XX'Xv=Xv$ и $w=Xv$ — собст
 Если решений бесконечно много, то решение с наименьшей длиной — это $\beta=X(XX')^{-1}y$.
 \end{sol}
 \end{problem}
+
+\begin{problem}
+  Известно, что матрица $M$ идемпотентная. В каком случае она может быть обратимой?
+\begin{sol}
+  Только если $M=I$. Доказательство. Если $M^2=M$, и $M$ — обратима, то, домножив обе части равенства на $M^{-1}$, получим $M=I$.
+\end{sol}
+\end{problem}
+
 
 
 \Closesolutionfile{solution_file}

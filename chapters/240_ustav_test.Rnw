@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_240]
+\Opensolutionfile{solution_file}[solutions/sols_240]
 % в квадратных скобках фактическое имя файла
 
 \chapter{Устав проверки гипотез}
@@ -22,4 +22,3 @@
 
 Остальные фразы считаются неуставными.
 \Closesolutionfile{solution_file}
-

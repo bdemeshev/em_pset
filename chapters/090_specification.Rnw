@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_090]
+\Opensolutionfile{solution_file}[solutions/sols_090]
 % в квадратных скобках фактическое имя файла
 
 \chapter{Ошибки спецификации}

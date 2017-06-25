@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_010]
+\Opensolutionfile{solution_file}[solutions/sols_010]
 % в квадратных скобках фактическое имя файла
 
 \chapter{МНК без матриц и вероятностей}

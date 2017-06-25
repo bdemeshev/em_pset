@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_100]
+\Opensolutionfile{solution_file}[solutions/sols_100]
 % в квадратных скобках фактическое имя файла
 
 \chapter{Метод инструментальных переменных}

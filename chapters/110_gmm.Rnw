@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_110]
+\Opensolutionfile{solution_file}[solutions/sols_110]
 % в квадратных скобках фактическое имя файла
 
 \chapter{Обобщённый метод моментов и бутстрэп}

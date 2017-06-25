@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_220]
+\Opensolutionfile{solution_file}[solutions/sols_220]
 % в квадратных скобках фактическое имя файла
 
 \chapter{Многомерное нормальное распределение} % и квадратичные формы}
@@ -8,17 +8,17 @@
 Пусть $\e = (\e_1, \e_2, \e_3)'\sim N (0,I)$ и матрица $A$ представлена ниже. Найдите $\E(\e'A\e)$ и распределение случайной величины $\e'A\e$.
 
 \begin{enumerate}
-\item 
+\item
 $\begin{pmatrix} 2/3 & -1/3 & 1/3 \\ -1/3 & 2/3 & 1/3 \\ 1/3 & 1/3 & 2/3 \end{pmatrix}$
 <<results='asis', echo=FALSE>>=
 a <- matrix(c(2/3, -1/3, 1/3, -1/3, 2/3, 1/3, 1/3, 1/3, 2/3), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
 @
-\item 
+\item
 $\begin{pmatrix} 2/3 & -1/3 & -1/3 \\ -1/3 & 2/3 & -1/3 \\ -1/3 & -1/3 & 2/3 \end{pmatrix}$
 <<results='asis', echo=FALSE>>=
 e <- matrix(c(2/3, -1/3, -1/3, -1/3, 2/3, -1/3, -1/3, -1/3, 2/3), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
 @
-\item 
+\item
 $\begin{pmatrix} 1/3 & 1/3 & -1/3 \\ 1/3 & 1/3 & -1/3 \\ -1/3 & -1/3 & 1/3 \end{pmatrix}$
 <<results='asis', echo=FALSE>>=
 b <- matrix(c(1/3, 1/3, -1/3, 1/3, 1/3, -1/3, -1/3, -1/3, 1/3), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
@@ -48,12 +48,12 @@ $\begin{pmatrix} 1/2 & 1/2 & 0 \\ 1/2 & 1/2 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
 <<results='asis', echo=FALSE>>=
 j <- matrix(c(1/2, 1/2, 0, 1/2, 1/2, 0, 0, 0, 0), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
 @
-\item 
+\item
 $\begin{pmatrix} 0.8 & 0.4 & 0 \\ 0.4 & 0.2 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
 <<results='asis', echo=FALSE>>=
 c <- matrix(c(0.8, 0.4, 0, 0.4, 0.2, 0, 0, 0, 1), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
 @
-\item 
+\item
 $\begin{pmatrix} 0.2 & -0.4 & 0 \\ -0.4 & 0.8 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
 <<results='asis', echo=FALSE>>=
 d <- matrix(c(0.2, -0.4, 0, -0.4, 0.8, 0, 0, 0, 0), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
@@ -126,7 +126,7 @@ c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow = 4, ncol = 3, byrow = 
 \begin{enumerate}
 \item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$.
 \item Найдите $\E(\e'P\e)$.
-\item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$. 
+\item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$.
 \end{enumerate}
 
 
@@ -176,7 +176,7 @@ xmatrix(E)
 Пусть $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \end{pmatrix} \sim N (0,\sigma^2 I)$, $i = (1,\dots,1)'$ — вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$,
 $X$ — матрица размера ${n \times k}$, $P = X(X'X)^{-1}X'$. Найдите:
 \begin{enumerate}
-\item $\E(\e'(P - \pi)\e)$ 
+\item $\E(\e'(P - \pi)\e)$
 \item $\E(\e'(I - \pi)\e)$
 \item $\E(\e'P \e)$
 \item $\E(\sum_{i=1}^n {(\e_i - \bar{\e})}^2)$
@@ -197,7 +197,7 @@ m_a <- matrix(as.integer(c(4,1,1,1,3,1,1,1,2)), nrow = 3, ncol = 3, byrow = FALS
 
 \begin{enumerate}
 \item $\E(\e'A\e)$
-\item $\E(\e'(I - A)\e)$ 
+\item $\E(\e'(I - A)\e)$
 \end{enumerate}
 
 
@@ -212,11 +212,11 @@ m_a <- matrix(as.integer(c(4,1,1,1,3,1,1,1,2)), nrow = 3, ncol = 3, byrow = FALS
 x_1 & x_2\\
 \end{bmatrix} '$ — случайный вектор, имеющий двумерное нормальное распределение с математическим ожиданием $\mu =  \begin{bmatrix}
 1 & 2\\
-\end{bmatrix} '$ и ковариационной матрицей $\Sigma = 
+\end{bmatrix} '$ и ковариационной матрицей $\Sigma =
 \begin{bmatrix}
 2 & 1 \\
 1 & 2 \\
-\end{bmatrix} $. 
+\end{bmatrix} $.
 
 \begin{enumerate}
 \item Найдите $\Sigma^{-1}$
@@ -266,8 +266,8 @@ $A =  \begin{bmatrix}
 
 \begin{problem}
 Известно, что $\e\sim N(0,I)$, $\e=(\e_1,\e_2,\e_3)'$. Матрица $A=\left(\begin{matrix}
-2/3 & -1/3 & -1/3 \\ 
--1/3 & 2/3 & -1/3 \\ 
+2/3 & -1/3 & -1/3 \\
+-1/3 & 2/3 & -1/3 \\
 -1/3 & -1/3 & 2/3
 \end{matrix}\right)$.
 \begin{enumerate}
@@ -277,7 +277,7 @@ $A =  \begin{bmatrix}
 
 
 \begin{sol}
-по $\chi^2$-распределению 
+по $\chi^2$-распределению
 \end{sol}
 \end{problem}
 
@@ -285,11 +285,11 @@ $A =  \begin{bmatrix}
 
 \begin{problem}
 Известно, что $\e\sim N(0,A)$, $\e=(\e_1,\e_2)'$. Матрица $A=\left(\begin{matrix}
-4 & 1 \\ 
-1 & 4 
+4 & 1 \\
+1 & 4
 \end{matrix}\right)$, матрица $B=\left(\begin{matrix}
--1 & 3 \\ 
-2 & 1 
+-1 & 3 \\
+2 & 1
 \end{matrix}\right)$
 \begin{enumerate}
 \item Как распределен вектор $h=B\e$?
@@ -299,10 +299,9 @@ $A =  \begin{bmatrix}
 
 
 \begin{sol}
-$u\sim N(0,I)$ 
+$u\sim N(0,I)$
 \end{sol}
 \end{problem}
 
 
 \Closesolutionfile{solution_file}
-

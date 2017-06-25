@@ -98,29 +98,29 @@
 \vspace{30pt}
 
 
-<<"setup", echo = TRUE, message = FALSE, tidy = FALSE, warning = FALSE>>=
-library("knitr")
-library("tikzDevice")
+<<"setup", echo=TRUE, message=FALSE, tidy=FALSE, warning=FALSE>>=
+library(knitr)
+library(tikzDevice)
 
 # options(tikzDefaultEngine = 'xetex')
 # opts_chunk$set(dev = "tikz")
 
-library("tidyverse")
-library("Hmisc")
-library("lmtest")
-library("apsrtable")
-library("xtable")
-library("MASS")
-library("car")
-library("texreg")
-library("memisc")
-library("sandwich")
-library("gridExtra")
-library("pander")
-library("akima")
-library("fUnitRoots")
-library("zoo")
-library("tseries")
+library(tidyverse)
+library(Hmisc)
+library(lmtest)
+library(apsrtable)
+library(xtable)
+library(MASS)
+library(car)
+library(texreg)
+library(memisc)
+library(sandwich)
+library(gridExtra)
+library(pander)
+library(akima)
+library(fUnitRoots)
+library(zoo)
+library(tseries)
 
 theme_set(theme_bw())
 
@@ -395,30 +395,30 @@ xmodel <- function(model,
 
 
 
-\input{sols_010}
-\input{sols_020}
-\input{sols_030}
-\input{sols_040}
-\input{sols_050}
-\input{sols_060}
-\input{sols_070}
-\input{sols_080}
-\input{sols_090}
-\input{sols_100}
+\input{solutions/sols_010}
+\input{solutions/sols_020}
+\input{solutions/sols_030}
+\input{solutions/sols_040}
+\input{solutions/sols_050}
+\input{solutions/sols_060}
+\input{solutions/sols_070}
+\input{solutions/sols_080}
+\input{solutions/sols_090}
+\input{solutions/sols_100}
 
-\input{sols_120}
-\input{sols_130}
-\input{sols_140}
-\input{sols_150}
-\input{sols_160}
-\input{sols_200}
-\input{sols_210}
-\input{sols_220}
-\input{sols_230}
+\input{solutions/sols_120}
+\input{solutions/sols_130}
+\input{solutions/sols_140}
+\input{solutions/sols_150}
+\input{solutions/sols_160}
+\input{solutions/sols_200}
+\input{solutions/sols_210}
+\input{solutions/sols_220}
+\input{solutions/sols_230}
 
-\input{sols_110}
+\input{solutions/sols_110}
 
-\input{sols_240}
+\input{solutions/sols_240}
 
 
 

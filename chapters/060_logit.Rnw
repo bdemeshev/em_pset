@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_060]
+\Opensolutionfile{solution_file}[solutions/sols_060]
 % в квадратных скобках фактическое имя файла
 
 

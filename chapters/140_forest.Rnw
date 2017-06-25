@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_140]
+\Opensolutionfile{solution_file}[solutions/sols_140]
 % в квадратных скобках фактическое имя файла
 
 \chapter{Классификационные деревья и алгоритм случайного леса}

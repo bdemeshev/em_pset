@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_210]
+\Opensolutionfile{solution_file}[solutions/sols_210]
 % в квадратных скобках фактическое имя файла
 
 \chapter{Случайные векторы}

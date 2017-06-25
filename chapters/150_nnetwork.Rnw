@@ -1,6 +1,5 @@
-\Opensolutionfile{solution_file}[sols_150]
+\Opensolutionfile{solution_file}[solutions/sols_150]
 % в квадратных скобках фактическое имя файла
 
 
 \Closesolutionfile{solution_file}
-

@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_050]
+\Opensolutionfile{solution_file}[solutions/sols_050]
 % в квадратных скобках фактическое имя файла
 
 \chapter{Метод максимального правдоподобия} % — общая теория}
@@ -1253,6 +1253,116 @@ $\hb = \tfrac{\bigl. \sum_{i=1}^{n}\tfrac{Y_i}{x_i}}{\bigl. \sum_{i=1}^{n}\tfrac
 \]
 \end{sol}
 \end{problem}
+
+
+
+
+
+
+\begin{problem}
+  Пусть $X = (X_1, \ldots, X_n)$ — случайная выборка из показательного (экспоненциального) распределения с неизвестным параметром  $\lambda > 0$. Известно, что реализация случайной выборки $x = (x_1, \ldots, x_n)$ состоит из $n = 100$ наблюдений, причем $\sum_{i=1}^{n}x_i = 25$. При помощи теста отношения правдоподобия, теста Вальда и теста множителей Лагранжа протестируйте гипотезу $H_0 \colon \lambda = 1$ на уровне значимости 5\,\%.
+\begin{sol}
+  Имеем:
+
+$\theta = \lambda$ — вектор неизвестных параметров;
+
+$\Theta = (0; \, + \infty)$ — множество допустимых значений вектора неизвестных параметров.
+
+Функция правдоподобия имеет вид
+\[
+L({x_1}, \ldots ,{x_n};\;\theta) = \prod\limits_{i = 1}^n {{f_{{X_i}}}({x_i};\;\theta )}  = \prod\limits_{i = 1}^n {\lambda {e^{ - \lambda {x_i}}}}  = {\lambda ^n}{e^{ - \lambda ({x_1} +  \ldots  + {x_n})}} \text{.}
+\]
+
+Логарифмическая функция правдоподобия
+
+\[
+l({x_1},\; \ldots ,\;{x_n};\theta ): = \ln L({x_1},\; \ldots \;,{x_n};\theta ) = n\ln \lambda  - \lambda ({x_1} +  \ldots  + {x_n}) \text{.}
+\]
+
+
+$\Theta_{UR} = \Theta$, $\Theta_{R} = \{1\}$.
+
+Из уравнения
+
+\[\frac{{\partial l}}{{\partial \lambda }} = \frac{n}{\lambda } - ({x_1} +  \ldots  + {x_n}) = 0\]
+
+находим ${\hat \theta _{UR}} = {\hat \lambda _{UR}} = {\textstyle{n \over {{x_1} +  \ldots  + {x_n}}}} = {\textstyle{{100} \over {25}}} = 4$.
+
+${\hat \theta _R} = {\hat \lambda _R} = 1$.
+
+По имеющимся данным находим
+
+
+\[
+{l_R}({x_1}, \ldots,{x_n};{\hat \theta _R}) = 100\ln 1 - 1 \cdot 25 =  - 25 \text{,}
+\]
+
+\[
+{l_{UR}}({x_1}, \ldots,{x_n};{\hat \theta _{UR}}) = 100\ln 4 - 4 \cdot 25 \approx {{38}}{{.63}} \text{,}
+\]
+
+\[
+LR_{\text{набл}} =  - 2 \cdot ({l_R}({x_1}, \ldots,{x_n};{\hat \theta _R}) - {l_{UR}}({x_1}, \ldots,{x_n};{\hat \theta _{UR}})) =  - 2 \cdot ( - 25 - {{38}}{{.63}}) \approx {{127}}{{.26}} \text{.}
+\]
+
+Критическая точка $\chi^2$-квадрат распределения с одной степенью свободы, отвечающая уровню значимости 5\,\%, равна 3.84. Следовательно, тест отношения правдоподобия говорит о том, что основная гипотеза $H_0$ должна быть отвергнута.
+
+Для выполнения тестов Вальда и множителей Лагранжа нам понадобится информационная матрица Фишера.
+
+\[
+\frac{{{\partial ^2}l}}{{\partial {\lambda ^2}}} =  - \frac{n}{{{\lambda ^2}}} \text{,}
+\]
+
+\[
+I(\theta) =  - \mathbb{E}\left[ {{\textstyle{{{\partial ^2}l} \over {\partial {\lambda ^2}}}}} \right] = {\textstyle{n \over {{\lambda ^2}}}} \text{,}
+\]
+
+\[
+I({\hat \theta_{UR}}) = {\textstyle{n \over {\lambda _{UR}^2}}} = {\textstyle{{100} \over {16}}} \text{.}
+\]
+
+\[
+    c(\theta) = \lambda \text{, \quad} q = 1 \text{,}
+\]
+
+\[
+\frac{{\partial c}}{{\partial \theta }} = \frac{{\partial c}}{{\partial {\theta ^T}}} = 1 \text{,}
+\]
+
+\[
+c({\hat \theta _{UR}}) - q = {\hat \lambda _{UR}} - q = 4 - 1 = 3 \text{,}
+\]
+
+
+\[
+W_{\text{набл}} = {\left[ {c({{\hat \theta }_{UR}}) - q} \right]^T} \cdot {\left[ {{{\left. {\frac{{\partial c}}{{\partial {\theta ^T}}}} \right|}_{\theta  = {{\hat \theta }_{UR}}}} \cdot {I^{ - 1}}({{\hat \theta }_{UR}}) \cdot {{\left. {\frac{{\partial c}}{{\partial \theta }}} \right|}_{\theta  = {{\hat \theta }_{UR}}}}} \right]^{ - 1}} \cdot \left[ {c({{\hat \theta }_{UR}}) - q} \right] =
+\]
+\[
+= 3 \cdot {\left[ {1 \cdot {{({\textstyle{{100} \over {16}}})}^{ - 1}} \cdot 1} \right]^{ - 1}} \cdot 3 = {\textstyle{{900} \over {16}}} \approx {{56}}{{.25}} \text{.}
+\]
+
+Тест Вальда также говорит о том, что на основании имеющихся наблюдений гипотеза $H_0$ должна быть отвергнута.
+
+\[
+I({\hat \theta _R}) = {\textstyle{n \over {\lambda _R^2}}} = {\textstyle{{100} \over 1}} = 100 \text{,}
+\]
+
+\[
+{\left. {\frac{{\partial {l_{UR}}}}{{\partial \theta }}} \right|_{\theta  = {{\hat \theta }_R}}} = \frac{n}{{{{\hat \lambda }_R}}} - ({x_1} +  \ldots  + {x_n}) = \frac{{100}}{1} - 25 = 75 \text{,}
+\]
+
+\[
+LM_{\text{набл}} = {\left[ {{{\left. {\frac{{\partial {l_{UR}}}}{{\partial \theta }}} \right|}_{\theta  = {{\hat \theta }_R}}}} \right]^T} \cdot {I^{ - 1}}({\hat \theta _R}) \cdot \left[ {{{\left. {\frac{{\partial {l_{UR}}}}{{\partial \theta }}} \right|}_{\theta  = {{\hat \theta }_R}}}} \right] =
+\]
+
+\[
+= 75 \cdot {(100)^{ - 1}} \cdot 75 = \frac{{75 \cdot 75}}{{100}} = {{56}}{{.25}} \text{.}
+\]
+Тест множителей Лагранжа также указывает на то, что гипотеза $H_0$ должна быть отвергнута.
+
+\end{sol}
+\end{problem}
+
 
 
 \Closesolutionfile{solution_file}

@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_230]
+\Opensolutionfile{solution_file}[solutions/sols_230]
 % в квадратных скобках фактическое имя файла
 
 \chapter{Задачи по программированию}

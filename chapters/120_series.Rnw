@@ -1,4 +1,4 @@
-\Opensolutionfile{solution_file}[sols_120]
+\Opensolutionfile{solution_file}[solutions/sols_120]
 % в квадратных скобках фактическое имя файла
 
 \chapter{Временные ряды}
@@ -6,9 +6,8 @@
 
 \begin{problem}
 Что такое автокорреляция?
-
-
 \begin{sol}
+  Наличие ненулевой корреляции между $y_t$ и $y_{t-s}$.
 \end{sol}
 \end{problem}
 
