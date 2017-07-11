@@ -16,15 +16,15 @@
 \begin{problem}
 На графике представлены данные по уровню озера Гур\'{о}н в футах в 1875-1972 годах:
 
-<<include=FALSE>>=
+<<"120_01", include=FALSE>>=
 level <- LakeHuron
-df <- data.frame(level, obs = 1875:1972)
+df <- tibble(level, obs = 1875:1972)
 n <- nrow(df) # used later for answers
 v.acf <- acf(level, plot = FALSE)$acf
 v.pacf <- pacf(level, plot = FALSE)$acf
-acfs.df <- data.frame(lag = c(1:15, 1:15),
-    acf=c(v.acf[2:16], v.pacf[1:15]),
-    acf.type=rep(c("ACF", "PACF"), each = 15))
+acfs.df <- tibble(lag = c(1:15, 1:15),
+    acf = c(v.acf[2:16], v.pacf[1:15]),
+    acf.type = rep(c("ACF", "PACF"), each = 15))
 model <- arima(level, order = c(1, 0, 1))
 resids <- model$residuals
 resid.acf <- acf(resids, plot = FALSE)$acf

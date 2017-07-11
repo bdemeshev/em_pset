@@ -53,7 +53,7 @@
 
 
 \begin{problem}
-<<results='asis', echo=FALSE>>=
+<<"210_01", results='asis', echo=FALSE>>=
 a <- matrix(as.integer(c(1, 2, 3, 4)), nrow = 4, ncol = 1,
   byrow = FALSE, dimnames = NULL)
 @
@@ -73,7 +73,7 @@ a <- matrix(as.integer(c(1, 2, 3, 4)), nrow = 4, ncol = 1,
 
 
 \begin{problem}
-<<results='asis', echo=FALSE>>=
+<<"210_02", results='asis', echo=FALSE>>=
 b <- matrix(as.integer(c(1, 1, 1, 1, 1, 2, 3, 4)), nrow = 4, ncol = 2,
   byrow = FALSE, dimnames = NULL)
 @
@@ -92,7 +92,7 @@ b <- matrix(as.integer(c(1, 1, 1, 1, 1, 2, 3, 4)), nrow = 4, ncol = 2,
 
 
 \begin{problem}
-<<results='asis', echo=FALSE>>=
+<<"210_03", results='asis', echo=FALSE>>=
 c <- matrix(as.integer(c(1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1)), nrow = 4, ncol = 3,
   byrow = FALSE, dimnames = NULL)
 @
@@ -124,7 +124,7 @@ c <- matrix(as.integer(c(1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1)), nrow = 4, ncol = 
 \item $z = x'\Var(x)x$
 \item $z = x'\Var(x)^{-1}x$
 \end{enumerate}
-<<echo=FALSE>>=
+<<"210_04", echo=FALSE>>=
 ex <- c(1, 2)
 varx <- matrix(as.integer(c(2, 1, 1, 2)), nrow = 2,
   byrow = FALSE, dimnames = NULL)
@@ -150,7 +150,7 @@ varx <- matrix(as.integer(c(2, 1, 1, 2)), nrow = 2,
 \item $z = x'\Var(x)x$
 \item $z = x'\Var(x)^{-1}x$
 \end{enumerate}
-<<echo=FALSE>>=
+<<"210_05", echo=FALSE>>=
 ex1 <- c(1, 4)
 varx1 <- matrix(as.integer(c(4, 1, 1, 4)), nrow = 2,
   byrow = FALSE, dimnames = NULL)

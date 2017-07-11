@@ -5,58 +5,68 @@
 \chaptermark{Многомерное нормальное}
 
 \begin{problem}
-Пусть $\e = (\e_1, \e_2, \e_3)'\sim N (0,I)$ и матрица $A$ представлена ниже. Найдите $\E(\e'A\e)$ и распределение случайной величины $\e'A\e$.
+Пусть $\e = (\e_1, \e_2, \e_3)'\sim \cN(0,I)$ и матрица $A$ представлена ниже. Найдите $\E(\e'A\e)$ и распределение случайной величины $\e'A\e$.
 
 \begin{enumerate}
 \item
 $\begin{pmatrix} 2/3 & -1/3 & 1/3 \\ -1/3 & 2/3 & 1/3 \\ 1/3 & 1/3 & 2/3 \end{pmatrix}$
-<<results='asis', echo=FALSE>>=
-a <- matrix(c(2/3, -1/3, 1/3, -1/3, 2/3, 1/3, 1/3, 1/3, 2/3), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_01", results='asis', echo=FALSE>>=
+a <- matrix(c(2/3, -1/3, 1/3, -1/3, 2/3, 1/3, 1/3, 1/3, 2/3),
+  nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 \item
 $\begin{pmatrix} 2/3 & -1/3 & -1/3 \\ -1/3 & 2/3 & -1/3 \\ -1/3 & -1/3 & 2/3 \end{pmatrix}$
-<<results='asis', echo=FALSE>>=
-e <- matrix(c(2/3, -1/3, -1/3, -1/3, 2/3, -1/3, -1/3, -1/3, 2/3), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_02", results='asis', echo=FALSE>>=
+e <- matrix(c(2/3, -1/3, -1/3, -1/3, 2/3, -1/3, -1/3, -1/3, 2/3),
+  nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 \item
 $\begin{pmatrix} 1/3 & 1/3 & -1/3 \\ 1/3 & 1/3 & -1/3 \\ -1/3 & -1/3 & 1/3 \end{pmatrix}$
-<<results='asis', echo=FALSE>>=
-b <- matrix(c(1/3, 1/3, -1/3, 1/3, 1/3, -1/3, -1/3, -1/3, 1/3), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_03", results='asis', echo=FALSE>>=
+b <- matrix(c(1/3, 1/3, -1/3, 1/3, 1/3, -1/3, -1/3, -1/3, 1/3),
+  nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 \item
 $\begin{pmatrix} 1/3 & 1/3 & 1/3 \\ 1/3 & 1/3 & 1/3 \\ 1/3 & 1/3 & 1/3 \end{pmatrix}$
-<<results='asis', echo=FALSE>>=
-f <- matrix(c(1/3, 1/3, 1/3, 1/3, 1/3, 1/3, 1/3, 1/3, 1/3), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_04", results='asis', echo=FALSE>>=
+f <- matrix(c(1/3, 1/3, 1/3, 1/3, 1/3, 1/3, 1/3, 1/3, 1/3),
+  nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 \item
 $\begin{pmatrix} 1/2 & 0 & 1/2 \\ 0 & 1 & 0 \\ 1/2 & 0 & 1/2 \end{pmatrix}$
-<<results='asis', echo=FALSE>>=
-g <- matrix(c(1/2, 0, 1/2, 0, 1, 0, 1/2, 0, 1/2), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_05", results='asis', echo=FALSE>>=
+g <- matrix(c(1/2, 0, 1/2, 0, 1, 0, 1/2, 0, 1/2), nrow = 3,
+  ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 \item
 $\begin{pmatrix} 1/2 & 0 & -1/2 \\ 0 & 1 & 0 \\ -1/2 & 0 & 1/2 \end{pmatrix}$
-<<results='asis', echo=FALSE>>=
-h <- matrix(c(1/2, 0, -1/2, 0, 0, 0, -1/2, 0, 1/2), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_06", results='asis', echo=FALSE>>=
+h <- matrix(c(1/2, 0, -1/2, 0, 0, 0, -1/2, 0, 1/2), nrow = 3,
+  ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 \item
 $\begin{pmatrix} 1/2 & -1/2 & 0 \\ -1/2 & 1/2 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
-<<results='asis', echo=FALSE>>=
-i <- matrix(c(1/2, -1/2, 0, -1/2, 1/2, 0, 0, 0, 1), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_07", results='asis', echo=FALSE>>=
+i <- matrix(c(1/2, -1/2, 0, -1/2, 1/2, 0, 0, 0, 1), nrow = 3,
+  ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 \item
 $\begin{pmatrix} 1/2 & 1/2 & 0 \\ 1/2 & 1/2 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
-<<results='asis', echo=FALSE>>=
-j <- matrix(c(1/2, 1/2, 0, 1/2, 1/2, 0, 0, 0, 0), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_08", results='asis', echo=FALSE>>=
+j <- matrix(c(1/2, 1/2, 0, 1/2, 1/2, 0, 0, 0, 0), nrow = 3,
+  ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 \item
 $\begin{pmatrix} 0.8 & 0.4 & 0 \\ 0.4 & 0.2 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
-<<results='asis', echo=FALSE>>=
-c <- matrix(c(0.8, 0.4, 0, 0.4, 0.2, 0, 0, 0, 1), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_09", results='asis', echo=FALSE>>=
+c <- matrix(c(0.8, 0.4, 0, 0.4, 0.2, 0, 0, 0, 1), nrow = 3,
+  ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 \item
 $\begin{pmatrix} 0.2 & -0.4 & 0 \\ -0.4 & 0.8 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
-<<results='asis', echo=FALSE>>=
-d <- matrix(c(0.2, -0.4, 0, -0.4, 0.8, 0, 0, 0, 0), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_10", results='asis', echo=FALSE>>=
+d <- matrix(c(0.2, -0.4, 0, -0.4, 0.8, 0, 0, 0, 0), nrow = 3,
+  ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 \end{enumerate}
 
@@ -67,7 +77,7 @@ d <- matrix(c(0.2, -0.4, 0, -0.4, 0.8, 0, 0, 0, 0), nrow = 3, ncol = 3, byrow = 
 
 
 \begin{problem}
-Пусть $i = (1,\dots,1)'$ — вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$ и $\e = (\e_1,\dots,\e_n)'\sim N (0,I)$.
+Пусть $i = (1,\dots,1)'$ — вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$ и $\e = (\e_1,\dots,\e_n)'\sim \cN(0,I)$.
 \begin{enumerate}
 \item Найдите $\E(\e'\pi\e)$, $\E(\e'(I-\pi)\e)$ и $\E(\e\e')$
 \item Как распределены случайные величины $\e'\pi\e$ и $\e'(I-\pi)\e$?
@@ -83,14 +93,15 @@ d <- matrix(c(0.2, -0.4, 0, -0.4, 0.8, 0, 0, 0, 0), nrow = 3, ncol = 3, byrow = 
 
 
 \begin{problem}
-<<results='asis', echo=FALSE>>=
-a <- matrix(as.integer(c(1,2,3,4)), nrow = 4, ncol=1, byrow = FALSE, dimnames = NULL)
+<<"220_11", results='asis', echo=FALSE>>=
+a <- matrix(as.integer(c(1, 2, 3, 4)), nrow = 4, ncol = 1,
+  byrow = FALSE, dimnames = NULL)
 @
-Пусть $X = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
+Пусть $X = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$, $H = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim \cN(0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
-\item Найдите $\E(\e'P\e)$
-\item При помощи таблиц найдите такое число $q$, что $\P(\e'P\e > q)=0.1$
+\item Найдите распределение случайной величины $\e'H\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
+\item Найдите $\E(\e'H\e)$
+\item При помощи таблиц найдите такое число $q$, что $\P(\e'H\e > q)=0.1$
 \end{enumerate}
 
 
@@ -101,14 +112,15 @@ a <- matrix(as.integer(c(1,2,3,4)), nrow = 4, ncol=1, byrow = FALSE, dimnames = 
 
 
 \begin{problem}
-<<results='asis', echo=FALSE>>=
-b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow = 4, ncol=2, byrow = FALSE, dimnames = NULL)
+<<"220_12", results='asis', echo=FALSE>>=
+b <- matrix(as.integer(c(1, 1, 1, 1, 1, 2, 3, 4)), nrow = 4,
+  ncol = 2, byrow = FALSE, dimnames = NULL)
 @
-Пусть $X = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \end{pmatrix}$, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
+Пусть $X = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \end{pmatrix}$, $H = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim \cN(0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
-\item Найдите $\E(\e'P\e)$
-\item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$
+\item Найдите распределение случайной величины $\e'H\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
+\item Найдите $\E(\e'H\e)$
+\item При помощи таблиц найдите такое число $q$, что $\P(\e'H\e > q)=0.1$
 \end{enumerate}
 
 
@@ -119,14 +131,15 @@ b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow = 4, ncol=2, byrow = FALSE, dim
 
 
 \begin{problem}
-<<results='asis', echo=FALSE>>=
-c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow = 4, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_13", results='asis', echo=FALSE>>=
+c <- matrix(as.integer(c(1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1)),
+  nrow = 4, ncol = 3, byrow = FALSE, dimnames = NULL)
 @
-Пусть $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0  \\ 1 & 1 & 1 \end{pmatrix} $, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
+Пусть $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0  \\ 1 & 1 & 1 \end{pmatrix} $, $H = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim \cN (0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$.
-\item Найдите $\E(\e'P\e)$.
-\item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$.
+\item Найдите распределение случайной величины $\e'H\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$.
+\item Найдите $\E(\e'H\e)$.
+\item При помощи таблиц найдите такое число $q$, что $\P(\e'H\e > q)=0.1$.
 \end{enumerate}
 
 
@@ -136,31 +149,36 @@ c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow = 4, ncol = 3, byrow = 
 
 
 \begin{problem}
-Пусть $\e = (\e_1, \e_2, \e_3)'\sim N (0,I)$. Найдите $\E(\e'P\e)$ и распределение случайной величины $\e'P\e$, если $P = X(X'X)^{-1}X'$ и матрица $X'$ представлена ниже.
+Пусть $\e = (\e_1, \e_2, \e_3)'\sim \cN (0,I)$. Найдите $\E(\e'H\e)$ и распределение случайной величины $\e'H\e$, если $H = X(X'X)^{-1}X'$ и матрица $X'$ представлена ниже.
 \begin{enumerate}
 \item
-<<results='asis', echo=FALSE>>=
-A <- matrix(as.integer(c(1,1,1)), nrow=1, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_14", results='asis', echo=FALSE>>=
+A <- matrix(as.integer(c(1, 1, 1)), nrow = 1, ncol = 3,
+  byrow = FALSE, dimnames = NULL)
 xmatrix(A)
 @
 \item
-<<results='asis', echo=FALSE>>=
-B <- matrix(as.integer(c(1,2,3)), nrow=1, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_15", results='asis', echo=FALSE>>=
+B <- matrix(as.integer(c(1, 2, 3)), nrow = 1,
+  ncol = 3, byrow = FALSE, dimnames = NULL)
 xmatrix(B)
 @
 \item
-<<results='asis', echo=FALSE>>=
-C <- matrix(as.integer(c(1,0,1,0,1,1)), nrow = 2, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_16", results='asis', echo=FALSE>>=
+C <- matrix(as.integer(c(1, 0, 1, 0, 1, 1)), nrow = 2,
+  ncol = 3, byrow = FALSE, dimnames = NULL)
 xmatrix(C)
 @
 \item
-<<results='asis', echo=FALSE>>=
-D <- matrix(as.integer(c(1,1,1,2,1,3)), nrow = 2, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_17", results='asis', echo=FALSE>>=
+D <- matrix(as.integer(c(1, 1, 1, 2, 1, 3)), nrow = 2,
+  ncol = 3, byrow = FALSE, dimnames = NULL)
 xmatrix(D)
 @
 \item
-<<results='asis', echo=FALSE>>=
-E <- matrix(as.integer(c(1,0,0,1,1,0,1,1,1)), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_18", results='asis', echo=FALSE>>=
+E <- matrix(as.integer(c(1, 0, 0, 1, 1, 0, 1, 1, 1)), nrow = 3,
+  ncol = 3, byrow = FALSE, dimnames = NULL)
 xmatrix(E)
 @
 \end{enumerate}
@@ -173,13 +191,13 @@ xmatrix(E)
 
 
 \begin{problem}
-Пусть $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \end{pmatrix} \sim N (0,\sigma^2 I)$, $i = (1,\dots,1)'$ — вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$,
-$X$ — матрица размера ${n \times k}$, $P = X(X'X)^{-1}X'$. Найдите:
+Пусть $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \end{pmatrix} \sim \cN(0,\sigma^2 I)$, $i = (1,\dots,1)'$ — вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$,
+$X$ — матрица размера ${n \times k}$, $H = X(X'X)^{-1}X'$. Найдите:
 \begin{enumerate}
-\item $\E(\e'(P - \pi)\e)$
-\item $\E(\e'(I - \pi)\e)$
-\item $\E(\e'P \e)$
-\item $\E(\sum_{i=1}^n {(\e_i - \bar{\e})}^2)$
+\item $\E(\e'(H - \pi)\e)$;
+\item $\E(\e'(I - \pi)\e)$;
+\item $\E(\e'H\e)$;
+\item $\E(\sum_{i=1}^n {(\e_i - \bar{\e})}^2)$.
 \end{enumerate}
 
 
@@ -189,10 +207,11 @@ $X$ — матрица размера ${n \times k}$, $P = X(X'X)^{-1}X'$. На�
 
 
 \begin{problem}
-Пусть $\e = (\e_1, \e_2, \e_3)'\sim N (0,4I)$, $A = \begin{pmatrix} 4 & 1 & 1 \\ 1 & 3 & 1 \\ 1 & 1 & 2 \end{pmatrix}$. Найдите:
+Пусть $\e = (\e_1, \e_2, \e_3)'\sim \cN(0, 4I)$, $A = \begin{pmatrix} 4 & 1 & 1 \\ 1 & 3 & 1 \\ 1 & 1 & 2 \end{pmatrix}$. Найдите:
 
-<<echo=FALSE,results='asis'>>=
-m_a <- matrix(as.integer(c(4,1,1,1,3,1,1,1,2)), nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
+<<"220_19", echo=FALSE, results='asis'>>=
+m_a <- matrix(as.integer(c(4, 1, 1, 1, 3, 1, 1, 1, 2)),
+  nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
 @
 
 \begin{enumerate}

@@ -1771,7 +1771,7 @@ $y$ & $x$ \\
 
 \begin{sol}
 <<"problem_2_40", results="asis">>=
-df1 <- data.frame(x = c(1, 2, 3, 4), y = c(5, 3, 3, 4) )
+df1 <- data.frame(x = c(1, 2, 3, 4), y = c(5, 3, 3, 4))
 df2 <- data.frame(y = rep(df1$y, 10), x = rep(df1$x, 10))
 m1 <- lm(data=df1, y ~ x)
 m2 <- lm(data=df2, y ~ x)

@@ -16,8 +16,8 @@
 В этом задании нужно сгенерировать зависимую переменную $y$ и два регрессора $x$ и $z$.
 \begin{enumerate}
 \item Сгенерируйте данные так, чтобы корреляция между регрессорами $x$ и $z$ была больше $0.9$, и проблема мультиколлинеарности есть, т.е. по отдельности регрессоры не значимы, но регрессия в целом — значима.
-\item А теперь сгенерируйте данные так, чтобы корреляция между регрессорами была по-прежнему больше $0.9$, но проблемы мультиколлинеарности бы не было, т.е. все коэффициенты были бы значимы.
-\item Есть несколько способов, как изменить генерации случайных величин, чтобы перейти от ситуации <<a>> к ситуации <<b>>. Назовите хотя бы два.
+\item А теперь сгенерируйте данные так, чтобы корреляция между регрессорами была по-прежнему больше $0.9$, но проблемы мультиколлинеарности бы не было, то есть все коэффициенты были бы значимы.
+\item Есть несколько способов, как изменить генерации случайных величин, чтобы перейти от ситуации «a» к ситуации «b». Назовите хотя бы два.
 \end{enumerate}
 
 \begin{sol}
@@ -42,15 +42,6 @@ invisible(dev.off())
 @
 
 
-<<eval=FALSE>>=
-tikz("../R_plots/cars_scatter.tikz", standAlone = FALSE, bareBones = TRUE)
-h <- cars
-ggplot(h, aes(x = speed, y = dist)) + geom_point() +
-    labs(title = "Зависимость длины тормозного пути",
-    x = "Скорость, миль в час", y = "Длина пути, футов")
-speed.mean <- mean(h$speed)
-@
-
 \begin{figure}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/cars_scatter.tikz}
@@ -59,27 +50,26 @@ speed.mean <- mean(h$speed)
 
 
 Построим результаты оценивания нецентрированной регрессии:
-<<>>=
-cars.model <- lm(dist~speed+I(speed^2)+I(speed^3),data=h)
-cars.table <- as.table(coeftest(cars.model))
-rownames(cars.table) <-
-  c("Константа","speed","speed^2","speed^3")
+<<"070_02">>=
+cars_model <- lm(dist ~ speed + I(speed^2) + I(speed^3), data = h)
+cars_table <- as.table(coeftest(cars_model))
+rownames(cars_table) <-
+  c("Константа", "speed", "speed^2", "speed^3")
 @
 
 %\todo[inline]{с тремя переменными руками громоздко делать, а с двумя вроде не видно мультик.}
 
-<<results='asis'>>=
-xtable(cars.table)
+<<"070_03", results='asis'>>=
+xtable(cars_table)
 @
 
 Ковариационная матрица коэффициентов имеет вид:
-<<results='asis'>>=
-cars.vcov <- vcov(cars.model)
-rownames(cars.vcov) <-
-  c("Константа","speed","speed^2","speed^3")
-colnames(cars.vcov) <-
-  c("Константа","speed","speed^2","speed^3")
-xtable(cars.vcov)
+<<"070_04", results='asis'>>=
+cars_vcov <- vcov(cars_model)
+rownames(cars_vcov) <-
+  c("Константа", "speed", "speed^2", "speed^3")
+colnames(cars_vcov) <- rownames(cars_vcov)
+xtable(cars_vcov)
 @
 
 \begin{enumerate}

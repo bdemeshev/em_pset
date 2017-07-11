@@ -17,7 +17,10 @@ cos(3)
 qplot(rnorm(100))
 @
 
+\Sexpr{cos(2)}
 
-
+<<"sexpr", results='asis'>>=
+cos(2) %>% cat()
+@
 
 \end{document}

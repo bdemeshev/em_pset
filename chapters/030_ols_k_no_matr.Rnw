@@ -43,7 +43,7 @@ $t$-статистики, только они бывают отрицатель�
 \end{enumerate}
 
 Решение в R:
-<<>>=
+<<"030_01">>=
 df <- 1:200
 a <- qchisq(0.1, df)
 b <- qchisq(0.9, df)
@@ -636,7 +636,7 @@ $\alpha>0.09$
 \[
 deaths_i = \beta_1 + \beta_2 drivers_i + \beta_3 popden_i + \beta_4  temp + \beta_5 fuel + \e_i
 \]
-<<echo=FALSE, warning=FALSE, results='asis'>>=
+<<"030_02", echo=FALSE, warning=FALSE, results='asis'>>=
 d <- road
 model1 <- lm(deaths ~ drivers + popden + temp + fuel, data = d)
 xmodel(model1, below = "se")
@@ -917,7 +917,7 @@ education_i = \beta_1 + \beta_2 income_i + \beta_3 young_i + \beta_4 urban_i + \
 \]
 Ниже приведены результаты оценивания уравнения этой линейной регрессии:
 \begin{center}
-<<echo=FALSE, warning=FALSE, results='asis'>>=
+<<"030_03", echo=FALSE, warning=FALSE, results='asis'>>=
 d <- Anscombe
 model1 <- lm(education ~ income + young + urban, data = d)
 xmodel(model1, below = "se")
@@ -961,7 +961,7 @@ xtable(coefficient_table)
 
 Далее приведены результаты оценивания уравнения регрессии без переменной, отражающей долю городского населения:
 \begin{center}
-<<echo=FALSE, warning=FALSE, results='asis'>>=
+<<"030_04", echo=FALSE, warning=FALSE, results='asis'>>=
 model2 <- lm(education ~ income + young, data = d)
 xmodel(model2, below = "se")
 report2 <- summary(model2)
@@ -1053,7 +1053,7 @@ education_i = \beta_1 + \beta_2 income_i + \beta_3 young_i + \beta_4 urban_i + \
 \]
 Модель оценивается по \Sexpr{nrow(Anscombe)} наблюдению. Ниже приведены результаты оценивания уравнения этой линейной регрессии:
 \begin{center}
-<<echo=FALSE, warning=FALSE, results='asis'>>=
+<<"030_05", echo=FALSE, warning=FALSE, results='asis'>>=
 d <- Anscombe
 model1 <- lm(education ~ income + young + urban, data = d)
 xmodel(model1, below = "se")
@@ -1079,7 +1079,7 @@ xtable(coefficient_table)
 
 Далее приведены результаты оценивания уравнения регрессии без переменной, отражающей долю населения в возрасте до 18 лет:
 \begin{center}
-<<echo=FALSE, warning=FALSE, results='asis'>>=
+<<"030_06", echo=FALSE, warning=FALSE, results='asis'>>=
 model3 <- lm(education ~ income + urban, data = d)
 xmodel(model3, below = "se")
 report3 <- summary(model3)
@@ -1194,7 +1194,7 @@ R_m-R_0=R_m^*-R_0^*+u
 
 \[Agriculture_i=\beta_1+\beta_2 Examination_i+\beta_3 Catholic_i+\varepsilon_i\]
 
-<<message=FALSE>>=
+<<"030_07", message=FALSE>>=
 h <- swiss
 model1 <- glm(Agriculture ~ Examination + Catholic, data = h)
 coef.t <- coeftest(model1)
@@ -1209,7 +1209,7 @@ coef.t[3, 3] <- NA
 
 
 
-<<results='asis'>>=
+<<"030_08", results='asis'>>=
 xtable(coef.t)
 @
 
@@ -1220,7 +1220,7 @@ xtable(coef.t)
 \end{enumerate}
 
 Набор данных доступен в пакете R:
-<<eval=FALSE>>=
+<<"030_09", eval=FALSE>>=
 h <- swiss
 @
 
@@ -1239,20 +1239,20 @@ h <- swiss
 
 Модель 2: $Fertility_i=\gamma_1+\gamma_2 (Education_i+Examination_i)+\gamma_3 Catholic_i+u_i$
 
-<<>>=
+<<"030_10">>=
 m1 <- lm(Fertility ~ Agriculture + Education +
   Examination + Catholic, data = h)
 m2 <- lm(Fertility ~ I(Education + Examination) + Catholic,
   data = h)
 @
 
-<<results='asis'>>=
+<<"030_11", results='asis'>>=
 texreg(list(m1, m2))
 
 @
 
 Набор данных доступен в пакете R:
-<<eval=FALSE>>=
+<<"030_12", eval=FALSE>>=
 h <- swiss
 @
 
@@ -1273,11 +1273,11 @@ h <- swiss
 По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
 
 % данные загружаются одним махом вначале
-<<include=FALSE, eval=FALSE>>=
+<<"030_13", include=FALSE, eval=FALSE>>=
 flats <- read.table("~/science/econometrix/em301/datasets/flats_moscow.txt", header = TRUE)
 @
 
-<<results='asis'>>=
+<<"030_14", results='asis'>>=
 model1 <- lm(price ~ totsp + livesp, data = flats)
 report <- summary(model1)
 coef.table <- report$coefficients
@@ -1287,7 +1287,7 @@ xtable(coef.table)
 @
 
 Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
-<<results='asis'>>=
+<<"030_15", results='asis'>>=
 var.hat <- vcov(model1)
 xtable(var.hat, digits = 4)
 @
@@ -1301,7 +1301,7 @@ xtable(var.hat, digits = 4)
 
 \begin{sol}
 
-<<include=FALSE>>=
+<<"030_16", include=FALSE>>=
 est.se <- sqrt(var.hat[2, 2] + var.hat[3, 3] - 2 * var.hat[2, 3])
 hb <- model1$coefficients
 est.diff <- hb[2] - hb[3]
@@ -1322,7 +1322,7 @@ est.diff <- hb[2] - hb[3]
 
 \begin{problem}
 По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
-<<results='asis'>>=
+<<"030_17", results='asis'>>=
 model1 <- lm(price ~ totsp + livesp, data = flats)
 report <- summary(model1)
 coef.table <- report$coefficients
@@ -1332,7 +1332,7 @@ xtable(coef.table)
 @
 
 Сумма квадратов остатков равна $RSS=\Sexpr{deviance(model1)}$. Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
-<<results='asis'>>=
+<<"030_18", results='asis'>>=
 xtable(vcov(model1), digits = 4)
 @
 
@@ -1351,7 +1351,7 @@ xtable(vcov(model1), digits = 4)
 
 \begin{problem}
 По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража, метража жилой площади и дамми-переменной, равной 1 для кирпичных домов.
-<<results='asis'>>=
+<<"030_19", results='asis'>>=
 model1 <- lm(price ~ totsp + livesp + brick + brick:totsp +
   brick:livesp, data = flats)
 report <- summary(model1)
@@ -1421,10 +1421,10 @@ xtable(coef.table)
 
 Например,
 
-<<>>=
+<<"030_20">>=
 set.seed(42)
 y <- rnorm(200, sd = 15)
-X <- matrix(rnorm(2000),nrow = 200)
+X <- matrix(rnorm(2000), nrow = 200)
 model <- lm(y ~ X)
 report <- summary(model)
 report$adj.r.squared

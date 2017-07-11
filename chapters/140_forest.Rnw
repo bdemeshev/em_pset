@@ -45,12 +45,12 @@ $I = 2p(1-p)$, энтропия и индекс Джини максимальн�
 
 \begin{problem}
 Кот Леопольд анкетировал 20 мышей по трём вопросам: $x$ — «Одобряете ли Вы непримиримую к котам позицию Белого и Серого?», $y$ — «Известно ли Вам куда пропала моя любимая кошка Мурка?» и $z$ — «Известны ли Вам настоящие имена Белого и Серого?» Результаты опроса в таблице:
-<<results="asis">>=
+<<"140_01", results="asis">>=
 set.seed(1975)
 x <- sample(c("yes", "no"), size = 20, rep = TRUE)
 y <- sample(c("yes", "no"), size = 20, rep = TRUE)
 z <- sample(c("yes", "no"), size = 20, rep = TRUE)
-xtable(data.frame(x, y, z))
+xtable(data_frame(x, y, z))
 @
 
 
@@ -163,19 +163,11 @@ $100\cdot \left(\frac{99}{100} \right)^{100}\approx 100/e \approx 37$
 <<"tree_scatter_data", include=FALSE>>=
 set.seed(42)
 df <- data.frame(x = runif(400), z = runif(400))
-df$y <- factor(ifelse( df$x > 0.25 & df$z > 0.5, "yes", "no"))
+df$y <- factor(ifelse(df$x > 0.25 & df$z > 0.5, "yes", "no"))
 tikz("../R_plots/tree_scatter_data.tikz", standAlone = FALSE, bareBones = TRUE)
 qplot(data = df, x = x, y = z, col = y, shape = y) +
     geom_vline(xintercept = 0.25) + geom_hline(yintercept = 0.5)
 invisible(dev.off())
-@
-
-<<eval=FALSE>>=
-set.seed(42)
-df <- data.frame(x = runif(400), z = runif(400))
-df$y <- factor(ifelse( df$x > 0.25 & df$z > 0.5, "yes", "no"))
-qplot(data = df, x = x, y = z, col = y, shape = y) +
-    geom_vline(xintercept = 0.25) + geom_hline(yintercept = 0.5)
 @
 
 
