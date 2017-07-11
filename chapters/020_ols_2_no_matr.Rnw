@@ -1641,7 +1641,7 @@ $Y_i = (\overline{Y} - \hb_2 \overline{X}) + \hb_2 X_i = \hb_1 + \hb_2 X_i$
 \begin{enumerate}
 \item Является ли оценка несмещенной?
 \item Любые ли $z_i$ можно брать?
-\item Найдите $\Var(\hb_{2,IV})$
+\item Найдите $\Var(\hb_{2,IV})$.
 \end{enumerate}
 
 
