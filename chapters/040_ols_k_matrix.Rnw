@@ -211,7 +211,7 @@ alpha3 <- matrix(as.integer(c(1, 0, 0, 0, 1, 0, 0, 1, 1)), nrow = 3,
 
 
 \begin{problem}
-Пусть $y = X\beta + \e$ — регрессионная модель. Верно ли, что $\hat{\e}'\hat{y}=0$ и $\hat{y}'\hat{\e}=0$?
+Пусть $y = X\beta + \e$ — регрессионная модель. Верно ли, что $\he'\hy=0$ и $\hy'\he=0$?
 
 \begin{sol}
 Да, верно.
@@ -245,7 +245,7 @@ alpha3 <- matrix(as.integer(c(1, 0, 0, 0, 1, 0, 0, 1, 1)), nrow = 3,
 \hat{\gamma} = (Z'Z)^{-1}Z'y = A^{-1}(X'X)^{-1}(A')^{-1}A'X'y =\\
  A^{-1}(X'X)^{-1} X'y = A^{-1}\hb
 \end{multline*}
-\item $\hat{u} = y - Z\hat{\gamma} = y - XAA^{-1}\hb = y - X\hb = \hat{\e}$
+\item $\hat{u} = y - Z\hat{\gamma} = y - XAA^{-1}\hb = y - X\hb = \he$
 \item Пусть $z^0 = \begin{pmatrix} 1 & z_1^0 & \dots & z_{k-1}^0 \end{pmatrix}$ — вектор размера $1 \times k$ и $x^0 = \begin{pmatrix} 1 & x_1^0 & \dots & x_{k-1}^0 \end{pmatrix}$ — вектор размера $1 \times k$. Оба эти вектора представляют собой значения факторов. Тогда $z^0 = x^0 A$ и прогнозное значение для регрессии с преобразованными факторами равно $z^0 \hat{\gamma} = x^0 AA^{-1} \hb = x^0 \hb$ прогнозному значению для регрессии с исходными факторами.
 \end{enumerate}
 \end{sol}
@@ -355,15 +355,15 @@ $X' X =  \begin{pmatrix}
 \item $\Var (\e_1)$
 \item $\Var (\beta_1)$
 \item $\Var (\hb_1)$
-\item $\widehat{\Var }(\hb_1)$
+\item $\hVar(\hb_1)$
 \item $\E (\hb_1^2) - \beta_1^2$
 \item $\Cov (\hb_2, \hb_3)$
-\item $\widehat{\Cov }(\hb_2, \hb_3)$
+\item $\hCov(\hb_2, \hb_3)$
 \item $\Var (\hb_2 - \hb_3)$
-\item $\widehat{\Var }(\hb_2 - \hb_3)$
+\item $\hVar(\hb_2 - \hb_3)$
 \item $\Var (\beta_2 - \beta_3)$
 \item $\Corr (\hb_2, \hb_3)$
-\item $\widehat{\Corr}(\hb_2, \hb_3)$
+\item $\hCorr(\hb_2, \hb_3)$
 \item $\E (\hs^2)$
 \item $\hs^2$
 \end{enumerate}
@@ -374,27 +374,27 @@ $X' X =  \begin{pmatrix}
 \item $\Var(\e_1)=\Var(\e)_{(1,1)}=4\cdot I_{(1,1)}=4$
 \item $\Var(\beta_1)=0$, так как $\beta_1$ — детерминированная величина.
 \item $\Var(\hb_1)=\sigma^2(X'X)^{-1}_{(1,1)}=0.5\sigma^2=0.5\cdot 4=2$
-\item $\widehat{\Var}(\hb_1)=\hat\sigma^2(X'X)^{-1}_{(1,1)}=0.5\hat\sigma^2_{(1,1)}=0.5\frac{RSS}{5-3}=0.25RSS=0.25y'(I-X(X'X)^{-1}X')y=0.25\cdot 1=0.25$
+\item $\hVar(\hb_1)=\hat\sigma^2(X'X)^{-1}_{(1,1)}=0.5\hat\sigma^2_{(1,1)}=0.5\frac{RSS}{5-3}=0.25RSS=0.25y'(I-X(X'X)^{-1}X')y=0.25\cdot 1=0.25$
 
 $\hat\sigma^2=\frac{RSS}{n-k}=\frac12$.
 
 \item Так как оценки МНК являются несмещенными, то $\E(\hb)=\beta$, значит:
 \[
-\E(\hb_1)-\beta_1^2=\E(\hb_1)-(\E(\hb_1))^2=\widehat{\Var}(\hb_1)=0.25
+\E(\hb_1)-\beta_1^2=\E(\hb_1)-(\E(\hb_1))^2=\hVar(\hb_1)=0.25
 \]
 
 \item $\Cov(\hb_2,\hb_3)=\sigma^2(X'X)^{-1}_{(2,3)}=4\cdot\left(-\frac12\right)=-2$
-\item $\widehat{\Cov}(\hb_2,\hb_3)=\widehat{\Var}(\hat\beta)_{(2,3)}=\hat\sigma^2(X'X)^{-1}_{(2,3)}=\frac{1}{2}\cdot\left(-\frac12\right)=-\frac14$
+\item $\hCov(\hb_2,\hb_3)=\hVar(\hat\beta)_{(2,3)}=\hat\sigma^2(X'X)^{-1}_{(2,3)}=\frac{1}{2}\cdot\left(-\frac12\right)=-\frac14$
 
 \item $\Var(\hb_2-\hb_3)=\Var(\hb_2)+\Var(\hb_3)+2\Cov(\hb_2,\hb_3)=\sigma^2((X'X)^{-1}_{(2,2)}+(X'X)^{-1}_{(3,3)}+2(X'X)^{-1}_{(2,3)}=4(1+1.5+2\cdot(-0.5))=6$
 
-\item $\widehat{\Var}(\hb_2-\hb_3)=\widehat{\Var}(\hb_2)+\widehat{\Var}(\hb_3)+2\widehat{\Cov}(\hb_2,\hb_3)=\hat\sigma^2((X'X)^{-1}_{(2,2)}+(X'X)^{-1}_{(3,3)}+2(X'X)^{-1}_{(2,3)}=\frac{1}{2}\cdot1.5=0.75$
+\item $\hVar(\hb_2-\hb_3)=\hVar(\hb_2)+\hVar(\hb_3)+2\hCov(\hb_2,\hb_3)=\hat\sigma^2((X'X)^{-1}_{(2,2)}+(X'X)^{-1}_{(3,3)}+2(X'X)^{-1}_{(2,3)}=\frac{1}{2}\cdot1.5=0.75$
 
 \item $\Var(\beta_2-\beta_3)=0$
 
 \item $\corr(\hb_2,\hb_3)=\frac{\Cov(\hb_2,\hb_3)}{\sqrt{\Var(\hb_2)\Var(\hb_3)}}=\frac{-2}{\sqrt{4\cdot6}}=-\frac{\sqrt6}{6}$
 
-\item $\widehat{\corr}(\beta_2,\beta_3)=\frac{\widehat{\Cov}(\hb_2,\hb_3)}{\sqrt{\widehat{\Var}(\hb_2)\widehat{\Var}(\hb_3)}}=\frac{-\frac14}{\sqrt{\frac12\cdot\frac34}}=-\frac{\sqrt6}{6}$
+\item $\hCorr(\beta_2,\beta_3)=\frac{\hCov(\hb_2,\hb_3)}{\sqrt{\hVar(\hb_2)\hVar(\hb_3)}}=\frac{-\frac14}{\sqrt{\frac12\cdot\frac34}}=-\frac{\sqrt6}{6}$
 
 \item $(n-k)\frac{\hat\sigma^2}{\sigma^2}\sim\chi^2_{n-k}$.
 \[
@@ -521,34 +521,34 @@ x_x <- solve(xx)
 \item Основная гипотеза — $H_0: \beta_2 = 0$, альтернативная гипотеза — $H_a: \beta_2 \not= 0$
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $T_{obs} = \frac{\hb_2 - 0}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - 0}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-0}{\sqrt{{\frac{2}{5-3}}1.3333}} = 1.7321$
+\item $T_{obs} = \frac{\hb_2 - 0}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - 0}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-0}{\sqrt{{\frac{2}{5-3}}1.3333}} = 1.7321$
 \item Нижняя граница $= -2.920$, верхняя граница $= 2.920$
 \item Поскольку $T_{obs} = 1.7321$, что принадлежит промежутку от -2.920 до 2.920, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
 \item $p-value(T_{obs}) = \P (|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ — функция распределения $t-$распределения с $n - k = 5 - 3 = 2$ степенями свободы в точке $|T_{obs}|$. $p-value(T_{obs}) = 2tcdf(-|T_{obs}|, n - k) = 2tcdf(-1.7321,2) = 0.2253$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза — $H_0: \beta_2 = 0$ не может быть отвергнута
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $T_{obs} = \frac{\hb_2 - 1}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
+\item $T_{obs} = \frac{\hb_2 - 1}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
 \item Нижняя граница $= -2.920$, верхняя граница $= 2.920$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от -2.920 до 2.920, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $T_{obs} = \frac{\hb_2 - 1}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
+\item $T_{obs} = \frac{\hb_2 - 1}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
 \item Нижняя граница $= -\infty$, верхняя граница $= 1.8856$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $-\infty$ до $1.8856$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $T_{obs} = \frac{\hb_2 - 1}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
+\item $T_{obs} = \frac{\hb_2 - 1}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
 \item Нижняя граница $= -1.8856$, верхняя граница $= +\infty$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $-1.8856$ до $+\infty$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
@@ -564,25 +564,25 @@ x_x <- solve(xx)
 \item $p-value(T_{obs}) = \P (|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ — функция распределения $F-$распределения c $k = 3$ и $n - k = 5 - 3 = 2$ степенями свободы в точке $T_{obs}$. $p-value(T_{obs}) = 1 - fcdf(-|T_{obs}|, n - k) = 1 - fcdf(4,2) = 0.2$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза — $H_0: \beta_2 = \beta_3 = 0$ не может быть отвергнута. Таким образом, регрессия в целом незначима
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\hVar(\hb_2 + \hb_3)}}$, где $\hVar(\hb_2 + \hb_3) = \hVar(\hb_2) + \hVar(\hb_3) + 2\hCov(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $\widehat{\Var}(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
+\item $\hVar(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\hVar(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
 \item Нижняя граница $= - 4.3027$, верхняя граница $= 4.3027$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $- 4.3027$ до $4.3027$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\hVar(\hb_2 + \hb_3)}}$, где $\hVar(\hb_2 + \hb_3) = \hVar(\hb_2) + \hVar(\hb_3) + 2\hCov(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $\widehat{\Var}(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
+\item $\hVar(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\hVar(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
 \item Нижняя граница $= - \infty$, верхняя граница $= 2.9200$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $- \infty$ до $2.9200$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\hVar(\hb_2 + \hb_3)}}$, где $\hVar(\hb_2 + \hb_3) = \hVar(\hb_2) + \hVar(\hb_3) + 2\hCov(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $\widehat{\Var}(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
+\item $\hVar(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\hVar(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
 \item Нижняя граница $= - 2.9200$, верхняя граница $= + \infty$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $-  2.9200$ до $+ \infty$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$
 \end{enumerate}
@@ -616,9 +616,9 @@ y <- matrix(as.integer(c(1, 2, 3, 4, 5)), nrow = 5,
 
 \begin{sol}
 \begin{enumerate}
-\item $T = \frac{\hb_1 + \hb_2 - (\beta_1 + \beta_2)}{\sqrt{\widehat{\Var}(\hb_1 + \hb_2)}}$, где $\widehat{\Var}(\hb_1 + \hb_2) = \widehat{\Var}(\hb_1) + \widehat{\Var}(\hb_2) + 2\widehat{\Cov}(\hb_1;\hb_2) = \hat{\sigma}^2 [(X'X)^{-1}]_{11} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{12} + \hat{\sigma}^2 [(X'X)^{-1}]_{22}= \frac{RSS}{n - k}([(X'X)^{-1}]_{11} + 2[(X'X)^{-1}]_{12} + [(X'X)^{-1}]_{22}), \beta_1 + \beta_2=2$
+\item $T = \frac{\hb_1 + \hb_2 - (\beta_1 + \beta_2)}{\sqrt{\hVar(\hb_1 + \hb_2)}}$, где $\hVar(\hb_1 + \hb_2) = \hVar(\hb_1) + \hVar(\hb_2) + 2\hCov(\hb_1;\hb_2) = \hat{\sigma}^2 [(X'X)^{-1}]_{11} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{12} + \hat{\sigma}^2 [(X'X)^{-1}]_{22}= \frac{RSS}{n - k}([(X'X)^{-1}]_{11} + 2[(X'X)^{-1}]_{12} + [(X'X)^{-1}]_{22}), \beta_1 + \beta_2=2$
 \item $T \sim t_{n-k}; n = 5; k = 3$
-\item Смотри матрицы в номере 4.12. $\hb=(X'X)^{-1}X'y=(1.5\;2.0\;1.5)'$. $\widehat{\Var}(\hb_1 + \hb_2) =\frac12(0.5+1+2\cdot(-0.5))=\frac14$. $T=\frac{1.5+2-2}{\sqrt{\frac14}}=3$.
+\item Смотри матрицы в номере 4.12. $\hb=(X'X)^{-1}X'y=(1.5\;2.0\;1.5)'$. $\hVar(\hb_1 + \hb_2) =\frac12(0.5+1+2\cdot(-0.5))=\frac14$. $T=\frac{1.5+2-2}{\sqrt{\frac14}}=3$.
 \item Так как проверяется знак «равно» в гипотезе, то нижняя граница $-\infty$, а верхняя граница $+\infty$.
 \item $t_{0.95,2}=2.9199<T$, значит, гипотеза отвергается на уровне значимости 5\%.
 \end{enumerate}
@@ -681,7 +681,7 @@ $(n-1)\sigma^2$, $(n-k)\sigma^2$
 Используя матрицы $P=X(X'X)^{-1}X'$ и $\pi=\v1(\v1'\v1)^{-1}\v1'$ запишите $RSS$, $TSS$ и $ESS$ в матричной форме
 
 \begin{sol}
-$TSS=y'(I-\pi)y$, $RSS=y'(I-P)y$, $ESS=y'(P-\pi)y$
+$TSS=y'(I-\pi)y$, $RSS=y'(I-H)y$, $ESS=y'(P-\pi)y$
 \end{sol}
 \end{problem}
 
@@ -746,7 +746,7 @@ $\E(\e)=0$, $\E(\he)=0$, $\sum \e_i$ может оказаться равной 
 \coordinate (Y) at (-2,2,2);
 \coordinate (bY) at (-2,1,0);
 \draw[thick,dotted, ->] (0,0,0) -- (-4,2,0) node[anchor=west]{$\vec{1}$};
-\draw[thick,->] (0,0,0) -- (hY) node[anchor=west]{$\hat{y}$};
+\draw[thick,->] (0,0,0) -- (hY) node[anchor=west]{$\hy$};
 \draw[thick,->] (0,0,0) -- (Y) node[anchor=south]{$y$};
 \draw[thick,->] (0,0,0) -- (1,2,0) node[anchor=north]{$x$};
 \draw[dotted] (hY) -- (Y);
@@ -775,7 +775,7 @@ $\sum y_i^2=\sum \hy_i^2+\sum \he_i^2$, $TSS=ESS+RSS$,
 \coordinate (Y) at (-2,2,2);
 \coordinate (bY) at (-2,1,0);
 \draw[thick,dotted, ->] (0,0,0) -- (-4,2,0) node[anchor=west]{$\vec{1}$};
-\draw[thick,->] (0,0,0) -- (hY) node[anchor=west]{$\hat{y}$};
+\draw[thick,->] (0,0,0) -- (hY) node[anchor=west]{$\hy$};
 \draw[thick,->] (0,0,0) -- (Y) node[anchor=south]{$y$};
 \draw[thick,->] (0,0,0) -- (1,2,0) node[anchor=north]{$x$};
 \draw[dotted] (hY) -- (Y);
@@ -1040,15 +1040,15 @@ n&0\\
 0&(\sum^n_{i=1}x_i^2-n\bar x^2)/s_x^2
 \end{pmatrix}$
 
-$\widehat{\Var}(\hb_2)=\frac{RSS_1}{n-2}(X'X)_{(2,2)}^{-1}=\frac{RSS_2s_y^2}{n-2}\frac{1}{n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2}
+$\hVar(\hb_2)=\frac{RSS_1}{n-2}(X'X)_{(2,2)}^{-1}=\frac{RSS_2s_y^2}{n-2}\frac{1}{n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2}
 \begin{pmatrix}
 \sum^n_{i=1}x_i^2&-\sum^n_{i=1}x_i\\
 -\sum^n_{i=1}x_i&n
-\end{pmatrix}_{(2,2)}=\frac{RSS_2s_y^2}{n-2}\frac{n}{n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2}=\frac{RSS_2s_y^2}{n-2}\frac{n/s_x^2}{(n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2)/s_x^2}=\widehat{\Var}(\hb_2')\frac{s_y^2}{s_x^2}$
+\end{pmatrix}_{(2,2)}=\frac{RSS_2s_y^2}{n-2}\frac{n}{n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2}=\frac{RSS_2s_y^2}{n-2}\frac{n/s_x^2}{(n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2)/s_x^2}=\hVar(\hb_2')\frac{s_y^2}{s_x^2}$
 
-$\widehat{\Var}(\hb'_2)=\frac{RSS_2}{n-2}(X'X_{new})_{(2,2)}^{-1}=\frac{RSS_3}{n-1}(X'X_{new})_{(2,2)}^{-1}\frac{n-1}{n-2}=\widehat{\Var}(\hb''_2)\frac{n-1}{n-2}$
+$\hVar(\hb'_2)=\frac{RSS_2}{n-2}(X'X_{new})_{(2,2)}^{-1}=\frac{RSS_3}{n-1}(X'X_{new})_{(2,2)}^{-1}\frac{n-1}{n-2}=\hVar(\hb''_2)\frac{n-1}{n-2}$
 
-\item $\widehat{\Var}(\hb')=\frac{RSS_2}{n-2}(X'X_{new})^{-1}=\frac{\sum_{i=1}^n(y_i^*-\hb_1'-\hb_2'x_i^*)^2}{n-2}\begin{pmatrix}
+\item $\hVar(\hb')=\frac{RSS_2}{n-2}(X'X_{new})^{-1}=\frac{\sum_{i=1}^n(y_i^*-\hb_1'-\hb_2'x_i^*)^2}{n-2}\begin{pmatrix}
 (\sum^n_{i=1}x_i^2-n\bar x^2)/s_x^2&0\\
 0&n
 \end{pmatrix}$
@@ -1115,16 +1115,16 @@ $X'X=\left(
 \item Укажите число наблюдений.
 \item Укажите число регрессоров с учетом свободного члена.
 \item Запишите модель в скалярном виде
-\item Рассчитайте $TSS=\sum (y_i-\bar{y})^2$, $RSS=\sum (y_i-\hat{y}_i)^2$ и $ESS=\sum (\hat{y}_i-\bar{y})^2$.
+\item Рассчитайте $TSS=\sum (y_i-\bar{y})^2$, $RSS=\sum (y_i-\hy_i)^2$ и $ESS=\sum (\hy_i-\bar{y})^2$.
 \item Рассчитайте при помощи метода наименьших квадратов $\hb$, оценку для вектора неизвестных коэффициентов.
 \item Чему равен $\he_5$, МНК-остаток регрессии, соответствующий 5-ому наблюдению?
 \item Чему равен $R^2$  в модели? Прокомментируйте полученное значение с точки зрения качества оцененного уравнения регрессии.
 \item Используя приведенные выше данные, рассчитайте несмещенную оценку для неизвестного параметра $\sigma^2$ регрессионной модели.
-\item Рассчитайте $\widehat{\Var}(\hb)$, оценку для ковариационной матрицы вектора МНК-коэффициентов $\hb$.
-\item Найдите $\widehat{\Var}(\hb_1)$, несмещенную оценку дисперсии МНК-коэффициента $\hb_1$.
-\item Найдите $\widehat{\Var}(\hb_2)$, несмещенную оценку дисперсии МНК-коэффициента $\hb_2$.
-\item Найдите $\widehat{\Cov}(\hb_1,\hb_2)$, несмещенную оценку ковариации МНК-коэффициентов $\hb_1$ и $\hb_2$.
-\item Найдите $\widehat{\Var}(\hb_1+\hb_2)$, $\widehat{\Var}(\hb_1-\hb_2)$, $\widehat{\Var}(\hb_1+\hb_2+\hb_3)$, $\widehat{\Var}(\hb_1+\hb_2-2\hb_3)$
+\item Рассчитайте $\hVar(\hb)$, оценку для ковариационной матрицы вектора МНК-коэффициентов $\hb$.
+\item Найдите $\hVar(\hb_1)$, несмещенную оценку дисперсии МНК-коэффициента $\hb_1$.
+\item Найдите $\hVar(\hb_2)$, несмещенную оценку дисперсии МНК-коэффициента $\hb_2$.
+\item Найдите $\hCov(\hb_1,\hb_2)$, несмещенную оценку ковариации МНК-коэффициентов $\hb_1$ и $\hb_2$.
+\item Найдите $\hVar(\hb_1+\hb_2)$, $\hVar(\hb_1-\hb_2)$, $\hVar(\hb_1+\hb_2+\hb_3)$, $\hVar(\hb_1+\hb_2-2\hb_3)$
 \item Найдите $\hCorr(\hb_1,\hb_2)$, оценку коэффициента корреляции МНК-коэффициентов $\hb_1$ и $\hb_2$.
 \item Найдите $s_{\hb_1}$, стандартную ошибку МНК-коэффициента $\hb_1$.
 \item Рассчитайте выборочную ковариацию $y$ и $\hy$.
@@ -1142,24 +1142,24 @@ $X'X=\left(
 \item $\hat\e_5=y_5-\hy_5=5-2-2x^{(5)}_1-x^{(5)}_2=5-2-2-1=0$.
 \item $R^2=\frac{ESS}{TSS}\frac{8}{10}=0.8$. $R^2$ высок, модель регрессии хорошо описывает данные.
 \item Несмещённая оценка — $\hat\sigma^2$. $\hat\sigma^2=\frac{RSS}{n-k}=\frac{2}{5-3}=1$.
-\item $\widehat{\Var}(\hb)=\hat\sigma^2(X'X)^{-1}=\frac13\begin{pmatrix}
+\item $\hVar(\hb)=\hat\sigma^2(X'X)^{-1}=\frac13\begin{pmatrix}
 1&-1&0\\
 -1&4&-3\\
 0&-3&6
 \end{pmatrix}
 $
-\item $\widehat{\Var}(\hat\beta_1)=\frac13$
-\item $\widehat{\Var}(\hat\beta_2)=\frac43$
-\item $\widehat{\Cov}(\hat\beta_1,\hat\beta_2)=-\frac13$
-\item $\widehat{\Var}(\hat\beta_1+\hat\beta_2)=\widehat{\Var}(\hat\beta_1)+\widehat{\Var}(\hat\beta_2)+2\widehat{\Cov}(\hat\beta_1,\hat\beta_2)=\frac13+\frac43-2\cdot\frac13=1$
+\item $\hVar(\hat\beta_1)=\frac13$
+\item $\hVar(\hat\beta_2)=\frac43$
+\item $\hCov(\hat\beta_1,\hat\beta_2)=-\frac13$
+\item $\hVar(\hat\beta_1+\hat\beta_2)=\hVar(\hat\beta_1)+\hVar(\hat\beta_2)+2\hCov(\hat\beta_1,\hat\beta_2)=\frac13+\frac43-2\cdot\frac13=1$
 
-$\widehat{\Var}(\hat\beta_1-\hat\beta_2)=\widehat{\Var}(\hat\beta_1)+\widehat{\Var}(\hat\beta_2)-2\widehat{\Cov}(\hat\beta_1,\hat\beta_2)=\frac13+\frac43+2\cdot\frac13=\frac73$
+$\hVar(\hat\beta_1-\hat\beta_2)=\hVar(\hat\beta_1)+\hVar(\hat\beta_2)-2\hCov(\hat\beta_1,\hat\beta_2)=\frac13+\frac43+2\cdot\frac13=\frac73$
 
-$\widehat{\Var}(\hat\beta_1+\hat\beta_2+\hat\beta_3)=\widehat{\Var}(\hat\beta_1)+\widehat{\Var}(\hat\beta_2)+\widehat{\Var}(\hat\beta_3)+2\widehat{\Cov}(\hat\beta_1,\hat\beta_2)+2\widehat{\Cov}(\hat\beta_1,\hat\beta_3)+2\widehat{\Cov}(\hat\beta_2,\hat\beta_3)=\frac13(1+4+6-2-6)=1$
+$\hVar(\hat\beta_1+\hat\beta_2+\hat\beta_3)=\hVar(\hat\beta_1)+\hVar(\hat\beta_2)+\hVar(\hat\beta_3)+2\hCov(\hat\beta_1,\hat\beta_2)+2\hCov(\hat\beta_1,\hat\beta_3)+2\hCov(\hat\beta_2,\hat\beta_3)=\frac13(1+4+6-2-6)=1$
 
-$\widehat{\Var}(\hat\beta_1+\hat\beta_2-2\hat\beta_3)=\widehat{\Var}(\hat\beta_1)+\widehat{\Var}(\hat\beta_2)+4\widehat{\Var}(\hat\beta_3)+2\widehat{\Cov}(\hat\beta_1,\hat\beta_2)-4\widehat{\Cov}(\hat\beta_1,\hat\beta_3)-4\widehat{\Cov}(\hat\beta_2,\hat\beta_3)=\frac13(1+4+4\cdot 6-1+12)=\frac{40}{3}$
-\item $\hat\corr(\hat\beta_1,\hat\beta_2)=\frac{\widehat{\Cov}(\hat\beta_1,\hat\beta_2)}{\sqrt{\widehat{\Var}(\hat\beta_1)\cdot\widehat{\Var}(\hat\beta_1)}}=\frac{-\frac13}{\sqrt{\frac13\cdot\frac43}}=-\frac12$
-\item $s_{\hat\beta_1}=\sqrt{\widehat{\Var}(\hat\beta_1)}=\sqrt{\frac13}=\frac{\sqrt3}{3}$
+$\hVar(\hat\beta_1+\hat\beta_2-2\hat\beta_3)=\hVar(\hat\beta_1)+\hVar(\hat\beta_2)+4\hVar(\hat\beta_3)+2\hCov(\hat\beta_1,\hat\beta_2)-4\hCov(\hat\beta_1,\hat\beta_3)-4\hCov(\hat\beta_2,\hat\beta_3)=\frac13(1+4+4\cdot 6-1+12)=\frac{40}{3}$
+\item $\hat\corr(\hat\beta_1,\hat\beta_2)=\frac{\hCov(\hat\beta_1,\hat\beta_2)}{\sqrt{\hVar(\hat\beta_1)\cdot\hVar(\hat\beta_1)}}=\frac{-\frac13}{\sqrt{\frac13\cdot\frac43}}=-\frac12$
+\item $s_{\hat\beta_1}=\sqrt{\hVar(\hat\beta_1)}=\sqrt{\frac13}=\frac{\sqrt3}{3}$
 \item $\hat y=\begin{pmatrix}
 2\\
 2\\
@@ -1488,7 +1488,7 @@ $\tilde{\beta} = (X' CX)^{-1} X' Cy$, где
 \end{minipage}
 \hfill
 \begin{minipage}[h]{0.49\linewidth}
-\item[(3)] $\sum_{i=1}^n \hat{\e}_i = 0$
+\item[(3)] $\sum_{i=1}^n \he_i = 0$
 \item[(4)] $\overline{Y} = \overline{\hat{Y}}$
 \end{minipage}
 \end{enumerate}
@@ -1511,7 +1511,7 @@ i & i & \ldots & i
 1 & -1 & 0
 \end{bmatrix}'$, $x = \begin{bmatrix}
 1 & 0 & -1
-\end{bmatrix}'$. Постройте регрессию $y = \beta x + \e$ без свободного члена. Убедитесь, что $\sum_{i=1}^n \hat{\e}_i = 0$ и $\overline{Y} = \overline{\hat{Y}} = 0$, но $Pi \neq i$.
+\end{bmatrix}'$. Постройте регрессию $y = \beta x + \e$ без свободного члена. Убедитесь, что $\sum_{i=1}^n \he_i = 0$ и $\overline{Y} = \overline{\hat{Y}} = 0$, но $Pi \neq i$.
 
 
 Ответ: $P\pi = \pi$
@@ -1575,7 +1575,7 @@ i & i & \ldots & i
 
 
 \begin{problem}
-Рассмотрим регрессию, для которой выполнены условия теоремы Гаусса-Маркова. Уравнение регрессии имеет вид $\hat{y} = \hb_1 i + \hb_2 x_2 + \hb_3 x_3 + \hb_4 x_4$. Известны следующие данные:
+Рассмотрим регрессию, для которой выполнены условия теоремы Гаусса-Маркова. Уравнение регрессии имеет вид $\hy = \hb_1 i + \hb_2 x_2 + \hb_3 x_3 + \hb_4 x_4$. Известны следующие данные:
 
 \[
 X' X = \begin{bmatrix}
@@ -1602,8 +1602,8 @@ $X'y = \begin{bmatrix}
 \end{bmatrix}$; $y'y = 3924$
 
 \begin{enumerate}
-\item Найти $\widehat{\Corr}(\hb_1, \hb_2)$
-\item Найти $\widehat{\Corr}(x_2, x_3)$
+\item Найти $\hCorr(\hb_1, \hb_2)$
+\item Найти $\hCorr(x_2, x_3)$
 \item Проверить гипотезу $H_0: \beta_2 = 0$
 \end{enumerate}
 
@@ -1612,7 +1612,7 @@ $X'y = \begin{bmatrix}
 \begin{enumerate}
 \item
 \begin{multline*}
-RSS = \hat{\e}'\hat{\e} y' (I - P) y = y' y - y'Py = y'y - y' X(X'X)^{-1}X'y ;
+RSS = \he'\he y' (I - H) y = y' y - y'Py = y'y - y' X(X'X)^{-1}X'y ;
 \end{multline*}
 При этом $y'y=3924$,  а
 \begin{multline*}
@@ -1637,11 +1637,11 @@ y' X(X'X)^{-1}X'y= \\
 
 $\hs_{\e}^2 = \frac{RSS}{n-k} = \frac{872.8}{100-4} = 9.0917$
 
-$\widehat{\Var}(\hb) = \hs_{\e}^2 (X' X)^{-1} \Rightarrow \widehat{\Cov}(\hb_1, \hb_2) = -0.56939$, $\widehat{\Var}(\hb_1) = 0.34251$, $\widehat{\Var}(\hb_2) = 10.269$
+$\hVar(\hb) = \hs_{\e}^2 (X' X)^{-1} \Rightarrow \hCov(\hb_1, \hb_2) = -0.56939$, $\hVar(\hb_1) = 0.34251$, $\hVar(\hb_2) = 10.269$
 
-$\widehat{\Corr}(\hb_1, \hb_2) = \frac{\widehat{\Cov}(\hb_1, \hb_2)}{\sqrt{\widehat{\Var}(\hb_1)}\sqrt{\widehat{\Var}(\hb_2)}} = -0.30361$
+$\hCorr(\hb_1, \hb_2) = \frac{\hCov(\hb_1, \hb_2)}{\sqrt{\hVar(\hb_1)}\sqrt{\hVar(\hb_2)}} = -0.30361$
 
-\item(указание) $\widehat{\Corr}(x_2, x_3) = \frac{\sum (x_{i2} - \overline{x}_2) (x_{i3} - \overline{x}_3)}{\sqrt{\sum (x_{i2} - \overline{x}_2)}\sqrt{\sum (x_{i3} - \overline{x}_3)}}$. Все необходимые величины можно извлечь из матрицы $X' X$ — это величины $\sum x_{i2}$ и $\sum x_{i3}$, а остальное -- из матрицы $X' (I - \pi) X = X' X - X' \pi X = X' X - (\pi X)' \pi X$. При этом имейте в виду, что
+\item(указание) $\hCorr(x_2, x_3) = \frac{\sum (x_{i2} - \overline{x}_2) (x_{i3} - \overline{x}_3)}{\sqrt{\sum (x_{i2} - \overline{x}_2)}\sqrt{\sum (x_{i3} - \overline{x}_3)}}$. Все необходимые величины можно извлечь из матрицы $X' X$ — это величины $\sum x_{i2}$ и $\sum x_{i3}$, а остальное -- из матрицы $X' (I - \pi) X = X' X - X' \pi X = X' X - (\pi X)' \pi X$. При этом имейте в виду, что
 $\pi X = \begin{bmatrix}
 1 & \overline{x}_1 & \overline{x}_2 & \overline{x}_3 \\
 \ldots & \ldots & \ldots & \ldots \\
@@ -1693,7 +1693,7 @@ $(X' X)^{-1} = \begin{bmatrix}
 
 Требуется:
 \begin{enumerate}
-\item Написать формулу для несмещенной оценки ковариации $\widehat{\Cov}(\hb_2, \hb_3)$ и вычислить её по имеющимся данным (если это возможно);
+\item Написать формулу для несмещенной оценки ковариации $\hCov(\hb_2, \hb_3)$ и вычислить её по имеющимся данным (если это возможно);
 \item Проверить $H_0: \beta_2 + \beta_3 = 1$ при помощи t-статистики (обязательно требуется указать формулу для статистики, а также указать число степеней свободы);
 \item Построить 95\% доверительный интервал для величины $\beta_2 + \beta_3$.
 \end{enumerate}
@@ -1701,11 +1701,11 @@ $(X' X)^{-1} = \begin{bmatrix}
 
 \begin{sol}
 \begin{enumerate}
-\item $\widehat{\Cov}\begin{bmatrix}
+\item $\hCov\begin{bmatrix}
 \hb_1 \\
 \hb_2 \\
 \hb_3 \\
-\end{bmatrix} = \hs_{\e}^2 (X'X)^{-1}$ — несмещённая оценка для ковариационной матрицы \\ МНК-коэффициентов. Действительно, $\E\widehat{\Cov}\begin{bmatrix}
+\end{bmatrix} = \hs_{\e}^2 (X'X)^{-1}$ — несмещённая оценка для ковариационной матрицы \\ МНК-коэффициентов. Действительно, $\E\hCov\begin{bmatrix}
 \hb_1 \\
 \hb_2 \\
 \hb_3 \\
@@ -1713,28 +1713,28 @@ $(X' X)^{-1} = \begin{bmatrix}
 \hb_1 \\
 \hb_2 \\
 \hb_3 \\
-\end{bmatrix}$. Поэтому искомая оценка $\widehat{\Cov}(\hb_2, \hb_3) = \hs_{\e}^2 \left[ (X' X)^{-1} \right]_{23}$, где $\left[ (X' X)^{-1} \right]_{23}$ — элемент матрицы $(X' X)^{-1}$, расположенный во второй строке, 3-м столбце.
+\end{bmatrix}$. Поэтому искомая оценка $\hCov(\hb_2, \hb_3) = \hs_{\e}^2 \left[ (X' X)^{-1} \right]_{23}$, где $\left[ (X' X)^{-1} \right]_{23}$ — элемент матрицы $(X' X)^{-1}$, расположенный во второй строке, 3-м столбце.
 
 Заметим, что $\hs_{\hb_2}^2 = \hs_{\e}^2 \left[ (X' X)^{-1} \right]_{22} \Rightarrow 0.7^2 = \hs_{\e}^2 \cdot (3030) \Rightarrow \hs_{\e}^2 = 0.00016172$
 
-Значит, $\widehat{\Cov}(\hb_2, \hb_3) = 0.00016172 \cdot (-589) = -0.095253$.
+Значит, $\hCov(\hb_2, \hb_3) = 0.00016172 \cdot (-589) = -0.095253$.
 
-\item $t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \sim t_{n-k}$
+\item $t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\hVar(\hb_2 + \hb_3)}} \sim t_{n-k}$
 
 Требуется проверить $H_0: \beta_2 + \beta_3 = 1$.
 
-$\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2, \hb_3) = 0.7^2 + 0.138^2 + 2 \cdot 0.095253 = 0.319044$
+$\hVar(\hb_2 + \hb_3) = \hVar(\hb_2) + \hVar(\hb_3) + 2\hCov(\hb_2, \hb_3) = 0.7^2 + 0.138^2 + 2 \cdot 0.095253 = 0.319044$
 
-$t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} = \frac{0.76 + 0.19 - 1}{\sqrt{0.319044}} = -0.088520674$
+$t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\hVar(\hb_2 + \hb_3)}} = \frac{0.76 + 0.19 - 1}{\sqrt{0.319044}} = -0.088520674$
 
 Значит, гипотеза не отвергается на любом разумном уровне значимости.
 
-\item Мы знаем, что $\frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \sim t_{n-k} = t_{15-3}$, поэтому построить доверительный интервал для $\beta_2 + \beta_3$ не составляет труда. $\P \left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \right| < t^* \right) = 0.95$
+\item Мы знаем, что $\frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\hVar(\hb_2 + \hb_3)}} \sim t_{n-k} = t_{15-3}$, поэтому построить доверительный интервал для $\beta_2 + \beta_3$ не составляет труда. $\P \left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\hVar(\hb_2 + \hb_3)}} \right| < t^* \right) = 0.95$
 
-Обозначим $se=\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}$, тогда:
+Обозначим $se=\sqrt{\hVar(\hb_2 + \hb_3)}$, тогда:
 
 \begin{multline*}
-\P \left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \right| < t^* \right) = \\
+\P \left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\hVar(\hb_2 + \hb_3)}} \right| < t^* \right) = \\
 \P \left( -t^* se < \hb_2 + \hb_3 - \beta_2 - \beta_3 < t^* se \right) = \\
 \P \left( -t^*se  - (\hb_2 + \hb_3) < - \beta_2 - \beta_3  < -(\hb_2 + \hb_3) + t^* se \right) =\\
 \P \left( (\hb_2 + \hb_3) + t^* se
@@ -1789,12 +1789,16 @@ $\frac{\partial x'Ax}{\partial x'}=x'(A'+A)$
 \begin{problem}
 <<"040_07">>=
 model <- lm(dist ~ speed, data = cars)
-model.sum <- summary(model)
-hat.sigma <- model.sum$sigma
+model_sum <- summary(model)
+hat_sigma <- model_sum$sigma
 @
 
 Исследователь оценил зависимость длины тормозного пути в футах от скорости автомобиля в милях в час по данным 1920-х годов.
-При построении парной регрессии у него получилась $\hs=\Sexpr{hat.sigma}$ и оценка ковариационной матрицы
+При построении парной регрессии у него получилась $\hs=
+<<"040_07b", echo=FALSE, results="asis">>=
+cat(hat_sigma)
+@
+$ и оценка ковариационной матрицы
 
 
 <<"040_08", results="asis">>=
@@ -1819,21 +1823,21 @@ xtable(vcov(model))
 \begin{problem}
 Дана оценка ковариацонной матрицы,
 \[
-\widehat{Var}(\hat{\beta})=\begin{pmatrix}
+\Var(\hb)=\begin{pmatrix}
 1/3 & -1/3 & 0 \\
 -1/3 & 4/3 & -1 \\
 0 & -1 & 2
 \end{pmatrix}
 \]
 
-Найдите $\widehat{Var}(\hb_1+\hb_2-\hb_3)$
+Найдите $\Var(\hb_1+\hb_2-\hb_3)$
 
 
 \begin{sol}
-\[\widehat{Var}(\hb_1+\hb_2-\hb_3)=\Var(\hb1)+\Var(\hb2)+\Var(\hb3)+
+\[\Var(\hb_1+\hb_2-\hb_3)=\Var(\hb1)+\Var(\hb2)+\Var(\hb3)+
 2\Cov(\hb1,\hb2)-2\Cov(\hb1,\hb3)-2\Cov(\hb2,\hb3)\]
 
-\[\widehat{Var}(\hb_1+\hb_2-\hb_3)=1/3+4/3+2-2/3+2=5\]
+\[\Var(\hb_1+\hb_2-\hb_3)=1/3+4/3+2-2/3+2=5\]
 \end{sol}
 \end{problem}
 
@@ -1853,7 +1857,7 @@ xtable(vcov(model))
 \end{pmatrix}
 \]
 \[
-\widehat{Var}(\hb)=\begin{pmatrix}
+\Var(\hb)=\begin{pmatrix}
 1 & -1 & 0 \\
 -1 & 4 & -3 \\
 0 & -3 & 6
@@ -1864,7 +1868,7 @@ xtable(vcov(model))
 
 
 \begin{sol}
-Из того, что $\widehat{Var}(\hb)=\sigma^2\cdot (X'X)^{-1}$ видно, что $\sigma^2=\frac13$.
+Из того, что $\Var(\hb)=\sigma^2\cdot (X'X)^{-1}$ видно, что $\sigma^2=\frac13$.
 
 $RSS=\sigma^2\cdot(n-k)=1/3\cdot 2=2/3$
 \[R^2=49\frac13/50=148/150\]

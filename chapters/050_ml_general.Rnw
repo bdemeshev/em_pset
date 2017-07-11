@@ -123,7 +123,7 @@ $LM := \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdo
 \[ \hat{\P} \left(\frac{\sum_{i = 1}^k X_i - \hat{\lambda} \cdot k}{\sqrt{ \hat{\lambda} \cdot k}}>\frac{2200 - \hat{\lambda} \cdot k}{\sqrt{ \hat{\lambda} \cdot k}}   \right) = 0.99\]
 
 Из ЦПТ:
-\[ \frac{\sum_{i = 1}^k X_i - \lambda \cdot k}{\sqrt{ \lambda \cdot k}} \sim \mathcal{N} (0, 1)\]
+\[ \frac{\sum_{i = 1}^k X_i - \lambda \cdot k}{\sqrt{ \lambda \cdot k}} \sim \cN (0, 1)\]
 
 Значит:
 \[ \frac{2200 - \hat{\lambda} \cdot k}{\sqrt{ \hat{\lambda} \cdot k}} = x{0.99},\]
@@ -137,11 +137,11 @@ $LM := \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdo
 \item \( \lambda \in [2.190102,  2.809898  ]\)
 
 Так как оценки метода максимального правдоподобия асимптотически нормальны, то:
-\[ \hat{\lambda} \overset{\text{ас}}{\sim} \mathcal{N} \left(\lambda, \Var\hat{\lambda} \right)\]
+\[ \hat{\lambda} \overset{\text{ас}}{\sim} \cN \left(\lambda, \Var\hat{\lambda} \right)\]
 
 Для оценки дисперсии можем использовать оценку информационной матрица Фишера:
-\[ \widehat{\Var} \hat{\lambda} = \left(\hat{I} \left(\hat{\lambda} \right) \right)^{-1}\]
-\[ \widehat{\Var} \hat{\lambda} = - \left( - \frac{\sum x_i}{\hat{\lambda}^2}\right)^{-1} = \frac{\hat{\lambda}^2}{\sum x_i} = 0.025\]
+\[ \hVar \hat{\lambda} = \left(\hat{I} \left(\hat{\lambda} \right) \right)^{-1}\]
+\[ \hVar \hat{\lambda} = - \left( - \frac{\sum x_i}{\hat{\lambda}^2}\right)^{-1} = \frac{\hat{\lambda}^2}{\sum x_i} = 0.025\]
 
 Границы 95\,\% доверительного интервала:
 <<"050_01">>=
@@ -300,7 +300,7 @@ f(x,y)=\frac{\theta(\beta y)^x e^{-(\theta+\beta)y}}{x!}
 
 
 \begin{sol}
-$\hat{\theta}=1/\bar{Y}$, $\hat{\beta}=\bar{X}/\bar{Y}$, $\hat{a}=1/(1+\bar{X})$
+$\hat{\theta}=1/\bar{Y}$, $\hb=\bar{X}/\bar{Y}$, $\hat{a}=1/(1+\bar{X})$
 \end{sol}
 \end{problem}
 
@@ -493,7 +493,7 @@ $\theta = p$ — вектор неизвестных параметров
 $\Theta = (0, 1)$ — множество допустимых значений вектора неизвестных параметров
 
 Функция правдоподобия имеет вид:
-\[\text{L}(\theta) = \prod_{i=1}^n \mathbb{P}_{\theta}(X_i = x_i) = \prod_{i=1}^n p^{x_i} \cdot (1-p)^{1-x_i} = p^{\sum_{i=1}^n x_i} \cdot (1-p)^{n - \sum_{i=1}^n x_i}\]
+\[\text{L}(\theta) = \prod_{i=1}^n \P_{\theta}(X_i = x_i) = \prod_{i=1}^n p^{x_i} \cdot (1-p)^{1-x_i} = p^{\sum_{i=1}^n x_i} \cdot (1-p)^{n - \sum_{i=1}^n x_i}\]
 
 Логарифмическая функция правдоподобия:
 
@@ -569,7 +569,7 @@ $\theta = \lambda$ — вектор неизвестных параметров
 $\Theta = (0, +\infty)$ — множество допустимых значений вектора неизвестных параметров
 
 Функция правдоподобия имеет вид:
-\[\text{L}(\theta) = \prod_{i=1}^n \mathbb{P}_{\theta}(X_i = x_i) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i !} e^{-\lambda} = \frac{\lambda^{\sum_{i=1}^n x_i}}{x_1!\ldots x_n!}e^{-\lambda n}\]
+\[\text{L}(\theta) = \prod_{i=1}^n \P_{\theta}(X_i = x_i) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i !} e^{-\lambda} = \frac{\lambda^{\sum_{i=1}^n x_i}}{x_1!\ldots x_n!}e^{-\lambda n}\]
 
 Логарифмическая функция правдоподобия:
 
@@ -918,9 +918,9 @@ FOC: \[\frac{\partial \ln \calL}{\partial \theta} = 0 \hence \frac{n}{\theta} = 
 
 
 
-\item Так как оценки ММП асимптотически нормальны, то для нахождения доверительного интервала достаточно найти стандартное отклонение параметра  и~домножить на квантиль двухстороннего распределения: $\PP\left(\left\{|\hat\theta-\theta| \le z_{0{,}025} \sqrt{\var(\hat\theta)}\right\}\right) = 0{,}95$. Известно, что $\widehat{\var}(\hat \theta) = -\bs{H}^{-1} |_{\hat\theta}$. Матрица $\bs{H}$ — это матрица вторых производных логарифма функции правдоподобия.
+\item Так как оценки ММП асимптотически нормальны, то для нахождения доверительного интервала достаточно найти стандартное отклонение параметра  и~домножить на квантиль двухстороннего распределения: $\PP\left(\left\{|\hat\theta-\theta| \le z_{0{,}025} \sqrt{\var(\hat\theta)}\right\}\right) = 0{,}95$. Известно, что $\hVar(\hat \theta) = -\bs{H}^{-1} |_{\hat\theta}$. Матрица $\bs{H}$ — это матрица вторых производных логарифма функции правдоподобия.
 \[
-\bs{H} = \frac{\p^2 \ln \calL}{\partial \theta^2} = -\frac{n}{\theta^2} \hence -\bs{H}^{-1} = \frac{\theta^2}{n} \hence \widehat{\var}(\hat\theta) = \frac{100/9}{100} = \frac19 \hence \hat\sigma_{\theta} = \frac13
+\bs{H} = \frac{\p^2 \ln \calL}{\partial \theta^2} = -\frac{n}{\theta^2} \hence -\bs{H}^{-1} = \frac{\theta^2}{n} \hence \hVar(\hat\theta) = \frac{100/9}{100} = \frac19 \hence \hat\sigma_{\theta} = \frac13
 \]
 Следовательно, с вероятность 0,95 $\theta$ лежит в интервале $\frac{10}{3} \pm 1{,}96 \cdot \frac{1}{3} \approx \frac{10}{3} \pm \frac{2}{3}$, или [2{,}680; 3{,}987].
 
@@ -1007,7 +1007,7 @@ LM = 70\cdot \frac{1}{100} \cdot 70 = 49
 
 Так как ММП"=оценки асимптотически нормальны, то 95\%-й доверительный интервал для вектора неизвестных параметров выглядит как
 \[
-\begin{pmatrix} \hat\mu \pm z_{\frac{\alpha}{2}} \sqrt{\widehat{\var}(\hat\mu)} \\ \hat\sigma^2 \pm z_{\frac{\alpha}{2}} \sqrt{\widehat{\var}(\hat\mu)} \end{pmatrix} \approx \begin{pmatrix} 1 \pm 1{,}96 \sqrt{\frac{2}{25}} \\ 8 \pm 1{,}96 \sqrt{\frac{32}{25}} \end{pmatrix} \approx \begin{pmatrix} [0{,}446; 1{,}554] \\ [5{,}783; 10{,}217] \end{pmatrix}
+\begin{pmatrix} \hat\mu \pm z_{\frac{\alpha}{2}} \sqrt{\hVar(\hat\mu)} \\ \hat\sigma^2 \pm z_{\frac{\alpha}{2}} \sqrt{\hVar(\hat\mu)} \end{pmatrix} \approx \begin{pmatrix} 1 \pm 1{,}96 \sqrt{\frac{2}{25}} \\ 8 \pm 1{,}96 \sqrt{\frac{32}{25}} \end{pmatrix} \approx \begin{pmatrix} [0{,}446; 1{,}554] \\ [5{,}783; 10{,}217] \end{pmatrix}
 \]
 
 \item  Тест Вальда:
@@ -1313,7 +1313,7 @@ LR_{\text{набл}} =  - 2 \cdot ({l_R}({x_1}, \ldots,{x_n};{\hat \theta _R}) -
 \]
 
 \[
-I(\theta) =  - \mathbb{E}\left[ {{\textstyle{{{\partial ^2}l} \over {\partial {\lambda ^2}}}}} \right] = {\textstyle{n \over {{\lambda ^2}}}} \text{,}
+I(\theta) =  - \E\left[ {{\textstyle{{{\partial ^2}l} \over {\partial {\lambda ^2}}}}} \right] = {\textstyle{n \over {{\lambda ^2}}}} \text{,}
 \]
 
 \[

@@ -37,7 +37,7 @@
 
 
 \begin{problem}
-Пусть $i = (1,\dots,1)'$ — вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$ и $\e = (\e_1,\dots,\e_n)'\sim N (0,I)$.
+Пусть $i = (1,\dots,1)'$ — вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$ и $\e = (\e_1,\dots,\e_n)'\sim \cN(0,I)$.
 \begin{enumerate}
 \item Найдите $\E(\e'\pi\e)$, $\E(\e'(I-\pi)\e)$ и $\E(\e\e')$
 \item Как распределены случайные величины $\e'\pi\e$ и $\e'(I-\pi)\e$?
@@ -57,11 +57,11 @@
 a <- matrix(as.integer(c(1, 2, 3, 4)), nrow = 4, ncol = 1,
   byrow = FALSE, dimnames = NULL)
 @
-Пусть $X = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
+Пусть $X = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim \cN(0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
-\item Найдите $\E(\e'P\e)$
-\item При помощи таблиц найдите такое число $q$, что $\P(\e'P\e > q)=0.1$
+\item Найдите распределение случайной величины $\e'H\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
+\item Найдите $\E(\e'H\e)$
+\item При помощи таблиц найдите такое число $q$, что $\P(\e'H\e > q)=0.1$
 \end{enumerate}
 
 
@@ -77,11 +77,11 @@ a <- matrix(as.integer(c(1, 2, 3, 4)), nrow = 4, ncol = 1,
 b <- matrix(as.integer(c(1, 1, 1, 1, 1, 2, 3, 4)), nrow = 4, ncol = 2,
   byrow = FALSE, dimnames = NULL)
 @
-Пусть $X = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \end{pmatrix}$, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
+Пусть $X = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \end{pmatrix}$, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim \cN(0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
-\item Найдите $\E(\e'P\e)$
-\item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$
+\item Найдите распределение случайной величины $\e'H\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
+\item Найдите $\E(\e'H\e)$
+\item При помощи таблиц найдите такое число $q$, что $\P(\e'H\e > q)=0.1$
 \end{enumerate}
 
 
@@ -96,11 +96,11 @@ b <- matrix(as.integer(c(1, 1, 1, 1, 1, 2, 3, 4)), nrow = 4, ncol = 2,
 c <- matrix(as.integer(c(1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1)), nrow = 4, ncol = 3,
   byrow = FALSE, dimnames = NULL)
 @
-Пусть $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0  \\ 1 & 1 & 1 \end{pmatrix} $, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
+Пусть $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0  \\ 1 & 1 & 1 \end{pmatrix} $, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim \cN(0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$.
-\item Найдите $\E(\e'P\e)$.
-\item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$.
+\item Найдите распределение случайной величины $\e'H\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$.
+\item Найдите $\E(\e'H\e)$.
+\item При помощи таблиц найдите такое число $q$, что $\P(\e'H\e > q)=0.1$.
 \end{enumerate}
 
 

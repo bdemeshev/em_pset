@@ -80,7 +80,7 @@
 
 
 \begin{problem}
-Покажите, что для моделей $y_i= \alpha + \beta x_i + \e_i$, $z_i = \gamma + \delta x_i + \upsilon_i$ и $y_i + z_i = \mu + \lambda x_i + \xi_i$ МНК-оценки связаны соотношениями $\hat{\mu}=\hat{\alpha}+\hat{\gamma}$ и $\hat{\lambda}=\hat{\beta} + \hat{\delta}$.
+Покажите, что для моделей $y_i= \alpha + \beta x_i + \e_i$, $z_i = \gamma + \delta x_i + \upsilon_i$ и $y_i + z_i = \mu + \lambda x_i + \xi_i$ МНК-оценки связаны соотношениями $\hat{\mu}=\hat{\alpha}+\hat{\gamma}$ и $\hat{\lambda}=\hb + \hat{\delta}$.
 
 
 \begin{sol}
@@ -105,12 +105,12 @@
 Рассмотрите модели $y_i = \alpha + \beta (y_i + z_i) + \e_i$, $z_i = \gamma + \delta(y_i+z_i) + \e_i$.
 \begin{enumerate}
 \item Как связаны между собой $\hat{\alpha}$ и $\hat{\gamma}$?
-\item  Как связаны между собой $\hat{\beta}$ и $\hat{\delta}$?
+\item  Как связаны между собой $\hb$ и $\hat{\delta}$?
 \end{enumerate}
 
 
 \begin{sol} % 1.5.
-$\hat{\alpha} + \hat{\gamma} = 0$ и $\hat{\beta} + \hat{\delta} = 1$
+$\hat{\alpha} + \hat{\gamma} = 0$ и $\hb + \hat{\delta} = 1$
 
 
 
@@ -374,7 +374,7 @@ invisible(dev.off())
 
 
 \begin{problem}
-Вася оценил модель $y=\beta_1+\beta_2 d+\beta_3 x+\varepsilon$. Дамми-переменная $d$ обозначает пол, 1 для мужчин и 0 для женщин. Оказалось, что $\hat{\beta}_2>0$. Означает ли это, что для мужчин $\bar{y}$ больше, чем $\bar{y}$ для женщин?
+Вася оценил модель $y=\beta_1+\beta_2 d+\beta_3 x+\varepsilon$. Дамми-переменная $d$ обозначает пол, 1 для мужчин и 0 для женщин. Оказалось, что $\hb_2>0$. Означает ли это, что для мужчин $\bar{y}$ больше, чем $\bar{y}$ для женщин?
 
 
 \begin{sol}
@@ -532,7 +532,7 @@ invisible(dev.off())
 
 
 \begin{sol}
-Так как \(\hat{y} = \hb = \bar{y} \), то \(R^2 = 0\).
+Так как \(\hy = \hb = \bar{y} \), то \(R^2 = 0\).
 \end{sol}
 \end{problem}
 
@@ -594,10 +594,10 @@ $y_i^*=7+3(y_i-\bar{y})/s_y$
 % эта задача не использует понятия вероятностей, хотя близка. Пусть будет в невероятностной секции.
 Нужно вспомнить свойства математического ожидания и дисперсии и провести следующие преобразования:
 \[
-\tilde{y}_i = \frac{y_i-\bar{y}}{s_y} \Rightarrow \mathbb{E}[\tilde{y}] = 0, \hspace{2mm} \mathbb{V}ar(\tilde{y}) = 1
+\tilde{y}_i = \frac{y_i-\bar{y}}{s_y} \Rightarrow \E[\tilde{y}] = 0, \hspace{2mm} \mathbb{V}ar(\tilde{y}) = 1
 \]
 \[
-y^*_i = \tilde{y}_i\cdot3 + 7 \Rightarrow \mathbb{E}[y^*] = 7, \hspace{2mm} \mathbb{V}ar(y^*) = 9
+y^*_i = \tilde{y}_i\cdot3 + 7 \Rightarrow \E[y^*] = 7, \hspace{2mm} \mathbb{V}ar(y^*) = 9
 \]
 \end{sol}
 \end{problem}
