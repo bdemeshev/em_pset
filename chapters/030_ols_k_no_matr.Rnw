@@ -22,7 +22,7 @@
 
 
 \begin{sol}
-$t$-статистики
+$t$-статистики, только они бывают отрицательными из перечисленных вариантов
 \end{sol}
 \end{problem}
 
@@ -448,7 +448,7 @@ $H_0:
 
 \begin{problem}
 Исследователь собирается по выборке, содержащей данные за 2 года,
-построить модель линейной регрессии с константой и 3-мя объясняющими переменными. В модель предполагается ввести 3 фиктивные сезонные переменные $SPRING$ (весна), $SUMMER$ (лето) и $FALL$ (осень) на все коэффициенты регрессии. Однако в процессе оценивания статистический пакет вывел на экран компьютера следующее сообщение <<insufficient number of observations>>. Объясните, почему имеющегося числа наблюдений не хватило для оценивания параметров модели.
+построить модель линейной регрессии с константой и 3-мя объясняющими переменными. В модель предполагается ввести 3 фиктивные сезонные переменные $SPRING$ (весна), $SUMMER$ (лето) и $FALL$ (осень) на все коэффициенты регрессии. Однако в процессе оценивания статистический пакет вывел на экран компьютера следующее сообщение «insufficient number of observations». Объясните, почему имеющегося числа наблюдений не хватило для оценивания параметров модели.
 
 
 \begin{sol}
@@ -524,7 +524,7 @@ $y_i=\beta_1+\beta_2(x_{i1}+x_{i2}+x_{i3})+\epsilon_{i}$
 
 
 \begin{problem} % 3.15
- Пусть регрессионная модель имеет вид $y_i=\beta_1+\beta_2 x_{i1}+\beta_3 x_{i2}+\beta_4 x_{i3}+\e_i, i=1,\dots,n.$ Тестируемая гипотеза $H_0: \beta_2=\beta_3=\beta_4.$ Запишите, какой вид имеет модель <<с ограничением>> для тестирования указанной гипотезы.
+ Пусть регрессионная модель имеет вид $y_i=\beta_1+\beta_2 x_{i1}+\beta_3 x_{i2}+\beta_4 x_{i3}+\e_i, i=1,\dots,n.$ Тестируемая гипотеза $H_0: \beta_2=\beta_3=\beta_4.$ Запишите, какой вид имеет ограниченная модель для тестирования указанной гипотезы.
 
 
 \begin{sol}
@@ -535,7 +535,7 @@ $y_i=\beta_1+\beta_2(x_{i1}+x_{i2}+x_{i3})+\epsilon_{i}$
 
 
 \begin{problem}
-Пусть регрессионная модель имеет вид $y_i= \beta_1+ \beta_2 x_{i1}+ \beta_3 x_{i2}+ \beta_4 x_{i3}+\e_i, i=1,\dots,n.$ Тестируемая гипотеза $H_0: \beta_3= \beta_4=1.$ Какая модель из приведённых ниже может выступать в качестве модели <<с ограничением>> для тестирования указанной гипотезы? Если ни одна из них, то запишите свою.
+Пусть регрессионная модель имеет вид $y_i= \beta_1+ \beta_2 x_{i1}+ \beta_3 x_{i2}+ \beta_4 x_{i3}+\e_i, i=1,\dots,n.$ Тестируемая гипотеза $H_0: \beta_3= \beta_4=1.$ Какая модель из приведённых ниже может выступать в качестве ограниченной для тестирования указанной гипотезы? Если ни одна из них, то запишите свою.
 \begin{enumerate}
 \item $y_i-(x_{i2}+x_{i3}) = \beta_1+ \beta_2 x_{i1}+ \e_i$
 \item $y_i+(x_{i2}-x_{i3}) = \beta_1+ \beta_2 x_{i1}+ \e_i$
@@ -559,7 +559,7 @@ $H_0:
     \beta_2+ \beta_3+ \beta_4=1, \\
     \beta_3+ \beta_4=0.
  \end{cases}$
-Какая модель из приведённых ниже может выступать в качестве модели <<с ограничением>> для тестирования указанной гипотезы? Если ни одна из них, то запишите свою.
+Какая модель из приведённых ниже может выступать в качестве ограниченной модели для тестирования указанной гипотезы? Если ни одна из них, то запишите свою.
 \begin{enumerate}
 \item $y_i-x_{i1} = \beta_1+ \beta_3 (x_{i2}-x_{i3})+ \e_i$
 \item $y_i-x_{i1} = \beta_1+ \beta_4 (x_{i3}-x_{i2})+ \e_i$
@@ -582,7 +582,7 @@ $H_0:
     \beta_2 - \beta_3=0, \\
     \beta_3 + \beta_4=0.
  \end{cases}$
-Какая модель из приведённых ниже может выступать в качестве модели <<с ограничением>> для тестирования указанной гипотезы? Если ни одна из них, то запишите свою.
+Какая модель из приведённых ниже может выступать в качестве ограниченной модели для тестирования указанной гипотезы? Если ни одна из них, то запишите свою.
 \begin{enumerate}
 \item $y_i = \beta_1 + \beta_3 (x_{i2}-x_{i1}-x_{i3})+ \e_i$
 \item $y_i-x_{i1} = \beta_1+ \beta_4 (x_{i3}-x_{i2})+ \e_i$
@@ -636,14 +636,14 @@ $\alpha>0.09$
 \[
 deaths_i = \beta_1 + \beta_2 drivers_i + \beta_3 popden_i + \beta_4  temp + \beta_5 fuel + \e_i
 \]
-<<echo=FALSE, warning=FALSE,results='asis'>>=
+<<echo=FALSE, warning=FALSE, results='asis'>>=
 d <- road
 model1 <- lm(deaths ~ drivers + popden + temp + fuel, data = d)
 xmodel(model1, below = "se")
 report <- summary(model1)
 coefficient_table <- report$coefficients
-rownames(coefficient_table) <- c("Intercept","Drivers","Popden","Temp","Fuel")
-colnames(coefficient_table) <- c("Estimate", "St.Error", "t value","P-value")
+rownames(coefficient_table) <- c("Intercept", "Drivers", "Popden", "Temp", "Fuel")
+colnames(coefficient_table) <- c("Estimate", "St.Error", "t value", "P-value")
 xtable(coefficient_table)
 @
 Перечислите, какие из переменных в регрессии являются значимыми и на каком уровне значимости.
@@ -665,7 +665,7 @@ ESS = 170.4, RSS = 80.3, n = 21
 \]
 \begin{enumerate}
 \item Чему равен коэффициент $R^2$?
-\item На уровне значимости $1\%$ проверьте гипотезу о значимости регрессии <<в целом>>
+\item На уровне значимости $1\%$ проверьте гипотезу о значимости регрессии в целом.
 \end{enumerate}
 
 
@@ -715,7 +715,7 @@ F_{\text{кр}}=F_(0.01,3,17)\approx 5.185
 $F_{\text{рас}}>F_{\text{кр}}$, и  $H_0$ отвергается на уровне значимости 1\%.
 
 Вывод: гипотеза $H_0$ отвергается на уровне значимости 1\%,
-следовательно модель <<в целом>> значима.
+следовательно модель в целом значима.
 \end{sol}
 \end{problem}
 
@@ -924,7 +924,7 @@ xmodel(model1, below = "se")
 report <- summary(model1)
 coefficient_table <- report$coefficients
 rownames(coefficient_table) <- c("Intercept", "Income", "Young", "Urban")
-colnames(coefficient_table) <- c("Estimate", "St.Error", "t value","P-value")
+colnames(coefficient_table) <- c("Estimate", "St.Error", "t value", "P-value")
 xtable(coefficient_table)
 @
 \end{center}
@@ -949,8 +949,8 @@ xtable(coefficient_table)
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
-\item Сформулируйте основную гипотезу, которая соответствует тесту на значимость регрессии <<в целом>>
-\item На уровне значимости $1\%$ проверьте гипотезу о значимости регрессии <<в целом>>,если известно, что $F-$статистика равна $34.81$ со степенями свободы 3 и 47, $P-$значение равно $5.337e^{-12}$:
+\item Сформулируйте основную гипотезу, которая соответствует тесту на значимость регрессии в целом
+\item На уровне значимости $1\%$ проверьте гипотезу о значимости регрессии в целом, если известно, что $F-$статистика равна $34.81$ со степенями свободы 3 и 47, $P-$значение равно $5.337e^{-12}$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики  при верной $H_0$
@@ -994,20 +994,20 @@ H_a: \beta_2\neq 0
 
 \item
 \begin{enumerate}
-\item[(a)] $t=\frac{\hb_i-\beta_i}{se(\beta_i)}$
-\item[(b)] $t_{\alpha,n-m}=t_{0.05,47}$
-\item[(c)] $t=\frac{0.08-0}{0.0093}\approx 8.67$
-\item[(d)]$[-t_{\text{кр}},t_{\text{кр}}]$
-\item[(e)] гипотеза $H_0$ отвергается, так как $P$-значение равно нулю; можно честно посчитать $t_{\text{кр}}=t_{0.05,47}$ или вспомнить, что при количестве наблюдений больше 30, $t$-распределение похоже на нормальное, для которого квантиль на уровне 5\% примерно равна $1.67$ и $F_{\text{наб}}>F_{\text{кр}}$. Гипотеза $H_0$ отвергается, следовательно коэффициент $\beta_2$ значим на уровне значимости 10\%.
+\item $t=\frac{\hb_i-\beta_i}{se(\beta_i)}$
+\item $t_{\alpha,n-m}=t_{0.05,47}$
+\item $t=\frac{0.08-0}{0.0093}\approx 8.67$
+\item $[-t_{\text{кр}},t_{\text{кр}}]$
+\item гипотеза $H_0$ отвергается, так как $P$-значение равно нулю; можно честно посчитать $t_{\text{кр}}=t_{0.05,47}$ или вспомнить, что при количестве наблюдений больше 30, $t$-распределение похоже на нормальное, для которого квантиль на уровне 5\% примерно равна $1.67$ и $F_{\text{наб}}>F_{\text{кр}}$. Гипотеза $H_0$ отвергается, следовательно коэффициент $\beta_2$ значим на уровне значимости 10\%.
 \end{enumerate}
 
 \item
 \begin{enumerate}
-\item[(a)] $t=\frac{\hb_i-\beta_i}{se(\beta_i)}$
-\item[(b)] $t_{\alpha,n-m}=t_{0.05,47}$
-\item[(c)] $t=\frac{-287-1}{64.92}\approx -4.42$
-\item[(d)]$(-\infty,t_{\text{кр}}]$
-\item[(e)] гипотеза $H_0$ отвергается, так как $P$-значение равно нулю; аналогично 2(e) $t_{\text{кр}}=t_{0.05,47}\approx 1.67$ и $F_{\text{наб}}>F_{\text{кр}}$. Гипотеза $H_0$ отвергается, следовательно коэффициент $\beta_1$ значим на уровне значимости 5\%.
+\item $t=\frac{\hb_i-\beta_i}{se(\beta_i)}$
+\item $t_{\alpha,n-m}=t_{0.05,47}$
+\item $t=\frac{-287-1}{64.92}\approx -4.42$
+\item $(-\infty,t_{\text{кр}}]$
+\item гипотеза $H_0$ отвергается, так как $P$-значение равно нулю; аналогично 2(e) $t_{\text{кр}}=t_{0.05,47}\approx 1.67$ и $F_{\text{наб}}>F_{\text{кр}}$. Гипотеза $H_0$ отвергается, следовательно коэффициент $\beta_1$ значим на уровне значимости 5\%.
 \end{enumerate}
 
 \item
@@ -1024,20 +1024,20 @@ H_a:\beta_2^2+\beta_3^2+\beta_4^2>0
 
 \item
 \begin{enumerate}
-\item[(a)] $F =\frac{(RSS_R-RSS_{UR})/q}{RSS_{UR}/(n-m)}$
-\item[(b)] $F_{\alpha,q,n-m}=F_{0.01,3,47}$
-\item[(c)] $F=34.81$
-\item[(d)]$[0,F_{\text{кр}}]$
-\item[(e)] гипотеза $H_0$ отвергается, так как P-value $\approx 0(5.337e^{-12})$; можно вычислить $F_{\text{кр}}=F_{0.01,3,47} \approx 4.23$. Следовательно, $F_{\text{наб}}>F_{\text{кр}}$ и $H_0$ отвергается, и регрессия <<в целом>> значима на уровне значимости 1\%.
+\item $F =\frac{(RSS_R-RSS_{UR})/q}{RSS_{UR}/(n-m)}$
+\item $F_{\alpha,q,n-m}=F_{0.01,3,47}$
+\item $F=34.81$
+\item $[0,F_{\text{кр}}]$
+\item гипотеза $H_0$ отвергается, так как $P$-значение примерно равно $0$, точнее меньше $(5.337\cdot 10^{-12})$; можно вычислить $F_{\text{кр}}=F_{0.01,3,47} \approx 4.23$. Следовательно, $F_{\text{наб}}>F_{\text{кр}}$ и $H_0$ отвергается, и регрессия в целом значима на уровне значимости 1\%.
 \end{enumerate}
 
 \item
 \begin{enumerate}
-\item[(a)] $F =\frac{(RSS_R-RSS_{UR})/q}{RSS_{UR}/(n-m)}$
-\item[(b)] $F_{\alpha,q,n-m}=F_{0.05,3,47}$
-\item[(c)] $F\approx 9.525$
-\item[(d)] $[0,F_{\text{кр}}]$
-\item[(e)] гипотеза $H_0$ отвергается, так как $F_{\text{кр}}=F_{0.05,3,47} \approx 4.047$ и $F_{\text{наб}}>F_{\text{кр}}$, следовательно коэффициент $\beta_4$ значим на уровне значимости 5\%.
+\item $F =\frac{(RSS_R-RSS_{UR})/q}{RSS_{UR}/(n-m)}$
+\item $F_{\alpha,q,n-m}=F_{0.05,3,47}$
+\item $F\approx 9.525$
+\item $[0,F_{\text{кр}}]$
+\item гипотеза $H_0$ отвергается, так как $F_{\text{кр}}=F_{0.05,3,47} \approx 4.047$ и $F_{\text{наб}}>F_{\text{кр}}$, следовательно коэффициент $\beta_4$ значим на уровне значимости 5\%.
 \end{enumerate}
 \end{enumerate}
 \end{sol}
@@ -1053,14 +1053,14 @@ education_i = \beta_1 + \beta_2 income_i + \beta_3 young_i + \beta_4 urban_i + \
 \]
 Модель оценивается по \Sexpr{nrow(Anscombe)} наблюдению. Ниже приведены результаты оценивания уравнения этой линейной регрессии:
 \begin{center}
-<<echo=FALSE, warning=FALSE,results='asis'>>=
+<<echo=FALSE, warning=FALSE, results='asis'>>=
 d <- Anscombe
 model1 <- lm(education ~ income + young + urban, data = d)
 xmodel(model1, below = "se")
 report <- summary(model1)
 coefficient_table <- report$coefficients
-rownames(coefficient_table) <- c("Intercept","Income","Young","Urban")
-colnames(coefficient_table) <- c("Estimate", "St.Error", "t value","P-value")
+rownames(coefficient_table) <- c("Intercept", "Income", "Young", "Urban")
+colnames(coefficient_table) <- c("Estimate", "St.Error", "t value", "P-value")
 xtable(coefficient_table)
 @
 \end{center}
@@ -1079,13 +1079,13 @@ xtable(coefficient_table)
 
 Далее приведены результаты оценивания уравнения регрессии без переменной, отражающей долю населения в возрасте до 18 лет:
 \begin{center}
-<<echo=FALSE, warning=FALSE,results='asis'>>=
+<<echo=FALSE, warning=FALSE, results='asis'>>=
 model3 <- lm(education ~ income + urban, data = d)
 xmodel(model3, below = "se")
 report3 <- summary(model3)
 coefficient_table3 <- report3$coefficients
-rownames(coefficient_table3) <- c("Intercept","Income","Urban")
-colnames(coefficient_table3) <- c("Estimate", "St.Error", "t value","P-value")
+rownames(coefficient_table3) <- c("Intercept", "Income", "Urban")
+colnames(coefficient_table3) <- c("Estimate", "St.Error", "t value", "P-value")
 xtable(coefficient_table3)
 @
 \end{center}
@@ -1127,7 +1127,7 @@ $0.25\hb_1+0.75\hb_1'$, $0.25\hb_2+0.75\hb_2'$ и $0.25\hb_3+0.75\hb_3'$
 
 
 \begin{problem}
-Сгенерируйте вектор $y$ из 300 независимых нормальных $N(10,1)$ случайных величин. Сгенерируйте 40 <<объясняющих>> переменных, по 300 наблюдений в каждой, каждое наблюдение — независимая нормальная $N(5,1)$ случайная величина. Постройте регрессию $y$ на все 40 регрессоров и константу.
+Сгенерируйте вектор $y$ из 300 независимых нормальных $N(10,1)$ случайных величин. Сгенерируйте 40 «объясняющих» переменных, по 300 наблюдений в каждой, каждое наблюдение — независимая нормальная $\cN(5,1)$ случайная величина. Постройте регрессию $y$ на все 40 регрессоров и константу.
 \begin{enumerate}
 \item Сколько регрессоров оказалось значимо на 5\% уровне?
 \item Сколько регрессоров в среднем значимо на 5\% уровне?
@@ -1136,6 +1136,7 @@ $0.25\hb_1+0.75\hb_1'$, $0.25\hb_2+0.75\hb_2'$ и $0.25\hb_3+0.75\hb_3'$
 
 
 \begin{sol}
+В среднем ложно значимы должны быть 5\% регрессоров, то есть 2 регрессора.
 \end{sol}
 \end{problem}
 
@@ -1195,15 +1196,15 @@ R_m-R_0=R_m^*-R_0^*+u
 
 <<message=FALSE>>=
 h <- swiss
-model1 <- glm(Agriculture~Examination+Catholic,data=h)
+model1 <- glm(Agriculture ~ Examination + Catholic, data = h)
 coef.t <- coeftest(model1)
 dimnames(coef.t)[[2]] <-
-    c("Оценка","Ст. ошибка",
+    c("Оценка", "Ст. ошибка",
     "t-статистика", "P-значение")
-coef.t <- coef.t[,-4]
-coef.t[1,1] <- NA
-coef.t[2,2] <- NA
-coef.t[3,3] <- NA
+coef.t <- coef.t[, -4]
+coef.t[1, 1] <- NA
+coef.t[2, 2] <- NA
+coef.t[3, 3] <- NA
 @
 
 
@@ -1239,14 +1240,14 @@ h <- swiss
 Модель 2: $Fertility_i=\gamma_1+\gamma_2 (Education_i+Examination_i)+\gamma_3 Catholic_i+u_i$
 
 <<>>=
-m1 <- lm(Fertility~Agriculture+Education+
-  Examination+Catholic,data=h)
-m2 <- lm(Fertility~I(Education+Examination)+Catholic,
-  data=h)
+m1 <- lm(Fertility ~ Agriculture + Education +
+  Examination + Catholic, data = h)
+m2 <- lm(Fertility ~ I(Education + Examination) + Catholic,
+  data = h)
 @
 
 <<results='asis'>>=
-texreg(list(m1,m2))
+texreg(list(m1, m2))
 
 @
 
@@ -1273,22 +1274,22 @@ h <- swiss
 
 % данные загружаются одним махом вначале
 <<include=FALSE, eval=FALSE>>=
-flats <- read.table("~/science/econometrix/em301/datasets/flats_moscow.txt",header=TRUE)
+flats <- read.table("~/science/econometrix/em301/datasets/flats_moscow.txt", header = TRUE)
 @
 
 <<results='asis'>>=
-model1 <- lm(price~totsp+livesp,data=flats)
+model1 <- lm(price ~ totsp + livesp, data = flats)
 report <- summary(model1)
 coef.table <- report$coefficients
 rownames(coef.table) <-
-  c("Константа","Общая площадь", "Жилая площадь")
+  c("Константа", "Общая площадь", "Жилая площадь")
 xtable(coef.table)
 @
 
 Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
 <<results='asis'>>=
 var.hat <- vcov(model1)
-xtable(var.hat, digits=4)
+xtable(var.hat, digits = 4)
 @
 
 \begin{enumerate}
@@ -1301,9 +1302,9 @@ xtable(var.hat, digits=4)
 \begin{sol}
 
 <<include=FALSE>>=
-est.se <- sqrt(var.hat[2,2]+var.hat[3,3]-2*var.hat[2,3])
+est.se <- sqrt(var.hat[2, 2] + var.hat[3, 3] - 2 * var.hat[2, 3])
 hb <- model1$coefficients
-est.diff <- hb[2]-hb[3]
+est.diff <- hb[2] - hb[3]
 @
 
 Из оценки ковариационной матрицы находим, что $se(\hb_{totsp}=\hb_{livesp})=\Sexpr{est.se}$.
@@ -1322,17 +1323,17 @@ est.diff <- hb[2]-hb[3]
 \begin{problem}
 По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
 <<results='asis'>>=
-model1 <- lm(price~totsp+livesp,data=flats)
+model1 <- lm(price ~ totsp + livesp, data = flats)
 report <- summary(model1)
 coef.table <- report$coefficients
 rownames(coef.table) <-
-  c("Константа","Общая площадь", "Жилая площадь")
+  c("Константа", "Общая площадь", "Жилая площадь")
 xtable(coef.table)
 @
 
 Сумма квадратов остатков равна $RSS=\Sexpr{deviance(model1)}$. Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
 <<results='asis'>>=
-xtable(vcov(model1), digits=4)
+xtable(vcov(model1), digits = 4)
 @
 
 \begin{enumerate}
@@ -1351,11 +1352,11 @@ xtable(vcov(model1), digits=4)
 \begin{problem}
 По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража, метража жилой площади и дамми-переменной, равной 1 для кирпичных домов.
 <<results='asis'>>=
-model1 <- lm(price~totsp+livesp+brick+brick:totsp+
-  brick:livesp,data=flats)
+model1 <- lm(price ~ totsp + livesp + brick + brick:totsp +
+  brick:livesp, data = flats)
 report <- summary(model1)
 coef.table <- report$coefficients
-# rownames(coef.table) <- c("Константа","Общая площадь",
+# rownames(coef.table) <- c("Константа", "Общая площадь",
 #  "Жилая площадь")
 xtable(coef.table)
 @
@@ -1422,9 +1423,9 @@ xtable(coef.table)
 
 <<>>=
 set.seed(42)
-y <- rnorm(200,sd=15)
+y <- rnorm(200, sd = 15)
 X <- matrix(rnorm(2000),nrow = 200)
-model <- lm(y~X)
+model <- lm(y ~ X)
 report <- summary(model)
 report$adj.r.squared
 @

@@ -1,0 +1,23 @@
+\documentclass{article}
+
+\begin{document}
+
+<<include=FALSE>>=
+library(knitr)
+library(tidyverse)
+opts_chunk$set(split = TRUE)
+@
+
+
+<<"test-1", include=FALSE>>=
+cos(3)
+@
+
+<<"test-2">>=
+qplot(rnorm(100))
+@
+
+
+
+
+\end{document}
