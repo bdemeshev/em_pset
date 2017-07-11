@@ -183,16 +183,16 @@ $bee_i=0$ & 32 & 20 \\
 \end{multline*}
 где
 \begin{equation}
-\label{eq: logist df}\Lambda(x) = \frac{e^x}{1 + e^x}
+\label{eq:logist_df}\Lambda(x) = \frac{e^x}{1 + e^x}
 \end{equation}
 логистическая функция распределения, $\#A$ означает число элементов множества $A$.
 
 \item Введём следующие обозначения:
 \begin{equation}
-\label{eq: short a}a := \Lambda(\beta_1)
+\label{eq:short_a}a := \Lambda(\beta_1)
 \end{equation}
 \begin{equation}
-\label{eq: short b}b := \Lambda(\beta_1 + \beta_2)
+\label{eq:short_b}b := \Lambda(\beta_1 + \beta_2)
 \end{equation}
 
 
@@ -200,32 +200,46 @@ $bee_i=0$ & 32 & 20 \\
 
 Тогда с учетом имеющихся наблюдений функция правдоподобия принимает вид:
 
-$$\text{L}(a, b) = b^{12} \cdot a^{32} \cdot [1 - b]^{36} \cdot [1 - a]^{20}$$
+\[
+\text{L}(a, b) = b^{12} \cdot a^{32} \cdot (1 - b)^{36} \cdot (1 - a)^{20}
+\]
 
 Логарифмическая функция правдоподобия:
 
-$$l(a, b) = \ln \text{L}(a, b) = 12\ln b + 32\ln a + 36\ln[1-b] + 20\ln[1 - a]$$
+\[
+\ell(a, b) = \ln \text{L}(a, b) = 12\ln b + 32\ln a + 36\ln(1-b) + 20\ln(1 - a)
+\]
 
 Решая систему уравнений правдоподобия
 
-$$\begin{cases}
+\[
+\begin{cases}
 \frac{\partial l}{\partial a} = \frac{32}{a} - \frac{20}{1 - a} = 0 \\
 \frac{\partial l}{\partial b} = \frac{12}{b} - \frac{36}{1 - b} = 0 \\
-\end{cases}$$
-получаем $\hat{a} = \frac{8}{13}$, $\hat{b} = \frac{1}{4}$. Из формул (\ref{eq: logist df}) и (\ref{eq: short a}), находим $\hb_{1, UR} = \ln\left( \frac{\hat{a}}{1 - \hat{a}} \right)= \ln \left(\frac{8}{5} \right) = 0.47$. Далее, из (\ref{eq: logist df}) и (\ref{eq: short b}) имеем $\hb_{1, UR} + \hb_{2, UR} = \ln \left( \frac{\hat{b}}{1 - \hat{b}} \right)$. Следовательно, $\hb_{2, UR} = \ln \left( \frac{\hat{b}}{1 - \hat{b}} \right) - \hb_{1, UR} = \ln \left( \frac{1}{3} \right) - \ln \left( \frac{8}{5} \right) = -1.57$.
+\end{cases}
+\]
+получаем $\hat{a} = \frac{8}{13}$, $\hat{b} = \frac{1}{4}$. Из формул (\ref{eq:logist_df}) и (\ref{eq:short_a}), находим $\hb_{1, UR} = \ln\left( \frac{\hat{a}}{1 - \hat{a}} \right)= \ln \left(\frac{8}{5} \right) = 0.47$. Далее, из (\ref{eq:logist_df}) и (\ref{eq:short_b}) имеем $\hb_{1, UR} + \hb_{2, UR} = \ln \left( \frac{\hat{b}}{1 - \hat{b}} \right)$. Следовательно, $\hb_{2, UR} = \ln \left( \frac{\hat{b}}{1 - \hat{b}} \right) - \hb_{1, UR} = \ln \left( \frac{1}{3} \right) - \ln \left( \frac{8}{5} \right) = -1.57$.
 
 \item Гипотеза, состоящая в том, что правильность Мёда не связана с правильностью
 пчёл, формализуется как $H_0: \beta_2 = 0$. Протестируем данную гипотезу при помощи теста
-отношения правдоподобия. Положим в функции правдоподобия $\text{L}(\beta_1, \beta_2)$ $\beta_2 = 0$. Тогда с учетом (\ref{eq: short a}) и (\ref{eq: short b}) получим
-$$\text{L}(a, b=a) = a^{32+12} \cdot [1 - a]^{20+36}$$
+отношения правдоподобия. Положим в функции правдоподобия $\text{L}(\beta_1, \beta_2)$ $\beta_2 = 0$. Тогда с учетом (\ref{eq:short_a}) и (\ref{eq:short_b}) получим
+\[
+\text{L}(a, b=a) = a^{32+12} \cdot (1-a)^{20+36}
+\]
 В этом случае логарифмическая функция правдоподобия имеет вид:
-$$l(a, b=a) := \text{L}(a, b=a) = 44 \ln a + 56 \ln[1 - a]$$
+\[
+\ell(a, b=a) := \text{L}(a, b=a) = 44 \ln a + 56 \ln(1-a)
+\]
 Решаем уравнение правдоподобия
-$$\frac{\partial l}{\partial a} = \frac{44}{a} - \frac{56}{1 - a} = 0$$
-и получаем $\hat{a} = \frac{11}{25}$. Следовательно, согласно (\ref{eq: logist df}) и (\ref{eq: short a}), $\hb_{1, R} = -0.24$ и $\hb_{2, R} = 0$.
+\[
+\frac{\partial l}{\partial a} = \frac{44}{a} - \frac{56}{1 - a} = 0
+\]
+и получаем $\hat{a} = \frac{11}{25}$. Следовательно, согласно (\ref{eq:logist_df}) и (\ref{eq:short_a}), $\hb_{1, R} = -0.24$ и $\hb_{2, R} = 0$.
 
 Статистика отношения правдоподобия имеет вид:
-$$LR = -2(l(\hb_{1, R}, \hb_{2, R}) - l(\hb_{1, UR}, \hb_{2, UR}))$$
+\[
+LR = -2(l(\hb_{1, R}, \hb_{2, R}) - l(\hb_{1, UR}, \hb_{2, UR}))
+\]
 и имеет асимптотическое $\chi^2$ распределение с числом степеней свободы, равным числу ограничений, составляющих гипотезу $H_0$, т.е. в данном случае $LR \overset{a}{\sim} \chi^2_1$.
 
 Находим наблюдаемое значение статистики отношения правдоподобия:

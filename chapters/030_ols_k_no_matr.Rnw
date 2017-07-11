@@ -1612,10 +1612,12 @@ $\P(\hs_3^2>\hs_1^2)=0.5$, $\P(\hs_1^2>2\hs_2^2)=0.5044$, $\E(\hs_2^2/\hs_1^2)=1
 
 \begin{problem}
 Пусть $\hb_1$ и $\hb_2$ — МНК-оценки коэффициентов в регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, оцененной по наблюдениям $i = 1, \ldots, m$, а $\hat{\mu}$, $\hat{\nu}$, $\hat{\gamma}$ и $\hat{\delta}$ — МНК-коэффициенты в регрессии $y_i = \mu + \nu x_i + \gamma d_i + \delta x_i d_i + \e_i$, оцененной по наблюдениям $i = 1, \ldots, n$, где фиктивная переменная $d$ определяется следующим образом
-$$d_i = \begin{cases}
+\[
+d_i = \begin{cases}
 1 & \text{ при } i \in \{1, \ldots, m\} \\
 0 & \text{ при } i \in \{m + 1, \ldots, n\} \\
-\end{cases}$$
+\end{cases}
+\]
 Покажите, что $\hb_1 = \hat{\mu} + \hat{\gamma}$ и $\hb_2 = \hat{\nu} + \hat{\delta}$.
 
 
@@ -1640,7 +1642,9 @@ $$d_i = \begin{cases}
 \sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 \leqslant \sum_{i=1}^m (y_i - (\hat{\mu} + {\gamma}) - (\hat{\nu} + {\delta}) x_i)^2
 \end{equation*}
 Обозначим $\tilde{\beta_1} := \hat{mu} + \gamma$ и $\tilde{\beta_2} := \hat{\nu} + \delta$. В силу произвольности $\gamma$ и $\delta$ коэффициенты $\tilde{\beta_1}$ и $\tilde{\beta_2}$ также произвольны. тогда для любых $\tilde{\beta_1}$ и $\tilde{\beta_2}$ выполнено неравенство:
-$$\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 \leqslant \sum_{i=1}^m (y_i - \tilde{\beta_1} - \tilde{\beta_2} x_i)^2$$
+\[
+\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 \leqslant \sum_{i=1}^m (y_i - \tilde{\beta_1} - \tilde{\beta_2} x_i)^2
+\]
 которое означает, что $\hat{\mu} + \hat{\gamma}$ и $\hat{\nu} + \hat{\delta}$ являются МНК-оценками коэффициентов $\beta_1$ и $\beta_2$ в регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, оцененной по наблюдениям $i = 1, \ldots, m$, то есть $\hb_1 = \hat{\mu} + \hat{\gamma}$ и $\hb_2 = \hat{\nu} + \hat{\delta}$.
 \end{sol}
 \end{problem}
