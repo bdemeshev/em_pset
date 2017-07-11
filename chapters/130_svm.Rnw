@@ -187,7 +187,8 @@ $C=0$ и $\sigma=+\infty$
 
 По картинке качественно решите задачу разделения точек:
 
-<<"armada", warning=FALSE, include=FALSE>>=
+\todo[inline]{Здесь виснет чанк кода!}
+<<"armada", warning=FALSE, include=FALSE, eval=FALSE>>=
 n_obs <- 2000
 svm_df <- data_frame(x = runif(n_obs, min = -20, max = 20), y = runif(n_obs, min = -20, max = 20))
 svm_df <- dplyr::filter(svm_df, (y > x + 10) | (y < x - 10))
@@ -201,17 +202,6 @@ ggplot(data = svm_df, aes(x = x, y = y)) +
 invisible(dev.off())
 @
 
-<<"130_01", eval=FALSE>>=
-n_obs <- 2000
-svm_df <- data_frame(x = runif(n_obs, min = -20, max = 20), y = runif(n_obs, min = -20, max = 20))
-svm_df <- dplyr::filter(svm_df, (y > x + 10) | (y < x - 10))
-svm_df <- mutate(svm_df, type = ifelse(y > x + 10, 1, 0))
-more_points <- data_frame(x = c(0, 5, 5), y = c(0, 5, 0), type = c(1, 1, 0))
-svm_df <- bind_rows(svm_df, more_points)
-
-ggplot(data = svm_df, aes(x = x, y = y)) +
-  geom_point(aes(shape = factor(type))) + theme_bw() + guides(shape = guide_legend(title = "Тип"))
-@
 
 
 \begin{figure}

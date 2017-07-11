@@ -21,7 +21,9 @@ $(file_name).tex: $(file_name).Rnw chapters/*.Rnw emetrix_preamble.tex
 
 clean:
 	# with minus before rm make will ignore errors if file does not exist
-	-rm $(file_name)-tikzDictionary $(file_name).tex
+	-rm $(file_name)-tikzDictionary
+	-rm chapters/$(file_name)-tikzDictionary
+	-rm $(file_name).tex
 	-rm $(file_name).pdf
 	-rm $(file_name).aux
 	-rm $(file_name).idx

@@ -1435,7 +1435,7 @@ cat(1 - pt(1, 17))
 @
 $
 \item $\P(\hb_3>\sigma_{\hb_3})=\P(\cN(0,1)>1)=
-<<"030_s02", echo=FALSE, results="asis">>=
+<<"030_s13", echo=FALSE, results="asis">>=
 cat(1 - pnorm(1))
 @
 $
@@ -1877,7 +1877,7 @@ $0$ и $1$
 \begin{problem}
 У эконометрессы Агнессы есть дамми-переменная $male_i$, равная 1 для мужчин, и дамми-переменная $female_i$, равная 1 для женщин. Зависимая переменная $y_i$ — доход индивида.
 \[
-A: \hy_i = \hbmale_i
+A: \hy_i = \hb male_i
 \]
 \[
 B: \hy_i = \hat{\gamma}female_i

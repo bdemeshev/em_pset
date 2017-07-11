@@ -30,7 +30,8 @@ resids <- model$residuals
 resid.acf <- acf(resids, plot = FALSE)$acf
 @
 
-<<"huron_ts", warning=FALSE, message=FALSE>>=
+\todo[inline]{Здесь виснет чанк кода!}
+<<"huron_ts", warning=FALSE, message=FALSE, eval=FALSE>>=
 tikz("../R_plots/huron_level.tikz", standAlone = FALSE, bareBones = TRUE)
 ggplot(df, aes(x = obs, y = level)) + geom_line() +
     labs(x = "Год", y = "Уровень озера (футы)")
@@ -46,7 +47,8 @@ invisible(dev.off())
 
 График автокорреляционной и частной автокорреляционной функций:
 
-<<"huron_acf", warning=FALSE>>=
+\todo[inline]{Здесь виснет чанк кода!}
+<<"huron_acf", warning=FALSE, eval=FALSE>>=
 tikz("../R_plots/huron_acf.tikz", standAlone = FALSE, bareBones = TRUE)
 ggplot(acfs.df, aes(x = lag, y = acf, fill = acf.type)) +
     geom_bar(position = "dodge", stat = "identity") +
@@ -133,7 +135,7 @@ $.
 \item $H_0$: ряд содержит единичный корень, $\beta=0$; $H_a$: ряд не содержит единичного корня, $\beta<0$
 \item $ADF=-0.4/0.1=-4$, $ADF_{crit}=
 <<"120_s07", echo=FALSE, results="asis">>=
-cat(qadf(0.05,N=100,trend="c",statistic="t"))
+cat(qunitroot(0.05, N = 100, trend = "c", statistic = "t"))
 @
 $, $H_0$ отвергается
 \item Ряд стационарен
@@ -967,7 +969,8 @@ d_t=\Delta w_t
 \begin{problem}
 Эконометресса Антуанетта построила график автоковариационной функции временного ряда и распечатала его:
 
-<<"acf_rescale", warning=FALSE>>=
+\todo[inline]{Здесь виснет чанк кода!}
+<<"acf_rescale", warning=FALSE, eval=FALSE>>=
 acf.df <- data.frame(lag = 1:10, acf = c(11, 5, 3, 1, -2, 2, 1, 2, 0, 1))
 tikz("../R_plots/acf_rescale.tikz", standAlone = FALSE, bareBones = TRUE)
 ggplot(acf.df, aes(x = lag, y = acf)) +
