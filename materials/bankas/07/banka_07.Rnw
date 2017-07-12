@@ -136,13 +136,13 @@ $$\widehat{\text{ГД}} = 1200 + 200 \cdot \text{ОП} - 10 \cdot \text{ОП}^2 
 \textbf{Задача 12.} Исследователь оценил зависимость:
 
 для 30 индустриально развитых стран:
-$$\underset{(s.e.)}{\widehat{\ln\text{УА}}} = \underset{(0.86)}{-1.13} + \underset{(0.15)}{0.69} \ln\text{УН} - \underset{(0.16)}{0.64} \ln\text{УР}, \text{ } RSS_1=27.63$$
+$$\underset{(se)}{\widehat{\ln\text{УА}}} = \underset{(0.86)}{-1.13} + \underset{(0.15)}{0.69} \ln\text{УН} - \underset{(0.16)}{0.64} \ln\text{УР}, \text{ } RSS_1=27.63$$
 
 для 30 развивающихся стран:
-$$\underset{(s.e.)}{\widehat{\ln\text{УА}}} = \underset{(0.87)}{-1.12} + \underset{(0.13)}{0.81} \ln\text{УН} - \underset{(0.11)}{0.09} \ln\text{УР}, \text{ } RSS_1=32.18$$
+$$\underset{(se)}{\widehat{\ln\text{УА}}} = \underset{(0.87)}{-1.12} + \underset{(0.13)}{0.81} \ln\text{УН} - \underset{(0.11)}{0.09} \ln\text{УР}, \text{ } RSS_1=32.18$$
 
 по всей выборке:
-$$\underset{(s.e.)}{\widehat{\ln\text{УА}}} = \underset{(0.97)}{-1.13} + \underset{(0.21)}{0.75} \ln\text{УН} - \underset{(0.24)}{0.35} \ln\text{УР}, \text{ } RSS_1=123.76$$
+$$\underset{(se)}{\widehat{\ln\text{УА}}} = \underset{(0.97)}{-1.13} + \underset{(0.21)}{0.75} \ln\text{УН} - \underset{(0.24)}{0.35} \ln\text{УР}, \text{ } RSS_1=123.76$$
 Проверьте гипотезу о том, что зависимость уровня активности в теневой экономике \textit{УА} от уровня налогов \textit{УН} и уровня правительственных расходов на борьбу с теневой экономикой \textit{УР} одинаковая для развитых и развивающихся стран. Используйте уровень значимости 5$\%$. Выпишите
 \begin{enumerate}
 \item[(a)] Нулевую и альтернативную гипотезы

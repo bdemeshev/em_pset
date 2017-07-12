@@ -120,7 +120,7 @@ invisible(dev.off())
 \[\hb_2 = \frac{\sum (x_i - \bar{x}) (y_i - \bar{y})}{\sum (x_i-\bar{x})^2} = \frac{\sum (x_i - \bar{x})y_i}{\sum (x_i-\bar{x})^2} = \frac{\sum x_i y_i - \bar{y} \sum x_i}{\sum x_i^2 - 2 \bar{x} \sum x_i + n \bar{x}^2}=2.5\]
 \[\hb_1 = \bar{y} - \hb_2 \bar{x} = 1.5 \]
 \item
-\[Corr(\hb_1, \hb_2) = \frac{\Cov (\hb_1, \hb_2)}{\sqrt{\Var (\hb_1)\cdot \Var (\hb_2)}}=\frac{\Cov (\bar{y}-\hb_2 \bar{x}, \hb_2)}{\sqrt{\Var (\bar{y}-\hb_2 \bar{x})\cdot \Var (\hb_2)}} = \]
+\[\Corr(\hb_1, \hb_2) = \frac{\Cov (\hb_1, \hb_2)}{\sqrt{\Var (\hb_1)\cdot \Var (\hb_2)}}=\frac{\Cov (\bar{y}-\hb_2 \bar{x}, \hb_2)}{\sqrt{\Var (\bar{y}-\hb_2 \bar{x})\cdot \Var (\hb_2)}} = \]
 \[ = \frac{-\bar{x} \cdot \Cov(\hb_2,\hb_2)}{\bar{x}\cdot\sqrt{\left(\Var (\hb_2) \right)^2}} = -1  \]
 \item
 \[TSS = \sum (y_i - \bar{y})^2 = \sum y_i^2 - 2 \bar{y} \sum y_i + n \bar{y}^2 = 10 \]
@@ -263,7 +263,7 @@ p_value
 Поэтому:
 \begin{enumerate}
 \item $\hb_1 = 2.5$, $\hb_2  = 2$
-\item  \[corr(\hb_1, \hb_2) = \frac{\Cov(\hb_1, \hb_2)}{\sqrt{\Var(\hb_1)}\sqrt{\Var(\hb_2)}} =  \frac{\Cov(\bar{y}-\hb_2\bar{x}, \hb_2)}{\sqrt{\Var(\bar{y}-\hb_2\bar{x})} \sqrt{\Var(\hb_2)}} = \frac{\bar{x}(- \Cov(\hb_2,\hb_2))}{\bar{x} \sqrt{\Var(\hb_2)}\sqrt{\Var(\hb_2)}} = -1\]
+\item  \[\Corr(\hb_1, \hb_2) = \frac{\Cov(\hb_1, \hb_2)}{\sqrt{\Var(\hb_1)}\sqrt{\Var(\hb_2)}} =  \frac{\Cov(\bar{y}-\hb_2\bar{x}, \hb_2)}{\sqrt{\Var(\bar{y}-\hb_2\bar{x})} \sqrt{\Var(\hb_2)}} = \frac{\bar{x}(- \Cov(\hb_2,\hb_2))}{\bar{x} \sqrt{\Var(\hb_2)}\sqrt{\Var(\hb_2)}} = -1\]
 
 \item $TSS=\sum_{i=1}^n(y_i-\bar{y})^2 = \sum_{i=1}^ny_i^2 -2\bar{y}\sum_{i=1}^ny_i + n\bar{y}^2 = 55 - 2\cdot\frac{15}{5}\cdot15 + 5\cdot\left(\frac{15}{5}\right)^2=10$
 
@@ -297,7 +297,7 @@ H_{a}: \hspace{2mm} \beta_2 \ne2
 \end{cases}
 \]
 
-Строим статистику: \[\frac{\hb_2 - 2}{s.e.(\hb_2)} \sim t_{n-k}\]
+Строим статистику: \[\frac{\hb_2 - 2}{se(\hb_2)} \sim t_{n-k}\]
 
 В нашем случае она равна нулю, поэтому гипотеза $H_0$ не отвергается. Вообще, для значений около 0 гипотеза $H_0$ не отвергается, а для значений далеких (в зависимости от уровня значимости) от нуля — отвергается.
 
@@ -567,7 +567,7 @@ f_crit < 12.3
 
 \begin{problem} На основе 100 наблюдений была оценена функция спроса:
 \[
-\underset{(s.e.)}{\widehat{\ln Q}} = \underset{(0.04)}{0.87} - \underset{(0.02)}{1.23}\ln P
+\underset{(se)}{\widehat{\ln Q}} = \underset{(0.04)}{0.87} - \underset{(0.02)}{1.23}\ln P
 \]
 Значимо ли коэффициент эластичности спроса по цене отличается от $-1$? Рассмотрите уровень значимости $5\%$.
 
@@ -594,15 +594,15 @@ qt(0.025, df = 98)
 \begin{problem}
 На основе 100 наблюдений была оценена функция спроса:
 \[
-\underset{(s.e.)}{\widehat{\ln Q}} = \underset{(0.04)}{2.87} - \underset{(0.02)}{1.12}\ln P
+\underset{(se)}{\widehat{\ln Q}} = \underset{(0.04)}{2.87} - \underset{(0.02)}{1.12}\ln P
 \]
 На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_{\ln P} = - 1$ против альтернативной $H_a: \beta_{\ln P} < -1$. Дайте экономическую интерпретацию проверяемой гипотезе и альтернативе.
 
 
 \begin{sol}
 Формула расчета статистики:
-\[T = \frac{\hb_{\log P} - \beta_{\log P, 0}}{s.e. \left(\hb_{\log P} \right)} \]
-\[T = \frac{\hb_{\log P} - (-1)}{s.e.\left(\hb_{\log P} \right)} \overset{H_0}{\sim} t_{100 -2} \]
+\[T = \frac{\hb_{\log P} - \beta_{\log P, 0}}{se \left(\hb_{\log P} \right)} \]
+\[T = \frac{\hb_{\log P} - (-1)}{se\left(\hb_{\log P} \right)} \overset{H_0}{\sim} t_{100 -2} \]
 
 Наблюдаемое значение статистики:
 \[ T = -6    \]
@@ -761,7 +761,7 @@ qt(0.005, df = 43)
 \begin{tabular}{c|cccc}
 \toprule
 $\hb$ & $\beta - \frac{3}{5}$ & $\beta - \frac{1}{5}$ & $\beta + \frac{1}{5}$ & $\beta + \frac{3}{5}$ \\
-$\mathbf{P}(\cdot)$ & $\frac{1}{4}$ & $\frac{1}{4}$ & $\frac{1}{4}$ & $\frac{1}{4}$ \\
+$\P(\cdot)$ & $\frac{1}{4}$ & $\frac{1}{4}$ & $\frac{1}{4}$ & $\frac{1}{4}$ \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -775,7 +775,7 @@ RSS = (y_1 - \hy_1)^2 + (y_2 - \hy_2)^2 = \frac{\e_1^2 + 4\e_1\e_2 + 4\e_2^2}{5}
 \begin{tabular}{c|cc}
 \toprule
 $RSS$ & $\frac{7}{5}$ & $\frac{3}{5}$ \\
-$\mathbf{P}(\cdot)$ & $\frac{1}{2}$ & $\frac{1}{2}$\\
+$\P(\cdot)$ & $\frac{1}{2}$ & $\frac{1}{2}$\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -789,7 +789,7 @@ TSS = \left( \frac{\e_1 -\e_2-\beta}{2} \right)^2 + \left( \frac{\e_2 -\e_1+\bet
 \begin{tabular}{c|ccc}
 \toprule
 $\hb$ & $ \frac{\beta^2}{2}$ & $\frac{(\beta-2)^2}{2}$ & $\frac{(\beta+2)^2}{2}$\\
-$\mathbf{P}(\cdot)$ & 0.5  & $\frac{1}{4}$ & $\frac{1}{4}$\\
+$\P(\cdot)$ & 0.5  & $\frac{1}{4}$ & $\frac{1}{4}$\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -1013,7 +1013,7 @@ y_0 = \hb_1 + \hb_2x_0
 \begin{sol}
 \(R^2\) — это отношение выборочных дисперсий \(\hy\) и \(y\).
 \[R^2 = \frac{4 \cdot 9}{40} = 0.9 \]
-\[\sCorr(x, y) = \sqrt{R^2} \approx - 0.949  \]
+\[\sCorr(x, y) = -\sqrt{R^2} \approx - 0.949  \]
 \[\sCorr(\hy, y) = \sqrt{R^2} \approx  0.949  \]
 \end{sol}
 \end{problem}
@@ -1635,9 +1635,9 @@ $.
 
 \begin{problem}
 Все предпосылки классической линейной модели выполнены, $y=\beta_1+\beta_2 x+\e$. Рассмотрим альтернативную оценку коэффициента $\beta_2$,
-\begin{equation}
+\[
 \hb_{2,IV}=\frac{\sum z_i(y_i-\bar{y})}{\sum z_i(x_i-\bar{x})}
-\end{equation}
+\]
 \begin{enumerate}
 \item Является ли оценка несмещённой?
 \item Любые ли $z_i$ можно брать?
@@ -1708,7 +1708,7 @@ $.
 <<"problem_2_38_part_3">>=
 1 - pt(q = 5 / 4, df = 3)
 @
-\item \(\left(\e_1 + 2\e_2\right) \sim \cN0, 5\sigma^2)  \)
+\item \(\left(\e_1 + 2\e_2\right) \sim \cN(0, 5\sigma^2)  \)
 <<"problem_2_38_part_4">>=
 pt(q = 9 / 2 * sqrt(3) / sqrt(5), df = 3)
 @

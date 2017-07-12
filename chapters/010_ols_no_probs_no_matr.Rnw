@@ -597,10 +597,10 @@ $y_i^*=7+3(y_i-\bar{y})/s_y$
 % эта задача не использует понятия вероятностей, хотя близка. Пусть будет в невероятностной секции.
 Нужно вспомнить свойства математического ожидания и дисперсии и провести следующие преобразования:
 \[
-\tilde{y}_i = \frac{y_i-\bar{y}}{s_y} \Rightarrow \E[\tilde{y}] = 0, \hspace{2mm} \mathbb{V}ar(\tilde{y}) = 1
+\tilde{y}_i = \frac{y_i-\bar{y}}{s_y} \Rightarrow \E[\tilde{y}] = 0, \hspace{2mm} \Var(\tilde{y}) = 1
 \]
 \[
-y^*_i = \tilde{y}_i\cdot3 + 7 \Rightarrow \E[y^*] = 7, \hspace{2mm} \mathbb{V}ar(y^*) = 9
+y^*_i = \tilde{y}_i\cdot3 + 7 \Rightarrow \E[y^*] = 7, \hspace{2mm} \Var(y^*) = 9
 \]
 \end{sol}
 \end{problem}
@@ -610,7 +610,7 @@ y^*_i = \tilde{y}_i\cdot3 + 7 \Rightarrow \E[y^*] = 7, \hspace{2mm} \mathbb{V}ar
 \begin{problem}
 Эконометресса Анжела оценила две парных регрессии $\hy_i = 2 - 3 x_i$  и $\hat x_i = 5 - \frac{1}{12}y_i$. Найдите $R^2$ в каждой регрессии и выборочную корреляцию между $x_i$ и $y_i$.
 \begin{sol}
-  $R^2 = -3 \cdot \frac{-1}{13}=\frac{1}{4}$. Выборочная корреляция равна $-1/2$, так как коэффициенты отрицательные.
+  $R^2 = -3 \cdot \frac{-1}{12}=\frac{1}{4}$. Выборочная корреляция равна $-1/2$, так как коэффициенты отрицательные.
 \end{sol}
 \end{problem}
 

@@ -287,7 +287,7 @@ alpha3 <- matrix(as.integer(c(1, 0, 0, 0, 1, 0, 0, 1, 1)), nrow = 3,
 \begin{sol}
 Да, верно.
 \[R^2=\frac{ESS}{TSS}=\frac{TSS-RSS}{TSS}=1-\frac{RSS}{TSS}\]
-\[TSS=\sum_{i=1}^n(y_i-\bar y)^2=y'\left(I-\frac{\overrightarrow{1}'}{\overrightarrow{1}^2}\right)y\]
+\[TSS=\sum_{i=1}^n(y_i-\bar y)^2=y'\left(I-\frac{\v1'}{\v1^2}\right)y\]
 не зависит от $X$.
 \[RSS_a=\sum_{i=1}^n(y_i-\hy_i)^2=y'(I-X(X'X)^{-1}X')y\]
 \[RSS_b=y'(I-Z(Z'Z)^{-1}Z')y=y'(I-XD(D'X'XD)^{-1}D'X')y=\]
@@ -793,7 +793,7 @@ $\sCorr(\hy, y)=\frac{\sCov(\hy, y)}{\sqrt{\sVar(\hy)\sVar{(y)}}}$
 $\sCorr(\hy, y)^2=\frac{(\sCov(\hy, y))^2}{\sVar(\hy)\sVar{(y)}} $
 
 $R^2\cdot TSS/(n-1)\cdot ESS/(n-1)=(\sCov(\hy, y))^2=(\sCov(\hy-\bar y, y-\bar y))^2$
-Отсюда можно понять, что ковариация для двухмерного случая равна произведению длин векторов $\hy-\bar y$ и $y-\bar y$ — $\sqrt{ESS}$ и $\sqrt{TSS}$ на косинус угла между ними ($\sqrt{R^2}$). Геометрически скалярное произведение можно изобразить как произведение длин одного из векторов на проекцию второго вектора на первый. Если будет проецировать $y-\bar y\overrightarrow{1}$ на $\hy-\bar y\overrightarrow{1}$, то получим как раз $ESS$ — тот квадрат на рисунке, что уже построен.
+Отсюда можно понять, что ковариация для двухмерного случая равна произведению длин векторов $\hy-\bar y$ и $y-\bar y$ — $\sqrt{ESS}$ и $\sqrt{TSS}$ на косинус угла между ними ($\sqrt{R^2}$). Геометрически скалярное произведение можно изобразить как произведение длин одного из векторов на проекцию второго вектора на первый. Если будет проецировать $y-\bar y\v1$ на $\hy-\bar y\v1$, то получим как раз $ESS$ — тот квадрат на рисунке, что уже построен.
 
 
 $\sCov(\hy, y)=\sqrt{ESS^2/(n-1)^2}=ESS/(n-1)$
@@ -1208,20 +1208,24 @@ $X=(X_1 X_2)$ — блочная матрица. Аналогично, $\hat\bet
 \end{array}\right)$ — блочная матрица (хотя на самом деле вектор).
 
 \begin{multline*}
-\hat\beta=(X'X)^{-1}X'y=((X_1X_2)'(X_1X_2))^{-1}(X_1X_2)'y=(\left(\begin{array}{c}
+\hat\beta=(X'X)^{-1}X'y=((X_1X_2)'(X_1X_2))^{-1}(X_1X_2)'y=\\
+=\left(
+\begin{pmatrix}
 X_1'\\
 X_2'
-\end{array}\right)(X_1X_2))^{-1}(\left(\begin{array}{c}
+\end{pmatrix}(X_1X_2)\right)^{-1}
+\begin{pmatrix}
 X_1'\\
 X_2'
-\end{array}\right)y=\\=
-\left(\begin{array}{cc}
+\end{pmatrix}y=
+\begin{pmatrix}
 X_1'X_1 & X_1'X_2\\
 X_2'X_1 & X_2'X_2
-\end{array}\right)^{-1}\left(\begin{array}{c}
+\end{pmatrix}^{-1}
+\begin{pmatrix}
 X_1'\\
 X_2'
-\end{array}\right)y
+\end{pmatrix}y
 \end{multline*}
 
 Запишем и докажем формулу Фробениуса для обращения блочных матриц.
@@ -1238,10 +1242,10 @@ A^{-1} +A^{-1} BH^{-1} CA^{-1}  & -A^{-1} BH^{-1}\\
 \]
 где $H=D-CA^{-1}B$.
 
-Докажем формулу, обращая матрицу методом Гаусса. Умножим слева на $\left(\begin{array}{cc}
+Докажем формулу, обращая матрицу методом Гаусса. Умножим слева на $\begin{pmatrix}
 A^{-1} & 0\\
 0 & I
-\end{array}\right)$
+\end{pmatrix}$
 \begin{multline*}
 \left(\begin{array}{cc|cc}
 A & B & I & 0\\
@@ -1259,10 +1263,10 @@ I & A^{-1}B & A^{-1} & 0\\
 0 & D-CA^{-1}B & -CA^{-1} & I
 \end{array}\right)=
 \end{multline*}
-умножим слева на $\left(\begin{array}{cc}
+умножим слева на $\begin{pmatrix}
 I & 0\\
 0 & (D-CA^{-1}B)^{-1}
-\end{array}\right)$
+\end{pmatrix}$
 \begin{multline*}
 =\left(\begin{array}{cc|cc}
 I & A^{-1}B & A^{-1} & 0\\
@@ -1556,7 +1560,7 @@ H\v1 & H\v1 & \ldots & H\v1
 \ldots & \ldots & \ldots & \ldots \\
 0 & \ldots & 0 & \sigma_n^2 \\
 \end{pmatrix} \right] = \\
-\frac{1}{n} tr\begin{pmatrix}
+\frac{1}{n} \tr\begin{pmatrix}
 \sigma_1^2 & \sigma_2^2 & \ldots & \sigma_n^2 \\
 \sigma_1^2 & \sigma_2^2 & \ldots & \sigma_n^2 \\
 \ldots & \ldots & \ldots & \ldots \\
@@ -1675,7 +1679,7 @@ $t = \frac{\hb_2}{\sqrt{\Var(\hb_2)}} = \frac{6.1234}{\sqrt{10.269}} = 1.9109 \R
 
 \begin{problem}
 По данным для 15 фирм ($n = 15$) была оценена производственная функция Кобба-Дугласа: $\ln Q_i = \beta_1 + \beta_2 \ln L_i + \beta_3 \ln K_i + \e_i$. Полученные оценки:
-\[\underset{s.e.}{\widehat{\ln Q}} = \underset{(4.48)}{0.5} + \underset{(0.7)}{0.76} \ln L + \underset{(0.138)}{0.19} \ln K\]
+\[\underset{se}{\widehat{\ln Q}} = \underset{(4.48)}{0.5} + \underset{(0.7)}{0.76} \ln L + \underset{(0.138)}{0.19} \ln K\]
 где $Q$ — выпуск, $L$ — трудозатраты, $K$ — капиталовложения. Матрица обратная к матрице регрессоров имеет вид:
 
 $(X' X)^{-1} = \begin{pmatrix}

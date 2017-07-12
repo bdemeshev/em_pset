@@ -34,11 +34,9 @@
 \todo[inline]{Здесь виснет чанк кода!}
 <<"cars_scatter", include=FALSE, eval=FALSE>>=
 tikz("../R_plots/cars_scatter.tikz", standAlone = FALSE, bareBones = TRUE)
-h <- cars
-ggplot(h, aes(x = speed, y = dist)) + geom_point() +
+ggplot(data = cars, aes(x = speed, y = dist)) + geom_point() +
     labs(title = "Зависимость длины тормозного пути",
     x = "Скорость, миль в час", y = "Длина пути, футов")
-speed_mean <- mean(h$speed)
 invisible(dev.off())
 @
 
@@ -50,9 +48,10 @@ invisible(dev.off())
 \end{figure}
 
 
+
 Построим результаты оценивания нецентрированной регрессии:
 <<"070_02">>=
-cars_model <- lm(dist ~ speed + I(speed^2) + I(speed^3), data = h)
+cars_model <- lm(dist ~ speed + I(speed^2) + I(speed^3), data = cars)
 cars_table <- as.table(coeftest(cars_model))
 rownames(cars_table) <-
   c("Константа", "speed", "speed^2", "speed^3")
@@ -73,17 +72,19 @@ colnames(cars_vcov) <- rownames(cars_vcov)
 xtable(cars_vcov)
 @
 
+
 \begin{enumerate}
 \item Проверьте значимость всех коэффициентов и регрессии в целом.
 \item Постройте 95\%-ый доверительный интервал для $\E(dist)$ при $speed=10$.
 \item Постройте 95\%-ый доверительный интервал для $\E(\partial dist/ \partial speed)$ при $speed=10$.
 \item Как выглядит уравнение регрессии, если вместо $speed$ использовать центрированную скорость? Известно, что средняя скорость равна $
-<<"070_04b", echo=FALSE, results="asis">>
-cat(speed_mean)
-$.
+<<"070_04b", echo=FALSE, results="asis">>=
+cat(mean(cars[, 1]))
+@
+$. % здесь специально [, 1] вместо доллара и speed (!!!)
 \item С помощью регрессии с центрированной скоростью ответьте на предыдущие вопросы.
 \end{enumerate}
-
+% here
 
 \begin{sol}
 \end{sol}
@@ -205,7 +206,7 @@ $r^* = -1/3$
 
 
 \begin{problem}
-Эконометресса Фатима оценивает модель $y_i=\beta_1 +\beta_2 x_i + \beta_3 z_i + \e_i$. Известно, что $\e_i \sim \cN0,76)$. Про регрессоры известно, что $\sum (x_i-\bar{x})^2=10$, $\sum (z_i-\bar{z})^2=20$, а выборочная корреляция между ними равна $\sCorr(x,z)=0.9$.
+Эконометресса Фатима оценивает модель $y_i=\beta_1 +\beta_2 x_i + \beta_3 z_i + \e_i$. Известно, что $\e_i \sim \cN(0,76)$. Про регрессоры известно, что $\sum (x_i-\bar{x})^2=10$, $\sum (z_i-\bar{z})^2=20$, а выборочная корреляция между ними равна $\sCorr(x,z)=0.9$.
 
 Найдите $\Var(\hb_2)$, $\Var(\hb_3)$
 
