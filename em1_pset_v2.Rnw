@@ -321,6 +321,8 @@ xmodel <- function(model,
 
 <<child='chapters/080_hetero.Rnw'>>=
 @
+
+
 <<child='chapters/090_specification.Rnw'>>=
 @
 
@@ -329,8 +331,6 @@ xmodel <- function(model,
 
 <<child='chapters/100_random_x.Rnw'>>=
 @
-
-
 
 
 
@@ -406,6 +406,9 @@ xmodel <- function(model,
 \input{solutions/sols_080}
 \input{solutions/sols_090}
 \input{solutions/sols_100}
+
+
+
 
 \input{solutions/sols_120}
 \input{solutions/sols_130}

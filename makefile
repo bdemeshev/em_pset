@@ -27,6 +27,9 @@ clean:
 	-rm $(file_name).pdf
 	-rm $(file_name).aux
 	-rm $(file_name).tdo
+	-rm .Rhistory
+	-rm .Rapp.history
+	-rm $(file_name).fdb_latexmk
 	-rm $(file_name).idx
 	-rm $(file_name).ind
 	-rm $(file_name).out

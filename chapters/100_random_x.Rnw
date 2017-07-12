@@ -150,7 +150,9 @@ $x=2$ & 0 & 0 & 0.3 & 0.2 \\
 \item Какой из вариантов применения инструментальных переменных предпочтительнее с точки зрения дисперсии получаемой оценки $\hb_2$?
 \end{enumerate}
 
-
+\begin{sol}
+\end{sol}
+\end{problem}
 
 
 \begin{problem}
@@ -181,9 +183,6 @@ y_i
 \item Найдите $\plim \hb_1$ и $\plim \hb_2$ в регрессии $\hy_i = \hb_1 + \hb_2 x_i$.
 \item Найдите $\plim \hb_1$ и $\plim \hb_2$ в регрессии $\hat x_i = \hb_1 + \hb_2 y_i$.
 \end{enumerate}
-
-
-
 
 \begin{sol}
 \end{sol}
@@ -233,7 +232,7 @@ y_i = \b_1 + \b_2 x_i + \b_3 z_i + \e_i
 \end{enumerate}
 
 \begin{sol}
-Оба правы, $\plim \he_1 = \e_1$ и $\plim \hy_1= \b_1 + \b_2 x_i + \b_3 z_i$
+Оба правы, $\plim \he_1 = \e_1$ и $\plim \hy_1= \b_1 + \b_2 x_i + \b_3 z_i$.
 \end{sol}
 \end{problem}
 
