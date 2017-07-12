@@ -6,17 +6,17 @@
 \begin{problem}
 Пусть $a = (a_1,\dots,a_n)$ и $b = (b_1,\dots,b_n)$ — два произвольных вектора. Определите, какие равенства справедливы:
 \begin{enumerate}
-\item $\sum_{i=1}^n {(a_i-\bar a)} = 0$
-\item $\sum_{i=1}^n {(a_i-\bar a)^2} = \sum_{i=1}^n {(a_i-\bar a)a_i}$
-\item $\sum_{i=1}^n {(a_i-\bar a)(b_i-\bar b)} = \sum_{i=1}^n {(a_i-\bar a)b_i}$
-\item $\sum_{i=1}^n {(a_i-\bar a)(b_i-\bar b)} = \sum_{i=1}^n {a_i b_i}$
-\item $\sum_{i=1}^n a_i = n\bar a$
-\item $\sum_{i=1}^n (a_i - \bar a)^2 = \sum_{i=1}^n a_i^2 - n \bar a^2$
-\item $\sum_{i=1}^n a_i^2 = \left( \sum_{i=1}^n a_i \right)^2$
-\item $\sum_{i=1}^n a_i^2 = (n\bar a)^2$
-\item $\sum_{i=1}^n \bar a = n \bar a$
-\item $\sum_{i=1}^n a_i \bar a = n \bar a^2$
-\item $\sum_{i=1}^n {(a_i-\bar a)b_i} = 0$
+\item $\sum_{i=1}^n {(a_i-\bar a)} = 0$;
+\item $\sum_{i=1}^n {(a_i-\bar a)^2} = \sum_{i=1}^n {(a_i-\bar a)a_i}$;
+\item $\sum_{i=1}^n {(a_i-\bar a)(b_i-\bar b)} = \sum_{i=1}^n {(a_i-\bar a)b_i}$;
+\item $\sum_{i=1}^n {(a_i-\bar a)(b_i-\bar b)} = \sum_{i=1}^n {a_i b_i}$;
+\item $\sum_{i=1}^n a_i = n\bar a$;
+\item $\sum_{i=1}^n (a_i - \bar a)^2 = \sum_{i=1}^n a_i^2 - n \bar a^2$;
+\item $\sum_{i=1}^n a_i^2 = \left( \sum_{i=1}^n a_i \right)^2$;
+\item $\sum_{i=1}^n a_i^2 = (n\bar a)^2$;
+\item $\sum_{i=1}^n \bar a = n \bar a$;
+\item $\sum_{i=1}^n a_i \bar a = n \bar a^2$;
+\item $\sum_{i=1}^n {(a_i-\bar a)b_i} = 0$.
 \end{enumerate}
 
 
@@ -41,13 +41,13 @@
 При помощи метода наименьших квадратов найдите оценку неизвестного параметра $\theta$ в следующих моделях:
 
 \begin{enumerate}
-\item $y_i = \theta + \theta x_i + \varepsilon_i$
-\item $y_i = \theta - \theta x_i + \e_i$
-\item $\text{ln} y_i = \theta + \text{ln} x_i + \e_i$
-\item $y_i = \theta + x_i + \e_i$
-\item $y_i = 1 + \theta x_i + \e_i$
-\item $y_i = \theta / x_i + \e_i$
-\item $y_i = \theta x_i + (1-\theta)x_{i2}+\e_i$
+\item $y_i = \theta + \theta x_i + \varepsilon_i$;
+\item $y_i = \theta - \theta x_i + \e_i$;
+\item $\text{ln} y_i = \theta + \text{ln} x_i + \e_i$;
+\item $y_i = \theta + x_i + \e_i$;
+\item $y_i = 1 + \theta x_i + \e_i$;
+\item $y_i = \theta / x_i + \e_i$;
+\item $y_i = \theta x_i + (1-\theta)x_{i2}+\e_i$.
 \end{enumerate}
 
 
@@ -105,7 +105,7 @@
 Рассмотрите модели $y_i = \alpha + \beta (y_i + z_i) + \e_i$, $z_i = \gamma + \delta(y_i+z_i) + \e_i$.
 \begin{enumerate}
 \item Как связаны между собой $\hat{\alpha}$ и $\hat{\gamma}$?
-\item  Как связаны между собой $\hb$ и $\hat{\delta}$?
+\item Как связаны между собой $\hb$ и $\hat{\delta}$?
 \end{enumerate}
 
 
@@ -116,7 +116,7 @@ $\hat{\alpha} + \hat{\gamma} = 0$ и $\hb + \hat{\delta} = 1$
 
 \begin{enumerate}
 \item Это одно и то же, просто названия разные.
-\item См. пункт 1.
+\item Смотрим предыдущий пункт.
 \end{enumerate}
 \todo[inline]{Проверить!}
 
@@ -127,7 +127,7 @@ $\hat{\alpha} + \hat{\gamma} = 0$ и $\hb + \hat{\delta} = 1$
 
 
 \begin{problem}
-Как связаны МНК-оценки параметров $\alpha, \beta$ и $\gamma, \delta$ в моделях $y_i = \alpha + \beta x_i + \e_i$ и $z_i = \gamma + \delta x_i + \upsilon_i$, если $z_i = 2 y_i$.
+Как связаны МНК-оценки параметров $\alpha, \beta$ и $\gamma, \delta$ в моделях $y_i = \alpha + \beta x_i + \e_i$ и $z_i = \gamma + \delta x_i + \upsilon_i$, если $z_i = 2 y_i$?
 
 
 \begin{sol}
@@ -144,7 +144,10 @@ $\hat{\alpha} + \hat{\gamma} = 0$ и $\hb + \hat{\delta} = 1$
 
 
 \begin{problem}
-Для модели $y_i = \beta_1 x_i + \beta_2 z_i + \e_i$ решите условную задачу о наименьших квадратах: $Q(\beta_1, \beta_2) := \sum_{i=1}^n (y_i - \beta_1 x_i - \beta_2 z_i)^2 \rightarrow \underset{\beta_1 + \beta_2 = 1}{\min}$
+Для модели $y_i = \beta_1 x_i + \beta_2 z_i + \e_i$ решите условную задачу о наименьших квадратах:
+\[
+Q(\beta_1, \beta_2) := \sum_{i=1}^n (y_i - \beta_1 x_i - \beta_2 z_i)^2 \rightarrow \underset{\beta_1 + \beta_2 = 1}{\min}.
+\]
 
 
 \begin{sol}
@@ -256,7 +259,7 @@ RSS = \sum\limits_i(y_i-1-\beta x_i)^2 \rightarrow \min\limits_{\beta}
 
 
 \begin{problem}
-Аня и Настя утверждают, что лектор опоздал на 10 минут. Таня считает, что лектор опоздал на 3 минуты. С помощью МНК оцените на сколько опоздал лектор.
+Аня и Настя утверждают, что лектор опоздал на 10 минут. Таня считает, что лектор опоздал на 3 минуты. С помощью МНК оцените, на сколько опоздал лектор.
 
 \begin{sol}
 Можем воспользоваться результатом задачи 9:
@@ -274,7 +277,7 @@ RSS = \sum\limits_i(y_i-1-\beta x_i)^2 \rightarrow \min\limits_{\beta}
 \begin{problem}
 Функция $f(x)$ непрерывна на отрезке $[0;1]$. Найдите аналог МНК-оценок для регрессии без свободного члена в непрерывном случае. Более подробно: найдите минимум по $\hb$ для функции
 \[
-Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
+Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx.
 \]
 
 \begin{sol}
@@ -388,12 +391,12 @@ invisible(dev.off())
 \begin{problem}
 Какие из указанные моделей можно представить в линейном виде?
 \begin{enumerate}
-\item $y_i=\beta_1+\frac{\beta_2}{x_i}+\e_i$
-\item $y_i=\exp(\beta_1+\beta_2 x_i+\e_i)$
-\item $y_i=1+\frac{1}{\exp(\beta_1+\beta_2 x_i+\e_i)}$
-\item $y_i=\frac{1}{1+\exp(\beta_1+\beta_2 x_i+\e_i)}$
-\item $y_i=x_i^{\beta_2}e^{\beta_1+\e_i}$
-\item $y_i=\beta_1\exp(\beta_2 x_i + \e_i)$
+\item $y_i=\beta_1+\frac{\beta_2}{x_i}+\e_i$;
+\item $y_i=\exp(\beta_1+\beta_2 x_i+\e_i)$;
+\item $y_i=1+\frac{1}{\exp(\beta_1+\beta_2 x_i+\e_i)}$;
+\item $y_i=\frac{1}{1+\exp(\beta_1+\beta_2 x_i+\e_i)}$;
+\item $y_i=x_i^{\beta_2}e^{\beta_1+\e_i}$;
+\item $y_i=\beta_1\exp(\beta_2 x_i + \e_i)$.
 \end{enumerate}
 
 
@@ -416,10 +419,10 @@ invisible(dev.off())
 \begin{problem}
 У эконометриста Вовочки есть переменная $1_f$, которая равна 1, если $i$-ый человек в выборке — женщина, и 0, если мужчина. Есть переменная $1_m$, которая равна 1, если $i$-ый человек в выборке — мужчина, и 0, если женщина. Какие $\hy$ получатся, если Вовочка попытается построить регрессии:
 \begin{enumerate}
-\item $y$ на константу и $1_f$
-\item $y$ на константу и $1_m$
-\item $y$ на $1_f$ и $1_m$ без константы
-\item $y$ на константу, $1_f$ и $1_m$
+\item $y$ на константу и $1_f$;
+\item $y$ на константу и $1_m$;
+\item $y$ на $1_f$ и $1_m$ без константы;
+\item $y$ на константу, $1_f$ и $1_m$.
 \end{enumerate}
 
 
@@ -466,8 +469,8 @@ invisible(dev.off())
 \begin{problem}
 У эконометриста Вовочки есть три переменных: $r_i$ — доход $i$-го человека в выборке, $m_i$ — пол (1 — мальчик, 0 — девочка) и $f_i$ — пол (1 — девочка, 0 — мальчик). Вовочка оценил две модели
 \begin{enumerate}
-\item[] Модель A: $m_i=\beta_1+\beta_2 r_i+\ve_i$
-\item[] Модель B: $f_i=\gamma_1+\gamma_2 r_i+u_i$
+\item[] Модель A: $m_i=\beta_1+\beta_2 r_i+\ve_i$;
+\item[] Модель B: $f_i=\gamma_1+\gamma_2 r_i+u_i$.
 \end{enumerate}
 \begin{enumerate}
 \item Как связаны между собой оценки $\hb_1$ и $\hat{\gamma}_1$?

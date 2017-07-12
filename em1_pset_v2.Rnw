@@ -472,4 +472,6 @@ $TSS=\sum_{i=1}^n (y_i - \bar{y})^2$
 
 $ESS=\sum_{i=1}^n (\hy_i - \bar{y})^2$
 
+\listoftodos % comment/uncomment this line :)
+
 \end{document}

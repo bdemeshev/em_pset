@@ -18,14 +18,14 @@
 С помощью компьютера найдите ответы на вопросы:
 \begin{enumerate}
 \item Какая ценная бумага является безрисковой?
-\item Найдите ковариационную матрицу $\Var(y)$
+\item Найдите ковариационную матрицу $\Var(y)$.
 \item Найдите ожидаемую доходность и дисперсию доходности портфеля, доли ценных бумаг в котором равны соответственно:
 \begin{enumerate}
-\item $\alpha=(0.2, 0.2, 0.2, 0.2, 0.2)'$
-\item $\alpha=(0.0, 0.1, 0.2, 0.3, 0.4)'$
-\item $\alpha=(0.0, 0.4, 0.3, 0.2, 0.1)'$
+\item $\alpha=(0.2, 0.2, 0.2, 0.2, 0.2)'$;
+\item $\alpha=(0.0, 0.1, 0.2, 0.3, 0.4)'$;
+\item $\alpha=(0.0, 0.4, 0.3, 0.2, 0.1)'$.
 \end{enumerate}
-\item Составьте из данных бумаг пять некоррелированных портфелей
+\item Составьте из данных бумаг пять некоррелированных портфелей.
 \end{enumerate}
 
 
@@ -39,9 +39,9 @@
 \begin{problem}
 Пусть $i = (1,\dots,1)'$ — вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$ и $\e = (\e_1,\dots,\e_n)'\sim \cN(0,I)$.
 \begin{enumerate}
-\item Найдите $\E(\e'\pi\e)$, $\E(\e'(I-\pi)\e)$ и $\E(\e\e')$
+\item Найдите $\E(\e'\pi\e)$, $\E(\e'(I-\pi)\e)$ и $\E(\e\e')$.
 \item Как распределены случайные величины $\e'\pi\e$ и $\e'(I-\pi)\e$?
-\item Запишите выражения $\e'\pi\e$ и $\e'(I-\pi)\e$, используя знак суммы
+\item Запишите выражения $\e'\pi\e$ и $\e'(I-\pi)\e$, используя знак суммы.
 \end{enumerate}
 
 
@@ -59,9 +59,9 @@ a <- matrix(as.integer(c(1, 2, 3, 4)), nrow = 4, ncol = 1,
 @
 Пусть $X = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$, $H = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim \cN(0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e'H\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
-\item Найдите $\E(\e'H\e)$
-\item При помощи таблиц найдите такое число $q$, что $\P(\e'H\e > q)=0.1$
+\item Найдите распределение случайной величины $\e'H\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$.
+\item Найдите $\E(\e'H\e)$.
+\item При помощи таблиц найдите такое число $q$, что $\P(\e'H\e > q)=0.1$.
 \end{enumerate}
 
 
@@ -114,15 +114,15 @@ c <- matrix(as.integer(c(1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1)), nrow = 4, ncol = 
 \begin{problem}
 Пусть  $x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$, $\E(x) = \begin{pmatrix} 1 \\ 2 \end{pmatrix}$, $\Var(x) = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$. Найдите $\E(y)$, $\Var(y)$ и $\E(z)$, если
 \begin{enumerate}
-\item $y = x - \E(x)$
-\item $y = \Var(x)x$
-\item $y = \Var(x)(x - \E(x))$
-\item $y = \Var(x)^{-1}(x - \E(x))$
-\item $y = \Var(x)^{-1/2}(x - \E(x))$
-\item $z = (x - \E(x))'\Var(x)(x - \E(x))$
-\item $z = (x - \E(x))'\Var(x)^{-1}(x - \E(x))$
-\item $z = x'\Var(x)x$
-\item $z = x'\Var(x)^{-1}x$
+\item $y = x - \E(x)$;
+\item $y = \Var(x)x$;
+\item $y = \Var(x)(x - \E(x))$;
+\item $y = \Var(x)^{-1}(x - \E(x))$;
+\item $y = \Var(x)^{-1/2}(x - \E(x))$;
+\item $z = (x - \E(x))'\Var(x)(x - \E(x))$;
+\item $z = (x - \E(x))'\Var(x)^{-1}(x - \E(x))$;
+\item $z = x'\Var(x)x$;
+\item $z = x'\Var(x)^{-1}x$.
 \end{enumerate}
 <<"210_04", echo=FALSE>>=
 ex <- c(1, 2)
@@ -140,15 +140,15 @@ varx <- matrix(as.integer(c(2, 1, 1, 2)), nrow = 2,
 \begin{problem}
 Пусть  $x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$, $\E(x) = \begin{pmatrix} 1 \\ 4 \end{pmatrix}$, $\Var(x) = \begin{pmatrix} 4 & 1 \\ 1 & 4 \end{pmatrix}$. Найдите $\E(y)$, $\Var(y)$ и $\E(z)$, если
 \begin{enumerate}
-\item $y = x - \E(x)$
-\item $y = \Var(x)x$
-\item $y = \Var(x)(x - \E(x))$
-\item $y = \Var(x)^{-1}(x - \E(x))$
-\item $y = \Var(x)^{-1/2}(x - \E(x))$
-\item $z = (x - \E(x))'\Var(x)(x - \E(x))$
-\item $z = (x - \E(x))'\Var(x)^{-1}(x - \E(x))$
-\item $z = x'\Var(x)x$
-\item $z = x'\Var(x)^{-1}x$
+\item $y = x - \E(x)$;
+\item $y = \Var(x)x$;
+\item $y = \Var(x)(x - \E(x))$;
+\item $y = \Var(x)^{-1}(x - \E(x))$;
+\item $y = \Var(x)^{-1/2}(x - \E(x))$;
+\item $z = (x - \E(x))'\Var(x)(x - \E(x))$;
+\item $z = (x - \E(x))'\Var(x)^{-1}(x - \E(x))$;
+\item $z = x'\Var(x)x$;
+\item $z = x'\Var(x)^{-1}x$.
 \end{enumerate}
 <<"210_05", echo=FALSE>>=
 ex1 <- c(1, 4)
@@ -167,9 +167,9 @@ varx1 <- matrix(as.integer(c(4, 1, 1, 4)), nrow = 2,
 \begin{problem}
 Известно, что случайные величины $x_1$, $x_2$ и $x_3$ имеют следующие характеристики:
 \begin{enumerate}
-\item $\E(x_1) = 5$, $\E(x_2) = 10$, $\E(x_3) = 8$
-\item $\Var  (x_1) = 6$, $\Var  (x_2) = 14$, $\Var  (x_3) = 1$
-\item $\Cov  (x_1, x_2) = 3$, $\Cov  (x_1, x_3) = 1$, $\Cov  (x_2, x_3) = 0$
+\item $\E(x_1) = 5$, $\E(x_2) = 10$, $\E(x_3) = 8$;
+\item $\Var  (x_1) = 6$, $\Var  (x_2) = 14$, $\Var  (x_3) = 1$;
+\item $\Cov  (x_1, x_2) = 3$, $\Cov  (x_1, x_3) = 1$, $\Cov  (x_2, x_3) = 0$.
 \end{enumerate}
 Пусть случайные величины $y_1$, $y_2$ и $y_3$, представляют собой линейные комбинации случайных величин $x_1$, $x_2$ и $x_3$:
 \[
@@ -183,15 +183,15 @@ y_3 = -2x_1 - x_2 + 4x_3 \\
 \begin{enumerate}
 \item Выпишите математическое ожидание и ковариационную матрицу случайного вектора $x =  \begin{pmatrix}
 x_1 & x_2 & x_3\\
-\end{pmatrix} '$
+\end{pmatrix} '$.
 \item Напишите матрицу $A$, которая позволяет перейти от случайного вектора $x =  \begin{pmatrix}
 x_1 & x_2 & x_3\\
 \end{pmatrix} '$ к случайному вектору $y =  \begin{pmatrix}
 y_1 & y_2 & y_3\\
-\end{pmatrix} '$
+\end{pmatrix} '$.
 \item С помощью матрицы $A$ найдите математическое ожидание и ковариационную матрицу случайного вектора $y =  \begin{pmatrix}
 y_1 & y_2 & y_3\\
-\end{pmatrix} '$
+\end{pmatrix} '$.
 \end{enumerate}
 
 
@@ -384,7 +384,7 @@ $\Var (z_1) = \Var   \begin{pmatrix}
 \end{pmatrix}  +  \begin{pmatrix}
 1\\
 1\\
-\end{pmatrix} $. Найдите $\E (z_2)$ и $\Var (z_2)$
+\end{pmatrix} $. Найдите $\E (z_2)$ и $\Var (z_2)$.
 
 
 \begin{sol}
@@ -461,7 +461,7 @@ $\E (z_2) = \E   \begin{pmatrix}
 \end{pmatrix}  -  \begin{pmatrix}
 \E \xi_1 \\
 \E \xi_2 \\
-\end{pmatrix} $. Найдите $\E (z_3)$ и $\Var (z_3)$
+\end{pmatrix} $. Найдите $\E (z_3)$ и $\Var (z_3)$.
 
 
 \begin{sol}
@@ -517,8 +517,8 @@ c_{31} & c_{32} & c_{33} \\
 \end{pmatrix} $. Параметры $\left\lbrace a_i \right\rbrace$ и $\left\lbrace c_i \right\rbrace$ известны.
 
 \begin{enumerate}
-\item Найдите годовую доходность портфеля П инвестора
-\item Докажите, что дисперсия доходности портфеля П равна $\sum_{i=1}^3 \sum_{j=1}^3 \alpha_i c_{ij} \alpha_j$
+\item Найдите годовую доходность портфеля $U$ инвестора.
+\item Докажите, что дисперсия доходности портфеля равна $\sum_{i=1}^3 \sum_{j=1}^3 \alpha_i c_{ij} \alpha_j$.
 \item Для случая $\alpha_1 = 0.1$, $\alpha_2 = 0.5$, $\alpha3 = 0.4$, $\E (r) =  \begin{pmatrix}
 a_1 & a_2 & a_3\\
 \end{pmatrix} ' =  \begin{pmatrix}
@@ -531,7 +531,7 @@ a_1 & a_2 & a_3\\
 -0.005 & 0 & 0.0025\\
 \end{pmatrix}
 \]
-найдите $\E (\text{П})$ и $\Var (\text{П})$
+найдите $\E (U)$ и $\Var (U)$.
 \end{enumerate}
 
 
@@ -561,7 +561,7 @@ a_1 & a_2 & a_3\\
 \end{pmatrix}  -  \begin{pmatrix}
 \E \xi_1 \\
 \E \xi_2 \\
-\end{pmatrix} $; $z_4 = \Var (h)^{-1/2} z_3$. Найдите $\E (z_4)$ и $\Var (z_4)$
+\end{pmatrix} $; $z_4 = \Var (h)^{-1/2} z_3$. Найдите $\E (z_4)$ и $\Var (z_4)$.
 
 
 \begin{sol}
@@ -590,7 +590,7 @@ a_1 & a_2 & a_3\\
 \end{pmatrix}  -  \begin{pmatrix}
 \E \xi_1 \\
 \E \xi_2 \\
-\end{pmatrix} $; $z_4 = \Var (h)^{-1/2} z_3$. Найдите $\E (z_4)$ и $\Var (z_4)$
+\end{pmatrix} $; $z_4 = \Var (h)^{-1/2} z_3$. Найдите $\E (z_4)$ и $\Var (z_4)$.
 
 
 \begin{sol}
@@ -613,8 +613,8 @@ w_1
 \end{array}\right)$
 \begin{enumerate}
 \item Являются ли векторы $w$ и $z$ перпендикулярными?
-\item Найдите $\E(w)$, $\E(z)$
-\item Найдите $\Var(w)$, $\Var(z)$, $\Cov(w,z)$
+\item Найдите $\E(w)$, $\E(z)$.
+\item Найдите $\Var(w)$, $\Var(z)$, $\Cov(w,z)$.
 \end{enumerate}
 
 
@@ -625,7 +625,7 @@ w_1
 
 
 \begin{problem}
-Есть случайный вектор $w=(w_1, w_2, \ldots, w_n)'$.
+Рассмотрим случайный вектор $w=(w_1, w_2, \ldots, w_n)'$. Для каждой из возможных ситуаций приведите пример:
 \begin{enumerate}
 \item Возможно ли, что $E(w)=0$ и $\sum w_i=0$?
 \item Возможно ли, что $E(w)\neq 0$ и $\sum w_i=0$?
@@ -635,7 +635,7 @@ w_1
 
 
 \begin{sol}
-Каждый из вариантов возможен
+Каждый из вариантов возможен.
 \end{sol}
 \end{problem}
 

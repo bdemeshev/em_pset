@@ -26,6 +26,7 @@ clean:
 	-rm $(file_name).tex
 	-rm $(file_name).pdf
 	-rm $(file_name).aux
+	-rm $(file_name).tdo
 	-rm $(file_name).idx
 	-rm $(file_name).ind
 	-rm $(file_name).out
