@@ -171,11 +171,13 @@ invisible(dev.off())
 @
 
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/tree_scatter_data.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 
 Дерево необходимо построить до идеальной классификации, в качестве критерия деления узла на два используйте минимизацию индекса Джини.
 

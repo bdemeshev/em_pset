@@ -78,11 +78,13 @@ ggplot(flats, aes(x = totsp, y = price)) + geom_point() +
 invisible(dev.off())
 @
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/flats_scatter.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 
 
 Какие подходы к оцениванию зависимости имеет смысл посоветовать исходя из данного графика?
@@ -562,11 +564,13 @@ invisible(dev.off())
 
 
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/residual_plot.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 
 $VIF_2 = 1.06$, $VIF_3 = 1.07$, $VIF_4 = 1.02$
 \begin{enumerate}

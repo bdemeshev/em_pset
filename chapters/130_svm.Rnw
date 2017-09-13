@@ -204,11 +204,13 @@ invisible(dev.off())
 
 
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/armada.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 
 
 Целевая функция имеет вид:

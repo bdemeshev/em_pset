@@ -110,16 +110,12 @@
 
 
 \begin{sol} % 1.5.
-$\hat{\alpha} + \hat{\gamma} = 0$ и $\hb + \hat{\delta} = 1$
+Рассмотрим регрессию суммы $(y_i + z_i)$ на саму себя. Естественно, в ней
+\[
+\widehat{y_i + z_i} = 0 + 1 \cdot (y_i + z_i).
+\]
 
-
-
-\begin{enumerate}
-\item Это одно и то же, просто названия разные.
-\item Смотрим предыдущий пункт.
-\end{enumerate}
-\todo[inline]{Проверить!}
-
+Отсюда получаем, что $\hat{\alpha} + \hat{\gamma} = 0$ и $\hb + \hat{\delta} = 1$.
 \end{sol}
 \end{problem}
 
@@ -330,11 +326,13 @@ abline(modelV2, lwd = 2, col = "red")
 invisible(dev.off())
 @
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/aggregate_regression.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 
 
 \item Так тоже бывает:
@@ -362,11 +360,13 @@ abline(modelV2, lwd = 2, col = "red")
 invisible(dev.off())
 @
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/aggregate_regression_b.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 
 \item А вот так не бывает!
 \end{enumerate}
@@ -519,11 +519,13 @@ coef(lm(y ~ 0 + x))
 invisible(dev.off())
 @
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/with_and_without_c.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 \end{sol}
 \end{problem}
 

@@ -52,11 +52,13 @@ for(i in 1:ncol(toPlot))           # построим все одним махо
 invisible(dev.off())
 @
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/uniform_errors.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 
 \end{sol}
 \end{problem}
@@ -2004,11 +2006,13 @@ invisible(dev.off())
 
 
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/two_points_zero_slope.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 
 \begin{enumerate}
 \item Проведите линию регрессии.
@@ -2037,11 +2041,13 @@ invisible(dev.off())
 
 
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/two_points_positive_slope.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 
 \begin{enumerate}
 \item Проведите линию регрессии.

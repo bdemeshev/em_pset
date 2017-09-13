@@ -38,11 +38,13 @@ ggplot(df, aes(x = obs, y = level)) + geom_line() +
 invisible(dev.off())
 @
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/huron_level.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 
 
 График автокорреляционной и частной автокорреляционной функций:
@@ -59,11 +61,13 @@ ggplot(acfs.df, aes(x = lag, y = acf, fill = acf.type)) +
 invisible(dev.off())
 @
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/huron_acf.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 
 \begin{enumerate}
 \item Судя по графикам, какие модели класса ARMA или ARIMA имеет смысл оценить?
@@ -970,11 +974,13 @@ ggplot(acf.df, aes(x = lag, y = acf)) +
 invisible(dev.off())
 @
 
-\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
 \begin{tikzpicture}[scale = 0.025]
 \input{R_plots/acf_rescale.tikz}
 \end{tikzpicture}
-\end{figure}
+\end{center}
+\end{minipage}
 
 
 Потом она с ужасом обнаружила, что до презентации исследования остается совсем мало времени, а распечатать надо было график автокорреляционной функции. Что надо исправить Антуанетте на графике, чтобы успеть еще сделать причёску и макияж (это очень важно для презентации)?
