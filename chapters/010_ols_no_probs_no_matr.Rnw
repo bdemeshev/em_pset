@@ -43,11 +43,11 @@
 \begin{enumerate}
 \item $y_i = \theta + \theta x_i + \varepsilon_i$;
 \item $y_i = \theta - \theta x_i + \e_i$;
-\item $\text{ln} y_i = \theta + \text{ln} x_i + \e_i$;
+\item $\ln y_i = \theta + \ln x_i + \e_i$;
 \item $y_i = \theta + x_i + \e_i$;
 \item $y_i = 1 + \theta x_i + \e_i$;
 \item $y_i = \theta / x_i + \e_i$;
-\item $y_i = \theta x_i + (1-\theta)x_{i2}+\e_i$.
+\item $y_i = \theta x_i + (1-\theta)z_i+\e_i$.
 \end{enumerate}
 
 
@@ -64,7 +64,7 @@
 
 \item \(\htheta = \sum \left(y_i (1 - x_i)\right) / \sum (1 - x_i)^2\)
 
-\item \(\htheta = \left( \sum \text{ln} (y_i / x_i) \right) / n \)
+\item \(\htheta = \left( \sum \ln (y_i / x_i) \right) / n \)
 
 \item \(\htheta = \left( \sum (y_i - x_i) \right) / n \)
 
@@ -72,7 +72,7 @@
 
 \item \(\htheta = \sum (y_i / x_i^2) / \sum (1 /x^3)\)
 
-\item \(\htheta = \sum \left((y_i - x_{i2})(x_i - x_{i2}) \right) / \sum \left(x_i - x_{i2}\right)^2 \)
+\item \(\htheta = \sum \left((y_i - z_i)(x_i - z_i) \right) / \sum \left(x_i - z_i\right)^2 \)
 
 \end{enumerate}
 \end{sol}
@@ -258,7 +258,7 @@ RSS = \sum\limits_i(y_i-1-\beta x_i)^2 \rightarrow \min\limits_{\beta}
 Аня и Настя утверждают, что лектор опоздал на 10 минут. Таня считает, что лектор опоздал на 3 минуты. С помощью МНК оцените, на сколько опоздал лектор.
 
 \begin{sol}
-Можем воспользоваться результатом задачи 9:
+Можем воспользоваться готовой формулой для регрессии на константу:
 \[
 \hb = \bar{y} = \frac{10+10+3}{3} = \frac{23}{3}
 \]
@@ -616,5 +616,44 @@ y^*_i = \tilde{y}_i\cdot3 + 7 \Rightarrow \E[y^*] = 7, \hspace{2mm} \Var(y^*) = 
 \end{sol}
 \end{problem}
 
+
+\begin{problem}
+На работе Феофан построил парную регрессию по трём наблюдениям и посчитал прогнозы $\hat{y}_i$. Придя домой он отчасти вспомнил результаты:
+
+\begin{tabular}{rr}
+\toprule
+$y_i$ & $\hy_i$ \\
+\midrule
+$0$ & $1$ \\
+$6$ & ? \\
+$6$ & ? \\
+\bottomrule
+\end{tabular}
+
+Поднапрягшись, Феофан вспомнил, что третий прогноз был больше второго. Помогите Феофану восстановить пропущенные значения.
+
+
+\begin{sol}
+На две неизвестных $a$ и $b$ нужно два уравнения. Эти два уравнения — ортогональность вектора остатков плоскости регрессоров. А именно:
+
+\[
+\begin{cases}
+\sum_i (y_i - \hy_i) = 0 \\
+\sum_i (y_i - \hy_i) \hy_i = 0 \\
+\end{cases}
+\]
+
+В нашем случае
+
+\[
+\begin{cases}
+-1 +(6-a) + (6-b) = 0 \\
+-1 + (6 - a)a + (6-b)b = 0 \\
+\end{cases}
+\]
+
+Решаем квадратное уравнение и получаем два решения: $a=4$ и $a=7$. Итого: $a=4$, $b=7$.
+\end{sol}
+\end{problem}
 
 \Closesolutionfile{solution_file}

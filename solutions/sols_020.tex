@@ -1,0 +1,1612 @@
+\protect \hypertarget {soln:2.1}{}
+\begin{solution}{{2.1}}
+Даешь симуляции!
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{tikz}\hlstd{(}\hlstr{"../R_plots/uniform_errors.tikz"}\hlstd{,} \hlkwc{standAlone} \hlstd{=} \hlnum{FALSE}\hlstd{,} \hlkwc{bareBones} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+
+\hlstd{n} \hlkwb{<-} \hlnum{100} \hlcom{# количество наблюдений}
+\hlstd{m} \hlkwb{<-} \hlnum{100} \hlcom{# можно менять количество прогонов}
+         \hlcom{# и радоваться!}
+\hlstd{x} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(n,} \hlnum{5}\hlstd{,} \hlnum{1}\hlstd{)}
+
+\hlstd{b1} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{, m)}
+\hlstd{b2} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{, m)}
+\hlstd{sHatSquared} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{, m)}
+\hlstd{varB1} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{, m)}
+\hlstd{varB2} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{, m)}
+\hlstd{Cov} \hlkwb{<-} \hlkwd{rep}\hlstd{(}\hlnum{0}\hlstd{, m)}
+
+\hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{m) \{}
+  \hlstd{y} \hlkwb{<-} \hlnum{1} \hlopt{+} \hlnum{2} \hlopt{*} \hlstd{x} \hlopt{+} \hlkwd{runif}\hlstd{(n,} \hlopt{-}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{)}       \hlcom{# остатки распределены как надо}
+  \hlstd{b1[i]} \hlkwb{<-} \hlkwd{coef}\hlstd{(}\hlkwd{lm}\hlstd{(y} \hlopt{~} \hlstd{x))[[}\hlnum{1}\hlstd{]]}
+  \hlstd{b2[i]} \hlkwb{<-} \hlkwd{coef}\hlstd{(}\hlkwd{lm}\hlstd{(y} \hlopt{~} \hlstd{x))[[}\hlnum{2}\hlstd{]]}
+  \hlstd{sHatSquared[i]} \hlkwb{<-} \hlkwd{sum}\hlstd{((}\hlkwd{summary}\hlstd{(}\hlkwd{lm}\hlstd{(y} \hlopt{~} \hlstd{x))}\hlopt{$}\hlstd{resid)}\hlopt{^}\hlnum{2}\hlstd{)} \hlopt{/} \hlstd{(n} \hlopt{-} \hlnum{2}\hlstd{)}
+  \hlstd{varB1[i]} \hlkwb{<-} \hlkwd{vcov}\hlstd{(}\hlkwd{lm}\hlstd{(y} \hlopt{~} \hlstd{x))[}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{]}
+  \hlstd{varB2[i]} \hlkwb{<-} \hlkwd{vcov}\hlstd{(}\hlkwd{lm}\hlstd{(y} \hlopt{~} \hlstd{x))[}\hlnum{2}\hlstd{,} \hlnum{2}\hlstd{]}
+  \hlstd{Cov[i]} \hlkwb{<-} \hlkwd{vcov}\hlstd{(}\hlkwd{lm}\hlstd{(y} \hlopt{~} \hlstd{x))[}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{]}
+\hlstd{\}}
+
+\hlkwd{palette}\hlstd{(}\hlkwd{c}\hlstd{(}\hlstr{"ForestGreen"}\hlstd{,} \hlstr{"olivedrab"}\hlstd{,} \hlstr{"SkyBlue"}\hlstd{,} \hlstr{"tomato3"}\hlstd{,} \hlstr{"navy"}\hlstd{,} \hlstr{"brown"}\hlstd{))}
+\hlkwd{par}\hlstd{(}\hlkwc{mfrow} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,} \hlnum{3}\hlstd{))}
+
+\hlstd{toPlot} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwc{b1} \hlstd{= b1,} \hlkwc{b2} \hlstd{= b2,} \hlkwc{sHatSquared} \hlstd{= sHatSquared,}
+                     \hlkwc{varB1} \hlstd{= varB1,} \hlkwc{varB2} \hlstd{= varB2,} \hlkwc{Cov} \hlstd{= Cov)}
+
+\hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlkwd{ncol}\hlstd{(toPlot))}           \hlcom{# построим все одним махом}
+\hlstd{\{}
+  \hlkwd{hist}\hlstd{(toPlot[, i],} \hlkwc{prob} \hlstd{=} \hlnum{TRUE}\hlstd{,} \hlkwc{main} \hlstd{=} \hlstr{""}\hlstd{,}
+       \hlkwc{xlab} \hlstd{=} \hlkwd{colnames}\hlstd{(toPlot)[i],} \hlkwc{ylim} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,} \hlkwd{max}\hlstd{(}\hlkwd{density}\hlstd{(toPlot[, i])}\hlopt{$}\hlstd{y)) )}
+  \hlkwd{lines}\hlstd{(}\hlkwd{density}\hlstd{(toPlot[, i]),} \hlkwc{col} \hlstd{= i,} \hlkwc{lwd} \hlstd{=} \hlnum{4}\hlstd{)}
+\hlstd{\}}
+
+\hlkwd{invisible}\hlstd{(}\hlkwd{dev.off}\hlstd{())}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\begin{minipage}{0.6\textwidth}
+\begin{center}
+\begin{tikzpicture}[scale = 0.025]
+\input{R_plots/uniform_errors.tikz}
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+
+\end{solution}
+\protect \hypertarget {soln:2.2}{}
+\begin{solution}{{2.2}}
+\begin{enumerate}
+\item \(\E(\bar{y}) = \mu \)
+\item \(\Var(\bar{y}) = \sigma^2/n \)
+\item \(\E \left(\sum (y_i - \bar{y})^2 /n \right) = \sigma^2 (n-1)/n\)
+\[\E \left(\frac{1}{n} \sum (y_i - \bar{y})^2  \right) = \E \left(\frac{1}{n} \sum y_i^2 - \frac{2}{n} \bar{y} \sum y_i + \bar{y}^2 \right) = \E \left(\frac{1}{n} \sum y_i^2 - \bar{y}^2\right) =   \]
+\[= \mu^2 + \sigma^2 - \mu^2 - \frac{1}{n}\sigma^2 = \sigma^2 \frac{n-1}{n} \]
+\item Сумма $\sum_{i=1}^n {(y_i-\bar{y})}^2$ имеет хи-квадрат распределение с $(n-1)$ степенью свободы, её дисперсия равна $2(n-1)\cdot \sigma^4$.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.3}{}
+\begin{solution}{{2.3}}
+Данная модель удовлетворяет условиям теоремы Гаусса-Маркова, поэтому оценка $\hb$ методом наименьших квадратов будет эффективной. Найдем ее:
+\[
+\sum\limits_{i=1}^n(y_i-\beta x_i)^2 \rightarrow \min\limits_{\beta} \Rightarrow \hb = \frac{\sum_{i=1}^nx_iy_i}{\sum_{i=1}^nx_i^2}
+\]
+
+Поэтому ответ следующий: $c_i = c\cdot x_i$, $c \ne 0$.
+\end{solution}
+\protect \hypertarget {soln:2.4}{}
+\begin{solution}{{2.4}}
+\begin{enumerate}
+\item
+\[\hb_2 = \frac{\sum (x_i - \bar{x}) (y_i - \bar{y})}{\sum (x_i-\bar{x})^2} = \frac{\sum (x_i - \bar{x})y_i}{\sum (x_i-\bar{x})^2} = \frac{\sum x_i y_i - \bar{y} \sum x_i}{\sum x_i^2 - 2 \bar{x} \sum x_i + n \bar{x}^2}=2.5\]
+\[\hb_1 = \bar{y} - \hb_2 \bar{x} = 1.5 \]
+\item
+\[\Corr(\hb_1, \hb_2) = \frac{\Cov (\hb_1, \hb_2)}{\sqrt{\Var (\hb_1)\cdot \Var (\hb_2)}}=\frac{\Cov (\bar{y}-\hb_2 \bar{x}, \hb_2)}{\sqrt{\Var (\bar{y}-\hb_2 \bar{x})\cdot \Var (\hb_2)}} = \]
+\[ = \frac{-\bar{x} \cdot \Cov(\hb_2,\hb_2)}{\bar{x}\cdot\sqrt{\left(\Var (\hb_2) \right)^2}} = -1  \]
+\item
+\[TSS = \sum (y_i - \bar{y})^2 = \sum y_i^2 - 2 \bar{y} \sum y_i + n \bar{y}^2 = 10 \]
+\item
+\[ESS = \sum (\hy_i - \bar{y})^2 = \sum (\hb_1 + \hb_2 x_i)^2 - 2\bar{y} \sum (\hb_1 + \hb_2 x_i) + n \hy^2 = \]
+\[ =n\cdot \hb_1^2 +2 \cdot \hb_1 \cdot \hb_2 \sum x_i + \hb_2^2 \sum x_i^2 - 2\bar{y} \left(n\hb_1 + \hb_2 \sum x_i \right) + n \bar{y}^2 = 7.5 \]
+\item
+\[RSS = TSS - ESS = 2.5 \]
+\item
+\[R^2 = \frac{ESS}{TSS} = 0.75 \]
+\item
+\[\hat{\sigma}^2 = \frac{RSS}{n - 2} = \frac{5}{6} \]
+\end{enumerate}
+
+Проверяем гипотезы:
+\begin{enumerate}
+\item \( \begin{cases}
+H_0: \beta_2 = 2 \\
+H_a: \beta_2 \ne 2
+\end{cases}\)
+
+Уровень значимости выберем \(\alpha = 5\,\%\).
+
+Формула расчета статистики:
+\[T = \frac{\hb_2 - \beta_{2, 0}}{\sqrt{\hVar (\hb_2)}}\]
+
+\[T = \frac{\hb_2 - 2}{\sqrt{\hVar (\hb_2)}} \overset{H_0}{\sim} t_{n-2} \]
+
+Нам нужна дисперсия оценки коэффициента при \(x_i\):
+\[\Var(\hb_2) = \Var \left(\frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2} \right) = \Var \left( \frac{\sum (x_i - \bar{x})y_i }{\sum (x_i - \bar{x})^2} \right) = \]
+\[= \left(\frac{1}{\sum (x_i - \bar{x})^2} \right)^2 \Var \left( \sum (x_i - \bar{x})y_i \right)= \left(\frac{1}{\sum (x_i - \bar{x})^2} \right)^2 \sum (x_i - \bar{x})^2 \Var (y_i) =\]
+\[= \frac{\sigma^2}{\sum (x_i - \bar{x})^2}  \]
+
+Истинную дисперсию ошибок мы не знаем, поэтому используем ее оценку, которую мы знаем:
+\[\hVar(\hb_2) =  \frac{\hat{\sigma}^2}{\sum (x_i - \bar{x})^2} \approx 0.694  \]
+
+Наблюдаемое значение статистики:
+\[T = 0.6 \]
+
+Правое критическое значения при выбранном уровне значимости:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{t_crit} \hlkwb{<-} \hlkwd{qt}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.05}\hlopt{/}\hlnum{2}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{5} \hlopt{-} \hlnum{2}\hlstd{)}
+\hlstd{t_crit}
+\end{alltt}
+\begin{verbatim}
+## [1] 3.182446
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Проверяем, попадает ли наблюдаемое значение статистики в область, в которой \(H_0\) не отвергается:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{t_obs} \hlkwb{<-} \hlnum{0.6}
+\hlkwd{abs}\hlstd{(t_obs)} \hlopt{<} \hlstd{t_crit}
+\end{alltt}
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Итак, наблюдаемое значение статистики не попало в критическую область, следовательно, гипотеза \(H_0\) не отвергается.
+
+P-value:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{p_value} \hlkwb{<-} \hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pt}\hlstd{(t_obs,} \hlkwc{df} \hlstd{=} \hlnum{3}\hlstd{))}
+\hlstd{p_value}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.5908012
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\item \( \begin{cases}
+H_0: \beta_1 + \beta_2 = 1 \\
+H_a: \beta_1 + \beta_2 \ne 1
+\end{cases}\)
+
+Уровень значимости выберем \(\alpha = 5\,\%\).
+
+Формула расчета статистики:
+\[T = \frac{(\hb_1 + \hb_2) - \left(\beta_1 + \beta_2\right)_0}{\sqrt{\hVar (\hb_1 + \hb_2)}}\]
+
+\[T = \frac{(\hb_1 + \hb_2) - 1}{\sqrt{\hVar (\hb_1 + \hb_2)}} \overset{H_0}{\sim} t_{n-2} \]
+
+\[\Var(\hb_1) = \Var \left(\bar{y} - \hb_2 \bar{x}\right) = \frac{1}{n^2}\Var \sum y_i + \bar{x}^2 \Var (\hb_2) = \frac{1}{n} \sigma^2 + \bar{x}^2 \cdot \frac{\sigma^2}{\sum (x_i - \bar{x})^2} = \]
+\[= \sigma^2 \frac{\sum (x_i - \bar{x})^2 + n \bar{x}^2}{n \sum (x_i - \bar{x})^2} = \sigma^2\frac{\sum x_i^2 - 2 \bar{x}\sum x_i + 2n\bar{x}^2}{n \sum (x_i - \bar{x})^2} = \sigma^2\frac{\sum x_i^2}{n \sum (x_i - \bar{x})^2}\]
+
+\[\Cov(\hb_1, \hb_2) = \Cov (\bar{y} - \hb_2 \bar{x}, \hb_2) = \frac{1}{n} \Cov \left(\sum y_i, \hb_2 \right) - \bar{x} \Var (\hb_2) = \]
+\[= \Cov \left(\sum y_i, \frac{\sum (x_i - \bar{x})y_i}{\sum (x_i - \bar{x})^2} \right)- \bar{x} \cdot \frac{\sigma^2}{\sum (x_i - \bar{x})^2} = \]
+\[=\sigma^2 \cdot \frac{\sum (x_i - \bar{x})}{\sum (x_i - \bar{x})^2} - \bar{x} \cdot \frac{\sigma^2}{\sum (x_i - \bar{x})^2} = \sigma^2 \frac{-\bar{x}}{\sum (x_i - \bar{x})^2}  \]
+
+Итак:
+\[\Var (\hb_1 + \hb_2) = \Var (\hb_1) + \Var (\hb_2) + 2 \Cov (\hb_1, \hb_2) = \]
+\[ =\sigma^2 \left(\frac{\sum x_i^2}{n \sum (x_i - \bar{x})^2} +  \frac{1}{\sum (x_i - \bar{x})^2} - \frac{2\bar{x}}{\sum (x_i - \bar{x})^2}\right) = \sigma^2 \cdot \frac{\sum x_i^2 - 2 \sum x_i + n}{n \sum (x_i - \bar{x})^2} = \]
+\[=\sigma^2 \cdot \frac{\sum (x_i - 1)^2}{n\sum (x_i - \bar{x})^2}  \]
+
+\[\hVar (\hb_1 + \hb_2) = \hat{\sigma}^2 \cdot \frac{\sum (x_i - 1)^2}{n\sum (x_i - \bar{x})^2} \approx 0.278\]
+
+Наблюдаемое значение статистики:
+\[T \approx 5.692 \]
+
+Критические значения при выбранном уровне значимости:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{t_crit} \hlkwb{<-} \hlkwd{qt}\hlstd{(}\hlnum{1} \hlopt{-} \hlnum{0.05}\hlopt{/}\hlnum{2}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{5} \hlopt{-} \hlnum{2}\hlstd{)}
+\hlstd{t_crit}
+\end{alltt}
+\begin{verbatim}
+## [1] 3.182446
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Проверяем, попадает ли наблюдаемое значение статистики в область, в которой \(H_0\) не отвергается:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{t_obs} \hlkwb{<-} \hlnum{5.692}
+\hlkwd{abs}\hlstd{(t_obs)} \hlopt{<} \hlstd{t_crit}
+\end{alltt}
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Итак, наблюдаемое значение статистики попадает в критическую область, следовательно, гипотеза \(H_0\) отвергается в пользу альтернативной.
+
+P-value:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{p_value} \hlkwb{<-} \hlnum{2} \hlopt{*} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pt}\hlstd{(t_obs,} \hlkwc{df} \hlstd{=} \hlnum{3}\hlstd{))}
+\hlstd{p_value}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.01074998
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.5}{}
+\begin{solution}{{2.5}}
+Если по-честному решить задачу минимизации \(RSS\), получим следующие результаты:
+\[
+\beta_2 = \frac{\Cov(x, y)}{\Var(x)} = \frac{\sum_ix_iy_i - n\bar{x}\bar{y}}{\sum_ix_i^2 - n\bar{x}^2}, \hspace{2mm} \beta_1 = \bar{y} - \beta_2\bar{x}
+\]
+Поэтому:
+\begin{enumerate}
+\item $\hb_1 = 2.5$, $\hb_2  = 2$
+\item  \[\Corr(\hb_1, \hb_2) = \frac{\Cov(\hb_1, \hb_2)}{\sqrt{\Var(\hb_1)}\sqrt{\Var(\hb_2)}} =  \frac{\Cov(\bar{y}-\hb_2\bar{x}, \hb_2)}{\sqrt{\Var(\bar{y}-\hb_2\bar{x})} \sqrt{\Var(\hb_2)}} = \frac{\bar{x}(- \Cov(\hb_2,\hb_2))}{\bar{x} \sqrt{\Var(\hb_2)}\sqrt{\Var(\hb_2)}} = -1\]
+
+\item $TSS=\sum_{i=1}^n(y_i-\bar{y})^2 = \sum_{i=1}^ny_i^2 -2\bar{y}\sum_{i=1}^ny_i + n\bar{y}^2 = 55 - 2\cdot\frac{15}{5}\cdot15 + 5\cdot\left(\frac{15}{5}\right)^2=10$
+
+\item $ESS = \sum_{i=1}^n(\hy_i-\bar{y})^2 = \sum_{i=1}^n\hy_i^2 -2\bar{y}\sum_{i=1}^n\hy_i + n\bar{y}^2$
+
+Для начала посчитаем $\sum_{i=1}^n\hy_i^2$ и $\sum_{i=1}^n\hy_i $:
+\[
+\sum_{i=1}^n\hy_i = \sum_{i=1}^n(\hb_1+\hb_2x_i) = n\hb_1 + \hb_2\sum_{i=1}^nx_i = 5\cdot \frac{5}{2} + 2\cdot2 = 16.5
+\]
+
+\[
+\sum_{i=1}^n\hy_i^2 = \sum_{i=1}^n(\hb_1+\hb_2x_i)^2 = n\hb_1^2 + 2\hb_1\hb_2\sum_{i=1}^nx_i + \hb_2^2\sum_{i=1}^nx_i^2 = 5\cdot\frac{25}{4}+2\cdot\frac{5}{2}\cdot2\cdot2 + 4\cdot2= 59.25
+\]
+
+Отсюда:
+\[
+ESS = 59.5-2\cdot\frac{15}{5}\cdot16.5+5\cdot\left(\frac{15}{5}\right)^2 = 5.5
+\]
+\item \[RSS=TSS-ESS = 10-5.5 = 4.5\]
+\item \[R^2 = \frac{RSS}{TSS} = 0.45\]
+\item \[\hat{\sigma}^2 = \frac{RSS}{n-k} = \frac{4.5}{5-2} = 1.5\]
+
+
+\end{enumerate}
+
+Будем проверять гипотезу:
+\[
+\begin{cases}
+H_0: \hspace{2mm} \beta_2 =2\\
+H_{a}: \hspace{2mm} \beta_2 \ne2
+\end{cases}
+\]
+
+Строим статистику: \[\frac{\hb_2 - 2}{se(\hb_2)} \sim t_{n-k}\]
+
+В нашем случае она равна нулю, поэтому гипотеза $H_0$ не отвергается. Вообще, для значений около 0 гипотеза $H_0$ не отвергается, а для значений далеких (в зависимости от уровня значимости) от нуля — отвергается.
+
+Теперь проверим гипотезу:
+\[
+\begin{cases}
+H_0: \hspace{2mm} \beta_1 + \beta_2 = 1\\
+H_{a}: \hspace{2mm} \beta_1 + \beta_2 \ne 1
+\end{cases}
+\]
+То есть, гипотеза $H_0$ говорит, что верна ограниченная модель, а гипотеза $H_{a}$ утверждает обратное.
+Оценим ограниченную модель и посчитаем статистику:
+\[
+\frac{(RSS_r-RSS_{un})/q}{RSS_{un}/(n-k)} \sim F_{q, n-k}
+\]
+где $q$ — количество линейно-независимых ограничений (в нашем случае $q=1$), $n$ — количество наблюдений (одинаковое для обеих моделей) и $k$ —  количество оцениваемых коэффициентов в неограниченной модели ($k=2$). Итак, $\beta_1 = 1-\beta_2$:
+
+\[
+RSS = \sum_{i=1}^5 (y_i-1+\beta_2 - \beta_2x_i)^2 \rightarrow \min\limits_{\beta_2}
+\]
+
+\[
+\frac{\partial RSS}{\partial \beta_2} = \sum_{i=1}^5 2(y_i-1+\hb_2-\hb_2x_i)(1-x_i) = 0 \Rightarrow
+\]
+
+\[
+ \hb_2 = \frac{\sum_{i=1}^5y_i - \sum_{i=1}^5y_ix_i + \sum_{i=1}^5x_i - 5 }{2\sum_{i=1}^5x_i+\sum_{i=1}^5x^2_i - 5} = \frac{15 - 9 +2 -5}{2\cdot5 +2 - 5} = \frac{3}{7} \Rightarrow \hb_1 = \frac{4}{7}
+\]
+
+Тогда RSS для данной модели:
+\[
+RSS = \sum_{i=1}^5 \left(y_i-\frac{4}{7} - \frac{3}{7}x_i\right)^2 = \dots = \sum_{i=1}^5 y_i^2 - \frac{8}{7}\sum_{i=1}^5 y_i -\frac{6}{7}\sum_{i=1}^5 y_ix_i + \frac{80}{49} + \frac{24}{49}\sum_{i=1}^5 x_i + \frac{9}{49}\sum_{i=1}^5 x_i^2 =
+\]
+\[
+= 55 - \frac{8}{7}\cdot15-\frac{6}{7}\cdot9 + \frac{80}{49} + \frac{24}{49}\cdot2+ \frac{9}{49}\cdot2 = \frac{1128}{49}
+\]
+
+Соответственно, статистика:
+
+\[
+\frac{(23-4.5)/1}{4.5/(5-2)} \approx 12.3
+\]
+По построению статистики, гипотеза $H_0$ должна быть отвергнута, если значение статистики слишком сильно отличается от нуля. Найдем критическое значение при уровне значимости 5\%:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{f_crit} \hlkwb{<-} \hlkwd{qf}\hlstd{(}\hlkwc{p} \hlstd{=} \hlnum{0.95}\hlstd{,} \hlkwc{df1} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{df2} \hlstd{=} \hlnum{3}\hlstd{)}
+\hlstd{f_crit} \hlopt{<} \hlnum{12.3}
+\end{alltt}
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+Вывод: $H_0$ отвергается.
+
+\end{solution}
+\protect \hypertarget {soln:2.6}{}
+\begin{solution}{{2.6}}
+
+\[y_i = \beta x_i + \e_i \]
+\[\hb = \frac{\sum y_i x_i}{\sum x_i^2}\]
+\[\E \hb = \E \left( \frac{\sum \left( \beta x_i + \e_i \right) x_i}{\sum x_i^2} \right) = \frac{1}{\sum x_i^2} \left(\beta \sum x_i^2 + \E \e_i x_i  \right) = \]
+\[=\frac{1}{\sum x_i^2} \left(\beta \sum x_i^2 + \Cov (\e_i, x_i) + \E e_i \E x_i \right) = \beta \]
+
+\begin{enumerate}
+\item Несмещённая.
+\[\E \hb = \E \left(\frac{y_1}{x_1} \right)= \E \left(\frac{\beta x_1 + \e_1}{x_1}\right) = \beta + \frac{1}{x_1} \E \e_1 = \beta \]
+\item Несмещённая.
+\item Несмещённая.
+\item Несмещённая.
+\[\E \hb = \E \left(\frac{\bar{y}}{\bar{x}} \right)= \E \left(\frac{y_1 + \ldots + y_n}{x_1 + \ldots + x_n}\right) = \beta + \E \left(\frac{\e_1 + \ldots + \e_n}{x_1 + \ldots + x_n}\right) = \beta \]
+\item Несмещённая.
+\[\E \hb = \E \left(\frac{y_n - y_1}{x_n - x_1 }\right) = \E \left(\frac{\beta (x_n- x_1) + \e_n - \e_1}{x_n - x_1}\right) = \beta + \frac{1}{x_n - x_1}\E(\e_n - \e_1) = \beta \]
+\item Несмещённая.
+\item Смещённая.
+\[\E \hb = \underbrace{\frac{1}{n} \beta + \ldots + \frac{1}{n}\beta}_{\text{всего } n-1 \text{ членов}} = \frac{n-1}{n} \beta\]
+\item Несмещённая.
+\item Несмещённая.
+\[\E \hb = \E \left(\frac{x_1 y_1 + \ldots + x_n y_n}{x_1^2 + \ldots + x_n^2}\right) = \frac{1}{x_1^2 + \ldots + x_n^2} \E \left(\beta x_1^2 + x_1 \e_1 + \ldots + \beta x_n^2 + x_n \e_n\right) = \beta \]
+\item Несмещённая. Линейная комбинация несмещённых оценок с суммой весов, равной \(1\), — несмещённая оценка.
+\item Несмещённая.
+\item Несмещённая.
+\[\E \hb = \E \left(\frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2} \right)= \frac{1}{\sum (x_i - \bar{x})^2} \E \sum (x_i - \bar{x})y_i = \beta \cdot \frac{\sum (x_i - \bar{x})x_i}{\sum(x_i - \bar{x})^2} = \beta\]
+\item Смещённая.
+\item Несмещённая.
+\item Несмещённая.
+\[\E \hb = \E \left(\frac{\sum i (y_i - \bar{y})}{\sum i (x_i - \bar{x})}\right)= \frac{\sum i \E(y_i - \bar{y})}{\sum i (x_i - \bar{x})} = \frac{\sum i (\beta x_i - \beta \bar{x})}{\sum i (x_i - \bar{x})} = \beta\]
+\item Несмещённая.
+\item Несмещённая.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.7}{}
+\begin{solution}{{2.7}}
+В классической модели выполнены все предпосылки теоремы Гаусса-Маркова. Поэтому, во всех пунктах легко показывается, что возникающие в формулах ковариации будут равны 0. Более того, так как $x_i$ детерминированы, частенько будут возникать константы, которые не влияют на дисперсию.
+
+ \begin{enumerate}
+ \item
+ \[
+ \Var(\hb) = \Var\left(\frac{\beta x_1 + \e_1}{x_1}\right) =
+ \Var\left(\beta + \frac{\e_1}{x_1}\right) = \frac{1}{x_1^2}\sigma^2
+ \]
+ \item
+ \[
+ \Var(\hb) = \Var\left(\frac{1}{2}\left( \beta + \frac{ \e_1}{x_1}\right) + \frac{1}{2}\left(\beta + \frac{ \e_2}{x_2}\right)\right) = \Var \left( \frac{\e_1}{2x_1} + \frac{\e_2}{2x_2} \right) = \frac{\sigma^2}{2}\left( \frac{1}{x_1^2} + \frac{1}{x_2^2}\right)
+ \]
+ \item По аналогии с предыдущим пунктом:
+ \[
+  \Var(\hb) = \Var \left( \frac{\e_1}{nx_1} + \dots + \frac{\e_n}{nx_n} \right) = \frac{\sigma^2}{n}\sum_{i}\frac{1}{x_i^2}
+ \]
+ \item
+ \[
+ \Var(\hb) = \Var \left( \frac{\sum\limits_i (\beta x_i + \e_i)}{n\bar{x}}\right) = \frac{1}{n^2\bar{x}^2}\cdot \Var\left(\underbrace{\beta\sum\limits_ix_i}_{const} + \sum\limits_i \e_i\right) = \frac{\sigma^2}{n\bar{x}^2}
+ \]
+ \item
+ \[
+ \Var(\hb) = \frac{1}{(x_n-x_1)^2}\Var(y_n-y_1) = \frac{1}{(x_n-x_1)^2}\Var(\e_n - \e_1) = \frac{2\sigma^2}{(x_n-x_1)^2}
+ \]
+ \item
+ \[
+  \Var(\hb) =  \frac{1}{4}\left(\frac{1}{(x_2-x_1)^2}\Var(\e_2-\e_1) + \frac{1}{(x_n-x_{n-1})^2}\Var(\e_n-\e_{n-1})\right) =
+ \]
+ \[
+ = \frac{\sigma^2}{2}\left( \frac{1}{(x_1-x_2)^2} +\frac{1}{(x_n-x_{n-1})^2} \right)
+ \]
+ \item
+ \[
+  \Var(\hb) = \Var\left(\frac{\sum\limits_i(\beta x_i + \e_i)x_i}{\sum\limits_i x_i^2}\right) = \Var\left(\beta + \frac{\sum\limits_i\e_ix_i}{\sum\limits_i x_i^2}\right) =
+ \]
+ \[
+ = \frac{1}{\left(\sum\limits_i x_i^2\right)^2}\sum\limits_i\Var(x_i\e_i)  = \frac{\sigma^2}{\sum\limits_ix_i^2}
+ \]
+ \item
+ \[
+ \Var(\hb) = \Var\left(\beta + \frac{\sum\limits_i(x_i-\bar{x})\e_i}{\sum\limits_i (x_i-\bar{x})^2}\right) = \frac{1}{\left(\sum\limits_i (x_i-\bar{x})^2\right)^2}\sum\limits_i\Var\left((x_i-\bar{x})\e_i \right)= \frac{\sigma^2}{\sum\limits_i (x_i-\bar{x})^2}
+ \]
+ \item Если аккуратно все сделать, — результат тот же, что и в предыдущем пункте.
+ \item
+ \[
+ \Var(\hb) = \Var\left(\frac{\sum\limits_i iy_i}{\sum\limits_i ix_i}\right) = \Var\left(\beta + \frac{\sum\limits_i i\e_i}{\sum\limits_i ix_i}\right) = \frac{1}{\left(\sum\limits_i ix_i\right)^2}\sum\limits_i\Var(i\e_i) = \frac{\sigma^2\sum\limits_i i^2}{\left(\sum\limits_i ix_i\right)^2}
+ \]
+ \item
+ \[
+ \Var(\hb) = \Var\left(\frac{\sum\limits_i i(y_i-\bar{y})}{\sum\limits_i i(x_i-\bar{x})}\right) = \Var\left( \frac{ \sum\limits_i i(\beta x_i + \e_i) - \frac{\sum i}{n}\sum\limits(\beta x_i + \e_i)}{\sum\limits_i i(x_i - \bar{x})} \right) =
+ \]
+ \[
+ = \Var\left( \beta + \frac{\sum\limits_i(i-\frac{n+1}{2})\e_i}{\sum\limits_i i(x_i-\bar{x})} \right) = \frac{\sigma^2\sum\limits_i \left(i - \frac{n+1}{2}\right)^2}{\left(\sum\limits_i i(x_i-\bar{x})\right)^2}
+ \]
+
+ \item
+ \[
+ \Var(\hb) = \Var\left(\beta + \frac{1}{n}\sum\limits_i\frac{\e_i}{x_i}\right) = \frac{\sigma^2}{n^2}\sum\limits_i \frac{1}{x_i^2}
+ \]
+
+ \item
+ \[
+ \hb = \frac{1}{n}\cdot \frac{\beta x_i + \e_i - \frac{1}{n}\sum\limits_i y_i}{x_i -\bar{x}} = \frac{1}{n}\sum\limits_i\left(\beta + \frac{\e_i-\frac{1}{n}\sum\limits_i\e_i}{x_i-\bar{x}}\right) = \beta + \frac{1}{n}\sum\limits_i \frac{\e_i-\frac{1}{n}\sum\limits_i\e_i}{x_i -\bar{x}}
+ \]
+
+ Рассмотрим отдельно величину:
+ \[
+ \Var\left(\e_i -\frac{1}{n}\sum\limits_i \e_i\right) = \sigma^2 + \frac{1}{n^2}n\sigma^2 - 2\cdot\frac{1}{n}\Cov\left(\e_i, \sum\limits_i \e_i\right) =
+ \]
+ \[
+ = \sigma^2 + \frac{1}{n}\sigma^2 - \frac{2}{n}\left(\sum\limits_{j\ne i} \Cov(\e_i, \e_j) + \Cov(\e_i, \e_i)\right) = \frac{n-1}{n}\sigma^2
+ \]
+ И вот настал торжественный момент:
+ \[
+ \Var(\hb) = \frac{1}{n^2}\sum\limits_i \Var\left(\frac{\e_i - \frac{1}{n} \sum\limits_i \e_i}{x_i -\bar{x}} \right) = \frac{1}{n^2}\sum\limits_i \frac{1}{(x_i-\bar{x})^2}\frac{n-1}{n}\sigma^2 = \frac{\sigma^2(n-1)}{n^3}\sum\limits_i \frac{1}{(x_i-\bar{x})^2}
+ \]
+
+ \end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.8}{}
+\begin{solution}{{2.8}}
+Все оценки несмещённые. Замечаем, что
+\[
+\tilde{\beta} = \frac{1 \cdot y_1 + \ldots + n \cdot y_n}{1^2 + \ldots + n^2}=\frac{\sum x_i y_i}{\sum x_i^2},
+\]
+то есть это классическая МНК-оценка, обладающая наименьшей дисперсией среди несмещённых оценок.
+
+В третьем пункте можно сделать и «в лоб»:
+\[
+\Var(\hb)=\sigma^2 \frac{1}{n^2}\left(\frac{1}{1^2} + \frac{1}{2^2} + \ldots + \frac{1}{n^2} \right) \geq \sigma^2 \frac{1}{n^2}
+\]
+
+\[
+\Var(\tilde{\beta})=\sigma^2 \frac{1}{1^2+2^2+ \ldots + n^2} \leq \sigma^2 \frac{1}{n^2}
+\]
+
+\begin{enumerate}
+\item \(\tilde{\beta}\)
+\[\Var \hb = \Var \left(\beta + \e_i \right) = \sigma^2 \]
+\[\Var \tilde{\beta} = \Var \left(\beta + \frac{\e_i}{2} \right)= \frac{\sigma^2}{4} \]
+\item \(\tilde{\beta}\)
+\[\Var \hb = \sigma^2 \]
+\[Var \tilde{\beta} = \Var \left(\frac{1}{2} y_1 + \frac{1}{2} \frac{y_2}{2} \right) = \frac{1}{4} \sigma^2 + \frac{1}{16} \sigma^2 = \frac{5}{16} \sigma^2\]
+\item \(\tilde{\beta}\)
+\[\Var \hb = \frac{1}{n^2} \left(1 + \frac{1}{4} + \ldots + \frac{1}{n^2} \right) \sigma^2 \]
+\[\Var \tilde{\beta} = \frac{\sigma^2}{1 + 4 + \ldots + n^2} \]
+\[\frac{1 + 4 + \ldots + n^2}{n^2} \left(1 + \frac{1}{4} + \ldots + \frac{1}{n^2} \right) > 1 \Rightarrow \Var \hb > \Var \tilde{\beta}\]
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:2.9}{}
+\begin{solution}{{2.9}}
+Данная модель получается логарифмированием функции спроса вида:
+\[
+Q(P) = \frac{e^a}{P^b}
+\]
+Такие функции спроса примечательны постоянной эластичностью, которая равна $b$. Соответственно, нужно проверить, значимо ли коэффициент $\hb_2 = -1.23$ отличается от -1. Строим статистику и смотрим на квантиль $t$-распределения:
+\[
+\frac{\hb_2-\beta_2}{s.e(\hb_2)} \sim t_{100-2} \Rightarrow \frac{-1.23-(-1)}{0.02} = -11.5
+\]
+Если значение статистики будет слишком далеко от 0 (меньше \verb|qt(0.025, df = 98)| или больше \verb|qt(0.975, df = 98))|, то различия значимы.
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{qt}\hlstd{(}\hlnum{0.025}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{98}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] -1.984467
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+Вывод: значимо.
+\end{solution}
+\protect \hypertarget {soln:2.10}{}
+\begin{solution}{{2.10}}
+Формула расчета статистики:
+\[T = \frac{\hb_{\log P} - \beta_{\log P, 0}}{se \left(\hb_{\log P} \right)} \]
+\[T = \frac{\hb_{\log P} - (-1)}{se\left(\hb_{\log P} \right)} \overset{H_0}{\sim} t_{100 -2} \]
+
+Наблюдаемое значение статистики:
+\[ T = -6    \]
+
+Проверим гипотезу с помощью P-value:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{p_value} \hlkwb{<-} \hlnum{2} \hlopt{*} \hlkwd{pt}\hlstd{(}\hlopt{-}\hlnum{6}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{98}\hlstd{)}
+\hlstd{p_value}
+\end{alltt}
+\begin{verbatim}
+## [1] 3.32231e-08
+\end{verbatim}
+\begin{alltt}
+\hlstd{p_value} \hlopt{>} \hlnum{0.05} \hlcom{# если TRUE, то гипотеза не отвергается}
+\end{alltt}
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Гипотеза отвергается в пользу альтернативной на уровне значимости 5\,\%.
+
+Экономическая интерпретация проверяемой гипотезы — присутствует ли единичная эластичность на рынке? Альтернатива — спрос эластичный, то есть объем спроса изменяется на больший процент, чем цена.
+\end{solution}
+\protect \hypertarget {soln:2.11}{}
+\begin{solution}{{2.11}}
+Просто строим $t$-статистику и считаем нужные квантили:
+\[
+\frac{\hb_2-\beta_2}{s.e(\hb_2)}  \sim t_{45-2} \Rightarrow \frac{-0.23 - 0}{0.04} = -5.75
+\]
+
+Нужно сравнить с:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{qt}\hlstd{(}\hlnum{0.005}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{43}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] -2.695102
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Видим, что статистика слишком сильно отличается от нуля. Вывод: гипотеза $H_0$ отвергается.
+
+\end{solution}
+\protect \hypertarget {soln:2.12}{}
+\begin{solution}{{2.12}}
+\begin{enumerate}
+\item Формула расчета статистики:
+\[T = \frac{\hb_1 - \beta_{1,0}}{\sqrt{\hVar (\hb_1)}}\]
+\item Распределение тестовой статистики при верной \(H_0\):
+\[T = \frac{\hb_1 - 3.5}{\sqrt{\hVar (\hb_1)}} \overset{H_0}{\sim} t_{n-2} \]
+\item Для вычисления наблюдаемого значения тестовой статистики необходимо найти \(\hb_1\) и \(\hVar (\hb_1)\) (выводы формул смотри в решении задачи 2.4):
+\[\hb_1 = \bar{y} - \hb_2 \bar{x} = \bar{y} - \frac{\sum (x_i - \bar{x}) (y_i - \bar{y})}{\sum (x_i - \bar{x})^2} \bar{x} = \bar{y} - \frac{\sum x_i y_i - \bar{y} \sum x_i}{\sum x_i^2 - n \bar{x}^2} \bar{x} = 1.5\]
+\[\Var \hb_1 = \frac{\sum x_i^2}{n (\sum x_i^2 - n \bar{x}^2)} \sigma^2 \approx 0.21 \sigma^2  \]
+\[\hb_2 = \frac{\bar{y} - \hb_1}{\bar{x}} = 4  \]
+\[RSS = \sum (y_i - 1.5 - 4x_i)^2 = \]
+\[=\sum y_i^2 + 18 \cdot 1.5^2 + 16 \sum x_i^2 - 3\sum y_i - 8 \sum y_i x_i + 12 \sum x_i = 661.5  \]
+\[ \hat{\sigma}^2 = \frac{RSS}{n-k} \approx 41.34 \]
+\[\hVar \hb_1 \approx 8.68\]
+\[T_{o} \approx -0.68  \]
+\item Основная гипотеза не отвергается на \([-2.12, 2.12]\).
+\item Нулевая гипотеза не отвергается на уровне значимости 5\,\%.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.13}{}
+\begin{solution}{{2.13}}
+
+Оценка, имеющая наименьшую дисперсию в каком-то классе оценок, называется эффективной оценкой в этом классе. В данной модели выполняются все предпосылки теоремы Гаусса-Маркова, поэтому МНК оценка будет эффективной. Для случая регрессии на константу оценка имеет вид:
+\[
+\hat{\mu} = \frac{\sum\limits_i y_i}{n}
+\]
+
+Отсюда сразу получаем: $c_i = \frac{1}{n}$.
+
+Можно также решить задачу условной минимизации.
+\end{solution}
+\protect \hypertarget {soln:2.14}{}
+\begin{solution}{{2.14}}
+\begin{enumerate}
+\item Классические формулы для парной регрессии:
+\[
+\hb_2 = \frac{\sum(x_i - \bar x)(y_i - \bar y)}{\sum (x_i - \bar x)^2}
+\]
+
+\item Оценки несмещённы, дисперсия задаётся стандартными формулами.
+
+
+\item Несмещённые оценки, дисперсия стремится к нулю, следовательно, оценки состоятельны.
+
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.15}{}
+\begin{solution}{{2.15}}
+
+\begin{enumerate}
+
+\item
+Из МНК получаем:
+\[
+\hb = \frac{\sum\limits_i iy_i}{\sum\limits_i i^2} = \frac{\sum\limits_i i(\beta i+\e_i)}{\sum\limits_i i^2} = \beta + \frac{\e_1 + 2\e_2}{5}
+\]
+
+Так как ошибки независимы и каждая из них равновероятно принимает значения -1 и 1, возможны всего 4 варианта, каждый с вероятностью $\frac{1}{4}$:
+
+\def\arraystretch{1.5}
+
+\begin{center}
+\begin{tabular}{c|cccc}
+\toprule
+$\hb$ & $\beta - \frac{3}{5}$ & $\beta - \frac{1}{5}$ & $\beta + \frac{1}{5}$ & $\beta + \frac{3}{5}$ \\
+$\P(\cdot)$ & $\frac{1}{4}$ & $\frac{1}{4}$ & $\frac{1}{4}$ & $\frac{1}{4}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Заметим, что $\hy_i = \beta\cdot i + \dfrac{\e_1 + 2\e_2}{5}\cdot i + \e_i$, поэтому:
+\[
+RSS = (y_1 - \hy_1)^2 + (y_2 - \hy_2)^2 = \frac{\e_1^2 + 4\e_1\e_2 + 4\e_2^2}{5}
+\]
+
+\begin{center}
+\begin{tabular}{c|cc}
+\toprule
+$RSS$ & $\frac{7}{5}$ & $\frac{3}{5}$ \\
+$\P(\cdot)$ & $\frac{1}{2}$ & $\frac{1}{2}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Так же по определению можем посчитать $TSS$:
+\[
+TSS = \left( \frac{\e_1 -\e_2-\beta}{2} \right)^2 + \left( \frac{\e_2 -\e_1+\beta}{2} \right)^2
+\]
+
+\begin{center}
+\begin{tabular}{c|ccc}
+\toprule
+$\hb$ & $ \frac{\beta^2}{2}$ & $\frac{(\beta-2)^2}{2}$ & $\frac{(\beta+2)^2}{2}$\\
+$\P(\cdot)$ & 0.5  & $\frac{1}{4}$ & $\frac{1}{4}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\item
+Заметим, что $\Var(\e_i) = \E(\e_i^2) = 1$, $\E(\e_1\e_2) = 0$. Поэтому:
+\[
+\E(\hb) = \beta, \hspace{3mm} \Var(\hb) = \Var\left(\beta + \frac{\e_1 + 2\e_2}{5} \right) = \frac{5\Var(\e_i)}{25} = \frac{1}{5}, \hspace{3mm} \E(RSS) = 1
+\]
+
+
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.16}{}
+\begin{solution}{{2.16}}
+\begin{enumerate}
+\item \(\hb = 6 \sum_{i=1}^T i y_i / (n(n+1)(2n+1))\)
+\[\hb = \frac{\sum_{i=1}^T i y_i}{\sum_{i=1}^T i^2} = \beta + \frac{\sum_{i=1}^T i \e_i}{\sum_{i=1}^n i^2} \]
+\item \(\E\hb = \beta\), \(\Var\hb = \sigma^2 / \sum i^2 = 6\sigma^2 / (T(T+1)(2T+1))\)
+\item Оценка является состоятельной.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.17}{}
+\begin{solution}{{2.17}}
+Несостоятельна.
+\end{solution}
+\protect \hypertarget {soln:2.18}{}
+\begin{solution}{{2.18}}
+\begin{enumerate}
+\item \[ \hb_2 =
+\begin{cases}
+\frac{2}{T}(\sum_{i = 2k + 1} y_i - \sum_{i = 2k} y_i), & \text{\(T\) — четное}; \\
+\frac{2}{T+1} \sum_{i = 2k + 1} y_i - \frac{2}{T-1} \sum_{i = 2k} y_i, & \text{\(T\) — нечетное}.
+\end{cases}\]
+\item \[ \E \hb_2 = \beta_2 \]
+\[ \Var \hb_2  =  \begin{cases}
+\frac{4}{T} \sigma^2, & \text{\(T\) — четное}; \\
+\frac{4T}{T^2-1} \sigma^2, & \text{\(T\) — нечетное}.
+\end{cases}\]
+\item Оценка является состоятельной.
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:2.19}{}
+\begin{solution}{{2.19}}
+\begin{enumerate}
+\item Нужно решить задачу условной минимизации:
+\[
+\begin{cases}
+RSS = \sum\limits_i(y_i-\beta_1-\beta_2x_i)^2 \rightarrow \min\limits_{\beta_1, \beta_2} \\
+y_0 = \hb_1 + \hb_2x_0
+\end{cases}
+\]
+
+Можем воспользоваться условием и останется только одна переменная $\hb_2$:
+\[
+\sum\limits_i(y_i-y_0+\hb_2x_0-\hb_2x_i)^2 \rightarrow \min\limits_{\hb_2}
+\]
+
+Решение будет слудующее:
+\[
+\hb_2 = \frac{\sum\limits_i(x_i-x_0)(y_i-y_0)}{\sum\limits_i(x_i-x_0)^2}, \hspace{5mm} \hb_1 = y_0-\hb_2x_0
+\]
+
+\item А теперь придется немного повозиться:
+\[
+\hb_2 = \frac{\sum\limits_ix_i(\beta_1 + \beta_2x_i+\e_i) - x_0\sum\limits_i(\beta_1 + \beta_2x_i+\e_i) - y_0\sum\limits_ix_i + nx_0y_0}{\sum\limits_i(x_i-x_0)^2} =
+\]
+\[
+= \frac{\beta_1(\sum\limits_ix_i-nx_0)+\beta_2(\sum\limits_ix_i^2-x_0\sum\limits_ix_i) + \sum\limits_ix_i\e_i - x_0\sum\limits_i\e_i -y_0\sum\limits_ix_i + nx_0y_0}{\sum\limits_i(x_i-x_0)^2}
+\]
+Отсюда:
+\[
+\E(\hb_2) = \frac{\beta_1(\sum\limits_ix_i-nx_0)+\beta_2(\sum\limits_ix_i^2-x_0\sum\limits_ix_i)-y_0\sum\limits_ix_i + nx_0y_0}{\sum\limits_i(x_i-x_0)^2}
+\]
+\[
+  \Var(\hb_2) = \Var\left(const + \frac{\sum\limits_i(x_i-x_0)\e_i}{\sum\limits_i(x_i-x_0)^2}\right) = \frac{\sigma^2}{\sum\limits_i(x_i-x_0)^2}
+\]
+\[
+\E(\hb_1) = y_0 - x_0\cdot \E(\hb_2), \hspace{5mm} \Var(\hb_1) = x_0^2\cdot \Var(\hb_2)
+\]
+
+\end{enumerate}
+Вроде бы равносильно переносу начала координат и применению результата для регрессии без свободного члена. Должна остаться несмещённость.
+
+\end{solution}
+\protect \hypertarget {soln:2.20}{}
+\begin{solution}{{2.20}}
+\[\hb_2 = \frac{\beta_1 + \beta_2 T + \e_T - \beta_1 - \beta_2 - \e_1}{T - 1} = \beta_2 + \frac{1}{T-1} (\e_T - \e_1) \]
+
+\begin{enumerate}
+\item \[\E \hb_2 = \beta_2 \]
+\[ \Var \hb_2 = \frac{2}{(T - 1)^2} \sigma^2   \]
+\item Нет, не совпадает.
+\[ \hb_{2,OLS} = \frac{\sum_{i = 1}^T (i - \bar{i}) y_i}{\sum_{i = 1}^T (i - \bar{i})^2} = \frac{\sum_{i = 1}^T (i - \bar{i}) (\beta_1 + \beta_2 i + \e_i)}{\sum_{i = 1}^T (i - \bar{i})^2} = \beta_2 + \frac{\sum_{i = 1}^T (i - \bar{i}) \e_i}{\sum_{i = 1}^T (i - \bar{i})^2}\]
+\item \[\Var\hb_{2,OLS} = \frac{1}{\sum_{i = 1}^T (i - \bar{i})^2} \sigma^2   \]
+\[ \sum_{i = 1}^T (i - \bar{i})^2 = \sum_{i = 1}^T i^2 - T \bar{i}^2 = \frac{T(T+1)(2T+1)}{6} - T \frac{(T+1)^2}{4} = \frac{T(T+1)(T-1)}{12} \]
+\[ \Var\hb_{2,OLS} = \frac{12}{T(T+1)(T-1)} \sigma^2\]
+
+Для всех \(T > 3\): \(\Var\hb_{2,OLS} < \Var\hb_{2}\). Для \(T \in \{2, 3\}\) дисперсии одинаковы.
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:2.21}{}
+\begin{solution}{{2.21}}
+\begin{enumerate}
+\item Не прав. Ковариация $\Cov(y_i,\hy_i)$ зависит от $i$, это не одно неизвестное число, для которого можно предложить одну оценку.
+\item
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.22}{}
+\begin{solution}{{2.22}}
+Формула $\sum (y_i-\bar{y})^2/(n-1)$ неприменима так как \(\E y_i\) не является константой и зависит от \(x_i\).
+\end{solution}
+\protect \hypertarget {soln:2.23}{}
+\begin{solution}{{2.23}}
+\(R^2\) — это отношение выборочных дисперсий \(\hy\) и \(y\).
+\[R^2 = \frac{4 \cdot 9}{40} = 0.9 \]
+\[\sCorr(x, y) = -\sqrt{R^2} \approx - 0.949  \]
+\[\sCorr(\hy, y) = \sqrt{R^2} \approx  0.949  \]
+\end{solution}
+\protect \hypertarget {soln:2.24}{}
+\begin{solution}{{2.24}}
+\begin{enumerate}
+\item Оценим следующую модель:
+\[y_i = \beta_1 \cdot \xi_i + \beta_2 \cdot \eta_i + \e_i, \]
+где \(y_i\) — результат взвешивания; \(\xi_i\) — дамми-переменная, равная единице, если на весах есть первый слиток; \(\eta_i\) — дамми-переменная, равная единице, если на весах есть второй слиток.
+
+Задача минимизации суммы квадратов остатков выглядит следующим образом:
+\[(300 - \beta_1)^2 + (200 - \beta_2)^2 + (400 - \beta_1 - \beta_2)^2 \rightarrow \min_{\beta_1,\beta_2}    \]
+
+Решая систему условий первого порядка, находим, что
+\[\hb_1 = \frac{800}{3}, \hb_2 =\frac{500}{3}   \]
+
+Так как предпосылки теоремы Гаусса-Маркова выполняются, то оценки коэффициентов являются несмещёнными и обладают наименьшей дисперсией в классе линейных оценок.
+Следовательно, несмещённая оценка веса первого слитка, обладающая наименьшей дисперсией, равна \(800/3\).
+\item Интерпретация — отсутствие систематической ошибки весов.
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:2.25}{}
+\begin{solution}{{2.25}}
+\begin{enumerate}
+\item Нет.
+\item Нет.
+\item Нет.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.26}{}
+\begin{solution}{{2.26}}
+При нормальности ошибок выполнено свойство:
+\[ \frac{RSS}{\sigma^2} \sim \chi^2_{n-k}      \]
+
+Зная свойства хи-квадрат распределения, легко найти необходимые математическое ожидание и дисперсию.
+\[ \E RSS = (n - k) \sigma^2 = 20 \sigma^2\]
+\[ \Var RSS = 2(n - k)\sigma^4 = 40 \sigma^4\]
+\[  \P \left(10 < \frac{RSS}{\sigma^2} < 30\right) \approx 0.898\]
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{pchisq}\hlstd{(}\hlnum{30}\hlstd{,} \hlnum{20}\hlstd{)} \hlopt{-} \hlkwd{pchisq}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{20}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.8983183
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\[  \P \left(10 \hat{\sigma}^2 < \hat{\sigma}^2 (n - k)  < 30\hat{\sigma}^2\right) = 1\]
+
+\end{solution}
+\protect \hypertarget {soln:2.27}{}
+\begin{solution}{{2.27}}
+
+\begin{enumerate}
+\item
+\[
+\P(\hb_1>\beta_1) = \P\left(\frac{\hb_1 - \beta_1}{se(\hb_1)}>0\right) = \frac{1}{2}
+\]
+$\P(\beta_1>0)$ равна либо 0 либо 1, но мы этого не знаем и никогда не узнаем.
+
+\[
+\P(|\hb_1-\beta_1|<se(\hb_1)) = \P(|Z|<1), \hspace{2mm}Z \sim t_{12-2}
+\]
+Посчитаем в R:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{pt}\hlstd{(}\hlnum{1}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{10}\hlstd{)} \hlopt{-} \hlkwd{pt}\hlstd{(}\hlopt{-}\hlnum{1}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{10}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.6591069
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\[
+\P\left(\frac{\hb_2-\beta_2}{se(\hb_2)} > 1\right) = 1 - \P\left(\frac{\hb_2-\beta_2}{se(\hb_2)} < 1\right)
+\]
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlnum{1} \hlopt{-} \hlkwd{pt}\hlstd{(}\hlnum{1}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{10}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.1704466
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\[
+\P\left(\frac{\hb_2-\beta_2}{se(\hb_2)} > -1\right) = \P\left(\frac{\hb_2-\beta_2}{se(\hb_2)} < 1\right)
+\]
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{pt}\hlstd{(}\hlnum{1}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{10}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.8295534
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\item Выполнены предпосылки теоремы Гаусса-Маркова, поэтому оценки МНК несмещённые: $\E(\hb_1) = \beta_1$, $\E(\hb_2) = \beta_2$. А $\E(\beta_2) = \beta_2$, независимо от предпосылок.
+
+\item Первая величина $\sim \cN(0, 1)$, вторая и третья $\sim t_{10}$.
+\item
+\[\P(\hat{\sigma} > \sigma) = \P(\hat{\sigma}^2 > \sigma^2) = \P\left(\frac{RSS}{n-k}>\sigma^2\right) = \P\left( \underbrace{\frac{RSS}{\sigma^2}}_{Z} > 10\right), \hspace{3mm} Z \sim \chi^2_{10}\]
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlnum{1} \hlopt{-} \hlkwd{pchisq}\hlstd{(}\hlnum{10}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{10}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.4404933
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+Аналогично, $\P(\hat{\sigma} > 2\sigma)$ равна:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlnum{1} \hlopt{-} \hlkwd{pchisq}\hlstd{(}\hlnum{40}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{10}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 1.694474e-05
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.28}{}
+\begin{solution}{{2.28}}
+\[ RSS = \sum_{i = 1}^n \left(y_i - \hy \right)^2 = 2   \]
+\[  TSS = \sum_{i = 1}^n \left(y_i - \bar{y} \right)^2 =  10   \]
+\[  R^2 = 1 - \frac{RSS}{TSS} = 0.8  \]
+\[  \hat{\sigma}^2 = \frac{RSS}{n - k} = \frac{2}{3}   \]
+\end{solution}
+\protect \hypertarget {soln:2.29}{}
+\begin{solution}{{2.29}}
+В классической модели все ошибки распределены одинаково, поэтому условие $\Var(\e_7) = 9$ означает, что $\e_i \sim \cN(0, 9)$. Из этого следует, что МНК оценки $\hb_1$ и $\hb_2$ так же будут нормально распределены.
+
+\begin{enumerate}
+\item $\E(\e_2) = 0$, $\Cov(\e_1, \e_2) = 0$, $\E(\e_3^5) = 0$, как и все нечетные начальные моменты симметричного относительно нулевого матожидания распределения. Остатки регрессии так же будут распределены нормально, как линейная комбинация нормально распределенных случайных величин. $\E(e_i) = \E[(\beta_1-\hb_2) + (\beta_2-\hb_2)x_i + \e_i] = 0$, так как МНК оценки $\hb_1$ и $\hb_2$ — несмещённые. То есть все остатки распределены нормально с 0 матожиданием, поэтому все нечетные начальные моменты будут равны нулю. Отсюда: $\E(e_5^3) = 0$. $\Var(y_3) = \Var(\beta_1 + \beta_2x_3 + \e_3) = \Var(\e_3) = 9$.
+
+Теперь посчитаем дисперсию $e_5$. Это будет \underline{не слишком просто}:
+\[
+\Var(e_5) = \Var(y_5-\hy_5) = \Var(\beta_1-\hb_1 + \beta_2x_5-\hb_2x_5 + \e_5) =
+\]
+\[
+= \Var(\hb_1) + x_5^2\cdot\Var(\hb_2) + \Var(\e_5) + 2x_5\cdot\Cov(\hb_1, \hb_2) - 2\Cov(\hb_1, \e_5) - 2x_5\cdot\Cov(\hb_2, \e_5)
+\]
+
+Разберемся с каждым слагаемым в отдельности:
+\[
+\Var(\hb_2) = \Var\left(\frac{\sum\limits_i(x_i-\bar{x})y_i}{\sum\limits_i(x_i-\bar{x})^2}\right) = \frac{1}{\left(\sum\limits_i(x_i-\bar{x})^2\right)^2}\sum\limits_i\Var((x_i-\bar{x})y_i) = \frac{\sigma^2}{\sum\limits_i(x_i-\bar{x})^2}
+\]
+\[
+\Var(\hb_1) = \Var(\frac{1}{n}\sum\limits_iy_i - \hb_2\bar{x}) = \frac{1}{n^2}\sum\limits_i\Var(y_i)  + \bar{x}^2\Var(\hb_2) - 2\bar{x}\frac{1}{n}\sum\limits_i\Cov(y_i, \hb_2)
+\]
+Здесь и для дальнейших вычислений нам пригодится следующий факт:
+\[
+\sum\limits_i\Cov(y_i, \hb_2) = \sum\limits_i\Cov(\e_i, \hb_2)  = 0
+\]
+Докажем его:
+\[
+\Cov(\hb_2, \e_j) = \Cov\left(\frac{\sum\limits_i(x_i-\bar{x})y_i}{\sum\limits_i(x_i-\bar{x})^2}, \e_j\right) = \frac{1}{\sum\limits_i(x_i-\bar{x})^2}\sum\limits_i\Cov((x_i-\bar{x})y_i, \e_j) =
+\]
+\[
+= \frac{1}{\sum\limits_i(x_i-\bar{x})^2} \sum\limits_i(x_i-\bar{x})\Cov(\e_i, \e_j) = \frac{(x_j - \bar{x})\sigma^2}{\sum\limits_i(x_i-\bar{x}^2)}
+\]
+Поэтому:
+\[
+\sum\limits_i\Cov(\e_i, \hb_2) = \sum\limits_j \frac{(x_j-\bar{x})\sigma^2}{\sum\limits_i(x_i-\bar{x}^2)} = \frac{\sigma^2}{\sum\limits_i(x_i-\bar{x})^2} \sum\limits_j(x_j - \bar{x}) = 0
+\]
+
+И возвращаясь к дисперсии $\hb_1$:
+\[
+\Var(\hb_1) = \frac{\sigma^2}{n} + \bar{x}^2\frac{\sigma^2}{\sum\limits_i(x_i-\bar{x})^2}
+\]
+
+Теперь остальные выражения:
+\[
+\Cov(\hb_1, \hb_2) = \Cov(\bar{y} - \bar{x}\hb_2, \hb_2) = \frac{1}{n}\sum\limits_i\Cov(y_i, \hb_2) - \bar{x}\cdot \Cov(\hb_2, \hb_2) = -\frac{\bar{x}\sigma^2}{\sum\limits_i(x_i-\bar{x})^2}
+\]
+\[
+\Cov(\hb_1, \e_5) = \Cov(\bar{y} - \hb_2\bar{x}, \e_5) = \frac{1}{n}\sum\limits_i\Cov(y_i, \e_5) - \bar{x}\cdot\Cov(\hb_2, \e_5) = \frac{\sigma^2}{n} - \frac{\bar{x}(x_5-\bar{x})\sigma^2}{\sum\limits_i(x_i-\bar{x})^2}
+\]
+
+Подставив все что мы получили в исходное выражение, получим:
+\[
+\Var(e_5) = \sigma^2\left(1 -\frac{1}{n}\right) - \frac{\sigma^2(x_5-\bar{x})^2}{\sum\limits_i(x_i-\bar{x})^2}
+\]
+
+\item $\P(e_2 > \e_3) = \P(e_2 - \e_3 > 0) = \frac{1}{2}$, так как величина $e_2 - \e_3$ распределена нормально с нулевым матожиданием. Аналогично, $\P(e_1 > 0) = \frac{1}{2}$. А третью вероятность можно посчитать следующим образом:
+\[
+e_1 \sim \cN\left(0,  \underbrace{\sigma^2\left(1-\frac{1}{n}-\frac{(x_1-\bar{x})^2}{\sum\limits_i(x_i-\bar{x})^2}\right)}_{A}\right) \Rightarrow \P(e_1 > 3) = \P\left( \underbrace{\frac{e_1}{\sqrt{A}}}_{Z} > \frac{3}{\sqrt{A}} \right) \]
+\[Z \sim \cN(0, 1)\]
+
+\item
+\[
+\E(RSS) = \E\left(\sum\limits_i e_i^2\right) = \sum\limits_i\E(e_i^2) = \sum\limits_i\Var(e_i) = \sum\limits_i\left( \sigma^2\left(1 -\frac{1}{n}\right) - \frac{\sigma^2(x_i-\bar{x})^2}{\sum\limits_i(x_i-\bar{x})^2} \right) =
+\]
+\[
+= \sigma^2(n-2)
+\]
+\[
+\Var\left(\frac{RSS}{\sigma^2}\right) = 2(n-k), \hspace{3mm} \text{так как эта величина имеет распределение }\chi^2_{n-k}
+\]
+Поэтому:
+\[
+\Var(RSS) = 2\sigma^4(n-k)
+\]
+\[
+\P(RSS > 200) = \P\left(\frac{RSS}{\sigma^2}  > \frac{200}{\sigma^2}\right) = \P\left(Z > \frac{200}{9}\right), \hspace{5mm} Z \sim \chi^2_{30-2}
+\]
+
+
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.30}{}
+\begin{solution}{{2.30}}
+Можно взять четыре наблюдения равноотстоящих по вертикали от данной прямой. Подбирая остатки, добиваемся нужного $R^2$.
+\end{solution}
+\protect \hypertarget {soln:2.31}{}
+\begin{solution}{{2.31}}
+$\hb_1 = -4890$ и $\hb_2 = 2.5$.
+
+$X = \begin{pmatrix}
+1 & 1 \\
+1 & 2 \\
+\ldots & \ldots \\
+1 & 12 \\
+\end{pmatrix}$ — матрица исходных регрессоров; $\tilde{X} = \begin{pmatrix}
+1 & 1+1994\\
+1 & 2+1994 \\
+\ldots & \ldots \\
+1 & 12+1994 \\
+\end{pmatrix}$ — матрица новых регрессоров.
+
+$\tilde{X} = X \cdot D$, где $D = \begin{pmatrix}
+1 & 1994 \\
+0 & 1 \\
+\end{pmatrix}$.
+
+Итак, уравнение регрессии с новыми регрессорами имеет вид $y = \tilde{X}\beta + \e$ и МНК-оценки коэффициентов равны:
+\begin{multline*}
+\hb = \left( \tilde{X}' \tilde{X} \right)^{-1} \tilde{X}' y = \left( [XD]' [XD] \right)^{-1} [XD]' y = \\
+= D^{-1} (X' X)^{-1} (D')^{-1} D' X' y = D^{-1} (X' X)^{-1}X' y
+\end{multline*}
+\[
+\hb = D^{-1}\hb_{old} = \begin{pmatrix}
+1 & -1994 \\
+0 & 1 \\
+\end{pmatrix} \begin{pmatrix}
+95 \\
+2.5 \\
+\end{pmatrix} = \begin{pmatrix}
+-4890 \\
+2.5 \\
+\end{pmatrix}
+\]
+\end{solution}
+\protect \hypertarget {soln:2.32}{}
+\begin{solution}{{2.32}}
+
+\[ \tilde{\beta}_2^a = \frac{1}{n} \sum_{i = 1}^n \frac{y_i}{x_i} = \frac{1}{n} \sum_{i = 1}^n \frac{\beta_1 + \beta_2 x_i + \e_i}{x_i} = \beta_2 + \frac{1}{n} \beta_1 \sum_{i = 1}^n \frac{1}{x_i} + \frac{1}{n} \sum_{i = 1}^n \frac{\e_i}{x_i}   \]
+\[ \text{Bias}_{\beta_2} \left[\tilde{\beta}_2^a\right] = \left(\frac{1}{n} \sum_{i = 1}^n \frac{1}{x_i} \right) \beta_1 = \overline{\left(\frac{1}{x}\right)} \cdot \beta_1\]
+\[ \Var\tilde{\beta}_2^a = \left(\frac{1}{n^2} \sum_{i = 1}^n \frac{1}{x_i^2} \right) \sigma^2 = \overline{\left(\frac{1}{x^2}\right)} \cdot \frac{\sigma^2}{n}  \]
+
+\[ \tilde{\beta}_2^b = \frac{\bar{y}}{\bar{x}} = \frac{\sum_{i=1}^n y_i}{\sum_{i=1}^n x_i} = \frac{n\beta_1 + \beta_2 \sum_{i = 1}^n x_i + \sum_{i = 1}^n \e_i}{\sum_{i=1}^n x_i} = \beta_2 + \frac{\beta_1}{\bar{x}} + \frac{\bar{\e}}{\bar{x}}  \]
+\[ \text{Bias}_{\beta_2} \left[\tilde{\beta}_2^b\right] = \frac{1}{\bar{x}} \cdot \beta_1 \]
+\[  \Var\tilde{\beta}_2^b = \left(\frac{1}{\bar{x}}\right)^2 \cdot \frac{\sigma^2}{n} \]
+
+
+Мы можем существенно упростить решение, воспользовавшись матричным представлением:
+
+\begin{multline*}
+\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{y_i}{x_i} = \frac{1}{n} \begin{pmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{pmatrix} \begin{pmatrix}
+y_1\\
+y_2\\
+\vdots\\
+y_n\\
+\end{pmatrix} = \\
+ \frac{1}{n} \begin{pmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{pmatrix} y
+\end{multline*}
+
+\begin{multline*}
+\E\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{\E y_i}{x_i} = \frac{1}{n} \begin{pmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{pmatrix} \begin{pmatrix}
+\E y_1\\
+\E y_2\\
+\vdots\\
+\E y_n\\
+\end{pmatrix} = \\
+ \frac{1}{n} \begin{pmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{pmatrix} \begin{pmatrix}
+\beta_1 + \beta_2 x_1\\
+\beta_1 + \beta_2 x_2\\
+\vdots\\
+\beta_1 + \beta_2 x_n\\
+\end{pmatrix} = \\
+\frac{1}{n} \begin{pmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{pmatrix} \left[ \beta_1 \begin{pmatrix}
+1\\
+1\\
+\vdots\\
+1\\
+\end{pmatrix} + \beta_2 \begin{pmatrix}
+x_1\\
+x_2\\
+\vdots\\
+x_n\\
+\end{pmatrix} \right] = \frac{\beta_1}{n}\sum_{k=1}^n \frac{1}{x_k} + \beta_2
+\end{multline*}
+
+Значит, смещение для первой оценки равно $\frac{\beta_1}{n}\sum_{k=1}^n \frac{1}{x_k}$.
+
+\begin{multline*}
+\Var(\tilde{\beta}_2^a) = \Var\left(\frac{1}{n} \begin{pmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{pmatrix} y\right) =\\
+ \frac{1}{n^2} \begin{pmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{pmatrix} \Var(y) \begin{pmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{pmatrix}' =\\
+\frac{1}{n^2} \begin{pmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{pmatrix} \Var(\e) \begin{pmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{pmatrix}' = \\
+ \frac{1}{n^2} \begin{pmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{pmatrix} \sigma_{\e}^2 I \begin{pmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{pmatrix}' =\\
+\frac{\sigma^2_{\e}}{n^2}\sum_{k=1}^n \frac{1}{x_k^2}
+\end{multline*}
+
+Перейдём ко второй оценке.
+
+$\tilde{\beta}_2^b = \frac{\bar{y}}{\bar{x}} = \frac{1}{\bar{x}} \frac{1}{n} \begin{pmatrix}
+1 & 1 & \ldots & 1
+\end{pmatrix} y$
+
+
+\begin{multline*}
+\E\tilde{\beta}_2^b = \frac{\bar{y}}{\bar{x}} = \frac{1}{\bar{x}} \frac{1}{n} \begin{pmatrix}
+1 & 1 & \ldots & 1
+\end{pmatrix} \E y = \frac{1}{\bar{x}} \frac{1}{n} \begin{pmatrix}
+1 & 1 & \ldots & 1
+\end{pmatrix} \begin{pmatrix}
+\beta_1 + \beta_2 x_1\\
+\beta_1 + \beta_2 x_2\\
+\vdots\\
+\beta_1 + \beta_2 x_n\\
+\end{pmatrix} =\\
+\frac{1}{\bar{x}} \frac{1}{n} \begin{pmatrix}
+1 & 1 & \ldots & 1
+\end{pmatrix} \left[ \beta_1 \begin{pmatrix}
+1\\
+1\\
+\vdots\\
+1\\
+\end{pmatrix} + \beta_2 \begin{pmatrix}
+x_1\\
+x_2\\
+\vdots\\
+x_n\\
+\end{pmatrix} \right] = \\
+\frac{1}{n} \frac{\beta_1 n}{\bar{x}} + \frac{1}{n} \frac{\beta_2 \sum x_i}{\bar{x}} = \frac{\beta_1}{\bar{x}} + \beta_2
+\end{multline*}
+
+Значит, смещение равно $\frac{\beta_1}{\bar{x}}$.
+
+\begin{multline*}
+\Var(\tilde{\beta}_2^b) = \frac{1}{\bar{x}^2} \frac{1}{n^2} \begin{pmatrix}
+1 & 1 & \ldots & 1
+\end{pmatrix} \Var(y) \begin{pmatrix}
+1\\
+1\\
+\vdots\\
+1\\
+\end{pmatrix} = \\
+\frac{1}{\bar{x}^2} \frac{1}{n^2} \begin{pmatrix}
+1 & 1 & \ldots & 1
+\end{pmatrix} \Var(\e) \begin{pmatrix}
+1\\
+1\\
+\vdots\\
+1\\
+\end{pmatrix} = \frac{\sigma_{\e}^2}{\bar{x}^2 n}
+\end{multline*}
+\end{solution}
+\protect \hypertarget {soln:2.33}{}
+\begin{solution}{{2.33}}
+Известно, что для парной регрессии $t_2^2 = \frac{R^2}{(1 - R^2)/(n-2)}$. Поэтому из выражения $t_2^2 = \frac{0.05^2}{(1 - 0.05^2)/(n-2)} = \frac{0.05^2 (n-2)}{1 - 0.05^2}$ становится очевидным, что при надлежащем выборе числа наблюдений можно сделать величину $t_{\hb_2}$ сколь угодно большой.
+
+Например, сгенерируем такие данные искусственно:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{set.seed}\hlstd{(}\hlnum{777}\hlstd{)} \hlcom{# на удачу!}
+\hlstd{x} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(}\hlnum{100000}\hlstd{,} \hlkwc{mean} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{sd} \hlstd{=} \hlnum{1}\hlstd{)}
+\hlstd{eps} \hlkwb{<-} \hlkwd{rnorm}\hlstd{(}\hlnum{100000}\hlstd{,} \hlkwc{mean} \hlstd{=} \hlnum{0}\hlstd{,} \hlkwc{sd} \hlstd{=} \hlnum{10}\hlstd{)}
+\hlstd{y} \hlkwb{<-} \hlnum{0} \hlopt{+} \hlnum{1} \hlopt{*} \hlstd{x} \hlopt{+} \hlstd{eps}
+\hlstd{model} \hlkwb{<-} \hlkwd{lm}\hlstd{(y} \hlopt{~} \hlstd{x)}
+\hlstd{report} \hlkwb{<-} \hlkwd{summary}\hlstd{(model)}
+\hlstd{report}\hlopt{$}\hlstd{r.squared}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.01001081
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Здесь $R^2=
+0.01
+$, а $t=
+31.8
+$.
+
+\end{solution}
+\protect \hypertarget {soln:2.34}{}
+\begin{solution}{{2.34}}
+
+Пусть линия парной регрессии \(y\) на \(x\) имеет вид
+\[  \hy = \hb_1 + \hb_2 x,\]
+а линия парной регрессии \(x\) на \(y\) имеет вид
+\[  \hat{x} = \hat{\gamma}_1 + \hat{\gamma}_2 y\]
+
+Нам достаточно показать, что
+\[\hb_1 = - \frac{\hat{\gamma}_1}{\hat{\gamma}_2}, \:\:\:\:\: \hb_2= \frac{1}{\hat{\gamma}_2} \]
+Поехали!
+\[ |\sCorr(x, y)| = 1 \]
+\[ (\sCov (x, y))^2 = \sVar x \cdot \sVar y   \]
+\[  \left(\sum(x_i - \bar{x})(y_i - \bar{y}) \right)^2 = \sum (x_i - \bar{x})^2 \cdot \sum (y_i - \bar{y})^2   \]
+\[  \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2} \cdot \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sum (y_i - \bar{y})^2} = 1  \]
+\[  \hb_2 \cdot \hat{\gamma}_2 = 1  \]
+\[ \hb_2= \frac{1}{\hat{\gamma}_2}\]
+
+\[ \hat{\gamma}_1 = \bar{x} - \hat{\gamma}_2 \bar{y} \]
+\[ \frac{\hat{\gamma}_1}{\hat{\gamma}_2} = \frac{\bar{x}}{{\hat{\gamma}_2}} - \bar{y} =  \hb_2 \bar{x} - \bar{y} = \bar{y} - \hb_1 - \bar{y} = -\hb_1  \]
+% длинное решение с неканоническими большими буквами
+% и путаницей из-за автозамены больших на маленькие:
+% Пусть $y_i = \beta_1 + \beta_2 X_i + \e_i$, $i = 1, \ldots, n$.
+%
+% Тогда $y_i = \hb_1 + \hb_2 X_i + \he_i$
+%
+% $y_i -  \bar{y} + \bar{y} = \hb_1 + \hb_2 (X_i -  \overline{X} + \overline{X}) + \he_i$
+%
+% $y_i -  \bar{y}  = \underbrace{\hb_1 - \bar{y} + \hb_2 \overline{X}}_{=0} + \hb_2 (X_i -  \overline{X}) + \he_i$
+%
+% $y_i -  \bar{y} = \hb_2 (X_i -  \overline{X}) + \he_i$
+%
+% $y_i \equiv y_i -  \bar{y}$, $i = 1, \ldots, n$
+%
+% $x_i \equiv X_i -  \overline{X}$, $i = 1, \ldots, n$
+%
+% $y_i = \hb_2 x_i + \he_i$
+%
+% $y = \hb_2 x + \he$, где $y = \begin{pmatrix}
+% y_1 & \ldots & y_n
+% \end{pmatrix}'$, $x = \begin{pmatrix}
+% x_1 & \ldots & x_n
+% \end{pmatrix}'$, $\e = \begin{pmatrix}
+% \e_1 & \ldots & \e_n
+% \end{pmatrix}'$
+%
+% $x' y = \hb_2 x' x + \underbrace{x' \he}_{=0}$
+%
+% \[
+% \label{task20:direct_ols}\hb_2 = \frac{x' y}{x' x}
+% \]
+%
+% Аналогично получаем, что в обратной регрессии $X_i = \beta_3 + \beta_4 y_i + \xi_i$, $i = 1, \ldots, n$
+%
+% \[
+% \label{task20:reverse_ols}\hb_4 = \frac{x' y}{y'y}
+% \]
+%
+% $ESS = (\hy - \bar{y}_i)'(\hy - \bar{y}_i)$
+%
+% Заметим, что $\hy - \bar{y}_i = (I - \pi)(\hy - \bar{y}_i)$.
+%
+% Действительно, $(I - \pi)(H - \pi) = H - \pi$, следовательно,
+%
+% $\hy - \bar{y}_i = (H - \pi)Y = (I - \pi)(H - \pi)Y = (I-\pi)(\hy - \bar{y}_i)$.
+%
+% Далее, $\hy - \bar{y}_i = (I - \pi)(\hy - \bar{y}_i) = (I - \pi)(\hb_1 + \hb_2 X - \bar{y}_i) = \hb_2 x$
+%
+% Значит, $ESS = \hb_2^2 x' x$.
+%
+% Получаем:
+% \[
+% \label{task20:corr}R^2 = \frac{ESS}{TSS} = \frac{\hb_2^2 x' x^{(2)}}{y' y} = \frac{x' y^{(2)}}{(x' x)(y' y)} = \sCorr^2(X, Y)
+% \]
+%
+% Заметим также, что $R^2 = \hb_2 \hb_4$.
+%
+% Если $\sCorr^2(X, Y) = 1$, то $R^2 = \hb_2 \hb_4 = 1$.
+%
+% Отметим также, что из $R^2 = 1$ следует, что $\he_1 = \ldots = \he_n = 0$ и $\hat{\xi}_1 = \ldots = \hat{\xi}_n = 0$.
+%
+% Тогда $y_i = \hb_1 + \hb_2 X_i + \underbrace{\he_i}_{=0}$ и $X_i = \hb_3 + \hb_4 y_i + \underbrace{\hat{\xi}_i}_{=0}$, $i = 1, \ldots, n$.
+%
+% $X_i = \hb_3 + \hb_4 y_i = (\overline{X} - \hb_4\bar{y}) + \hb_4 y_i = \left( \overline{X} - \frac{1}{\hb_2} \bar{y} \right) + \frac{1}{\hb_2} y_i$
+%
+% $\hb_2 X_i = (\hb_2 \overline{X} - \bar{y}) + y_i$
+%
+% $y_i = (\bar{y} - \hb_2 \overline{X}) + \hb_2 X_i = \hb_1 + \hb_2 X_i$
+%
+% Следовательно, в случае когда $\sCorr^2(X, Y) = 1$, линия парной регрессии $Y$ на $X$ совпадает с линией парной регрессии $X$ на $Y$.
+\end{solution}
+\protect \hypertarget {soln:2.35}{}
+\begin{solution}{{2.35}}
+Да, если строить регрессию функции от $y$ на функцию от $x$. А если строить регрессию просто $y$ на $x$, то оценка наклона будет распределена симметрично около нуля.
+\end{solution}
+\protect \hypertarget {soln:2.36}{}
+\begin{solution}{{2.36}}
+\begin{enumerate}
+\item Да, является.
+\[\hb_{2,IV} = \frac{\sum \left(z_i \beta_2 (x_i - \bar{x}) + z_i (\e_i - \bar{\e}) \right)}{\sum z_i  (x_i - \bar{x})} = \beta_2 + \frac{1}{\sum z_i  (x_i - \bar{x})} \cdot \sum z_i (\e_i - \bar{\e})  \]
+\[\E \hb_{2,IV} = \beta_2\]
+\item Любые кроме констант, иначе знаменатель оценки будет равен нулю.
+\item Мы воспользуемся следующим свойством:
+\[ \sum z_i (\e_i - \bar{\e}) = \sum (z_i - \bar{z}) (\e_i - \bar{\e}) = \sum (z_i - \bar{z}) \e_i  \]
+\[\Var \hb_{2,IV} = \frac{\sum (z_i - \bar{z})^2}{(\sum (z_i - \bar{z})x_i)^2} \cdot \sigma^2 \]
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:2.37}{}
+\begin{solution}{{2.37}}
+\[
+\hb_2 = \frac{\sum_{i=1}^n (x_i - \bar x)(y_i - \bar y)}{\sum_{i=1}^n (x_i - \bar x)^2}
+\]
+
+\[
+\hb_1 = \bar y - \hb_2 \bar x
+\]
+
+\[
+\Var(\hb_2) = \frac{\sigma^2}{\sum_{i=1}^n (x_i - \bar x)^2}
+\]
+\end{solution}
+\protect \hypertarget {soln:2.38}{}
+\begin{solution}{{2.38}}
+Вспомните про $t$, $\chi^2$, $F$-распределения:
+\begin{enumerate}
+\item \(1/2\).
+\item
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlnum{1} \hlopt{-} \hlkwd{pchisq}\hlstd{(}\hlkwc{q} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{2}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.3678794
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item \[\P\left(\frac{\e_1}{\sqrt{\e_2^2 + \e_3^2}} > 2 \right) =  \P\left(\frac{(\e_1/\sigma)}{\sqrt{1/2 \cdot \left((\e_2/\sigma)^2 + (\e_3/\sigma)^2\right)}} > 2\sqrt{2} \right)\]
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlnum{1} \hlopt{-} \hlkwd{pt}\hlstd{(}\hlkwc{q} \hlstd{=} \hlnum{2} \hlopt{*} \hlkwd{sqrt}\hlstd{(}\hlnum{2}\hlstd{),} \hlkwc{df} \hlstd{=} \hlnum{2}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.0527864
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlnum{1} \hlopt{-} \hlkwd{pt}\hlstd{(}\hlkwc{q} \hlstd{=} \hlnum{5} \hlopt{/} \hlnum{4}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{3}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.1499647
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item \(\left(\e_1 + 2\e_2\right) \sim \cN(0, 5\sigma^2)  \)
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{pt}\hlstd{(}\hlkwc{q} \hlstd{=} \hlnum{9} \hlopt{/} \hlnum{2} \hlopt{*} \hlkwd{sqrt}\hlstd{(}\hlnum{3}\hlstd{)} \hlopt{/} \hlkwd{sqrt}\hlstd{(}\hlnum{5}\hlstd{),} \hlkwc{df} \hlstd{=} \hlnum{3}\hlstd{)}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.9800545
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\item
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{pt}\hlstd{(}\hlkwc{q} \hlstd{=} \hlopt{-}\hlkwd{sqrt}\hlstd{(}\hlnum{34}\hlstd{),} \hlkwc{df} \hlstd{=} \hlnum{2}\hlstd{)} \hlopt{+} \hlstd{(}\hlnum{1} \hlopt{-} \hlkwd{pt}\hlstd{(}\hlkwc{q} \hlstd{=} \hlkwd{sqrt}\hlstd{(}\hlnum{34}\hlstd{),} \hlkwc{df} \hlstd{=} \hlnum{2}\hlstd{))}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.02817468
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.39}{}
+\begin{solution}{{2.39}}
+$\hat{\lambda}=RSS/(n-2)$ т.к. $\Var(\e_i)=\lambda$. Оценка $\hb_2$ является несмещённой, но $\E(\hb_1)=\beta_1+\lambda$. Можно предложить несмещённую оценку $\hb'_1=\hb_1-RSS/(n-2)$.
+
+
+Можем рассмотреть модель в следующем виде:
+\[
+y_i = \beta_1 + \lambda + \beta_2x_i + \tilde{\e}_i, \hspace{2mm} \text{где } \tilde{\e}_i = \e_i - \lambda
+\]
+
+Теперь математическое ожидание от ошибок $\E(\tilde{\e}_i) = 0$, то есть предпосылки теоремы Гаусса-Маркова выполнены. Поэтому МНК оценки будут несмещёнными, а дисперсию ошибок можно оценить как $\hat{\sigma}^2 = \frac{RSS}{n-2}$. Вспомним, что для пуассоновского распеределения $\E(X) = \Var(X) = \lambda$. Поэтому
+\[\frac{RSS}{n-2} = \hVar(\tilde{\e}_i) = \hVar(\e_i - \lambda) = \hVar(\e_i) = \hat{\lambda} \]
+
+Далее, несмещённая оценка $\hb_1 = \hb_{mod1} - \lambda$, а для $\hb_2$ оценки в модифицированной модели и в первоначальной будут несмещёнными.
+
+\end{solution}
+\protect \hypertarget {soln:2.40}{}
+\begin{solution}{{2.40}}
+\begin{kframe}
+\begin{alltt}
+\hlstd{df1} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{2}\hlstd{,} \hlnum{3}\hlstd{,} \hlnum{4}\hlstd{),} \hlkwc{y} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{5}\hlstd{,} \hlnum{3}\hlstd{,} \hlnum{3}\hlstd{,} \hlnum{4}\hlstd{))}
+\hlstd{df2} \hlkwb{<-} \hlkwd{data.frame}\hlstd{(}\hlkwc{y} \hlstd{=} \hlkwd{rep}\hlstd{(df1}\hlopt{$}\hlstd{y,} \hlnum{10}\hlstd{),} \hlkwc{x} \hlstd{=} \hlkwd{rep}\hlstd{(df1}\hlopt{$}\hlstd{x,} \hlnum{10}\hlstd{))}
+\hlstd{m1} \hlkwb{<-} \hlkwd{lm}\hlstd{(}\hlkwc{data}\hlstd{=df1, y} \hlopt{~} \hlstd{x)}
+\hlstd{m2} \hlkwb{<-} \hlkwd{lm}\hlstd{(}\hlkwc{data}\hlstd{=df2, y} \hlopt{~} \hlstd{x)}
+\hlstd{mt} \hlkwb{<-} \hlkwd{mtable}\hlstd{(m1, m2,} \hlkwc{summary.stats} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"N"}\hlstd{,}
+    \hlstr{"Deviance"}\hlstd{,} \hlstr{"R-squared"}\hlstd{,} \hlstr{"sigma"}\hlstd{,} \hlstr{"F"}\hlstd{,} \hlstr{"p"}\hlstd{))}
+\hlkwd{write.mtable}\hlstd{(mt,} \hlkwc{forLaTeX} \hlstd{=} \hlnum{TRUE}\hlstd{)}
+\end{alltt}
+\end{kframe}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Calls:
+% m1:  lm(formula = y ~ x, data = df1)
+% m2:  lm(formula = y ~ x, data = df2)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular}{lD{.}{.}{3}cD{.}{.}{3}}
+\toprule
+&\multicolumn{1}{c}{m1}&&\multicolumn{1}{c}{m2}\\
+\midrule
+(Intercept)&4.500&&4.500^{***}\\
+&(1.313)&&(0.301)\\
+x&-0.300&&-0.300^{**}\\
+&(0.480)&&(0.110)\\
+\midrule
+N&4&&40\\
+Deviance&2.3&&23.0\\
+R-squared&0.2&&0.2\\
+sigma&1.1&&0.8\\
+F&0.4&&7.4\\
+p&0.6&&0.0\\
+\bottomrule
+\end{tabular}
+
+
+
+
+
+\end{solution}
+\protect \hypertarget {soln:2.41}{}
+\begin{solution}{{2.41}}
+Прогноз $\hy_1$ имеет меньшую дисперсию, чем фактический $y_1$. Интуитивно можно сказать, что оценка $\hy_1$ использует максимальный объём информации, все наблюдения. Обе оценки являются несмещёнными.
+\end{solution}
+\protect \hypertarget {soln:2.42}{}
+\begin{solution}{{2.42}}
+Пусть \(\bar{y}\) — средний \(y\) до добавления нового наблюдения, \(\bar{y}'\) — после добавления нового наблюдения. Будем считать, что изначально было \(n\) наблюдений. Заметим, что
+\[\bar{y}' = \frac{(y_1 + \ldots + y_n) + y_{n+1}}{n + 1} = \frac{n \bar{y} + y_{n + 1}}{n + 1} = \frac{n}{n+ 1}\bar{y} + \frac{1}{n+1}y_{n+1}\]
+
+Покажем, что \(TSS\) может только увеличится при добавлении нового наблюдения (остается неизменным при \(y_{n+1} = \bar{y}\)):
+\[TSS'= \sum_{i = 1}^{n + 1} (y_i - \bar{y}')^2 = \sum_{i = 1}^{n} (y_i - \bar{y} + \bar{y} - \bar{y}')^2 + (y_{n + 1} - \bar{y}')^2 = \]
+\[=\sum_{i = 1}^{n} (y_i - \bar{y})^2 + n(\bar{y} - \bar{y}')^2 + (y_{n + 1} - \bar{y}')^2  = TSS + \frac{n}{n+1} (y_{n+1} - \bar{y})^2\]
+
+Следовательно, \(TSS' \geqslant TSS\).
+
+Также сумма \(RSS\) может только вырасти или остаться постоянной при добавлении нового наблюдения. Действительно, новое $(n+1)$-ое слагаемое в сумме неотрицательно. А сумма $n$ слагаемых минимальна при старых коэффициентах, а не при новых.
+
+\(ESS\) и \(R^2\) могут меняться в обе стороны. Например, рассмотрим ситуацию, где точки лежат симметрично относительно некоторой горизонтальной прямой. При этом $ESS=0$. Добавим наблюдение — $ESS$ вырастет, удалим наблюдение — $ESS$ вырастет.
+\end{solution}
+\protect \hypertarget {soln:2.43}{}
+\begin{solution}{{2.43}}
+\begin{enumerate}
+\item $R^2$ упал до нуля.
+\item Да, можно. Если добавить точку далеко слева внизу от исходного набора данных, то наклон линии регрессии будет положительный. Если далеко справа внизу, то отрицательный. Будем двигать точку так, чтобы поймать нулевой наклон прямой. Получим $ESS=0$.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.44}{}
+\begin{solution}{{2.44}}
+\[ \E \bar{\e} = 0\]
+\[ \Var \bar{\e} = \sigma^2 / n\]
+
+\[ \text{plim} \bar{\e} = \E \bar{\e} = 0, \]
+так как по неравенству Чебышева для любого \(a > 0\):
+\[ \lim_{n \rightarrow \infty} \P \left(|\bar{\e} -\E \bar{\e}| \geqslant a  \right) \leqslant \lim_{n \rightarrow \infty} \frac{\Var \bar{\e}}{a^2} = \lim_{n \rightarrow \infty} \frac{\sigma^2}{na^2} = 0 \]
+
+Обозначим
+\[\phi = \frac{\e_1 + 2\e_2 + \ldots + n\e_n}{1 + 2 + \ldots + n} \]
+
+Тогда
+\[\E \phi = 0  \]
+\[\Var \phi = \frac{(1^2 + 2^2 + \ldots + n^2)}{(1 + 2 + \ldots + n)^2} \sigma^2   = \frac{n(n+1)(2n+1)/6}{(n(n+1)/2)^2} \sigma^2 = \frac{4(2n+1)}{6n(n+1)} \sigma^2 \rightarrow 0\]
+
+Рассуждая так же, как и для \(\bar{\e}\), мы получаем, что
+\[ \text{plim} \phi = \E \phi = 0 \]
+
+$\Var(\bar\e)=\sigma^2/n$,  $\plim \bar{\e}=0$
+\end{solution}
+\protect \hypertarget {soln:2.45}{}
+\begin{solution}{{2.45}}
+Не состоятельна:
+\[
+\plim \hb_2 = \beta_2 + \frac{6}{\pi^2}\e_1 + \frac{6}{2\pi^2}\e_2 + \ldots
+\]
+Замечание: условия $\lim \Var(\hb_2) \neq 0$ недостаточно для доказательства несостоятельности и $\sum 1/k^2 = \pi^2/6$.
+
+
+\end{solution}
+\protect \hypertarget {soln:2.46}{}
+\begin{solution}{{2.46}}
+\begin{enumerate}
+\item Из базовых формул для простой регрессии можно получить, что
+\[\hb_2 = \bar{y}_m - \bar{y}_f \]
+\[\hb_1 = \bar{y}_f  \]
+где \(\bar{y}_m\) — средний вес по мужчинам, \(\bar{y}_f\) — средний вес по женщинам.
+
+Пусть в нашей выборке \(m\) мужчин, \(f\) женщин, и вектор \(y\) упорядочен так, что сначала идут мужчины, а затем женщины.
+\[RSS = \sum_{i = 1}^m (y_i - \bar{y}_m)^2 + \sum_{i = m+1}^{m+f} (y_i - \bar{y}_f)^2 \]
+\[\hat{\sigma}^2 = \frac{RSS}{m + f - 2}  \]
+Отсюда легко получить необходимые стандартные отклонения и \(t\)-статистики.
+\[se\left(\hb_1 \right) = \frac{\hat{\sigma}}{\sqrt{f}} \]
+\[se\left(\hb_2 \right) = \left(\frac{\hat{\sigma}^2}{m} + \frac{\hat{\sigma}^2}{f} \right)^{1/2}= \sqrt{\frac{m+f}{mf}} \hat{\sigma} \]
+\[t_{\hb_1} = \frac{\bar{y}_f}{\hat{\sigma}/\sqrt{f}}\]
+\[t_{\hb_2} = \sqrt{\frac{mf}{m+f}} \cdot\frac{\bar{y}_m - \bar{y}_f}{\hat{\sigma}}\]
+\item При всей своей бессмысленности, гипотеза \(\beta_1 = 0\) — это гипотеза о том, что средний вес женщин равен нулю. Гипотеза \(\beta_2 = 0\) — это гипотеза о нулевой разнице между средними весами мужчин и жинщин.
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:2.47}{}
+\begin{solution}{{2.47}}
+Добавила наблюдение, лежащее на линии регрессии и с $y_{n+1}=\bar{y}$, то есть $(2,12)$. Оценки никак не изменились.
+\end{solution}
+\protect \hypertarget {soln:2.48}{}
+\begin{solution}{{2.48}}
+\begin{enumerate}
+\item $RSS=0$, $ESS>0$, точки лежат на негоризонтальной прямой
+\item $RSS>0$, $ESS=0$, точки не на прямой, но линия регрессии горизонтальна, например, точки лежат симметрично относительно горизонтальной прямой. Например, \(x = (-1, -1, 1, 1)'\), \(y = (-1, 1, -1, 1)'\).
+\item $RSS=0$, $ESS=0$, точки лежат на горизонтальной прямой
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:2.49}{}
+\begin{solution}{{2.49}}
+  \begin{enumerate}
+  \item Добавляем средние арифметические, $(\bar x, \bar y)$.
+  \item Да, если зафиксировать добавляемый $y_{+}$ и плавно менять добавляемый $x_{+}$, то можно поймать момент, когда новый наклон совпадёт со старым.
+  \item Возьмём произвольный набор точек. Добавим точку «от фонаря». Поменяется наклон и новая прямая пересечёт старую. Перенесём вдоль оси $x$ точки так, чтобы новая точка пересечения легла на вертикальную ось.
+  \end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:2.50}{}
+\begin{solution}{{2.50}}
+\end{solution}
+\protect \hypertarget {soln:2.51}{}
+\begin{solution}{{2.51}}
+\end{solution}
+\protect \hypertarget {soln:2.52}{}
+\begin{solution}{{2.52}}
+Вспомним, что сумма остатков регрессии равна нулю.
+\end{solution}
+\protect \hypertarget {soln:2.53}{}
+\begin{solution}{{2.53}}
+Остатки $\hat u_i = y_i - \hy_i$ должны быть ортогональны вектору из единичек и вектору $\hy$. То есть получаем систему уравнений
+\[
+\begin{cases}
+\sum_i (y_i - \hy_i) = 0 \\
+\sum_i (y_i - \hy_i) \hy_i = 0 \\
+\end{cases}
+\]
+
+\end{solution}
+\protect \hypertarget {soln:2.54}{}
+\begin{solution}{{2.54}}
+Добавляемое наблюдение лежит на линии регрессии, поэтому ничего не изменится.
+\end{solution}
+\protect \hypertarget {soln:2.55}{}
+\begin{solution}{{2.55}}
+  $RSS_A = 1^2 + (-3)^2 = 10$, $RSS_B= 2^2 + 2^2 = 8$. $k_A = 0$, $k_B=1$.
+\end{solution}
+\protect \hypertarget {soln:2.56}{}
+\begin{solution}{{2.56}}
+$\hy_i = 4 - x_i$
+\end{solution}
+\protect \hypertarget {soln:2.57}{}
+\begin{solution}{{2.57}}
+$\E(X)=10/6$, $\Var(X)=50/6$.
+\end{solution}
+\protect \hypertarget {soln:2.58}{}
+\begin{solution}{{2.58}}
+Без ограничения общности центрируем исходные переменные. Значения регрессора обозначим $x_i$, исходную зависимую переменную $\tilde{y}_i$, а переставленную в случайном порядке $y_i$. По условию $\sum y_i^2 = \sum \tilde{y}_i^2$.
+
+Фиксируем исходные переменные и находим:
+\[
+\E(R^2 | \tilde{y}) = \E\left( \frac{(\sum x_i y_i )^2}{\sum x_i^2 \sum y_i^2}  \right) = \frac{\Var(\sum x_i y_i | \tilde{y})}{\sum x_i^2 \sum y_i^2}
+\]
+
+Для начала найдём дисперсию отдельного игрека:
+\[
+\Var(y_i | \tilde{y}) = \frac{\sum \tilde{y}_i^2}{n} = \frac{\sum y_i^2}{n}
+\]
+
+А теперь из $\Cov(y_1, \sum y_i | \tilde{y}) =0$ найдём и дисперсию нужной суммы:
+\[
+\Var(\sum x_i y_i | \tilde{y}) = \Var(y_i | \tilde{y}) \left(  \sum x_i^2 - \sum_{i\neq j} x_i x_j \frac{1}{n-1}  \right) = \Var(y_i | \tilde{y}) \frac{n}{n-1} \sum x_i^2 = \frac{\sum x_i^2 \sum y_i^2 }{n-1}
+\]
+
+Заканчиваем подсчёт,
+\[
+\E(R^2 | \tilde{y}) = \frac{1}{n-1}
+\]
+
+Следовательно, и $\E(R^2) = \frac{1}{n-1} = 0.1$.
+\end{solution}

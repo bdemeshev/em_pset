@@ -1,0 +1,1013 @@
+\protect \hypertarget {soln:5.1}{}
+\begin{solution}{{5.1}}
+
+Пусть \(X_i\) — число заработанных за \(i\)-ый день чатлов. По условию \(X_i \sim Pois (\lambda) \)
+
+Реализация случайной выборки: \(\sum_{i = 1}^{100} x_i = 250 \)
+
+Функция максимального правдоподобия:
+\[  L\left(\lambda, x_1, \ldots, x_{100}\right) = \P (X_1 = x_1) \cdot \P (X_2 = x_2) \cdot \ldots \cdot \P (X_{100} = x_{100} )= \]
+\[ =\frac{\lambda^{x_1}}{x_1 !} \cdot e^{-\lambda} \cdot \ldots \cdot \frac{\lambda^{x_{100}}}{x_{100}!} \cdot e^{-\lambda} = \frac{\lambda^{\sum x_i}}{x_1!\cdot \ldots \cdot x_{100}!} e^{-100\lambda}\]
+
+Логарифмическая функция максимального правдоподобия:
+\[ \ell\left(\lambda, x_1, \ldots, x_{100} \right) = \sum x_i \cdot \log \lambda - 100 \lambda - \log \left(x_1!\cdot \ldots \cdot x_{100}! \right)\]
+
+\begin{enumerate}
+\item \( \hat{\lambda} = 2.5\)
+\[ \frac{\partial \ell (\cdot)}{\partial \lambda} = \frac{\sum x_i}{\lambda} - 100\]
+
+Из условия первого первого порядка:
+\[ \frac{250}{\hat{\lambda}} - 100 = 0\]
+\[ \hat{\lambda} = 2.5\]
+
+Заметим, что \( \hat{\lambda} >0 \), следовательно, то, что мы выполняли безусловную оптимизацию вместо условной (хотя должны были, учитывая, что \(\lambda > 0\)), не повлияло на решение.
+
+
+\item \(k = 838 \), где \(k\) — минимальное необходимое число дней.
+\[ \hat{\P} \left(\sum_{i = 1}^k X_i >2200 \right) = 0.99\]
+\[ \hat{\P} \left(\frac{\sum_{i = 1}^k X_i - \hat{\lambda} \cdot k}{\sqrt{ \hat{\lambda} \cdot k}}>\frac{2200 - \hat{\lambda} \cdot k}{\sqrt{ \hat{\lambda} \cdot k}}   \right) = 0.99\]
+
+Из ЦПТ:
+\[ \frac{\sum_{i = 1}^k X_i - \lambda \cdot k}{\sqrt{ \lambda \cdot k}} \sim \cN (0, 1)\]
+
+Значит:
+\[ \frac{2200 - \hat{\lambda} \cdot k}{\sqrt{ \hat{\lambda} \cdot k}} = x{0.99},\]
+где \(x_{0.99} \approx 2.3263\) — 99\,\% квантиль нормального распределения.
+
+Решая квадратное уравнение, получим:
+\[ n \approx 837.4228\]
+
+Значит, для того, чтобы с вероятностью не меньше 99\,\% купить гравицапу, необходимо дать, как минимум, 838 концертов.
+
+\item \( \lambda \in [2.190102,  2.809898  ]\)
+
+Так как оценки метода максимального правдоподобия асимптотически нормальны, то:
+\[ \hat{\lambda} \overset{\text{ас}}{\sim} \cN \left(\lambda, \Var\hat{\lambda} \right)\]
+
+Для оценки дисперсии можем использовать оценку информационной матрица Фишера:
+\[ \hVar \hat{\lambda} = \left(\hat{I} \left(\hat{\lambda} \right) \right)^{-1}\]
+\[ \hVar \hat{\lambda} = - \left( - \frac{\sum x_i}{\hat{\lambda}^2}\right)^{-1} = \frac{\hat{\lambda}^2}{\sum x_i} = 0.025\]
+
+Границы 95\,\% доверительного интервала:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{df} \hlkwb{<-} \hlkwd{tibble}\hlstd{(}\hlkwc{left} \hlstd{=} \hlnum{2.5} \hlopt{+} \hlkwd{qnorm}\hlstd{(}\hlnum{0.025}\hlstd{)} \hlopt{*} \hlkwd{sqrt}\hlstd{(}\hlnum{0.025}\hlstd{),}
+             \hlkwc{right} \hlstd{=} \hlnum{2.5} \hlopt{+} \hlkwd{qnorm}\hlstd{(}\hlnum{0.975}\hlstd{)} \hlopt{*} \hlkwd{sqrt}\hlstd{(}\hlnum{0.025}\hlstd{))}
+\hlstd{df}
+\end{alltt}
+\begin{verbatim}
+## # A tibble: 1 x 2
+##       left    right
+##      <dbl>    <dbl>
+## 1 2.190102 2.809898
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Итак:
+\[ \lambda \in [2.190102,  2.809898  ]\]
+
+\item \( \begin{cases}
+H_0: \lambda = 2 \\
+H_a: \lambda \ne 2
+\end{cases}\)
+
+Значение логарифмической функции правдоподобия в неограниченной модели:
+\[ \ell(\hat{\lambda}_{UR}) = 250 \cdot \log 2.5 - 100 \cdot 2.5 -  \log \left(x_1!\cdot \ldots \cdot x_{100}! \right) \approx -20.92732 - \log \left(x_1!\cdot \ldots \cdot x_{100}! \right) \]
+
+Значение логарифмической функции правдоподобия в ограниченной модели:
+\[ \ell(\hat{\lambda}_{UR}) = 250 \cdot \log 2 - 100 \cdot 2 -  \log \left(x_1!\cdot \ldots \cdot x_{100}! \right) \approx -26.7132 - \log \left(x_1!\cdot \ldots \cdot x_{100}! \right) \]
+
+Применяем \textbf{тест отношения правдоподобия}:
+\[LR = 2\left(\ell(\hat{\lambda}_{UR}) - \ell(\hat{\lambda}_R)\right) \overset{H_0}{\sim} \chi^2_q\]
+
+Наблюдаемое значение LR-статистики:
+\[ LR =2\left(-20.92732 - \log \left(x_1!\cdot \ldots \cdot x_{100}!\right) - \left(-26.7132 - \log \left(x_1!\cdot \ldots \cdot x_{100}! \right) \right)\right) = 5.78588\]
+
+При 5\,\% уровне значимости гипотеза отвергается в пользу альтернативной:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{p_value} \hlkwb{<-} \hlnum{1} \hlopt{-} \hlkwd{pchisq}\hlstd{(}\hlnum{5.78588}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{1}\hlstd{)}
+\hlstd{p_value}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.01615541
+\end{verbatim}
+\begin{alltt}
+\hlstd{p_value} \hlopt{>} \hlnum{0.05} \hlcom{# если TRUE, то гипотеза не отвергается}
+\end{alltt}
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Применяем \textbf{тест Вальда}:
+\[W = \left(g\left(\hat{\lambda}_{UR} \right) \right)' \cdot \left( \dfrac{\partial g}{\partial \lambda'}\left(\hat{\lambda}_{UR} \right) \cdot \widehat{I}^{-1} \left(\hat{\lambda}_{UR} \right) \cdot \dfrac{\partial g'}{\partial \lambda}\left(\hat{\lambda}_{UR} \right) \right)^{-1} \cdot g\left(\hat{\lambda}_{UR} \right) \overset{H_0}{\sim} \chi^2_q \]
+
+В нашей задаче:
+\[g\left(\hat{\lambda}_{UR} \right) = \hat{\lambda}_{UR} - 2 = 0.5\]
+\[ \dfrac{\partial g}{\partial \lambda}\left(\hat{\lambda}_{UR} \right) = 1\]
+\[\left(\hat{I} \left(\hat{\lambda}_{UR} \right) \right)^{-1} = -0.025 \]
+
+\[W = 0.5 \cdot \left(0.025 \right)^{-1} \cdot 0.5 = 10 \]
+
+При 5\,\% уровне значимости гипотеза отвергается в пользу альтернативной:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{p_value} \hlkwb{<-} \hlnum{1} \hlopt{-} \hlkwd{pchisq}\hlstd{(}\hlnum{10}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{1}\hlstd{)}
+\hlstd{p_value}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.001565402
+\end{verbatim}
+\begin{alltt}
+\hlstd{p_value} \hlopt{>} \hlnum{0.05} \hlcom{# если TRUE, то гипотеза не отвергается}
+\end{alltt}
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+
+Применяем \textbf{тест множителей Лагранжа}:
+\[LM = \left(\dfrac{\partial \ell}{\partial \theta}\left(\hat{\theta}_R \right)\right)' \cdot \widehat{I}^{-1} \left(\hat{\theta}_R \right) \cdot \left(\dfrac{\partial \ell}{\partial \theta}\left(\hat{\theta}_R \right)\right) \overset{H_0}{\sim} \chi^2_q \]
+
+Здесь:
+\[\frac{\partial \ell}{\partial \lambda} \left(\hat{\lambda}_R \right) = \frac{250}{2} - 100 = 25\]
+\[\left(\hat{I} \left(\hat{\lambda}_{R} \right) \right)^{-1} = \frac{4}{250} = 0.016\]
+\[LM = 25 \cdot 0.016 \cdot 25 = 10\]
+
+При 5\,\% уровне значимости гипотеза отвергается в пользу альтернативной:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{p_value} \hlkwb{<-} \hlnum{1} \hlopt{-} \hlkwd{pchisq}\hlstd{(}\hlnum{10}\hlstd{,} \hlkwc{df} \hlstd{=} \hlnum{1}\hlstd{)}
+\hlstd{p_value}
+\end{alltt}
+\begin{verbatim}
+## [1] 0.001565402
+\end{verbatim}
+\begin{alltt}
+\hlstd{p_value} \hlopt{>} \hlnum{0.05} \hlcom{# если TRUE, то гипотеза не отвергается}
+\end{alltt}
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:5.2}{}
+\begin{solution}{{5.2}}
+Эта задача решается в том же ключе, что и предыдущая!
+
+\begin{enumerate}
+\item Пусть $X_i$ — продолжительность $i$-го сеанса связи. Запишем функцию правдоподобия для экспоненциально распределенных случайных величин, возьмем логарифм, найдем максимум полученной функции (в минутах):
+
+\[\text{L}(\lambda) = \prod_{i=1}^n \lambda \exp(-\lambda X_i)\]
+
+\[l(\lambda) = n \ln \lambda - \lambda \sum_{i=1}^n X_i \to \max_\lambda\]
+
+\[\frac{n}{\lambda} - \sum_{i=1}^{n}X_i = 0 \Rightarrow \hat{\lambda} = \frac{1}{\bar{X}}=0.15\]
+
+\item Построим доверительный интервал, пользуясь тем, что для экспоненциального распределения $\E(X_i) = 1/\lambda, \Var(X_i) = 1/\lambda^2$:
+
+\[\P\left( \left|\frac{\sum_{i=1}^{n}X_i-n/\lambda}{\sqrt{n/\lambda^2}}\right|\leqslant a\right)=0.95\]
+
+\[0.12 \leqslant \lambda \leqslant 0.18\]
+
+\item Проверяем гипотезу $H_0: 1/\lambda = 5$.
+
+\begin{itemize}
+  \item Тест отношения правдоподобия. Нулевая гипотеза отвергается.
+
+    \[\text{LR} = -2(\ell(0.2)-l(0.15)) = 8 > 3.84\]
+
+    \item Тест Вальда. Нулевая гипотеза отвергается.
+
+    \[\text{W} = \left(\hat{\lambda}_{UR} - 0.2\right) ^2\left( -E\left(\frac{\partial^2 \ell}{\partial \lambda^2}\right)_{UR}\right)^{-1} = 11.11 > 3.84 \]
+
+        \item Тест множителей Лагранжа. Нулевая гипотеза упорно отвергается.
+
+    \[\text{LM} = \left( \frac{\partial \ell}{\partial\lambda}\right)_R^2 \left( \left(\frac{\partial^2 \ell}{\partial \lambda^2}\right)_{R}\right)^{-1} = 10.24 > 3.84 \]
+\end{itemize}
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:5.3}{}
+\begin{solution}{{5.3}}
+\end{solution}
+\protect \hypertarget {soln:5.4}{}
+\begin{solution}{{5.4}}
+$\hat{\theta}=1/\bar{Y}$, $\hb=\bar{X}/\bar{Y}$, $\hat{a}=1/(1+\bar{X})$
+\end{solution}
+\protect \hypertarget {soln:5.5}{}
+\begin{solution}{{5.5}}
+В данном примере мы имеем
+
+$\theta = \begin{pmatrix}
+\mu & \nu
+\end{pmatrix}'$ — вектор неизвестных параметров
+
+$\Theta = \mathbb{R} \times (0; +\infty)$ — множество допустимых значений вектора неизвестных параметров
+
+Функция правдоподобия имеет вид:
+\begin{multline*}
+\text{L}(\theta) = \prod_{i=1}^n f_{X_i}(x_i, \theta) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\nu}} \cdot \exp\left\lbrace -\frac{(x_i - \mu)^2}{2\nu} \right\rbrace =\\
+ (2\pi)^{-n/2} \cdot \nu^{-n/2} \cdot \exp \left\lbrace -\frac{\sum_{i=1}^n (x_i - \mu)^2}{2\nu} \right\rbrace
+\end{multline*}
+
+Логарифмическая функция правдоподобия:
+\[
+\ell(\theta) := \ln \text{L}(\theta) = -\frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln\nu - \frac{\sum_{i=1}^n (x_i - \mu)^2}{2\nu}
+\]
+
+$\Theta_{UR} = \Theta$
+
+$\Theta_{R} = \{(0,1)\}$
+
+Из системы уравнений
+\[
+\begin{cases}
+\frac{\partial \ell}{\partial \mu} = \frac{\sum_{i=1}^n (x_i - \mu)}{\nu} = 0 \\
+\frac{\partial \ell}{\partial \nu} = -\frac{n}{2\nu} + \frac{\sum_{i=1}^n (x_i - \mu)^2}{2\nu^2} = 0 \\
+\end{cases}
+\]
+
+находим
+
+$\hat{\theta}_{UR} = (\hat{\mu}_{UR}, \hat{\nu}_{UR})$, где $\hat{\mu}_{UR} = \overline{x} = -1.5290$, $\hat{\nu}_{UR} = \frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2 = 1.0603$
+
+$\hat{\theta}_{R} = (\hat{\mu}_{R}, \hat{\nu}_{R}) = (0,1)$
+
+По имеющимся данным находим
+
+$\ell(\hat{\theta}_{R}) = -\frac{10}{2} \ln(2\pi) - \frac{10}{2} \ln 1 - \frac{\sum_{i=1}^n (x_i - 0)^2}{2 \cdot 1} = -26.1804$
+
+$\ell = -\frac{10}{2} \ln(2\pi) -  \frac{10}{2} \ln (1.0603) - \frac{\sum_{i=1}^n (x_i + 1.5290)^2}{2 \cdot 1.0603} = -14.4824$
+
+$LR = -2(\ell(\hat{\theta}_{R}) - \ell) = -2 \cdot (-26.1804 + 14.4824) = 23.3959$
+
+Критическое значение $\chi^2$ распределения с двумя степенями свободы, отвечающее уровню значимости 5\%, равно 5.9915. Следовательно, тест отношения правдоподобия говорит о том, что гипотеза $H_0$ должна быть отвергнута.
+
+Для выполнения тестов Вальда и множителей Лагранжа нам понадобится информационная матрица Фишера
+
+$\frac{\partial^2 \ell}{\partial \mu^2} = -\frac{n}{v}$, $\frac{\partial^2 \ell}{\partial \nu \partial \mu} = -\frac{\sum_{i=1}^n (x_i - \mu)}{\nu^2}$, $\frac{\partial^2 \ell}{\partial \nu^2} = \frac{n}{2\nu^2} - \frac{\sum_{i=1}^n (x_i - \mu)^2}{\nu^3}$
+
+$\E \frac{\partial^2 \ell}{\partial \nu \partial \mu} = -\frac{\sum_{i=1}^n \E(x_i - \mu)}{\nu^2} = 0$, $\E \frac{\partial^2 \ell}{\partial \nu^2} = \frac{n}{2\nu^2} - \frac{\sum_{i=1}^n \E(x_i - \mu)^2}{\nu^3} = \frac{n}{2\nu^2} - \frac{n\nu}{\nu^3} =- \frac{n}{2\nu^2}$
+
+$I(\theta) = -\E \begin{pmatrix}
+\frac{\partial^2 \ell}{\partial \mu^2} & \frac{\partial^2 \ell}{\partial \nu \partial \mu} \\
+\frac{\partial^2 \ell}{\partial \nu \partial \mu} & \frac{\partial^2 \ell}{\partial \nu^2} \\
+\end{pmatrix} = \begin{pmatrix}
+\frac{n}{\nu} & 0 \\
+0 & \frac{n}{2\nu^2}
+\end{pmatrix}$
+
+$I(\hat{\theta}_{UR}) = \begin{pmatrix}
+\frac{n}{\hat{\nu}_{UR}} & 0 \\
+0 & \frac{n}{2 \cdot \hat{\nu}_{UR}^2}
+\end{pmatrix} = \begin{pmatrix}
+\frac{10}{1.0603} & 0 \\
+0 & \frac{10}{2 \cdot 1.0603^2}
+\end{pmatrix} = \begin{pmatrix}
+9.4307 & 0 \\
+0 & 4.4469 \\
+\end{pmatrix}$
+
+$g(\hat{\theta}_{UR}) = \begin{pmatrix}
+\hat{\mu}_{UR} - 0 \\
+\hat{\nu}_{UR} - 1 \\
+\end{pmatrix} = \begin{pmatrix}
+-1.5290 - 0\\
+1.0603 - 1 \\
+\end{pmatrix} = \begin{pmatrix}
+-1.5290\\
+0.0603 \\
+\end{pmatrix}$
+
+$\frac{\partial g}{\partial \theta'} = \begin{pmatrix}
+\frac{\partial g_1}{\partial \mu} & \frac{\partial g_1}{\partial \nu} \\
+\frac{\partial g_2}{\partial \mu} & \frac{\partial g_2}{\partial \nu} \\
+\end{pmatrix} = \begin{pmatrix}
+1 & 0\\
+0 & 1\\
+\end{pmatrix}$, $\frac{\partial g'}{\partial \theta} = \begin{pmatrix}
+\frac{\partial g_1}{\partial \mu} & \frac{\partial g_2}{\partial \mu} \\
+\frac{\partial g_1}{\partial \nu} & \frac{\partial g_2}{\partial \nu} \\
+\end{pmatrix} = \begin{pmatrix}
+1 & 0\\
+0 & 1\\
+\end{pmatrix}$
+
+$W = g'(\hat{\theta}_{UR}) \cdot \left[ \frac{\partial g}{\partial \theta'}(\hat{\theta}_{UR}) \cdot I^{-1}(\hat{\theta}_{UR}) \cdot \frac{\partial g'}{\partial \theta}(\hat{\theta}_{UR}) \right]^{-1} g(\hat{\theta}_{UR}) = \\
+\begin{pmatrix}
+-1.5290 & 0.0603\\
+\end{pmatrix} \cdot \left[ \begin{pmatrix}
+1 & 0\\
+0 & 1\\
+\end{pmatrix} \cdot \begin{pmatrix}
+9.4307 & 0 \\
+0 & 4.4469 \\
+\end{pmatrix}^{-1} \cdot \begin{pmatrix}
+1 & 0\\
+0 & 1\\
+\end{pmatrix} \right]^{-1} \cdot  \begin{pmatrix}
+-1.5290\\
+0.0603 \\
+\end{pmatrix} = 22.0635$
+
+Тест Вальда также говорит о том, что на основании имеющихся наблюдений гипотеза $H_0$ должна быть отвергнута.
+
+$I(\hat{\theta}_{R}) = \begin{pmatrix}
+\frac{n}{\hat{\nu}_{R}} & 0 \\
+0 & \frac{n}{2 \cdot \hat{\nu}_{R}^2}
+\end{pmatrix} = \begin{pmatrix}
+\frac{10}{1} & 0 \\
+0 & \frac{10}{2\cdot 1^2} \\
+\end{pmatrix} = \begin{pmatrix}
+10 & 0\\
+0 & 5 \\
+\end{pmatrix}$
+
+$\frac{\partial \ell}{\partial \theta}(\hat{\theta}_{R}) = \begin{pmatrix}
+\frac{\sum_{i=1}^n (x_i - \hat{\mu}_R)}{\hat{\nu}_R}\\
+-\frac{n}{2\cdot \hat{\nu}_R} + \frac{\sum_{i=1}^n (x_i - \hat{\mu}_R)^2}{2 \cdot \hat{\nu}_R^2}
+\end{pmatrix} = \begin{pmatrix}
+\frac{\sum_{i=1}^n (x_i - 0)}{1}\\
+-\frac{10}{2\cdot 1} + \frac{\sum_{i=1}^n (x_i - 0)^2}{2 \cdot 1^2}
+\end{pmatrix} = \begin{pmatrix}
+-15.29 \\
+11.9910\\
+\end{pmatrix}$
+
+$LM = \left[ \frac{\partial \ell}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdot I^{-1}(\hat{\theta}_{R}) \cdot \left[ \frac{\partial \ell}{\partial \theta}(\hat{\theta}_{R}) \right] = \begin{pmatrix}
+-15.29 & 11.9910 \\
+\end{pmatrix} = \cdot \begin{pmatrix}
+10 & 0\\
+0 & 5 \\
+\end{pmatrix}^{-1} \cdot \begin{pmatrix}
+-15.29 \\
+11.9910\\
+\end{pmatrix} = 52.1354$
+
+Тест множителей Лагранжа также указывает на то, что гипотеза $H_0$ должна быть отвергнута.
+\end{solution}
+\protect \hypertarget {soln:5.6}{}
+\begin{solution}{{5.6}}
+В данной задаче мы имеем:
+
+$\theta = p$ — вектор неизвестных параметров
+
+$\Theta = (0, 1)$ — множество допустимых значений вектора неизвестных параметров
+
+Функция правдоподобия имеет вид:
+\[\text{L}(\theta) = \prod_{i=1}^n \P_{\theta}(X_i = x_i) = \prod_{i=1}^n p^{x_i} \cdot (1-p)^{1-x_i} = p^{\sum_{i=1}^n x_i} \cdot (1-p)^{n - \sum_{i=1}^n x_i}\]
+
+Логарифмическая функция правдоподобия:
+
+\[\ell(\theta) := \ln \text{L}(\theta) = \left( \sum_{i=1}^n x_i \right) \cdot \ln p + \left(n - \sum_{i=1}^n x_i \right) \cdot \ln (1 - p)\]
+
+$\Theta_{UR} = \Theta$
+
+$\Theta_{R} = \{0.5\}$
+
+Решая уравнение правдоподобия
+
+\[\frac{\partial \ell}{\partial p} = \frac{\sum_{i=1}^n x_i}{p} - \frac{n - \sum_{i=1}^n x_i}{1 - p} = 0\]
+
+получаем
+
+$\hat{\theta}_{UR} = \hat{p}_{UR}$, где $\hat{p}_{UR} = \overline{x} = 0.42$
+
+$\hat{\theta}_{R} = \hat{p}_{R} = 0.5$
+
+По имеющимся данным находим
+
+$\ell(\hat{\theta}_{R}) = 42 \cdot \ln(0.5) + (100-42) \cdot \ln(1-0.5) = -69.3147$
+
+$\ell(\hat{\theta}_{UR} = 42 \cdot \ln(0.42) + (100-42) \cdot \ln(1-0.42) = -68.0292$
+
+$LR = -2(\ell(\hat{\theta}_{R}) - \ell) = -2 \cdot (-69.3147 + 68.0292) = 2.5710$
+
+Критическое значение $\chi^2$ распределения с одной степенью свободы, отвечающее за 5\% уровень значимости, равно 3.8414. Следовательно, тест отношения правдоподобия говорит о том, что на основании имеющихся данных, основная гипотеза $H_0: p = 0.5$ не может быть отвергнута.
+
+Для выполнения тестов Вальда и множителей Лагранжа нам понадобится информационная матрица Фишера
+
+$\frac{\partial^2 \ell}{\partial p^2} = - \frac{\sum_{i=1}^n x_i}{p^2} - \frac{n - \sum_{i=1}^n x_i}{(1 - p)^2}$
+
+$I(\theta) = -\E\left[ \frac{\partial^2 \ell}{\partial p^2} \right] = -\E \left[ - \frac{\sum_{i=1}^n x_i}{p^2} - \frac{n - \sum_{i=1}^n x_i}{(1 - p)^2} \right] = -\left(-\frac{np}{p^2} - \frac{n - np}{(1-p)^2}\right) = \frac{n}{p(1-p)}$
+
+$I(\hat{\theta}_{UR}) = \frac{n}{\hat{p}_{UR}(1-\hat{p}_{UR})} = \frac{100}{0.42 \times (1 - 0.42)} = 172.4138$
+
+$g(\hat{\theta}_{UR}) = \hat{\theta}_{UR} - 0.5 = 0.42 - 0.5 = -0.08$
+
+$\frac{\partial g}{\partial \theta'} = 1'$, $\frac{\partial g'}{\partial \theta} = 1$
+
+$W = g'(\hat{\theta}_{UR}) \cdot \left[ \frac{\partial g}{\partial \theta'}(\hat{\theta}_{UR}) \cdot I^{-1}(\hat{\theta}_{UR}) \cdot \frac{\partial g'}{\partial \theta}(\hat{\theta}_{UR}) \right]^{-1} g(\hat{\theta}_{UR}) = [-0.08]' \cdot [1' \cdot 172.4138^{-1} \cdot 1]^{-1} \cdot [-0.08] = 2.6272$
+
+Тест Вальда также говорит о том, что гипотеза $H_0$ не отвергается.
+
+$I(\hat{\theta}_{R}) = \frac{n}{\hat{p}_{R}(1-\hat{p}_{R})} = \frac{100}{0.5 \times (1 - 0.5)} = 400$
+
+$\frac{\partial \ell}{\partial \theta}(\hat{\theta}_R) = \frac{\sum_{i=1}^n x_i}{\hat{p}_R} - \frac{n - \sum_{i=1}^n x_i}{1 - \hat{p}_R} = \frac{42}{0.5} - \frac{100 - 42}{1 - 0.5} = -32$
+
+$LM = \left[ \frac{\partial \ell}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdot I^{-1}(\hat{\theta}_{R}) \cdot \left[ \frac{\partial \ell}{\partial \theta}(\hat{\theta}_{R}) \right] = [-32]' \cdot [400]^{-1} \cdot [-32] = 2.56$
+
+Согласно тесту множителей Лагранжа, основная гипотеза $H_0$ не может быть отвергнута.
+\end{solution}
+\protect \hypertarget {soln:5.7}{}
+\begin{solution}{{5.7}}
+В данной задаче мы имеем
+
+$\theta = \lambda$ — вектор неизвестных параметров
+
+$\Theta = (0, +\infty)$ — множество допустимых значений вектора неизвестных параметров
+
+Функция правдоподобия имеет вид:
+\[\text{L}(\theta) = \prod_{i=1}^n \P_{\theta}(X_i = x_i) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i !} e^{-\lambda} = \frac{\lambda^{\sum_{i=1}^n x_i}}{x_1!\ldots x_n!}e^{-\lambda n}\]
+
+Логарифмическая функция правдоподобия:
+
+\[l(\theta) := \ln \text{L}(\theta) = \left( \sum_{i=1}^n x_i \right) \cdot \ln\lambda - \sum_{i=1}^n \ln (x_i!) - \lambda n\]
+
+$\Theta_{UR} = \Theta$
+
+$\Theta_{R} = \{2\}$
+
+Решая уравнение правдоподобия
+
+\[
+\frac{\partial \ell}{\partial p} = \frac{\sum_{i=1}^n x_i}{\lambda} - n = 0
+\]
+
+получаем
+
+$\hat{\theta}_{UR} = \hat{\lambda}_{UR}$, где $\hat{\lambda}_{UR} = \overline{x} = 1.7$
+
+$\hat{\theta}_{R} = \hat{p}_{R} = 2$
+
+По имеющимся данным находим
+
+$l(\hat{\theta}_{R}) = (80 \cdot 1.7) \cdot \ln(2) - \sum_{i=1}^n \ln (x_i!) - 2 \cdot 80 = -65.7319$
+
+$l(\hat{\theta}_{UR} = (80 \cdot 1.7) \cdot \ln(1.7) - \sum_{i=1}^n \ln (x_i!) - 1.7 \cdot 80 = -63.8345$
+
+$LR = -2(\ell(\hat{\theta}_{R}) - l) = -2 \cdot (-65.7319 + 63.8345) = 3.7948$
+
+Критическое значение $\chi^2$ распределения с одной степенью свободы, отвечающее за 5\% уровень значимости, равно 3.8414. Следовательно, тест отношения правдоподобия говорит о том, что на основании имеющихся данных, основная гипотеза $H_0: \lambda = 2$ не может быть отвергнута.
+
+Для выполнения тестов Вальда и множителей Лагранжа нам понадобится информационная матрица Фишера
+
+$\frac{\partial^2 \ell}{\partial p^2} = - \frac{\sum_{i=1}^n x_i}{\lambda^2}$
+
+$I(\theta) = -\E\left[ \frac{\partial^2 \ell}{\partial p^2} \right] = -\E \left[ - \frac{\sum_{i=1}^n x_i}{\lambda^2} \right] = -\left(-\frac{n\lambda}{\lambda^2}\right) = \frac{n}{\lambda}$
+
+$I(\hat{\theta}_{UR}) = \frac{n}{\hat{\lambda}_{UR}} = \frac{80}{1.7} = 47.0588$
+
+$g(\hat{\theta}_{UR}) = \hat{\theta}_{UR} - 2 = 1.7 - 2 = -0.3$
+
+$\frac{\partial g}{\partial \theta'} = 1'$, $\frac{\partial g'}{\partial \theta} = 1$
+
+$W = g'(\hat{\theta}_{UR}) \cdot \left[ \frac{\partial g}{\partial \theta'}(\hat{\theta}_{UR}) \cdot I^{-1}(\hat{\theta}_{UR}) \cdot \frac{\partial g'}{\partial \theta}(\hat{\theta}_{UR}) \right]^{-1} g(\hat{\theta}_{UR}) = [-0.3]' \cdot [1' \cdot 47.0588^{-1} \cdot 1]^{-1} \cdot [-0.3] = 4.2352$
+
+Поскольку наблюдаемое значение статистики Вальда превосходит критическое значение 3.8414, то гипотеза $H_0$ должна быть отвергнута.
+
+$I(\hat{\theta}_{R}) = \frac{n}{\hat{\lambda}_{R}} = \frac{80}{2} = 40$
+
+$\frac{\partial \ell}{\partial \theta}(\hat{\theta}_R) = \frac{\sum_{i=1}^n x_i}{\hat{\lambda}_R} - n = \frac{80 \cdot 1.7}{2} - 80 = -12$
+
+$LM = \left[ \frac{\partial \ell}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdot I^{-1}(\hat{\theta}_{R}) \cdot \left[ \frac{\partial \ell}{\partial \theta}(\hat{\theta}_{R}) \right] = [-12]' \cdot [40]^{-1} \cdot [-12] = 3.6$
+
+Согласно тесту множителей Лагранжа, основная гипотеза $H_0$ не может быть отвергнута.
+\end{solution}
+\protect \hypertarget {soln:5.8}{}
+\begin{solution}{{5.8}}
+Для того чтобы записать функцию правдоподобия, найдем параметры распределения случайных величин $y_i$. Величины распределены нормально, так как задаются линейной функцией только от нормально распределенных случайных величин $\epsilon_i$. Посчитаем математическое ожидание и дисперсию:
+
+\[\E(y_i) = \E(\beta_1 + \beta_2x_i + \epsilon_i) = \beta_1 + \beta_2x_i\]
+\[\Var(y_i)= \Var(\beta_1 + \beta_2x_i + \epsilon_i) = \Var(\epsilon_i) = \sigma^2x_i^2\]
+\[y_i \sim \cN\beta_1 + \beta_2x_i, \sigma^2x_i^2)\]
+
+Теперь, используя формулу для функции плостности нормального распределения, можем в явном виде записать функцию правдоподобия:
+
+\[\text{L} = \prod_{i=1}^{n} \frac{1}{\sigma |x_i|\sqrt{2\pi}}\exp\left( \frac{-(y_i - \beta_1 - \beta_2x_i)^2}{2\sigma^2x_i^2}\right) \]
+
+\end{solution}
+\protect \hypertarget {soln:5.9}{}
+\begin{solution}{{5.9}}
+Посчитаем математическое ожидание и дисперсию:
+
+\[\E(y_i) = \E(\beta_1 + \beta_2x_i + \epsilon_i) = \beta_1 + \beta_2x_i\]
+\[\Var(y_i)= \Var(\beta_1 + \beta_2x_i + \epsilon_i) = \Var(\epsilon_i) = \sigma^2|x_i|\]
+\[y_i \sim \cN\beta_1 + \beta_2x_i, \sigma^2|x_i|)\]
+
+Функция правдоподобия:
+
+\[\text{L} = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi \sigma^2|x_i|}}\exp\left( \frac{-(y_i - \beta_1 - \beta_2x_i)^2}{2\sigma^2|x_i|}\right) \]
+\end{solution}
+\protect \hypertarget {soln:5.10}{}
+\begin{solution}{{5.10}}
+\begin{enumerate}
+\item Для того, чтобы найти оценки для $\beta$ и $\sigma^2$ методом максимального правдоподобия, составим сначала функцию правдоподобия:
+
+\[\E(y_i) = \beta_1 + \beta_2x_{2i}+\dots+\beta_kx_{ki}\]
+\[\Var(y_i) = \sigma^2\]
+
+\[\text{L} = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left( \frac{-(y_i - x_i'\beta)^2}{2\sigma^2}\right) \]
+
+Логарифмическая функция правдоподобия:
+
+\[\ell = n \ln \frac{1}{\sqrt{2\pi\sigma^2}} - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (y_i - x_i'\beta)^2 \to \max_{\beta, \sigma^2}\]
+
+Решим задачу максимизации:
+
+\[\frac{\partial \ell}{\partial\beta} = \frac{1}{\sigma^2}(y_i-x_i'\beta)x_i=0 \Rrightarrow \hb_{ML} = \frac{\sum_{i=1}^{n} x_iy_i}{\sum_{i=1}^{n}x_i^2}\]
+
+\[\frac{\partial \ell}{\partial\sigma^2} = \frac{-n\sqrt{2\pi\sigma^2}}{2\sqrt{2\pi(\sigma^2)^3}} + \frac{\sum_{i=1}^{n} (y_i - x_i\beta)^2}{2(\sigma^2)^2}=0 \Rrightarrow \hs^2_{ML} = \frac{\text{RSS}}{n}\]
+
+\item Проверим, являются ли полученные оценки несмещёнными.
+
+\[\E(\hb_{ML}) = \E\left( \frac{\sum_{i=1}^{n} x_iy_i}{\sum_{i=1}^{n}x_i^2}\right) = \frac{\sum_{i=1}^{n} x_i\E(y_i)}{\sum_{i=1}^{n}x_i^2} = \frac{\sum_{i=1}^{n} x_i\E(x_i'\beta + \epsilon)}{\sum_{i=1}^{n}x_i^2} = \frac{\beta\sum_{i=1}^{n} x_i^2}{\sum_{i=1}^{n}x_i^2} = \beta\]
+Таким образом, оценки максимального правдоподобия $\hb_{ML}$ совпадают с полученными с помощью метода наименьших квадратов и являются несмещёнными.
+
+Можно заметить, что полученная оценка дисперсии $\hs^2_{ML}$ не совпадает с несмещённой оценкой метода наименьших квадратов и является смещённой:
+
+\[\E(\hs^2_{ML}) = \E\left( \frac{\text{RSS}}{n}\right) = \frac{n-k}{n}\E(\hs^2_{OLS}) = \frac{n-k}{n}s^2\]
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:5.11}{}
+\begin{solution}{{5.11}}
+\begin{enumerate}
+\item Оценим параметр $\mu$ с помощью метода максимального правдоподобия. Функция правдоподобия:
+
+\[
+\text{L} = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}}\exp\left( \frac{-\left( X_i -\mu\right) ^2}{2}\right)
+\]
+
+Логарифмическая функция правдоподобия:
+\[\ell = n \ln \left( \frac{1}{\sqrt{2\pi}}\right) - \frac{1}{2}\sum_{i=1}^{n}\left( X_i-\mu\right) ^2 \to \max_\mu\]
+
+\[\hat{\mu} = \frac{\sum_{i=1}^{n}X_i}{n} = \bar{X} = 2\]
+
+\item Построим доверительный интервал:
+
+\[\P\left(\left|\frac{\sum_{i=1}^{n}X_i - n\mu}{\sqrt{n}} \right| \leqslant a \right) = 0.95 \]
+
+Из таблицы для стандартного нормального распределения получаем $a=1.96$, решаем неравенство относительно $\mu$:
+
+\[1.8 \leqslant \mu \leqslant 2.2\]
+
+\item Проверим гипотезу $H_0: \mu = 3$.
+\begin{itemize}
+  \item LR-тест отвергает основную гипотезу:
+    \[\text{LR} = -2\left( -0.5\sum_{i=1}^{n}(X_i-3)^2+0.5\sum_{i=1}^{n}(X_i-2)^2\right)  = 100 > \chi^2_1 = 3.84\]
+    \item Тест Вальда  при ограничении $\mu - 3 = 0$ отвергает основную гипотезу:
+    \[\text{W} = (-1)^2\left(-\E\left(\frac{\partial^2 \ell}{\partial \mu^2}\right) _{UR}\right)  = n = 100 > \chi^2_1 = 3.84\]
+    \item LM-тест также отвергает основную гипотезу:
+    \[\text{LM} = \left(\sum_{i=1}^{n}(X_i-3n)^2\right) \left( -\E\left(\frac{\partial^2 \ell}{\partial \mu^2}\right)^{-1}_{R}\right) = 100 > \chi^2_1 = 3.84\]
+\end{itemize}
+
+\item Построим доверительный интервал для вероятности $\P\left( X_i>2.5\right)$:
+
+\[\P\left( X_i>2.5\right) = 1 - \P\left( X_i<2.5\right)  = 1 - \P\left(X_i-\mu < 2.5-\mu \right) = 1 - \Phi_{0,1}(2.5-\mu)\]
+
+В предыдущем пункте мы нашли доверительный интервал для $\mu: 1.8 \leqslant \mu \leqslant 2.2$.
+
+Таким образом, c 95\% уверенностью искомая вероятность лежит в пределах:
+
+\[0.24 \leqslant \P(X_i>2.5) \leqslant 0.38\]
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:5.12}{}
+\begin{solution}{{5.12}}
+\begin{enumerate}
+\item Оценим параметр $\sigma^2$ с помощью метода максимального правдоподобия. Функция правдоподобия:
+
+\[\text{L} = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left( \frac{- X_i ^2}{2\sigma^2}\right) \]
+
+Логарифмическая функция правдоподобия:
+\[
+\ell = n \ln \left( \frac{1}{\sqrt{2\pi\sigma^2}}\right) - \frac{1}{2\sigma^2}\sum_{i=1}^{n}X_i^2 \to \max_{\sigma^2}
+\]
+
+\[\hat{\sigma}^2 = \frac{\sum_{i=1}^{n}X_i^2}{n} = 9\]
+
+\item Построим доверительный интервал. Воспользуемся тем фактом, что:
+\[\frac{\sum_{i=1}^{n}(X_i - \mu)^2}{\sigma^2} \sim \chi^2_n\]
+
+Тогда, пользуясь табличными значениями для хи-квадрат распределения, получаем следующее неравенство:
+\[\P\left( 74.22 \leqslant \frac{\sum_{i=1}^{n}X_i^2}{\sigma^2} \leqslant 129.56 \right) = 0.95 \]
+
+Решаем неравенство относительно $\sigma^2$:
+
+\[6.95 \leqslant \sigma^2 \leqslant 12.13\]
+
+\item Проверим гипотезу $H_0: \sigma^2 = 4$. Посчитаем статистики для трех тестов.
+\begin{itemize}
+  \item $\text{LR} = -2\left(\ln(4) - \ln(9)\right) = 43.9$
+    \item $\text{W} = \frac{900}{9^2}(5)^2 = 277.78$
+    \item $\text{LM} = 0.018\left( \frac{900}{4}-100\right)^2 = 281.25$
+\end{itemize}
+
+Все три рассчитанных статистики превышают табличное значение для одного ограничения: $\chi^2_1 = 3.84$, поэтому все три теста отвергают нулевую гипотезу.
+
+\item Построим доверительный интервал для вероятности $\P\left( X_i>2.5\right)$:
+
+\[\P\left( X_i>2.5\right) = 1 - \P\left( X_i<2.5\right)  = 1 - \P\left(\frac{X_i}{\sqrt{\sigma^2}} < \frac{2.5}{\sqrt{\sigma^2}} \right) = 1 - \Phi_{0,1}\left( \frac{2.5}{\sqrt{\sigma^2}}\right) \]
+
+В предыдущем пункте мы нашли доверительный интервал для $\sigma: 6.95 \leqslant \sigma^2 \leqslant 12.13$.
+
+Таким образом, c 95\% уверенностью искомая вероятность лежит в пределах:
+
+\[0.17 \leqslant \P(X_i>2.5) \leqslant 0.24\]
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:5.13}{}
+\begin{solution}{{5.13}}
+\begin{enumerate}
+\item Оценим параметры $\mu$, $\sigma^2$ с помощью метода максимального правдоподобия. Функция правдоподобия:
+
+\[\text{L} = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left( \frac{- \left( X_i-\mu\right)^2}{2\sigma^2}\right)\]
+
+Логарифмическая функция правдоподобия:
+\[\ell = n \ln\left(\frac{1}{\sqrt{2\pi\sigma^2}}\right) - \frac{1}{2\sigma^2}\sum_{i=1}^{n}\left(X_i-\mu\right)^2 \to \max_{\mu,\sigma^2}\]
+
+\[\hat{\mu} = \frac{\sum_{i=1}^{n}X_i}{n} = 2\]
+\[\hat{\sigma}^2 = \frac{\sum_{i=1}^{n}\left(X_i-\hat{\mu}\right)^2}{n} = 5\]
+
+\item Построим доверительные интервалы для параметров $\mu$ и $\sigma^2$. Доверительный интервал для математического ожидания в случае неизвестной дисперсии строится, используя статистику:
+\[\frac{\left(\bar{X} - \mu\right)\sqrt{n}}{S} \sim t_{n-1}\]
+
+\[S^2 = \frac{\sum_{i=1}^{n}\left( X_i - \bar{X}\right)^2 }{n-1} = 5.05\]
+
+Тогда, пользуясь табличными значениями для распределения Стьюдента, получаем следующее неравенство:
+\[\P\left( -1.98 \leqslant \frac{2-\mu}{0.225} \leqslant 1.98 \right) = 0.95 \]
+
+Решаем неравенство относительно $\mu$:
+
+\[1.55 \leqslant \mu \leqslant 2.45\]
+
+
+Приступим к интервалу для дисперсии. Построение доверительного интервала для дисперсии в случае неизвестного математического ожидания использует статистику:
+\[\frac{\left(n-1\right)S^2}{\sigma^2} \sim \chi^2_{n-1}\]
+
+В качестве границ используем табличные значения хи-квадрат распределения, получаем следующее неравенство:
+\[\P\left( 73.36 \leqslant \frac{99\cdot5.05}{\sigma^2} \leqslant 128.42 \right) = 0.95 \]
+
+Решаем неравенство относительно $\sigma^2$:
+
+\[3.84 \leqslant \sigma^2 \leqslant 6.8\]
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:5.14}{}
+\begin{solution}{{5.14}}
+$\hat{p}_1=X_1/n$, $\hat{p}_2=X_2/n$.
+\end{solution}
+\protect \hypertarget {soln:5.15}{}
+\begin{solution}{{5.15}}
+  \begin{enumerate}
+
+\item Функция правдоподобия: \[\calL = \prod_{i=1}^{n} \frac{\theta (\ln X_i)^{\theta-1}}{X_i}\]
+
+Логарифм функции правдоподобия: \[\ln \calL = \sum\limits_{i=1}^{n} \bigl[\ln \bigl(\theta (\ln X_i)^{\theta-1} \bigr) - \ln X_i \bigr] = \sum\limits_{i=1}^{n} [\ln \theta + (\theta-1) \ln\ln X_i - \ln X_i] \hm= n \ln \theta + (\theta-1) \sum\limits_{i=1}^{n} \ln \ln X_i - \sum\limits_{i=1}^{n} \ln X_i\]
+
+\[\frac{\partial \ln \calL}{\partial \theta} = \frac{n}{\theta} + \sum\limits_{i=1}^{n} \ln \ln X_i \]
+
+FOC: \[\frac{\partial \ln \calL}{\partial \theta} = 0 \hence \frac{n}{\theta} = -\sum\limits_{i=1}^{n} \ln \ln X_i \hence \hat\theta_{\text{ML}} = - \frac{n}{\sum\limits_{i=1}^{n} \ln \ln X_i} \]
+
+Подставим имеющиеся данные: $- \frac{n}{\sum \ln \ln X_i} = -\frac{100}{-30} = \frac{10}{3}$.
+
+
+
+\item Так как оценки ММП асимптотически нормальны, то для нахождения доверительного интервала достаточно найти стандартное отклонение параметра  и~домножить на квантиль двухстороннего распределения: $\P\left(\left\{|\hat\theta-\theta| \le z_{0{,}025} \sqrt{\var(\hat\theta)}\right\}\right) = 0{,}95$. Известно, что $\hVar(\hat \theta) = -\bs{H}^{-1} |_{\hat\theta}$. Матрица $\bs{H}$ — это матрица вторых производных логарифма функции правдоподобия.
+\[
+\bs{H} = \frac{\partial^2 \ln \calL}{\partial \theta^2} = -\frac{n}{\theta^2} \hence -\bs{H}^{-1} = \frac{\theta^2}{n} \hence \hVar(\hat\theta) = \frac{100/9}{100} = \frac19 \hence \hat\sigma_{\theta} = \frac13
+\]
+Следовательно, с вероятность 0,95 $\theta$ лежит в интервале $\frac{10}{3} \pm 1{,}96 \cdot \frac{1}{3} \approx \frac{10}{3} \pm \frac{2}{3}$, или [2{,}680; 3{,}987].
+
+
+
+\item Тест Вальда  выглядит следующим образом:
+\[
+W = \bigl(\mathbf{c}(\bs\theta) - \bs{q}\bigr)' (\bs{C} \bs{I}^{-1}(\bs\theta) \bs{C}')^{-1} \bigl(\mathbf{c}(\bs\theta) - \bs{q} \bigr) \simhypo \chi^2_{r}
+\]
+
+За $\bs{C}$ обозначено $\frac{\partial \mathbf{c}(\bs\theta)}{\partial \bs\theta}$, за $\bs{I}$ — информационная матрица Фишера ($\bs{I}(\theta) = -\E\left( \frac{\partial^2 \ln \calL}{\partial \bs\theta^2} \right)$). В данном случае $\bs\theta = \theta$, и~нулевая гипотеза $\mathbf{c}(\theta) = \bs{q}$ выглядит как $\theta=1$ ($\mathbf{c}(\theta) = \theta$) — одномерный случай, одна степень свободы хи-квадрата, $W \simhypo \chi^2_1$. $\mathbf{c}'(\theta) = 1$, поэтому расчётная статистика выглядит следующим образом:
+\[
+W = (\hat\theta - \theta_0) \frac{n}{\theta^2} (\hat\theta - \theta_0) = \left( \frac{10}{3} - 1 \right) \cdot \frac{100}{100/9} \cdot \left( \frac{10}{3} - 1 \right) = 49
+\]
+
+Тест отношения правдоподобия:
+\[
+LR = -2 \bigl( \ln \calL_{\text{R}} - \ln \calL_{\text{UR}} \bigr) \simhypo \chi^2_r
+\]
+\begin{multline*}
+LR = -2 \left( \left[n \ln \theta_0 + (\theta_0-1) \sum\limits_{i=1}^{n} \ln \ln X_i \xcancel{- \sum\limits_{i=1}^{n} \ln X_i}\right] - \left[n \ln \hat\theta + (\hat\theta-1) \sum\limits_{i=1}^{n} \ln \ln X_i \xcancel{- \sum\limits_{i=1}^{n} \ln X_i}\right] \right) = \\
+= -2 \left( \xcancel{100 \ln 1} \xcancel{+ (1-1) (-30)}  - 100 \ln \frac{10}{3} - \left(\frac{10}{3}-1 \right) (-30)  \right) = -2 \left( - 100 \ln \frac{10}{3} + \frac73 \cdot 30  \right) \approx 100{,}8
+\end{multline*}
+
+Тест множителей Лагранжа:
+\[
+LM = \bs{S}({\theta}_0)' \bs{I}^{-1}({\theta}_{0}) \bs{S}({\theta}_{0}) \simhypo \chi^2_r
+\]
+
+$\bs{S} = \left.\frac{\partial \ln \calL}{\partial \theta}\right|_{\theta_0}$. В точке $\theta_0$ значение частной производной логарифма функции правдоподобия равно $\frac{100}{1} -30=70$, $\bs{I}^{-1}(\theta_0) = \frac{\theta^2_0}{n} = \frac{1}{100}$, откуда
+\[
+LM = 70\cdot \frac{1}{100} \cdot 70 = 49
+\]
+
+Для уровня значимости 5\,\% критическое значение $\chi^2_1$ равно $\approx3{,}84$, поэтому во всех трёх тестах гипотеза $\hypo_0\colon \theta=1$ отвергается.
+
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:5.16}{}
+\begin{solution}{{5.16}}
+  \begin{enumerate}
+  \item
+\[
+\bs\theta =
+\begin{pmatrix} \mu \\ \sigma^2 \end{pmatrix}, \quad
+\calL = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}} \exp \left( -\frac{(X_i-\mu)^2}{2\sigma^2} \right), \quad
+\ln \calL = -\frac{n}{2}\ln 2\pi - \frac{n}{2} \ln \sigma^2 - \frac{1}{2\sigma^2} \sum\limits_{i=1}^n (X_i-\mu)^2
+\]
+
+\[
+\text{FOC:} \quad
+\frac{\partial \ln \calL}{\partial \mu} = \frac{1}{\sigma^2} \sum\limits_{i=1}^n (X_i-\mu), \quad \frac{\partial \ln \calL}{\partial (\sigma^2)} = -\frac{n}{2\sigma^2} + \frac{1}{2(\sigma^2)^2} \sum\limits_{i=1}^n (X_i-\mu)^2
+\]
+
+\[
+\frac{\partial^2 \ln \calL}{\partial \mu^2} = -\frac{n}{\sigma^2}, \quad \frac{\partial^2 \ln \calL}{\partial \mu \, \partial (\sigma^2)} = -\frac{1}{(\sigma^2)^2} \sum\limits_{i=1}^n (X_i - \mu), \quad \frac{\partial^2 \ln \calL}{\partial (\sigma^2)^2} = \frac{n}{2(\sigma^2)^2} - \frac{1}{(\sigma^2)^3} \sum\limits_{i=1}^n (X_i - \mu)^2
+\]
+
+Так как даны $\sum X_i$ и $\sum X_i^2$, можно вывести, что $\sum(X_i - \mu)^2 = \sum X_i^2 - \sum 2\mu X_i + \sum \mu^2 = \sum X_i^2 - 2\mu \sum X_i + n \mu^2$.
+
+Из условий первого порядка следует, что ММП-оценка матожидания $\hat\mu_{\text{ML}}$ — это выборочное среднее, а~дисперсии $\hat\sigma^2_{\text{ML}}$ — выборочная дисперсия (без коррекции на одну степень свободы):
+\[
+\hat \mu_{\text{ML}} = \frac1n \sum\limits_{i=1}^n X_i = \frac{100}{100} = 1, \quad \frac{1}{n}\sum\limits_{i=1}^n (X_i - \mu)^2  = \frac{1}{100}(900 - 2\cdot 1 \cdot 100 + 100\cdot 1^2) = \frac{800}{100} = 8
+\]
+
+\item
+\[
+\bs{I}(\bs\theta) = -\E\left( \frac{\partial^2 \ln \calL}{\partial \bs\theta^2} \right), \quad \bs{I}(\hat{\bs\theta}) = \begin{pmatrix} \frac{n}{\hat\sigma^2} & 0 \\ 0 & \frac{n}{2(\hat\sigma^2)^2} \end{pmatrix} = \begin{pmatrix} \frac{100}{8} & 0 \\ 0 & \frac{100}{128}  \end{pmatrix}, \quad \bs{I}^{-1}(\hat{\bs\theta}) = \begin{pmatrix} \frac{2}{25} & 0 \\ 0 & \frac{32}{25} \end{pmatrix}
+\]
+
+Так как ММП-оценки асимптотически нормальны, то 95\%-й доверительный интервал для вектора неизвестных параметров выглядит как
+\[
+\begin{pmatrix} \hat\mu \pm z_{\frac{\alpha}{2}} \sqrt{\hVar(\hat\mu)} \\ \hat\sigma^2 \pm z_{\frac{\alpha}{2}} \sqrt{\hVar(\hat\mu)} \end{pmatrix} \approx \begin{pmatrix} 1 \pm 1{,}96 \sqrt{\frac{2}{25}} \\ 8 \pm 1{,}96 \sqrt{\frac{32}{25}} \end{pmatrix} \approx \begin{pmatrix} [0{,}446; 1{,}554] \\ [5{,}783; 10{,}217] \end{pmatrix}
+\]
+
+\item  Тест Вальда:
+\[
+W = \bigl(c(\sigma^2) - \sigma^2_0 \bigr)' (\bs{C} \bs{I}^{-1}(\bs\theta) \bs{C}')^{-1} \bigl(c(\sigma^2) - \sigma^2_0 \bigr) \simhypo \chi^2_{r}
+\]
+
+$\frac{\partial c}{\partial \sigma^2}=1$, поэтому
+\[
+W = \bigl(8-1 \bigr)^2 \frac{n}{2(\sigma^2)^2} = 49\cdot \frac{100}{128} \approx 38{,}28
+\]
+
+Тест отношения правдоподобия:
+\[
+LR = -2 \bigl( \ln \calL_{\text{R}} - \ln \calL_{\text{UR}} \bigr) \simhypo \chi^2_r
+\]
+\begin{multline*}
+LR =  -2 \bigl( \ln \calL(\sigma^2_0) - \ln \calL(\hat\sigma^2) \bigr)
+ = -2 \left( -\frac{n}{2} \ln \sigma^2_0 - \frac{1}{2\sigma^2_0} \cdot 800 + \frac{n}{2} \ln \hat\sigma^2 + \frac{1}{2\hat\sigma^2} \cdot 800 \right) = \\
+ -2 \left( \xcancel{-50 \ln 1} - \frac{1}{2} \cdot 800 + 50 \ln 8 + \frac{1}{16} \cdot 800 \right) \approx 492
+\end{multline*}
+
+Тест множителей Лагранжа:
+\[
+LM = \bs{S}(\sigma^2_0)' \bs{I}^{-1}(\sigma^2_{0}) \bs{S}(\sigma^2_{0}) \simhypo \chi^2_r
+\]
+\[
+\bs{I}(\sigma^2_0) = \frac{n}{2(\sigma^2_0)^2} = 50, \quad \bs{S}(\sigma^2_0) = \left. \frac{\partial \ln \calL}{\partial (\sigma^2)} \right|_{\sigma^2_0} = -\frac{100}{2} + \frac{1}{2} \cdot 800 = 350
+\]
+\[ LM = 350^2 \cdot \frac{1}{50} = 2450
+\]
+
+Для уровня значимости 5\,\% критическое значение $\chi^2_1$ равно $\approx3{,}84$, поэтому во всех трёх тестах гипотеза $\hypo_0\colon \sigma^2=1$ отвергается.
+
+\item Тест Вальда  выглядит следующим образом:
+\[
+W = \bigl(\mathbf{c}(\bs{\hat\theta}) - \bs{q}\bigr)' (\bs{C} \bs{I}^{-1}(\bs{\hat\theta}) \bs{C}')^{-1} \bigl(\mathbf{c}(\bs{\hat\theta}) - \bs{q} \bigr) \simhypo \chi^2_{r}
+\]
+
+За $\bs{C}$ обозначено $\frac{\partial \mathbf{c}(\bs\theta)}{\partial \bs\theta}$, за $\bs{I}$ — информационная матрица Фишера ($\bs{I}(\bs\theta) = -\E\left( \frac{\partial^2 \ln \calL}{\partial \bs\theta^2} \right)$). В данном случае нулевая гипотеза $\mathbf{c}(\bs\theta) = \bs{q}$ записывается как $\mathbf{c}({\bs{\theta}}) = \begin{pmatrix} \mu \\ \sigma^2 \end{pmatrix} = \begin{pmatrix} 2 \\ 1 \end{pmatrix}$, поэтому все статистики имеют две степени свободы хи-квадрата. $\bs{C} = \frac{\partial  \mathbf{c}}{\partial \bs\theta} = \begin{pmatrix} \frac{\partial  c_1}{\partial \mu} & \frac{\partial  c_2}{\partial \mu} \\ \frac{\partial  c_1}{\partial \sigma^2} & \frac{\partial  c_2}{\partial \sigma^2} \end{pmatrix} =  \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$, $\mathbf{c}(\bs\theta) - \bs{q}  = \begin{pmatrix} 1 \\ 8 \end{pmatrix} - \begin{pmatrix} 2 \\ 1 \end{pmatrix} = \begin{pmatrix} -1 \\ 7 \end{pmatrix}$, поэтому расчётная статистика выглядит следующим образом:
+\[
+W = \begin{pmatrix} -1 & 7 \end{pmatrix} \left[ \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} \frac{100}{8} & 0 \\ 0 & \frac{100}{128}  \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \right] \begin{pmatrix} -1  \\  7 \end{pmatrix} =
+\begin{pmatrix} -1 & 7 \end{pmatrix} \begin{pmatrix} \frac{25}{2} & 0 \\ 0 & \frac{25}{32} \end{pmatrix} \begin{pmatrix} -1  \\  7 \end{pmatrix} = 50{,}78
+\]
+
+Тест отношения правдоподобия:
+\[
+LR = -2 \bigl( \ln \calL_{\text{R}} - \ln \calL_{\text{UR}} \bigr) \simhypo \chi^2_r
+\]
+\begin{multline*}
+LR =  -2 \bigl( \ln \calL(\bs{q}) - \ln \calL(\hat{\bs\theta}) \bigr) = \\
+ = -2 \left( -\frac{n}{2} \ln \sigma^2_0 - \frac{1}{2\sigma^2_0} \left( \sum X_i^2 - 2\mu_0 \sum X_i + n \mu^2_0\right) + \frac{n}{2} \ln \hat\sigma^2 + \frac{1}{2\hat\sigma^2} \left( \sum X_i^2 - 2\hat\mu \sum X_i + n \hat\mu^2\right) \right) = \\
+= -2 \left( \xcancel{- \frac{100}{2} \ln 1} - \frac{1}{2} ( 900 \xcancel{- 2\cdot 2 \cdot 100 + 100\cdot 2^2}) +  \frac{100}{2} \ln 8 + \frac{1}{16} ( 900 - 2\cdot 1 \cdot 100 + 100\cdot 1)  \right) \approx 592
+\end{multline*}
+
+Тест множителей Лагранжа:
+\[
+LM = \bs{S}(\bs{\theta}_0)' \bs{I}^{-1}(\bs{\theta}_{0}) \bs{S}(\bs{\theta}_{0}) \simhypo \chi^2_r
+\]
+
+\[
+\bs{I}(\bs\theta_0) = \begin{pmatrix}  \frac{n}{\sigma^2_0} & 0 \\ 0  & \frac{n}{2(\sigma^2_0)^2} \end{pmatrix} = \begin{pmatrix}  100 & 0 \\ 0  & 50 \end{pmatrix}, \quad \bs{I}^{-1}(\bs\theta_0) = \begin{pmatrix}  \frac{1}{100} & 0 \\ 0  & \frac{1}{50} \end{pmatrix}\]
+
+\[\bs{S}(\bs\theta_0) =  \begin{pmatrix} \frac{1}{\sigma^2_0 } (100-100\mu_0) \\ -\frac{100}{2\sigma^2_0} + \frac{1}{2(\sigma_0^2)^2 } (900 - 200\mu_0 + 100\mu_0^2)  \end{pmatrix} = \begin{pmatrix} -100 \\ 400 \end{pmatrix}
+\]
+
+
+\[
+LM =  \begin{pmatrix} -100 & 400 \end{pmatrix}  \begin{pmatrix}  \frac{1}{100} & 0 \\ 0  & \frac{1}{50} \end{pmatrix}  \begin{pmatrix} -100 \\ 400 \end{pmatrix} = 3300
+\]
+
+Для уровня значимости 5\,\% критическое значение $\chi^2_2$ равно $\approx5{,}99$, поэтому во всех трёх тестах гипотеза $\hypo_0\colon \bs\theta=\bs\theta_0$ отвергается.
+
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:5.17}{}
+\begin{solution}{{5.17}}
+Заметим, что $y_1=\b_1+\e_1$ и $y_2=\b_1 + \e_2$, Но $\e_1$ может отличаться от $\e_2$ максимум на два, поэтому получаем, что $\e_1=-1$, $\e_2=+1$ и $\hb_1=0$. Стоит отметить, что в данной модели и $\b_1=0$.
+Далее получаем, что $y_3=1+\beta_2 + \e_3$ и отсюда следует два варианта для $\hb_2$. То есть единственной оценки $\hb_2$ методом правдоподобия не получается, существует два максимума у функции правдоподобия, $\hb_2=0$ и $\hb_2=2$.
+\end{solution}
+\protect \hypertarget {soln:5.18}{}
+\begin{solution}{{5.18}}
+Увы, никакой. Все экстремумы имеют вид $\hat{\mu}=x_i$, $\hat{\sigma}=0$, при этом функция правдподобия равна бесконечности.
+\end{solution}
+\protect \hypertarget {soln:5.19}{}
+\begin{solution}{{5.19}}
+\end{solution}
+\protect \hypertarget {soln:5.20}{}
+\begin{solution}{{5.20}}
+\end{solution}
+\protect \hypertarget {soln:5.21}{}
+\begin{solution}{{5.21}}
+\end{solution}
+\protect \hypertarget {soln:5.22}{}
+\begin{solution}{{5.22}}
+$\widehat{\mu} = \tfrac{1}{n}\sum_{i=1}^{n}Y_i = \bar{Y}$, \;\; $\hs^2 = \tfrac{1}{n}\sum_{i=1}^{n}\bigl(Y_i - \bar{Y}\bigr)^2 = \tfrac{RSS}{n}$.
+\end{solution}
+\protect \hypertarget {soln:5.23}{}
+\begin{solution}{{5.23}}
+$\hb = \tfrac{\bigl. \sum_{i=1}^{n}x_i Y_i}{\bigl. \sum_{i=1}^{n}x_i^2}$, \;\; $\hs^2 = \tfrac{1}{n}\sum_{i=1}^{n}\bigl(Y_i - \hb x_i\bigr)^2 = \tfrac{RSS}{n}$.
+\end{solution}
+\protect \hypertarget {soln:5.24}{}
+\begin{solution}{{5.24}}
+$\hb = \tfrac{\bigl. \sum_{i=1}^{n}\tfrac{Y_i}{x_i}}{\bigl. \sum_{i=1}^{n}\tfrac{1}{x_i^2}}$, \;\; $\hs^2 = \tfrac{1}{n}\sum_{i=1}^{n}\bigl(Y_i - \hb / x_i\bigr)^2 = \tfrac{RSS}{n}$.
+\end{solution}
+\protect \hypertarget {soln:5.25}{}
+\begin{solution}{{5.25}}
+Поскольку $\e_i \sim \cN(0, \, \sigma^2)$, то $Y_i = \theta x_i + (1 - \theta) z_i + \e_i \sim \cN\theta x_i + (1 - \theta) z_i, \, \sigma^2)$, а значит,
+\[
+    f_{Y_i}(y_i; \, \theta, \, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\biggl\{-\tfrac{\bigl(y_i - \theta x_i - (1 - \theta) z_i\bigr)^2}{2\sigma^2}\biggr\} \text{, \quad} i = 1, \, \ldots, \, n \text{.}
+\]
+Стало быть, функция правдоподобия имеет вид
+\[
+    L(y_1, \, \ldots, \, y_n; \, \theta, \, \sigma^2) = f_{Y_1, \, \ldots, \, Y_n}(y_1, \, \ldots, \, y_n; \, \theta, \, \sigma^2) =
+\]
+\[
+    = \prod_{i=1}^{n}f_{Y_i}(y_i; \, \theta, \, \sigma^2) = \prod_{i=1}^{n}\frac{1}{\sqrt{2\pi\sigma^2}} \exp\biggl\{-\tfrac{\bigl(y_i - \theta x_i - (1 - \theta) z_i\bigr)^2}{2\sigma^2}\biggr\} =
+\]
+\[
+    = (2\pi)^{-n/2} \cdot (\sigma^2)^{-n/2} \cdot \exp\biggl\{-\tfrac{\sum_{i=1}^{n}\bigl(y_i - \theta x_i - (1 - \theta) z_i\bigr)^2}{2\sigma^2}\biggr\} \text{,}
+\]
+а значит, логарифмическая функция правдоподобия
+\[
+    \ell(y_1, \, \ldots, \, y_n; \, \theta, \, \sigma^2) = -\tfrac{n}{2}\ln{2\pi} -\tfrac{n}{2}\ln{\sigma^2} -\tfrac{\sum_{i=1}^{n}\bigl(y_i - \theta x_i - (1 - \theta) z_i\bigr)^2}{2\sigma^2} \text{.}
+\]
+Найдем точку максимума логарифмической функции правдоподобия:
+\[
+    \left\{
+      \begin{array}{ll}
+        \biggl. \frac{\partial \ell}{\partial \theta} = 0 \text{,} \\
+                \frac{\partial \ell}{\partial \sigma^2} = 0 \text{;}
+      \end{array}
+    \right. \;\; \Leftrightarrow \;\;
+    \left\{
+      \begin{array}{ll}
+        \biggl. \frac{\partial \ell}{\partial \theta} = -\tfrac{\sum_{i=1}^{n}2\bigl(y_i - \theta x_i - (1 - \theta) z_i\bigr)\cdot \bigl(- x_i + z_i\bigr)}{2\sigma^2} = 0 \text{,} \\
+                \frac{\partial \ell}{\partial \sigma^2} = -\tfrac{n}{2\sigma^2} +\tfrac{\sum_{i=1}^{n}\bigl(y_i - \theta x_i - (1 - \theta) z_i\bigr)^2}{2\sigma^4} \text{.}
+      \end{array}
+    \right.
+\]
+Решением первого уравнения системы является
+\[
+    \hat{\theta} = \frac{\sum_{i=1}^{n}(x_i - z_i)(y_i - z_i)}{\sum_{i=1}^{n}(x_i - z_i)^2} \text{.}
+\]
+Выражая из второго уравнения системы параметр $\sigma^2$ и подставляя в полученную формулу вместо параметра $\theta$ найденную выше оценку $\widehat{\theta}$, приходим к выражению для оценки параметра~$\sigma^2$:
+\[
+    \hs^2 = \tfrac{1}{n}\sum_{i=1}^{n}\bigl(y_i - \widehat{\theta} x_i - (1 - \widehat{\theta}) z_i\bigr)^2 \text{.}
+\]
+\end{solution}
+\protect \hypertarget {soln:5.26}{}
+\begin{solution}{{5.26}}
+  Имеем:
+
+$\theta = \lambda$ — вектор неизвестных параметров;
+
+$\Theta = (0; \, + \infty)$ — множество допустимых значений вектора неизвестных параметров.
+
+Функция правдоподобия имеет вид
+\[
+L({x_1}, \ldots ,{x_n};\;\theta) = \prod\limits_{i = 1}^n {{f_{{X_i}}}({x_i};\;\theta )}  = \prod\limits_{i = 1}^n {\lambda {e^{ - \lambda {x_i}}}}  = {\lambda ^n}{e^{ - \lambda ({x_1} +  \ldots  + {x_n})}} \text{.}
+\]
+
+Логарифмическая функция правдоподобия
+
+\[
+\ell({x_1},\; \ldots ,\;{x_n};\theta ): = \ln L({x_1},\; \ldots \;,{x_n};\theta ) = n\ln \lambda  - \lambda ({x_1} +  \ldots  + {x_n}) \text{.}
+\]
+
+
+$\Theta_{UR} = \Theta$, $\Theta_{R} = \{1\}$.
+
+Из уравнения
+
+\[\frac{{\partial \ell}}{{\partial \lambda }} = \frac{n}{\lambda } - ({x_1} +  \ldots  + {x_n}) = 0\]
+
+находим ${\hat \theta _{UR}} = {\hat \lambda _{UR}} = {\textstyle{n \over {{x_1} +  \ldots  + {x_n}}}} = {\textstyle{{100} \over {25}}} = 4$.
+
+${\hat \theta _R} = {\hat \lambda _R} = 1$.
+
+По имеющимся данным находим
+
+
+\[
+{\ell_R}({x_1}, \ldots,{x_n};{\hat \theta _R}) = 100\ln 1 - 1 \cdot 25 =  - 25 \text{,}
+\]
+
+\[
+{\ell_{UR}}({x_1}, \ldots,{x_n};{\hat \theta _{UR}}) = 100\ln 4 - 4 \cdot 25 \approx {{38}}{{.63}} \text{,}
+\]
+
+\[
+LR =  - 2 \cdot ({\ell_R}({x_1}, \ldots,{x_n};{\hat \theta _R}) - {\ell_{UR}}({x_1}, \ldots,{x_n};{\hat \theta _{UR}})) =  - 2 \cdot ( - 25 - {{38}}{{.63}}) \approx {{127}}{{.26}} \text{.}
+\]
+
+Критическая точка $\chi^2$-квадрат распределения с одной степенью свободы, отвечающая уровню значимости 5\,\%, равна 3.84. Следовательно, тест отношения правдоподобия говорит о том, что основная гипотеза $H_0$ должна быть отвергнута.
+
+Для выполнения тестов Вальда и множителей Лагранжа нам понадобится информационная матрица Фишера.
+
+\[
+\frac{{{\partial ^2}l}}{{\partial {\lambda ^2}}} =  - \frac{n}{{{\lambda ^2}}} \text{,}
+\]
+
+\[
+I(\theta) =  - \E\left[ {{\textstyle{{{\partial ^2}l} \over {\partial {\lambda ^2}}}}} \right] = {\textstyle{n \over {{\lambda ^2}}}} \text{,}
+\]
+
+\[
+I({\hat \theta_{UR}}) = {\textstyle{n \over {\lambda _{UR}^2}}} = {\textstyle{{100} \over {16}}} \text{.}
+\]
+
+\[
+    c(\theta) = \lambda \text{, \quad} q = 1 \text{,}
+\]
+
+\[
+\frac{{\partial c}}{{\partial \theta }} = \frac{{\partial c}}{{\partial {\theta ^T}}} = 1 \text{,}
+\]
+
+\[
+c({\hat \theta _{UR}}) - q = {\hat \lambda _{UR}} - q = 4 - 1 = 3 \text{,}
+\]
+
+
+\[
+W = {\left[ {c({{\hat \theta }_{UR}}) - q} \right]^T} \cdot {\left[ {{{\left. {\frac{{\partial c}}{{\partial {\theta ^T}}}} \right|}_{\theta  = {{\hat \theta }_{UR}}}} \cdot {I^{ - 1}}({{\hat \theta }_{UR}}) \cdot {{\left. {\frac{{\partial c}}{{\partial \theta }}} \right|}_{\theta  = {{\hat \theta }_{UR}}}}} \right]^{ - 1}} \cdot \left[ {c({{\hat \theta }_{UR}}) - q} \right] =
+\]
+\[
+= 3 \cdot {\left[ {1 \cdot {{({\textstyle{{100} \over {16}}})}^{ - 1}} \cdot 1} \right]^{ - 1}} \cdot 3 = {\textstyle{{900} \over {16}}} \approx {{56}}{{.25}} \text{.}
+\]
+
+Тест Вальда также говорит о том, что на основании имеющихся наблюдений гипотеза $H_0$ должна быть отвергнута.
+
+\[
+I({\hat \theta _R}) = {\textstyle{n \over {\lambda _R^2}}} = {\textstyle{{100} \over 1}} = 100 \text{,}
+\]
+
+\[
+{\left. {\frac{{\partial {\ell_{UR}}}}{{\partial \theta }}} \right|_{\theta  = {{\hat \theta }_R}}} = \frac{n}{{\hat \lambda }_R} - ({x_1} +  \ldots  + {x_n}) = \frac{{100}}{1} - 25 = 75 \text{,}
+\]
+
+\[
+LM = {\left[ {{{\left. {\frac{{\partial {l_{UR}}}}{{\partial \theta }}} \right|}_{\theta  = {{\hat \theta }_R}}}} \right]^T} \cdot {I^{ - 1}}({\hat \theta _R}) \cdot \left[ {{{\left. {\frac{{\partial {l_{UR}}}}{{\partial \theta }}} \right|}_{\theta  = {{\hat \theta }_R}}}} \right] =
+\]
+
+\[
+= 75 \cdot {(100)^{ - 1}} \cdot 75 = \frac{{75 \cdot 75}}{{100}} = {{56}}{{.25}} \text{.}
+\]
+Тест множителей Лагранжа также указывает на то, что гипотеза $H_0$ должна быть отвергнута.
+
+\end{solution}

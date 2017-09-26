@@ -1,0 +1,1264 @@
+\protect \hypertarget {soln:4.1}{}
+\begin{solution}{{4.1}}
+\begin{enumerate}
+\item
+В случае нестохастических регрессоров:
+
+Пусть дана регрессионная модель $y=X\beta+\e$ с $k$ регрессорами, включая свободный член, и $n$ наблюдениями, и
+\begin{enumerate}
+\item регрессионная модель правильно специфицирована;
+\item $\rk(X)=k$;
+\item $X$ не являются стохастическими;
+\item $\E(\e)=0$;
+\item $\Var(\e)=\sigma^2 I$;
+\end{enumerate}
+то $\hat\beta=(X'X)^{-1}X'y$ являются лучшими оценками в классе линейных несмещённых оценок, то есть BLUE-оценками.
+
+В случае стохастических регрессоров:
+
+Пусть дана регрессионная модель $y=X\beta+\e$ с $k$ регрессорами, включая свободный член, и $n$ наблюдениями, и
+\begin{enumerate}
+\item регрессионная модель правильно специфицирована;
+\item $\rk(X)=k$;
+\item $\E(\e|X)=0$;
+\item $\Var(\e|X)=\sigma^2 I$;
+\end{enumerate}
+то $\hat\beta=(X'X)^{-1}X'y$ являются лучшими оценками в классе линейных несмещённых оценок, то есть BLUE-оценками.
+
+\item
+Да, верно. В самом деле,
+\begin{multline*}
+\E(\hat\beta)=\E((X'X)^{-1}X'y)=(X'X)^{-1}X'\E(y)=(X'X)^{-1}X'\E(X\beta+\e)=\\
+=(X'X)^{-1}X'X\E(\beta)+(X'X)^{-1}X'\underbrace{\E(\e)}_{=0}=\beta
+\end{multline*}
+
+
+\item
+\begin{multline*}
+\Var(\hat\beta)=\Var((X'X)^{-1}X'y)=(X'X)^{-1}X'\Var(y)((X'X)^{-1}X')'=\\
+=(X'X)^{-1}X'\Var(X\beta+\e)X(X'X)^{-1}
+\end{multline*}
+Так как $\beta$ является константой, то $\Var(X\beta)=0$. Тогда
+\begin{multline*}
+\Var(\hat\beta)=(X'X)^{-1}X'\Var(X\beta+\e)X(X'X)^{-1}=\\=(X'X)^{-1}X'\Var(\e)X(X'X)^{-1}=
+(X'X)^{-1}X'\sigma^2X(X'X)^{-1}=\\=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}=\sigma^2(X'X)^{-1}
+\end{multline*}
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:4.2}{}
+\begin{solution}{{4.2}}
+Да, в общем случае (кроме случая $\beta=0$ это верно. Так как $\tilde\beta$ является несмещённой, то $\E(\tilde\beta)=\beta$.
+\begin{multline*}
+\E(\tilde\beta)=\E(((X'X)^{-1}X'+A)y)=\E[((X'X)^{-1}X'+A)(X\beta+\e)]=\\=
+\E(((X'X)^{-1}X'+A)X\beta)+((X'X)^{-1}X'+A)\underbrace{\E(\e)}_{=0}=\\
+=\E((X'X)^{-1}X'X\beta+AX\beta)=\beta+AX\beta
+\end{multline*}
+\[\E(\tilde\beta)=\beta\]
+\[\beta+AX\beta=\beta\]
+\[AX\beta=0\]
+Значит, либо $AX=0$, либо $\beta=0$.
+
+Заметим, что при $\beta=0$ при любом $AX$ оценка $\tilde\beta$ будет несмещённой.
+\end{solution}
+\protect \hypertarget {soln:4.3}{}
+\begin{solution}{{4.3}}
+\[X'X=\left(\begin{array}{cc}
+3 & 2 \\
+2 & 2
+\end{array}\right) \]
+\[(X'X)^{-1}=\left(\begin{array}{cc}
+1 & -1 \\
+-1 & 1.5
+\end{array}\right) \]
+
+\[\Var(\hat\beta_1)=\Var(\hat\beta)_{[1,1]}=\sigma^2\]
+\[\Var(\hat\beta_2)=\Var(\hat\beta)_{[2,2]}=1.5\sigma^2\]
+\[\Cov(\hat\beta_1,\hat\beta_2)=\Var(\hat\beta)_{[1,2]}=-\sigma^2\]
+
+\[\corr(\hat\beta_1,\hat\beta_2)=\frac{\Cov(\hat\beta_1,\hat\beta_2)}{\sqrt{\Var(\hat\beta_1)}\Var(\hat\beta_2)}=\\
+\\\frac{\sigma^2}{\sigma\cdot\sqrt{1.5}\sigma}=\sqrt{\frac{2}{3}}=\frac{\sqrt6}{3}\]
+Показательно, что значения $y$ здесь не используются.
+
+Ответ: $\frac{\sqrt6}{3}$.
+\end{solution}
+\protect \hypertarget {soln:4.4}{}
+\begin{solution}{{4.4}}
+\[\hat\beta=(X'X)^{-1}X'y\]
+\[X'X\hat\beta=X'y\]
+\[\hat\alpha=(D'X'XD)^{-1}D'X'y\]
+поэтому
+\[\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta\]
+\[D^{-1}=\left(\begin{array}{ccc}
+1 & -1 & 1\\
+0 & 1 & -1\\
+0 & 0 & 1
+\end{array}\right)\]
+
+\[\begin{cases}
+\hat\alpha_1=\beta_1-\beta_2+\beta_3\\
+\hat\alpha_2=\beta_2-\beta_3\\
+\hat\alpha_3=\beta_3
+\end{cases}\]
+\end{solution}
+\protect \hypertarget {soln:4.5}{}
+\begin{solution}{{4.5}}
+\[\hat\beta=(X'X)^{-1}X'y\]
+\[X'X\hat\beta=X'y\]
+\[\hat\alpha=(D'X'XD)^{-1}D'X'y\]
+поэтому
+\[\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta\]
+\[D^{-1}=\left(\begin{array}{ccc}
+1 & -1 & 0\\
+0 & 1 & -1\\
+0 & 0 & 1
+\end{array}\right)\]
+
+\[\begin{cases}
+\hat\alpha_1=\beta_1-\beta_2\\
+\hat\alpha_2=\beta_2-\beta_3\\
+\hat\alpha_3=\beta_3
+\end{cases}\]
+\end{solution}
+\protect \hypertarget {soln:4.6}{}
+\begin{solution}{{4.6}}
+\[\hat\beta=(X'X)^{-1}X'y\]
+\[X'X\hat\beta=X'y\]
+\[\hat\alpha=(D'X'XD)^{-1}D'X'y\]
+поэтому
+\[\hat\alpha=(D'X'XD)^{-1}D'X'y=(D'X'XD)^{-1}D'X'X\hat\beta=(D'X'XD)^{-1}D'X'XDD^{-1}\hat\beta=D^{-1}\hat\beta\]
+\[D^{-1}=\left(\begin{array}{ccc}
+1 & 0 & 0\\
+0 & 1 & -1\\
+0 & 0 & 1
+\end{array}\right)\]
+
+\[\begin{cases}
+\hat\alpha_1=\beta_1\\
+\hat\alpha_2=\beta_2-\beta_3\\
+\hat\alpha_3=\beta_3
+\end{cases}\]
+\end{solution}
+\protect \hypertarget {soln:4.7}{}
+\begin{solution}{{4.7}}
+Да, верно.
+\begin{multline*}
+\he'\hy=(y-\hy)'\hy=(y-X\hat\beta)'X\hat\beta=(y-X(X'X)^{-1}X'y)'X(X'X)^{-1}X'y=\\=
+((I-X(X'X)^{-1}X')y)'X(X'X)^{-1}X'y=y'(I-X(X'X)^{-1}X')X(X'X)^{-1}X'y=\\
+=y'(X(X'X)^{-1}X'-X(X'X)^{-1}X'X(X'X)^{-1}X')y=y'(X(X'X)^{-1}X'-X(X'X)^{-1}X')y=0
+\end{multline*}
+
+Да, верно.
+\[\hy'\he=(\he'\hy)'=0\]
+так как выше доказано, что $he'\hy=0$.
+\end{solution}
+\protect \hypertarget {soln:4.8}{}
+\begin{solution}{{4.8}}
+\begin{enumerate}
+\item
+\begin{multline*}
+\hat{\gamma} = (Z'Z)^{-1}Z'y = A^{-1}(X'X)^{-1}(A')^{-1}A'X'y =\\
+ A^{-1}(X'X)^{-1} X'y = A^{-1}\hb
+\end{multline*}
+\item $\hat{u} = y - Z\hat{\gamma} = y - XAA^{-1}\hb = y - X\hb = \he$
+\item Пусть $z^0 = \begin{pmatrix} 1 & z_1^0 & \dots & z_{k-1}^0 \end{pmatrix}$ — вектор размера $1 \times k$ и $x^0 = \begin{pmatrix} 1 & x_1^0 & \dots & x_{k-1}^0 \end{pmatrix}$ — вектор размера $1 \times k$. Оба эти вектора представляют собой значения факторов. Тогда $z^0 = x^0 A$ и прогнозное значение для регрессии с преобразованными факторами равно $z^0 \hat{\gamma} = x^0 AA^{-1} \hb = x^0 \hb$ прогнозному значению для регрессии с исходными факторами.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:4.9}{}
+\begin{solution}{{4.9}}
+\begin{enumerate}
+\item
+\begin{multline*}
+\E(\tilde{\beta}) = ((X'X)^{-1} + \gamma I)X'\E(y) = \\
+ ((X'X)^{-1} + \gamma I)X'X\beta = \beta + \gamma X'X\beta
+\end{multline*}
+\item
+\begin{multline*}
+\Var(\tilde{\beta}) = \Var(((X'X)^{-1} + \gamma I)X'y) = \\
+ \Var(((X'X)^{-1} + \gamma I)X'\e) = \\
+ (((X'X)^{-1} + \gamma I)X')\Var(\e)(((X'X)^{-1} + \gamma I)X')'=  \\
+  (((X'X)^{-1} + \gamma I)X')\sigma_{\e}^2 I(((X'X)^{-1} + \gamma I)X')'= \\
+  \sigma_{\e}^2((X'X)^{-1} + \gamma I)X'X((X'X)^{-1} + \gamma I) = \\
+  \sigma_{\e}^2((X'X)^{-1} + \gamma I)(I + \gamma X'X) =\\
+   \sigma_{\e}^2((X'X)^{-1} + 2\gamma I + \gamma ^2 X'X)
+\end{multline*}
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:4.10}{}
+\begin{solution}{{4.10}}
+Да, верно.
+\[R^2=\frac{ESS}{TSS}=\frac{TSS-RSS}{TSS}=1-\frac{RSS}{TSS}\]
+\[TSS=\sum_{i=1}^n(y_i-\bar y)^2=y'\left(I-\frac{\v1'}{\v1^2}\right)y\]
+не зависит от $X$.
+\[RSS_a=\sum_{i=1}^n(y_i-\hy_i)^2=y'(I-X(X'X)^{-1}X')y\]
+\[RSS_b=y'(I-Z(Z'Z)^{-1}Z')y=y'(I-XD(D'X'XD)^{-1}D'X')y=\]
+так как $D$ является квадратной и невырожденной, то используя формулу $(AB)^{-1}=B^{-1}A^{-1}$, получим:
+\begin{multline*}
+RSS_b=y'(I-XD(D'X'XD)^{-1}D'X')y=y'(I-XDD^{-1}(X'X)^{-1}D'^{-1}D'X')y=\\=y'(I-X(X'X)^{-1}X')y=RSS_a
+\end{multline*}
+
+Значит,
+\[R^2_a=1-\frac{RSS_a}{TSS_a}=1-\frac{RSS_b}{TSS_b}=R^2_b\]
+\end{solution}
+\protect \hypertarget {soln:4.11}{}
+\begin{solution}{{4.11}}
+Да, верно.
+\[RSS_1=\sum_{i=1}^n(y_i-\hy_i)^2=y'(I-X(X'X)^{-1}X')y\]
+\[RSS_2=y'(I-Z(Z'Z)^{-1}Z')y=y'(I-XD(D'X'XD)^{-1}D'X')y=\]
+так как $D$ является квадратной и невырожденной, то используя формулу $(AB)^{-1}=B^{-1}A^{-1}$, получим:
+\begin{multline*}
+RSS_2=y'(I-XD(D'X'XD)^{-1}D'X')y=y'(I-XDD^{-1}(X'X)^{-1}D'^{-1}D'X')y=\\=y'(I-X(X'X)^{-1}X')y=RSS_1
+\end{multline*}
+\end{solution}
+\protect \hypertarget {soln:4.12}{}
+\begin{solution}{{4.12}}
+\begin{enumerate}
+\item $\Var(\e_1)=\Var(\e)_{(1,1)}=4\cdot I_{(1,1)}=4$
+\item $\Var(\beta_1)=0$, так как $\beta_1$ — детерминированная величина.
+\item $\Var(\hb_1)=\sigma^2(X'X)^{-1}_{(1,1)}=0.5\sigma^2=0.5\cdot 4=2$
+\item $\hVar(\hb_1)=\hat\sigma^2(X'X)^{-1}_{(1,1)}=0.5\hat\sigma^2_{(1,1)}=0.5\frac{RSS}{5-3}=0.25RSS=0.25y'(I-X(X'X)^{-1}X')y=0.25\cdot 1=0.25$
+
+$\hat\sigma^2=\frac{RSS}{n-k}=\frac12$.
+
+\item Так как оценки МНК являются несмещёнными, то $\E(\hb)=\beta$, значит:
+\[
+\E(\hb_1)-\beta_1^2=\E(\hb_1)-(\E(\hb_1))^2=\hVar(\hb_1)=0.25
+\]
+
+\item $\Cov(\hb_2,\hb_3)=\sigma^2(X'X)^{-1}_{(2,3)}=4\cdot\left(-\frac12\right)=-2$
+\item $\hCov(\hb_2,\hb_3)=\hVar(\hat\beta)_{(2,3)}=\hat\sigma^2(X'X)^{-1}_{(2,3)}=\frac{1}{2}\cdot\left(-\frac12\right)=-\frac14$
+
+\item $\Var(\hb_2-\hb_3)=\Var(\hb_2)+\Var(\hb_3)+2\Cov(\hb_2,\hb_3)=\sigma^2((X'X)^{-1}_{(2,2)}+(X'X)^{-1}_{(3,3)}+2(X'X)^{-1}_{(2,3)}=4(1+1.5+2\cdot(-0.5))=6$
+
+\item $\hVar(\hb_2-\hb_3)=\hVar(\hb_2)+\hVar(\hb_3)+2\hCov(\hb_2,\hb_3)=\hat\sigma^2((X'X)^{-1}_{(2,2)}+(X'X)^{-1}_{(3,3)}+2(X'X)^{-1}_{(2,3)}=\frac{1}{2}\cdot1.5=0.75$
+
+\item $\Var(\beta_2-\beta_3)=0$
+
+\item $\corr(\hb_2,\hb_3)=\frac{\Cov(\hb_2,\hb_3)}{\sqrt{\Var(\hb_2)\Var(\hb_3)}}=\frac{-2}{\sqrt{4\cdot6}}=-\frac{\sqrt6}{6}$
+
+\item $\hCorr(\beta_2,\beta_3)=\frac{\hCov(\hb_2,\hb_3)}{\sqrt{\hVar(\hb_2)\hVar(\hb_3)}}=\frac{-\frac14}{\sqrt{\frac12\cdot\frac34}}=-\frac{\sqrt6}{6}$
+
+\item $(n-k)\frac{\hat\sigma^2}{\sigma^2}\sim\chi^2_{n-k}$.
+\[
+\E\left((n-k)\frac{\hat\sigma^2}{\sigma^2}\right)=n-k
+\]
+\[
+\E\left(\frac{\hat\sigma^2}{2}\right)=1
+\]
+\[
+\E(\hat\sigma^2)=2
+\]
+
+\item $\hat\sigma^2=\frac{RSS}{n-k}=\frac12$
+
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:4.13}{}
+\begin{solution}{{4.13}}
+\begin{enumerate}
+\item $n = 5$
+\item $k = 3$
+\item $TSS = 10$
+\item $RSS = 2$
+\item $\hb = \begin{pmatrix} \hb_1 \\ \hb_2 \\ \hb_3 \end{pmatrix} = (X'X)^{-1}X'y = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix}$
+\item $R^2 = 1 - \frac {RSS}{TSS} = 0.8.$ $R^2$ высокий, построенная эконометрическая модель хорошо описывает данные
+\item Основная гипотеза — $H_0: \beta_2 = 0$, альтернативная гипотеза — $H_a: \beta_2 \not= 0$
+\item Проверка гипотезы
+\begin{enumerate}
+\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $T_{obs} = \frac{\hb_2 - 0}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - 0}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-0}{\sqrt{{\frac{2}{5-3}}1.3333}} = 1.7321$
+\item Нижняя граница $= -2.920$, верхняя граница $= 2.920$
+\item Поскольку $T_{obs} = 1.7321$, что принадлежит промежутку от -2.920 до 2.920, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
+\end{enumerate}
+\item $p-value(T_{obs}) = \P (|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ — функция распределения $t-$распределения с $n - k = 5 - 3 = 2$ степенями свободы в точке $|T_{obs}|$. $p-value(T_{obs}) = 2tcdf(-|T_{obs}|, n - k) = 2tcdf(-1.7321,2) = 0.2253$. Поскольку $P$-значение превосходит уровень значимости $10\%$, то основная гипотеза — $H_0: \beta_2 = 0$ не может быть отвергнута
+\item Проверка гипотезы
+\begin{enumerate}
+\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $T_{obs} = \frac{\hb_2 - 1}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
+\item Нижняя граница $= -2.920$, верхняя граница $= 2.920$
+\item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от -2.920 до 2.920, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
+\end{enumerate}
+\item Проверка гипотезы
+\begin{enumerate}
+\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $T_{obs} = \frac{\hb_2 - 1}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
+\item Нижняя граница $= -\infty$, верхняя граница $= 1.8856$
+\item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $-\infty$ до $1.8856$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
+\end{enumerate}
+\item Проверка гипотезы
+\begin{enumerate}
+\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $T_{obs} = \frac{\hb_2 - 1}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
+\item Нижняя граница $= -1.8856$, верхняя граница $= +\infty$
+\item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $-1.8856$ до $+\infty$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
+\end{enumerate}
+\item Основная гипотеза — $H_0: \beta_2 = \beta_3 = 0$, альтернативная гипотеза — $H_a: |\beta_2| + |\beta_3| > 0$
+\item Проверка гипотезы
+\begin{enumerate}
+\item $T = \frac{R^2}{1 - R^2} \cdot \frac{n-k}{k}; n = 5; k = 3$
+\item $T \sim F(n-k); n = 5; k = 3$
+\item $T_{obs} = \frac{R^2}{1 - R^2} \cdot \frac{n-k}{k} = \frac{0.8}{1 - 0.8} \cdot \frac{5-3}{2} = 4$
+\item Нижняя граница $= 0$, верхняя граница $= 19$
+\item Поскольку $T_{obs} = 4$, что принадлежит промежутку от $0$ до $19$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$. Следовательно, регрессия в целом незначима. Напомним, что $R^2 = 0.8$, то есть он высокий. Но при этом регрессия в целом незначима. Такой эффект может возникать при малом объёме выборки, например, таком, как в данной задаче
+\end{enumerate}
+\item $p-value(T_{obs}) = \P (|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ — функция распределения $F-$распределения c $k = 3$ и $n - k = 5 - 3 = 2$ степенями свободы в точке $T_{obs}$. $p-value(T_{obs}) = 1 - fcdf(-|T_{obs}|, n - k) = 1 - fcdf(4,2) = 0.2$. Поскольку $P$-значение превосходит уровень значимости $10\%$, то основная гипотеза — $H_0: \beta_2 = \beta_3 = 0$ не может быть отвергнута. Таким образом, регрессия в целом незначима
+\item Проверка гипотезы
+\begin{enumerate}
+\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\hVar(\hb_2 + \hb_3)}}$, где $\hVar(\hb_2 + \hb_3) = \hVar(\hb_2) + \hVar(\hb_3) + 2\hCov(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $\hVar(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\hVar(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
+\item Нижняя граница $= - 4.3027$, верхняя граница $= 4.3027$
+\item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $- 4.3027$ до $4.3027$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$
+\end{enumerate}
+\item Проверка гипотезы
+\begin{enumerate}
+\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\hVar(\hb_2 + \hb_3)}}$, где $\hVar(\hb_2 + \hb_3) = \hVar(\hb_2) + \hVar(\hb_3) + 2\hCov(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $\hVar(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\hVar(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
+\item Нижняя граница $= - \infty$, верхняя граница $= 2.9200$
+\item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $- \infty$ до $2.9200$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$
+\end{enumerate}
+\item Проверка гипотезы
+\begin{enumerate}
+\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\hVar(\hb_2 + \hb_3)}}$, где $\hVar(\hb_2 + \hb_3) = \hVar(\hb_2) + \hVar(\hb_3) + 2\hCov(\hb_2;\hb_3) = \hs^2 [(X'X)^{-1}]_{22} + 2\hs^2 [(X'X)^{-1}]_{23} + \hs^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $\hVar(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\hVar(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
+\item Нижняя граница $= - 2.9200$, верхняя граница $= + \infty$
+\item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $-  2.9200$ до $+ \infty$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$
+\end{enumerate}
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:4.14}{}
+\begin{solution}{{4.14}}
+\begin{enumerate}
+\item $T = \frac{\hb_1 + \hb_2 - (\beta_1 + \beta_2)}{\sqrt{\hVar(\hb_1 + \hb_2)}}$, где $\hVar(\hb_1 + \hb_2) = \hVar(\hb_1) + \hVar(\hb_2) + 2\hCov(\hb_1;\hb_2) = \hat{\sigma}^2 [(X'X)^{-1}]_{11} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{12} + \hat{\sigma}^2 [(X'X)^{-1}]_{22}= \frac{RSS}{n - k}([(X'X)^{-1}]_{11} + 2[(X'X)^{-1}]_{12} + [(X'X)^{-1}]_{22}), \beta_1 + \beta_2=2$
+\item $T \sim t_{n-k}; n = 5; k = 3$
+\item Смотри матрицы в номере 4.12. $\hb=(X'X)^{-1}X'y=(1.5\;2.0\;1.5)'$. $\hVar(\hb_1 + \hb_2) =\frac12(0.5+1+2\cdot(-0.5))=\frac14$. $T=\frac{1.5+2-2}{\sqrt{\frac14}}=3$.
+\item Так как проверяется знак «равно» в гипотезе, то нижняя граница $-\infty$, а верхняя граница $+\infty$.
+\item $t_{0.95,2}=2.9199<T$, значит, гипотеза отвергается на уровне значимости 5\%.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:4.15}{}
+\begin{solution}{{4.15}}
+\begin{enumerate}
+\item $RSS=0$, $R^2=1$, так как в регрессии у Васи 13 (1+5+(4-1)+(5-1)) переменных, которые точно подстраиваются под данные.
+\item Эта матрица является единичной размер 13 на 13, что нетрудно понять из формулы $RSS=y'(I-X(X'X)^{-1}X')y$.
+\item На сегодняшний день среди исследователей нет единого мнения о происхождении трискайдекафобии (боязнь числа 13).
+
+По одной из версий, число 13 может считаться «плохим» уже только потому, что оно больше 12, числа, которое является священным у многих народов.
+
+Кроме того, существует библейское предание, косвенно связанное с числом 13 — на тайной вечере Иуда Искариот, апостол, предавший Иисуса, сидел за столом тринадцатым. С этим преданием связывают самую распространенную в XIX веке примету, связанную с числом 13 — если за обеденным столом собрались 13 человек, один из них умрет в течение года после трапезы. Позже в христианстве распространилось апокрифическое убеждение, что Сатана был 13-м ангелом.
+
+Источник: \href{https://ru.wikipedia.org/wiki/%D0%A2%D1%80%D0%B8%D1%81%D0%BA%D0%B0%D0%B9%D0%B4%D0%B5%D0%BA%D0%B0%D1%84%D0%BE%D0%B1%D0%B8%D1%8F}{https://ru.wikipedia.org/wiki/Трискайдекафобия}
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:4.16}{}
+\begin{solution}{{4.16}}
+$\Var(\hb)=\sigma^2 (X'X)^{-1}$
+\end{solution}
+\protect \hypertarget {soln:4.17}{}
+\begin{solution}{{4.17}}
+$(n-1)\sigma^2$, $(n-k)\sigma^2$
+\end{solution}
+\protect \hypertarget {soln:4.18}{}
+\begin{solution}{{4.18}}
+$TSS=y'(I-\pi)y$, $RSS=y'(I-H)y$, $ESS=y'(H-\pi)y$
+\end{solution}
+\protect \hypertarget {soln:4.19}{}
+\begin{solution}{{4.19}}
+$\E(TSS)=(n-1)\sigma^2+\beta'X'(I-\pi)X\beta$
+\end{solution}
+\protect \hypertarget {soln:4.20}{}
+\begin{solution}{{4.20}}
+$(n-1)\sigma^2$, $(n-k)\sigma^2$, $(k-1)\sigma^2$
+\end{solution}
+\protect \hypertarget {soln:4.21}{}
+\begin{solution}{{4.21}}
+Вспомним, что $\Var(y)=\Var(X\beta+\e)=\Var(\e)=\sigma^2$
+\[
+\Cov(\he,\hy)=\Cov(y-\hy,\hy)=\Cov(y-X(X'X)^{-1}X'y,y)=\Var(y)-\Cov(X(X'X)^{-1}X'y,y)
+\]
+\[
+\Cov(\he,\hy)=\sigma^2-X(X'X)^{-1}X'\Var(y)X(X'X)^{-1}X'=\sigma^2(I-X(X'X)^{-1}X')
+\]
+и если $X(X'X)^{-1}X'$ не равна единичной, то векторы $\he$ и $\hy$ не являются перпендикулярными. Это может произойти только в случае, когда $RSS=0$, то есть в случае, когда существующие переменные абсолютно точно описывают данные.
+\end{solution}
+\protect \hypertarget {soln:4.22}{}
+\begin{solution}{{4.22}}
+$\E(\e)=0$, $\E(\he)=0$, $\sum \e_i$ может оказаться равной нулю только случайно, в нормальной модели это происходит с вероятностью 0, $\sum \he_i=0$ в модели со свободным членом
+\end{solution}
+\protect \hypertarget {soln:4.23}{}
+\begin{solution}{{4.23}}
+$\sum y_i^2=\sum \hy_i^2+\sum \he_i^2$, $TSS=ESS+RSS$,
+\end{solution}
+\protect \hypertarget {soln:4.24}{}
+\begin{solution}{{4.24}}
+$\sCorr(\hy, y)=\frac{\sCov(\hy, y)}{\sqrt{\sVar(\hy)\sVar{(y)}}}$
+
+$\sCorr(\hy, y)^2=\frac{(\sCov(\hy, y))^2}{\sVar(\hy)\sVar{(y)}} $
+
+$R^2\cdot TSS/(n-1)\cdot ESS/(n-1)=(\sCov(\hy, y))^2=(\sCov(\hy-\bar y, y-\bar y))^2$
+Отсюда можно понять, что ковариация для двухмерного случая равна произведению длин векторов $\hy-\bar y$ и $y-\bar y$ — $\sqrt{ESS}$ и $\sqrt{TSS}$ на косинус угла между ними ($\sqrt{R^2}$). Геометрически скалярное произведение можно изобразить как произведение длин одного из векторов на проекцию второго вектора на первый. Если будет проецировать $y-\bar y\v1$ на $\hy-\bar y\v1$, то получим как раз $ESS$ — тот квадрат на рисунке, что уже построен.
+
+
+$\sCov(\hy, y)=\sqrt{ESS^2/(n-1)^2}=ESS/(n-1)$
+
+
+\end{solution}
+\protect \hypertarget {soln:4.25}{}
+\begin{solution}{{4.25}}
+Спроецируем единичный столбец на «плоскость», обозначим его $1'$. Делаем проекцию $y$ на «плоскость» и на $1'$. Далее аналогично.
+\end{solution}
+\protect \hypertarget {soln:4.26}{}
+\begin{solution}{{4.26}}
+Проекция $y$ на $\hy$ это $\hy$, поэтому оценки коэффициентов будут 0 и 1. Оценка дисперсии $\frac{RSS}{(n-2)ESS}$. Нарушены предпосылки теоремы Гаусса-Маркова, например, ошибки новой модели в сумме дают 0, значит коррелированы.
+\end{solution}
+\protect \hypertarget {soln:4.27}{}
+\begin{solution}{{4.27}}
+Либо в регрессию включена константа, либо единичный столбец (тут была опечатка, столбей) можно получить как линейную комбинацию регрессоров, например, включены дамми-переменные для каждого возможного значения качественной переменной.
+\end{solution}
+\protect \hypertarget {soln:4.28}{}
+\begin{solution}{{4.28}}
+Сами оценки коэффициентов никак детерминистически не связаны, но при большом размере подвыборок примерно равны. А ковариационные матрицы связаны соотношением $\Var(\hb_a)^{-1}+\Var(\hb_b)^{-1}=\Var(\hb_{tot})^{-1}$
+\end{solution}
+\protect \hypertarget {soln:4.29}{}
+\begin{solution}{{4.29}}
+\begin{enumerate}
+\item
+\[\he'\he\rightarrow \min_{\hb}\]
+\[(y-\hy)'(y-\hy)\rightarrow\min_{\hb}\]
+\[(y-X\hb)'(y-X\hb)\rightarrow\min_{\hb}\]
+\[y'y-\hb' X'y-y'X\hb+\hb'X'X\hb\rightarrow\min_{\hb}\]
+
+Воспользуемся тем, что : $\frac{\partial x'A}{\partial x'}=A'$, $\frac{\partial Ax}{\partial x'}=A$,
+$\frac{\partial x'Ax}{\partial x'}=x'(A'+A)$
+Условие первого порядка:
+
+\[-2(X'y)'+(X'X+(X'X)')\hb'=0\]
+\[-2X'y+2\hb X'X=0\]
+
+\item
+$X'X=\begin{pmatrix}
+x_{1,1}\ldots x_{n,1}\\
+x_{1,2}\ldots x_{n,2}
+\end{pmatrix}
+\begin{pmatrix}
+x_{1,1}& x_{1,2}\\
+\vdots&\vdots\\
+x_{n,1}& x_{n,2}
+\end{pmatrix}=
+\begin{pmatrix}
+\sum_{i=1}^n x^2_{n,1}& x_{1,1}x_{1,2}\ldots x_{n,1}x_{n,2}\\
+x_{1,1}x_{1,2}\ldots x_{n,1}x_{n,2}&\sum_{i=1}^nx^2_{n,2}
+\end{pmatrix}$
+
+$X'y=\begin{pmatrix}
+x_{1,1}\ldots x_{n,1}\\
+x_{1,2}\ldots x_{n,2}
+\end{pmatrix}
+\begin{pmatrix}
+y_1\\
+y_2\\
+\vdots\\
+y_n
+\end{pmatrix}=
+\begin{pmatrix}
+x_{1,1}y_1\ldots x_{n,1}y_n\\
+x_{1,2}y_1\ldots x_{n,2}y_n
+\end{pmatrix}$
+
+\item
+Условие первого порядка:
+\[-2(X'y)'+\hb'(X'X+(X'X)')=0\]
+\[-2X'y+2X'X \hb =0\]
+и
+\[X'y=X'X\hb\]
+\[\hb=(X'X)^{-1}X'y\]
+
+\item
+\begin{multline*}
+\hb=(X'X)^{-1}X'y=
+\begin{pmatrix}
+\sum_{i=1}^n x^2_{n,1}& x_{1,1}x_{1,2}\ldots x_{n,1}x_{n,2}\\
+x_{1,1}x_{1,2}\ldots x_{n,1}x_{n,2}&\sum_{i=1}^nx^2_{n,2}
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+x_{1,1}y_1\ldots x_{n,1}y_n\\
+x_{1,2}y_1\ldots x_{n,2}y_n
+\end{pmatrix}=\\
+=\frac{1}{\sum_{i=1}^n x^2_{n,1}\sum_{i=1}^n x^2_{n,2}-(x_{1,1}x_{1,2}+\ldots+ x_{n,1}x_{n,2})^2}\cdot\\
+\begin{pmatrix}
+\sum_{i=1}^n x^2_{n,2}& -x_{1,1}x_{1,2}+\ldots+ x_{n,1}x_{n,2}\\
+-x_{1,1}x_{1,2}+\ldots +x_{n,1}x_{n,2}&\sum_{i=1}^nx^2_{n,1}
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+x_{1,1}y_1+\ldots +x_{n,1}y_n\\
+x_{1,2}y_1+\ldots +x_{n,2}y_n
+\end{pmatrix}=\\
+=\frac{1}{\sum_{i=1}^n x^2_{n,1}\sum_{i=1}^n x^2_{n,2}-(x_{1,1}x_{1,2}+\ldots+ x_{n,1}x_{n,2})^2}\cdot\\
+\begin{pmatrix}
+\sum_{i=1}^n x^2_{n,2}(x_{1,1}y_1+\ldots +x_{n,1}y_n) -(x_{1,1}x_{1,2}+\ldots+ x_{n,1}x_{n,2})(x_{1,2}y_1+\ldots +x_{n,2}y_n)\\
+-(x_{1,1}y_1+\ldots +x_{n,1}y_n)(x_{1,1}x_{1,2}+\ldots +x_{n,1}x_{n,2})+\sum_{i=1}^nx^2_{n,1}(x_{1,2}y_1+\ldots +x_{n,2}y_n)
+\end{pmatrix}
+\end{multline*}
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:4.30}{}
+\begin{solution}{{4.30}}
+
+\begin{enumerate}
+\item $\hat\beta_1'=\bar y^* -\hb_2'\bar x^*=\overline{y-\bar y}-\hb_2'(\overline{x-\bar x})=0$
+
+\item $\hb_2'=\frac{\Cov(y^*,x^*)}{\Var(x^*)}=\frac{\Cov(y-\bar y,x-\bar x)s_x/s_y}{\Var(x-\bar x)}=\frac{\Cov(y,x)s_x/s_y}{\Var(x)}=\frac{s_x}{s_y}\hb_2$
+
+$\hb_2''=\frac{\overline{x^*y^*}}{\overline{\bar x^2}}=\frac{\Cov(x^*y^*)+\bar{x^*}\bar{y^*}}{\Var(x^*)+\bar{x^*}}=\frac{\Cov(y^*,x^*)}{\Var(x^*)}=\hb_2'=\frac{s_x}{s_y}\hb_2$
+
+\item $\hat u_i'=y_i^*-\hy_i^*=y_i^*-\hb_1'-\hb_2'x_i^*=y_i^*-\frac{s_x}{s_y}\hb_2x_i^*=\frac{y_i-\bar y-\hb_2(x_i-\bar x)}{s_y}=\frac{y_i-\hb_2x_i-(\bar y-\hb_2\bar x)}{s_y}=\frac{y_i-\hb_2x_i-\hb_1}{s_y}=\frac{\hat u_i}{s_y}$
+
+$\hat u_i''=y_i^*-\hy_i^*=y_i^*-\hb_2''x_i^*=y_i^*-\frac{s_x}{s_y}\hb_2'x_i^*=\frac{y_i-\bar y-\hb_2(x_i-\bar x)}{s_y}=\frac{y_i-\hb_2x_i-(\bar y-\hb_2\bar x)}{s_y}=\frac{y_i-\hb_2x_i-\hb_1}{s_y}=\frac{u_i}{s_y}=\hat u_i'$
+
+\item $RSS=\sum_{i=1}^n \hat u_i^2=s_y^2\sum_{i=1}^n \hat u_i'^2=s_y^2RSS'$, $RSS'=\sum_{i=1}^n \hat u_i'^2=RSS''$.
+
+$X'X=\begin{pmatrix}
+n&\sum^n_{i=1}x_i\\
+\sum^n_{i=1}x_i&\sum^n_{i=1}x_i^2
+\end{pmatrix}$
+
+$X'X_{new}=\begin{pmatrix}
+n&\sum^n_{i=1}(x_i-\bar x)/s_x\\
+\sum^n_{i=1}(x_i-\bar x)/s_x&\sum^n_{i=1}(x_i-\bar x)^2/s_x^2
+\end{pmatrix}=
+\begin{pmatrix}
+n&\sum^n_{i=1}(x_i-\bar x)/s_x\\
+(\sum^n_{i=1}x_i^2-\bar x^2)/s_x&\sum^n_{i=1}(x_i-\bar x)^2/s_x^2
+\end{pmatrix}=
+\begin{pmatrix}
+n&0\\
+0&(\sum^n_{i=1}x_i^2-n\bar x^2)/s_x^2
+\end{pmatrix}$
+
+$\hVar(\hb_2)=\frac{RSS_1}{n-2}(X'X)_{(2,2)}^{-1}=\frac{RSS_2s_y^2}{n-2}\frac{1}{n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2}
+\begin{pmatrix}
+\sum^n_{i=1}x_i^2&-\sum^n_{i=1}x_i\\
+-\sum^n_{i=1}x_i&n
+\end{pmatrix}_{(2,2)}=\frac{RSS_2s_y^2}{n-2}\frac{n}{n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2}=\frac{RSS_2s_y^2}{n-2}\frac{n/s_x^2}{(n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2)/s_x^2}=\hVar(\hb_2')\frac{s_y^2}{s_x^2}$
+
+$\hVar(\hb'_2)=\frac{RSS_2}{n-2}(X'X_{new})_{(2,2)}^{-1}=\frac{RSS_3}{n-1}(X'X_{new})_{(2,2)}^{-1}\frac{n-1}{n-2}=\hVar(\hb''_2)\frac{n-1}{n-2}$
+
+\item $\hVar(\hb')=\frac{RSS_2}{n-2}(X'X_{new})^{-1}=\frac{\sum_{i=1}^n(y_i^*-\hb_1'-\hb_2'x_i^*)^2}{n-2}\begin{pmatrix}
+(\sum^n_{i=1}x_i^2-n\bar x^2)/s_x^2&0\\
+0&n
+\end{pmatrix}$
+где $\hb'=(X'X_{new})^{-1}\begin{pmatrix}
+0\\
+\sum_{i=1}^n(x_i-\bar x)y_i
+\end{pmatrix}$, в частности, $\hb_1'=0$.
+
+\item $t_{\hb_2}=\frac{\hat\beta}{\sqrt{\Var(\hb_2)}}=\frac{\hat\beta's_y/s_x}{\sqrt{\Var(\hb_2')}s_y/s_x}=t_{\hb_2'}=\sqrt{\frac{n-2}{n-1}}t_{\hb_2''}$
+
+\item $TSS'=TSS''=\frac{\sum_{i=1}^n(y_i-\bar y)^2}{s_y^2}=\frac{TSS}{s_y^2}$.
+
+$R'^2=R''^2$, так как соответствующие $TSS$ и $RSS$ равны.
+
+$R^2=\frac{RSS}{TSS}=\frac{s_y^2RSS'}{TSS's_y^2}=\frac{RSS}{TSS}=R'^2$
+
+\item При переходе к стандартизированным переменным изменяются оценки коэффициентов и остатки регрессии пропорционально стандартным отклонениям переменным. Также перестаёт играет роль регрессор-свободный член, так как матожидание эндогенной переменной становится равной 0. Также при переходе к стандартизированным переменным можно снизить оценку дисперсии переменных, так как можно убрать регрессор-свободный член. Качество регрессий по $R^2$ не изменяется.
+
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:4.31}{}
+\begin{solution}{{4.31}}
+
+\begin{enumerate}
+\item $n=5$
+\item $k=3$
+\item $y_i=\beta_0+\beta_1x_1+\beta_2x_2+u_i$
+\item $RSS=y'(I-X(X'X)^{-1}X')y=2$, $TSS=(1-3)^2+(2-3)^2+(3-3)^2+(4-3)^2+(5-3)^2=4+1+0+1+4=10$, $ESS=TSS-RSS=8$.
+\item $\hb=X(X'X)^{-1}X'y=(2\>2\>1)'$
+\item $\hat\e_5=y_5-\hy_5=5-2-2x^{(5)}_1-x^{(5)}_2=5-2-2-1=0$.
+\item $R^2=\frac{ESS}{TSS}\frac{8}{10}=0.8$. $R^2$ высок, модель регрессии хорошо описывает данные.
+\item Несмещённая оценка — $\hat\sigma^2$. $\hat\sigma^2=\frac{RSS}{n-k}=\frac{2}{5-3}=1$.
+\item $\hVar(\hb)=\hat\sigma^2(X'X)^{-1}=\frac13\begin{pmatrix}
+1&-1&0\\
+-1&4&-3\\
+0&-3&6
+\end{pmatrix}
+$
+\item $\hVar(\hat\beta_1)=\frac13$
+\item $\hVar(\hat\beta_2)=\frac43$
+\item $\hCov(\hat\beta_1,\hat\beta_2)=-\frac13$
+\item $\hVar(\hat\beta_1+\hat\beta_2)=\hVar(\hat\beta_1)+\hVar(\hat\beta_2)+2\hCov(\hat\beta_1,\hat\beta_2)=\frac13+\frac43-2\cdot\frac13=1$
+
+$\hVar(\hat\beta_1-\hat\beta_2)=\hVar(\hat\beta_1)+\hVar(\hat\beta_2)-2\hCov(\hat\beta_1,\hat\beta_2)=\frac13+\frac43+2\cdot\frac13=\frac73$
+
+$\hVar(\hat\beta_1+\hat\beta_2+\hat\beta_3)=\hVar(\hat\beta_1)+\hVar(\hat\beta_2)+\hVar(\hat\beta_3)+2\hCov(\hat\beta_1,\hat\beta_2)+2\hCov(\hat\beta_1,\hat\beta_3)+2\hCov(\hat\beta_2,\hat\beta_3)=\frac13(1+4+6-2-6)=1$
+
+$\hVar(\hat\beta_1+\hat\beta_2-2\hat\beta_3)=\hVar(\hat\beta_1)+\hVar(\hat\beta_2)+4\hVar(\hat\beta_3)+2\hCov(\hat\beta_1,\hat\beta_2)-4\hCov(\hat\beta_1,\hat\beta_3)-4\hCov(\hat\beta_2,\hat\beta_3)=\frac13(1+4+4\cdot 6-1+12)=\frac{40}{3}$
+\item $\hat\corr(\hat\beta_1,\hat\beta_2)=\frac{\hCov(\hat\beta_1,\hat\beta_2)}{\sqrt{\hVar(\hat\beta_1)\cdot\hVar(\hat\beta_1)}}=\frac{-\frac13}{\sqrt{\frac13\cdot\frac43}}=-\frac12$
+\item $s_{\hat\beta_1}=\sqrt{\hVar(\hat\beta_1)}=\sqrt{\frac13}=\frac{\sqrt3}{3}$
+\item $\hy=\begin{pmatrix}
+2\\
+2\\
+2\\
+4\\
+5
+\end{pmatrix}$, $\bar \hy=3$
+
+ $\sCov(y,\hy)=\frac{\sum_{i=1}^n(y_i-\bar y)(\hy_i-\hat \bar y_i)}{n-1}=\frac{(1-3)(2-3)+(2-3)(2-3)+(3-3)(2-3)+(4-3)(4-3)+(5-3)(5-3)}{4}=\frac{2+1+1+4}{4}=2$
+\item $\sVar(y)=\frac{\sum_{i=1}^n(y-\bar y)^2}{n-1}=\frac{(1-3)^2+(2-3)^2+(3-3)^2+(4-3)^2+(5-3)^2}{4}=\frac{4+1+0+1+4}{4}=2.5$, $\sVar(\hy)=\frac{\sum_{i=1}^n(\hy- \bar\hy)^2}{n-1}=\frac{(2-3)^2+(2-3)^2+(2-3)^2+(4-3)^2+(5-3)^2}{4}=2$.
+
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:4.32}{}
+\begin{solution}{{4.32}}
+Подсказка: запишите матрицу $X$ как блочную и, пользуясь матричным выражением для $\hb$ и формулой Фробениуса, найдите $\hb_2$.
+
+1. Да, верно.
+$X=(X_1 X_2)$ — блочная матрица. Аналогично, $\hat\beta=\left(\begin{array}{c}
+\hat\beta_1\\
+\hat\beta_2
+\end{array}\right)$ — блочная матрица (хотя на самом деле вектор).
+
+\begin{multline*}
+\hat\beta=(X'X)^{-1}X'y=((X_1X_2)'(X_1X_2))^{-1}(X_1X_2)'y=\\
+=\left(
+\begin{pmatrix}
+X_1'\\
+X_2'
+\end{pmatrix}(X_1X_2)\right)^{-1}
+\begin{pmatrix}
+X_1'\\
+X_2'
+\end{pmatrix}y=
+\begin{pmatrix}
+X_1'X_1 & X_1'X_2\\
+X_2'X_1 & X_2'X_2
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+X_1'\\
+X_2'
+\end{pmatrix}y
+\end{multline*}
+
+Запишем и докажем формулу Фробениуса для обращения блочных матриц.
+
+Формула Фробениуса:
+\[
+\begin{pmatrix} A & B \\
+C & D \\
+\end{pmatrix}^{-1}=
+\begin{pmatrix}
+A^{-1} +A^{-1} BH^{-1} CA^{-1}  & -A^{-1} BH^{-1}\\
+ -H^{-1} CA^{-1}  & H^{-1}
+\end{pmatrix}
+\]
+где $H=D-CA^{-1}B$.
+
+Докажем формулу, обращая матрицу методом Гаусса. Умножим слева на $\begin{pmatrix}
+A^{-1} & 0\\
+0 & I
+\end{pmatrix}$
+\begin{multline*}
+\left(\begin{array}{cc|cc}
+A & B & I & 0\\
+C & D & 0 & I
+\end{array}\right)=
+\left(\begin{array}{cc|cc}
+I & A^{-1}B & A^{-1} & 0\\
+C & D & 0 & I
+\end{array}\right)=\\
+\end{multline*}
+вычтем из второй строки первую, умноженную на $C$
+\begin{multline*}
+=\left(\begin{array}{cc|cc}
+I & A^{-1}B & A^{-1} & 0\\
+0 & D-CA^{-1}B & -CA^{-1} & I
+\end{array}\right)=
+\end{multline*}
+умножим слева на $\begin{pmatrix}
+I & 0\\
+0 & (D-CA^{-1}B)^{-1}
+\end{pmatrix}$
+\begin{multline*}
+=\left(\begin{array}{cc|cc}
+I & A^{-1}B & A^{-1} & 0\\
+0 & I & -(D-CA^{-1}B)^{-1}CA^{-1} & (D-CA^{-1}B)^{-1}
+\end{array}\right)=
+\end{multline*}
+вычтем из первой строки вторую, умноженную на $A^{-1}B$.
+\begin{multline*}
+=\left(\begin{array}{cc|cc}
+I & 0 & A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} & -A^{-1}B(D-CA^{-1}B)^{-1}\\
+0 & I & -(D-CA^{-1}B)^{-1}CA^{-1} & (D-CA^{-1}B)^{-1}
+\end{array}\right)
+\end{multline*}
+
+Значит,
+\begin{multline*}
+\begin{pmatrix} A & B \\ C & D \\ \end{pmatrix}^{-1}
+=\left(\begin{array}{cc}
+A^{-1}+A^{-1}B(D-CA^{-1}B)^{-1}CA^{-1} & -A^{-1}B(D-CA^{-1}B)^{-1}\\
+-(D-CA^{-1}B)^{-1}CA^{-1} & (D-CA^{-1}B)^{-1}
+\end{array}\right)=\\=
+\begin{pmatrix} A^{-1} +A^{-1} BH^{-1} CA^{-1}  & -A^{-1} BH^{-1}\\ -H^{-1} CA^{-1}  & H^{-1}\end{pmatrix}
+\end{multline*}
+
+По формуле Фробениуса получим, что
+\[\left(\begin{array}{cc}
+X_1'X_1 & X_1'X_2\\
+X_2'X_1 & X_2'X_2
+\end{array}\right)^{-1}=
+\left(\begin{array}{cc}
+(X_1'X_1)^{-1}+(X_1'X_1)^{-1}X_1'X_2H^{-1}X_2'X_1(X_1'X_1)^{-1} & -(X_1'X_1)^{-1}X_1'X_2H^{-1}\\
+-H^{-1}X_2'X_1(X_1'X_1)^{-1} & H^{-1}
+\end{array}\right),\]
+где $H=X_2'X_2-X_2'X_1(X_1'X_1)^{-1}X_1'X_2$. Верхняя строка в данном пункте не важна, и сейчас её опустим. Заметим, что
+\[H=X_2'X_2-X_2'X_1(X_1'X_1)^{-1}X_1'X_2=X_2'(I-X_1(X_1'X_1)^{-1}X_1')X_2=X_2'M_1X_2\]
+Итак,
+\begin{multline*}
+\hat\beta=\left(\begin{array}{c}
+\hat\beta_1\\
+\hat\beta_2
+\end{array}\right)=
+\left(\begin{array}{cc}
+X_1'X_1 & X_1'X_2\\
+X_2'X_1 & X_2'X_2
+\end{array}\right)^{-1}\left(\begin{array}{c}
+X_1'\\
+X_2'
+\end{array}\right)y=\\=\left(\begin{array}{cc}
+? & ?\\
+-H^{-1}X_2'X_1(X_1'X_1)^{-1} & H^{-1}
+\end{array}\right)\left(\begin{array}{c}
+X_1'\\
+X_2'
+\end{array}\right)y=\\=\left(\begin{array}{c}
+?\\
+-H^{-1}X_2'X_1(X_1'X_1)^{-1}X_1'+H^{-1}X_2'
+\end{array}\right)y=\\=
+\left(\begin{array}{c}
+?\\
+H^{-1}X_2'(I-X_1(X_1'X_1)^{-1}X_1')
+\end{array}\right)y=\\=
+\left(\begin{array}{c}
+?\\
+H^{-1}X_2'M_1y
+\end{array}\right)=
+\left(\begin{array}{c}
+?\\
+(X_2'M_1X_2)^{-1}X_2'M_1y
+\end{array}\right)
+\end{multline*}
+
+\[\hb_2=(X_2'M_1X_2)^{-1}X_2'M_1y\]
+Заметим свойства матрицы-проектора $M_1$.
+\[M_1'=(I-X_1(X_1'X_1)^{-1}X_1')'=I-X_1(X_1'X_1)^{-1}X_1'=M_1\]
+\begin{multline*}
+(M_1)^2=(I-X_1(X_1'X_1)^{-1}X_1')^2=I-2X_1(X_1'X_1)^{-1}X_1'+X_1(X_1'X_1)^{-1}X_1'\cdot X_1(X_1'X_1)^{-1}X_1'=\\
+=I-X_1(X_1'X_1)^{-1}X_1'=M_1
+\end{multline*}
+
+Значит,
+\begin{multline*}
+\hb_2=(X_2'M_1X_2)^{-1}X_2'M_1y=(X_2'M_1M_1X_2)^{-1}X_2'M_1M_1y=(X_2'M_1'M_1X_2)^{-1}X_2'M_1'M_1y=\\=
+((M_1X_2)'M_1X_2)^{-1}(M_1X_2)'M_1y
+\end{multline*}
+но ведь и
+\[
+\hat\gamma_2=
+((M_1X_2)'M_1X_2)^{-1}(M_1X_2)'M_1y
+\]
+Значит, $\hb_2=\hat\gamma_2=
+((M_1X_2)'M_1X_2)^{-1}(M_1X_2)'M_1y$
+, что и требовалось доказать.
+
+2. Да, верно.
+\[\hy=X_1\hb_1+X_2\hb_2\]
+
+\[M_1 \he=M_1y-M_1\hy=M_1y-M_1(X_1\hat\beta_1+X_2\hb_2)=M_1y-M_1X_2\hb_2-M_1X_1\hat\beta_1\]
+\[M_1X_1=(I-X_1(X_1'X_1)^{-1}X_1')X_1=X_1-X_1(X_1'X_1)^{-1}X_1'X_1=0\]
+\[M_1 \he=M_1y-M_1X_2\hb_2=M_1y-M_1X_2\hat\gamma_2=\hat u\]
+
+\begin{multline*}
+M_1\he=M_1(y-\hy)=M_1(I-X(X'X)^{-1}X')y=(I-X(X'X)^{-1}X')y
+\end{multline*}
+так как $M_1$ ортогональное дополнение к $X_1$, а $(I-X(X'X)^{-1}X')y$ уже лежит в ортогональном дополнении к $X_1$, так как $I-X(X'X)^{-1}X'$ ортогональное дополнение к к прямой сумме пространств $X_1$ и $X_2$ — $X_1\oplus X_2$.
+\end{solution}
+\protect \hypertarget {soln:4.33}{}
+\begin{solution}{{4.33}}
+
+Подсказка: в задаче следует применить тест Чоу.
+
+Посчитаем $RSS$ в каждой из моделей
+\[
+RSS=y'(I-X(X'X)^{-1}X')y=y'y-y'X(X'X)^{-1}X'y=y'y-(X'y)'(X'X)^{-1}X'y
+\]
+
+$RSS_1=2000-1933.33=\frac{500}{3}$
+
+$RSS_2=2500-2333.33=\frac{500}{3}$
+
+$X'X=
+\begin{pmatrix}
+n&\sum^n_{i=1}x_i\\
+\sum^n_{i=1}x_i&\sum^n_{i=1}x_i^2
+\end{pmatrix}$, $X'y=
+\begin{pmatrix}
+\sum^{100}_{i=1}y_i\\
+\sum^{100}_{i=1}x_iy_i
+\end{pmatrix}$
+значит, новый
+$X'X=\begin{pmatrix}
+100&600\\
+600&4200
+\end{pmatrix}$
+а новый $X'y=
+\begin{pmatrix}
+600\\
+4200
+\end{pmatrix}$.
+
+$y'y=\sum^{100}_{i=1}y_i^2=(y'y)_{1st}+(y'y)_{2nd}=4600$
+
+$RSS_{pooled}=4600-4200=400$
+
+Тест Чоу
+$\frac{(RSS_{pooled}-RSS_1-RSS_2)/k}{(RSS_1+RSS_2)/(n-2k)}=\frac{(400-500/3-500/3)/2}{1000/3/96}=\frac{96}{10}=9.6>3.09=F_{2,96}$
+гипотеза о том, что $\beta=\gamma$ отвергается.
+\end{solution}
+\protect \hypertarget {soln:4.34}{}
+\begin{solution}{{4.34}}
+Докажем несмещённость МНК-оценок.
+\[\E\hb = \E\left( (X' X)^{-1} X' y \right) = (X' X)^{-1} X' \E(y) = \]
+\[= (X' X)^{-1} X' \E(X\beta + \e) = (X' X)^{-1} X' X\beta = \beta\]
+Обозначим $\varphi(X, y) = (X' X)^{-1} X' y$. Тогда $\hb = \varphi(X, y)$. Покажем, что функция $\varphi$ линейна по переменной $y$.
+\begin{enumerate}
+\item $\varphi(X, \lambda \cdot y) = (X' X)^{-1} X' (\lambda \cdot y) = \lambda (X' X)^{-1} X' y = \lambda \cdot \varphi(X, y)$
+\item $\varphi(X, y + z) = (X' X)^{-1} X' (y + z) = (X' X)^{-1} X' y + (X' X)^{-1} X' z = \varphi(X, y) + \varphi(X, z)$
+\end{enumerate}
+Что и требовалось доказать.
+\end{solution}
+\protect \hypertarget {soln:4.35}{}
+\begin{solution}{{4.35}}
+Нет, так как для функции $\varphi(X, y) = (X' X)^{-1} X' y$ не выполнено, например, свойство однородности по переменной $X$. Действительно,
+\[\varphi(X, \lambda \cdot y) = ((\lambda \cdot X)' (\lambda \cdot X))^{-1} (\lambda \cdot X)' y = \frac{1}{\lambda} \cdot (X' X)^{-1} X' y = \frac{1}{\lambda} \varphi(X, y)\].
+\end{solution}
+\protect \hypertarget {soln:4.36}{}
+\begin{solution}{{4.36}}
+$\tilde{\beta} = (X' CX)^{-1} X' Cy$, где
+\[C = \begin{pmatrix}
+1 & 0 & 0 & \cdots & 0 \\
+0 & 2 & 0 & \cdots & 0 \\
+0 & 0 & 3 & \ddots & \vdots \\
+\vdots & \vdots & \ddots & \ddots & 0 \\
+0 & 0 & \cdots & 0 & n \\
+\end{pmatrix} \]
+\end{solution}
+\protect \hypertarget {soln:4.37}{}
+\begin{solution}{{4.37}}
+$H\v1 = \v1 \Leftrightarrow H\pi = \pi$ поскольку, если матрицу $\pi$ записать по столбцам $\pi = \frac{1}{n}\begin{pmatrix}
+\v1 & \v1 & \ldots & \v1
+\end{pmatrix}$, то можно записать следующую цепочку равенств $H\pi = H\frac{1}{n}\begin{pmatrix}
+\v1 & \v1 & \ldots & \v1
+\end{pmatrix} = \frac{1}{n}\begin{pmatrix}
+H\v1 & H\v1 & \ldots & H\v1
+\end{pmatrix} = \frac{1}{n}\begin{pmatrix}
+\v1 & \v1 & \ldots & \v1
+\end{pmatrix} \Leftrightarrow H\v1 = \v1$.
+
+Свойство $H^2 = H$ имеет место независимо от выполнимости условия $H\v1 = \v1$. Действительно, $H^2 = X (X' X)^{-1}X'X(X'X)^{-1}X' = X(X'X)^{-1}X' = H$.
+
+Рассмотрите пример $y = \begin{pmatrix}
+1 & -1 & 0
+\end{pmatrix}'$, $x = \begin{pmatrix}
+1 & 0 & -1
+\end{pmatrix}'$. Постройте регрессию $y = \beta x + \e$ без свободного члена. Убедитесь, что $\sum_{i=1}^n \he_i = 0$ и $\bar{y} = \overline{\hy} = 0$, но $H\v1 \neq \v1$.
+
+
+Ответ: $H\pi = \pi$
+\end{solution}
+\protect \hypertarget {soln:4.38}{}
+\begin{solution}{{4.38}}
+(1), (2), (3), (5)
+\end{solution}
+\protect \hypertarget {soln:4.39}{}
+\begin{solution}{{4.39}}
+\begin{multline*}
+\E(\e' \pi \e) = \E(\tr[\e' \pi \e]) = \E(\tr[\pi \e \e']) = \tr[\pi \E(\e\e')]  =\\
+\tr[\pi \Var(\e)] = \tr\left[ \frac{1}{n} \begin{pmatrix}
+1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 \\
+\ldots & \ldots & \ldots & \ldots \\
+1 & 1 & 1 & 1 \\
+\end{pmatrix} \begin{pmatrix}
+\sigma_1^2 & 0 & \ldots & 0 \\
+0 & \sigma_2^2 & \ldots & 0 \\
+\ldots & \ldots & \ldots & \ldots \\
+0 & \ldots & 0 & \sigma_n^2 \\
+\end{pmatrix} \right] = \\
+\frac{1}{n} \tr\begin{pmatrix}
+\sigma_1^2 & \sigma_2^2 & \ldots & \sigma_n^2 \\
+\sigma_1^2 & \sigma_2^2 & \ldots & \sigma_n^2 \\
+\ldots & \ldots & \ldots & \ldots \\
+\sigma_1^2 & \sigma_2^2 & \ldots & \sigma_n^2 \\
+\end{pmatrix} = \frac{1}{n} \sum_{i=1}^n \sigma_i^2
+\end{multline*}
+\end{solution}
+\protect \hypertarget {soln:4.40}{}
+\begin{solution}{{4.40}}
+\begin{enumerate}
+\item
+\begin{multline*}
+RSS = \he'\he y' (I - H) y = y' y - y'Hy = y'y - y' X(X'X)^{-1}X'y ;
+\end{multline*}
+При этом $y'y=3924$,  а
+\begin{multline*}
+y' X(X'X)^{-1}X'y= \\
+ \begin{pmatrix}
+460 & 810 & 615 & 712
+\end{pmatrix} \begin{pmatrix}
+0.038 & -0.063 & -0.063 & 0.100 \\
+-0.063 & 1.129 & 1.107 & -2.192 \\
+-0.063 & 1.107 & 1.110 & -2.170 \\
+0.100 & -2.192 & -2.170 & 4.292 \\
+\end{pmatrix} \cdot \\
+\cdot
+\begin{pmatrix}
+460\\
+810\\
+615\\
+712\\
+\end{pmatrix} = 3051.2
+\end{multline*}
+Итого, $RSS= 3924 - 3051.2 = 872.8$
+
+$\hs_{\e}^2 = \frac{RSS}{n-k} = \frac{872.8}{100-4} = 9.0917$
+
+$\hVar(\hb) = \hs_{\e}^2 (X' X)^{-1} \Rightarrow \hCov(\hb_1, \hb_2) = -0.56939$, $\hVar(\hb_1) = 0.34251$, $\hVar(\hb_2) = 10.269$
+
+$\hCorr(\hb_1, \hb_2) = \frac{\hCov(\hb_1, \hb_2)}{\sqrt{\hVar(\hb_1)}\sqrt{\hVar(\hb_2)}} = -0.30361$
+
+\item(указание) $\hCorr(x_2, x_3) = \frac{\sum (x_{i2} - \overline{x}_2) (x_{i3} - \overline{x}_3)}{\sqrt{\sum (x_{i2} - \overline{x}_2)}\sqrt{\sum (x_{i3} - \overline{x}_3)}}$. Все необходимые величины можно извлечь из матрицы $X' X$ — это величины $\sum x_{i2}$ и $\sum x_{i3}$, а остальное -- из матрицы $X' (I - \pi) X = X' X - X' \pi X = X' X - (\pi X)' \pi X$. При этом имейте в виду, что
+$\pi X = \begin{pmatrix}
+1 & \overline{x}_1 & \overline{x}_2 & \overline{x}_3 \\
+\ldots & \ldots & \ldots & \ldots \\
+1 & \overline{x}_1 & \overline{x}_2 & \overline{x}_3 \\
+\end{pmatrix}$ и $\overline{x}_1 = 1.23$, $\overline{x}_2 = 0.96$, $\overline{x}_3 = 1.09$
+
+\item $\begin{pmatrix}
+\hb_1 \\
+\hb_2 \\
+\hb_3 \\
+\hb_4 \\
+\hb_5 \\
+\end{pmatrix} = \begin{pmatrix}
+0.03767 & -0.06263 & -0.06247 & 0.1003 \\
+-0.06263 & 1.129 & 1.107 & -2.192 \\
+-0.06247 & 1.107 & 1.110 & -2.170 \\
+0.1003 & -2.192 & -2.170 & 4.292 \\
+\end{pmatrix} \begin{pmatrix}
+460\\
+810\\
+615\\
+712\\
+\end{pmatrix} = \begin{pmatrix}
+-0.40221 \\
+6.1234 \\
+5.9097 \\
+-7.5256 \\
+\end{pmatrix}$
+
+$t = \frac{\hb_2}{\sqrt{\Var(\hb_2)}} \sim t_{100-4}$
+
+$t = \frac{\hb_2}{\sqrt{\Var(\hb_2)}} = \frac{6.1234}{\sqrt{10.269}} = 1.9109 \Rightarrow \hb_2$ — не значим.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:4.41}{}
+\begin{solution}{{4.41}}
+\begin{enumerate}
+\item $\hCov\begin{pmatrix}
+\hb_1 \\
+\hb_2 \\
+\hb_3 \\
+\end{pmatrix} = \hs_{\e}^2 (X'X)^{-1}$ — несмещённая оценка для ковариационной матрицы \\ МНК-коэффициентов. Действительно, $\E\hCov\begin{pmatrix}
+\hb_1 \\
+\hb_2 \\
+\hb_3 \\
+\end{pmatrix} = \E\hs_{\e}^2 (X'X)^{-1} = \sigma_{\e}^2 (X'X)^{-1} = \Cov\begin{pmatrix}
+\hb_1 \\
+\hb_2 \\
+\hb_3 \\
+\end{pmatrix}$. Поэтому искомая оценка $\hCov(\hb_2, \hb_3) = \hs_{\e}^2 \left[ (X' X)^{-1} \right]_{23}$, где $\left[ (X' X)^{-1} \right]_{23}$ — элемент матрицы $(X' X)^{-1}$, расположенный во второй строке, 3-м столбце.
+
+Заметим, что $\hs_{\hb_2}^2 = \hs_{\e}^2 \left[ (X' X)^{-1} \right]_{22} \Rightarrow 0.7^2 = \hs_{\e}^2 \cdot (3030) \Rightarrow \hs_{\e}^2 = 0.00016172$
+
+Значит, $\hCov(\hb_2, \hb_3) = 0.00016172 \cdot (-589) = -0.095253$.
+
+\item $t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\hVar(\hb_2 + \hb_3)}} \sim t_{n-k}$
+
+Требуется проверить $H_0: \beta_2 + \beta_3 = 1$.
+
+$\hVar(\hb_2 + \hb_3) = \hVar(\hb_2) + \hVar(\hb_3) + 2\hCov(\hb_2, \hb_3) = 0.7^2 + 0.138^2 + 2 \cdot 0.095253 = 0.319044$
+
+$t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\hVar(\hb_2 + \hb_3)}} = \frac{0.76 + 0.19 - 1}{\sqrt{0.319044}} = -0.088520674$
+
+Значит, гипотеза не отвергается на любом разумном уровне значимости.
+
+\item Мы знаем, что $\frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\hVar(\hb_2 + \hb_3)}} \sim t_{n-k} = t_{15-3}$, поэтому построить доверительный интервал для $\beta_2 + \beta_3$ не составляет труда. $\P \left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\hVar(\hb_2 + \hb_3)}} \right| < t^* \right) = 0.95$
+
+Обозначим $se=\sqrt{\hVar(\hb_2 + \hb_3)}$, тогда:
+
+\begin{multline*}
+\P \left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\hVar(\hb_2 + \hb_3)}} \right| < t^* \right) = \\
+\P \left( -t^* se < \hb_2 + \hb_3 - \beta_2 - \beta_3 < t^* se \right) = \\
+\P \left( -t^*se  - (\hb_2 + \hb_3) < - \beta_2 - \beta_3  < -(\hb_2 + \hb_3) + t^* se \right) =\\
+\P \left( (\hb_2 + \hb_3) + t^* se
+> \beta_2 + \beta_3
+> (\hb_2 + \hb_3) - t^* se \right)
+\end{multline*}
+Отсюда получаем доверительный интервал
+\begin{multline*}
+\beta_2 + \beta_3 \in \\
+[(0.76 + 0.19) - 2.16 \cdot 0.319;  (0.76 + 0.19) + 2.16 \cdot 0.319 ]
+\end{multline*}
+Или $0.26< \beta_2 + \beta_3  < 1.639  $
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:4.42}{}
+\begin{solution}{{4.42}}
+
+Метод наименьших квадратов:
+\[\he'\he\rightarrow \min_{\hb}\]
+\[(y-\hy)'(y-\hy)\rightarrow\min_{\hb}\]
+\[(y-X\hb)'(y-X\hb)\rightarrow\min_{\hb}\]
+\[y'y-\hb' X'y-y'X\hb+\hb'X'X\hb\rightarrow\min_{\hb}\]
+
+Воспользуемся тем, что : $\frac{\partial x'A}{\partial x'}=A'$, $\frac{\partial Ax}{\partial x'}=A$,
+$\frac{\partial x'Ax}{\partial x'}=x'(A'+A)$
+Условие первого порядка:
+\[-2(X'y)'+(X'X+(X'X)')\hb'=0\]
+\[-2X'y+2\hb X'X=0\]
+и
+\[\hb=(X'X)^{-1}X'y\]
+
+\begin{multline*}
+\Var(\hat\beta)=\Var((X'X)^{-1}X'y)=(X'X)^{-1}X'\Var(y)((X'X)^{-1}X')'=\\
+=(X'X)^{-1}X'\Var(X\beta+\e)X(X'X)^{-1}
+\end{multline*}
+Так как $\beta$ является константой, то $\Var(X\beta)=0$. Тогда
+\begin{multline*}
+\Var(\hat\beta)=(X'X)^{-1}X'\Var(X\beta+\e)X(X'X)^{-1}=\\=(X'X)^{-1}X'\Var(\e)X(X'X)^{-1}=
+(X'X)^{-1}X'\sigma^2X(X'X)^{-1}=\\=\sigma^2(X'X)^{-1}X'X(X'X)^{-1}=\sigma^2(X'X)^{-1}
+\end{multline*}
+\end{solution}
+\protect \hypertarget {soln:4.43}{}
+\begin{solution}{{4.43}}
+Находим $X'X$, её элементы и есть то, что нужно.
+\end{solution}
+\protect \hypertarget {soln:4.44}{}
+\begin{solution}{{4.44}}
+\[\Var(\hb_1+\hb_2-\hb_3)=\Var(\hb1)+\Var(\hb2)+\Var(\hb3)+
+2\Cov(\hb1,\hb2)-2\Cov(\hb1,\hb3)-2\Cov(\hb2,\hb3)\]
+
+\[\Var(\hb_1+\hb_2-\hb_3)=1/3+4/3+2-2/3+2=5\]
+\end{solution}
+\protect \hypertarget {soln:4.45}{}
+\begin{solution}{{4.45}}
+Из того, что $\Var(\hb)=\sigma^2\cdot (X'X)^{-1}$ видно, что $\sigma^2=\frac13$.
+
+$RSS=\sigma^2\cdot(n-k)=1/3\cdot 2=2/3$
+\[R^2=49\frac13/50=148/150\]
+
+
+$F=\frac{R^2/(k-1)}{(1-R^2)/(n-k)}=\frac{148/2}{2/2}=74$
+$F^{crit}_{0.05, 2,2}=19<74$
+гипотеза отвергается, регрессия значима.
+
+\end{solution}
+\protect \hypertarget {soln:4.46}{}
+\begin{solution}{{4.46}}
+
+\begin{enumerate}
+\item
+$\hb=(X'X)^{-1}X'y=
+\frac{1}{110}\begin{pmatrix}
+40&-10\\
+-10&30
+\end{pmatrix}
+\begin{pmatrix}
+40\\
+70
+\end{pmatrix}=
+\frac{1}{11}
+\begin{pmatrix}
+9\\
+17
+\end{pmatrix}
+$
+
+\item
+$X'X=
+\begin{pmatrix}
+n&\sum^n_{i=1}x_i\\
+\sum^n_{i=1}x_i&\sum^n_{i=1}x_i^2
+\end{pmatrix} $
+
+Теперь
+$X'X=\begin{pmatrix}
+31&11\\
+11&41
+\end{pmatrix}
+$,
+
+$X'y=\begin{pmatrix}
+1\ldots 1    &1\\
+X_{old, no\>ones}&1
+\end{pmatrix}
+\begin{pmatrix}
+y_{old}\\
+2
+\end{pmatrix}=
+\begin{pmatrix}
+42\\
+72
+\end{pmatrix}
+$
+
+\[
+\hb^*=\frac{1}{1150}\begin{pmatrix}
+41&-11\\
+-11&31
+\end{pmatrix}
+\begin{pmatrix}
+42\\
+72
+\end{pmatrix}=
+\frac{1}{115}
+\begin{pmatrix}
+93\\
+177
+\end{pmatrix}
+\]
+
+\item
+$RSS=y'(I-X(X'X)^{-1}X')y=y'y-y'X(X'X)^{-1}X'y=y'y-(X'y)'(X'X)^{-1}X'y$
+
+$RSS_{old}=80-\begin{pmatrix}
+40&70
+\end{pmatrix}\frac{1}{11}
+\begin{pmatrix}
+9\\
+17
+\end{pmatrix}<0
+$
+
+\todo[inline]{что-то здесь не так}
+
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:4.47}{}
+\begin{solution}{{4.47}}
+У $\he$ собственное число — $\lambda=0$, у $\hy$ собственное число — $\lambda=1$. Например, столбцы матрицы $X$ или их линейные комбинации являются собственными векторами с числом $\lambda=1$.
+\end{solution}
+\protect \hypertarget {soln:4.48}{}
+\begin{solution}{{4.48}}
+$\sigma^2( n_2  + \tr((X'X)^{-1}Z'Z))$
+\todo[inline]{проверить формулу!}
+\end{solution}
+\protect \hypertarget {soln:4.49}{}
+\begin{solution}{{4.49}}
+\[
+\hy_2^{new} = \hy_2^{old} + H_{22} \Delta y_2 = 5 + 0.7(-2.7) = 3.11
+\]
+\end{solution}
+\protect \hypertarget {soln:4.50}{}
+\begin{solution}{{4.50}}
+\begin{enumerate}
+\item $H = \frac{1}{n} S$, где $S$ — матрица строевого леса, то есть матрица из единиц размера $n\times n$.
+\item \ldots
+\item \ldots
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:4.51}{}
+\begin{solution}{{4.51}}
+$0 \leq H_{ii} \leq 1$,  лучше взять $\hy_{42}$
+
+Сделаем вектор-«пробник» $w$, где на первой позиции 1, а остальные — нули. Заметим, что $w'Hw=H_{11}$. С другой стороны, $w'Hw=w'H'Hw=(Hw)'Hw \geq 0$. Аналогично, $w'(I-H)w=1-H_{11}\geq 0$.
+\end{solution}
+\protect \hypertarget {soln:4.52}{}
+\begin{solution}{{4.52}}
+Да, ортогональны, т.к. $\sum v_i w_i = 0$. $\Cov(v,w)=-0.25 I$.
+\end{solution}
+\protect \hypertarget {soln:4.53}{}
+\begin{solution}{{4.53}}
+$d'C^{-1}d$
+\end{solution}
+\protect \hypertarget {soln:4.54}{}
+\begin{solution}{{4.54}}
+  $RSS_A = 1^2 + (-3)^2 = 10$, $RSS_B= 2^2 + 2^2 = 8$. $k_A = 0$, $k_B=1$.
+\end{solution}
+\protect \hypertarget {soln:4.55}{}
+\begin{solution}{{4.55}}
+Трюк идейно такой, на примере одной объясняющей переменной:
+
+\begin{enumerate}
+\item Мы хотим оценить две регрессии: $y_a$ на $x_a$ и $y_b$ на $x_b$.
+\item Записываем $y_a$, а под ним $y_b$, получаем $y$.
+\item Напротив $y_a$ регрессорами будут  $x_a$ и столбец нулей.
+\item Напротив $y_b$ регрессорами будут столбец нулей и $x_b$.
+\item Строим одну регрессию
+\[
+y_i = \beta_a d_{ai}x_{ai} + \beta_b d_{bi}x_{bi} + u_i.
+\]
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:4.56}{}
+\begin{solution}{{4.56}}
+Чтобы оценить $a_{21}$ — построить регрессию $u_{2t}$ на $u_{1t}$ и взять оценку коэффициента с противоположным знаком.
+
+Чтобы оценить $a_{31}$, $a_{32}$ — построить регрессию $u_{3t}$ на $u_{1t}$ и $u_{2t}$ и взять оценки коэффициентов с противоположным знаком.
+\end{solution}
+\protect \hypertarget {soln:4.57}{}
+\begin{solution}{{4.57}}
+\[
+\hat B = (X'X)^{-1}X'Y
+\]
+
+\[
+\hat a = \hat u' \hat v / (n - k)
+\]
+\end{solution}
+\protect \hypertarget {soln:4.58}{}
+\begin{solution}{{4.58}}
+При ортогональных регрессорах $\hb_j = \hat\gamma_j$. Если регрессоры дополнительно стандартизированы, то $R^2 = R^2_1 + \ldots + R^2_j$.
+\end{solution}
+\protect \hypertarget {soln:4.59}{}
+\begin{solution}{{4.59}}
+Заметим, что $R^2$ не изменится, если перейти к ортонормальному базису в пространстве регрессоров. В этом базисе, кстати, окажется, что $R^2 = \frac{\hb'\hb}{TSS}$. В силу ортогональности регрессоров $R^2$ распадётся в сумму $R^2_j$, где $R^2_j$ — коэффициент в регрессии зависимой переменной на константу и $j$-ый регрессор.
+
+В силу соответствующей одномерной задачи $\E(R^2_j) = \frac{1}{n-1}$. Следовательно, $\E(R^2) = \frac{k-1}{n-1}=\frac{3}{10}$.
+\end{solution}
+\protect \hypertarget {soln:4.60}{}
+\begin{solution}{{4.60}}
+Коэффициенты выйдут разные, а прогнозы и ковариационные матрицы прогнозов — одинаковые.
+Заметим, что:
+\[
+X'X = R'Q'QR=R'R.
+\]
+Матрица-шляпница для Рапунцель:
+\[
+H_X = X(X'X)^{-1}X'=QR(R'R)^{-1}R'Q' = QRR^{-1}R'^{-1}R'Q'=QQ'.
+\]
+Матрица-шляпница для Флина:
+\[
+H_Q = Q(Q'Q)^{-1}Q' = QIQ'=QQ'.
+\]
+Осталось вспомнить, что всё определяется матрицей-шляпницей, $\hy=Hy$, $\Var(\hy|X)=\sigma^2 H$.
+\end{solution}

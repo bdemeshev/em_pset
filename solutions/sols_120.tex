@@ -1,0 +1,290 @@
+\protect \hypertarget {soln:11.1}{}
+\begin{solution}{{11.1}}
+Наличие ненулевой корреляции между $y_t$ и $y_{t-s}$.
+\end{solution}
+\protect \hypertarget {soln:11.2}{}
+\begin{solution}{{11.2}}
+\begin{enumerate}
+\item Процесс $AR(2)$, т.к. две первые частные корреляции значимо отличаются от нуля, а гипотезы о том, что каждая последующая равна нулю не отвергаются.
+\item Можно использовать одну из двух статистик
+\[
+\text{Ljung-Box}=n(n+2)\sum_{k=1}^3\frac{\hat{\rho}_k^2}{n-k}=
+0.4288623
+\]
+\[
+\text{Box-Pierce}=n\sum_{k=1}^3\hat{\rho}_k^2=
+0.4076341
+\]
+Критическое значение хи-квадрат распределения с 3-мя степенями свободы для $\alpha=0.05$ равно $\chi^2_{3,crit}=
+7.814728
+$.
+Вывод: гипотеза $H_0$ об отсутствии корреляции ошибок модели не отвергается.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:11.3}{}
+\begin{solution}{{11.3}}
+
+\begin{enumerate}
+\item $H_0$: ряд содержит единичный корень, $\beta=0$; $H_a$: ряд не содержит единичного корня, $\beta<0$
+\item $ADF=-0.4/0.1=-4$, $ADF_{crit}=
+-2.890614
+$, $H_0$ отвергается.
+\item Ряд стационарен.
+\item При верной $H_0$ ряд не стационарен, и  $t$-статистика имеет не $t$-распределение, а распределение Дики-Фуллера.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:11.4}{}
+\begin{solution}{{11.4}}
+\end{solution}
+\protect \hypertarget {soln:11.5}{}
+\begin{solution}{{11.5}}
+\end{solution}
+\protect \hypertarget {soln:11.6}{}
+\begin{solution}{{11.6}}
+\end{solution}
+\protect \hypertarget {soln:11.7}{}
+\begin{solution}{{11.7}}
+\end{solution}
+\protect \hypertarget {soln:11.8}{}
+\begin{solution}{{11.8}}
+\end{solution}
+\protect \hypertarget {soln:11.9}{}
+\begin{solution}{{11.9}}
+\end{solution}
+\protect \hypertarget {soln:11.10}{}
+\begin{solution}{{11.10}}
+\begin{enumerate}
+\item $\E(\e_t)=0$, $\Var(\e_t)=\sigma^2/(1-\rho^2)$;
+\item $\Cov(\e_t,\e_{t+h})=\rho^h\cdot \sigma^2/(1-\rho^2)$;
+\item $\Corr(\e_t,\e_{t+h})=\rho^h$.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:11.11}{}
+\begin{solution}{{11.11}}
+\end{solution}
+\protect \hypertarget {soln:11.12}{}
+\begin{solution}{{11.12}}
+Все линейные комбинации стационарны.
+\end{solution}
+\protect \hypertarget {soln:11.13}{}
+\begin{solution}{{11.13}}
+Они будут примерно одинаковы. Оценка наклона определяется автоковариационной функцией.
+\end{solution}
+\protect \hypertarget {soln:11.14}{}
+\begin{solution}{{11.14}}
+\end{solution}
+\protect \hypertarget {soln:11.15}{}
+\begin{solution}{{11.15}}
+$x_{t}=(1-\L )^{t}y_{t}$
+\end{solution}
+\protect \hypertarget {soln:11.16}{}
+\begin{solution}{{11.16}}
+$ F_{n}=\L (1+\L )F_{n} $, значит $ F_{n}=\L ^{k}(1+\L )^{k}F_{n} $ или $ F_{n+k}=(1+\L )^{k}F_{n} $
+\end{solution}
+\protect \hypertarget {soln:11.17}{}
+\begin{solution}{{11.17}}
+а - неверно, б - верно.
+\end{solution}
+\protect \hypertarget {soln:11.18}{}
+\begin{solution}{{11.18}}
+\end{solution}
+\protect \hypertarget {soln:11.19}{}
+\begin{solution}{{11.19}}
+\end{solution}
+\protect \hypertarget {soln:11.20}{}
+\begin{solution}{{11.20}}
+\end{solution}
+\protect \hypertarget {soln:11.21}{}
+\begin{solution}{{11.21}}
+\end{solution}
+\protect \hypertarget {soln:11.22}{}
+\begin{solution}{{11.22}}
+\end{solution}
+\protect \hypertarget {soln:11.23}{}
+\begin{solution}{{11.23}}
+$1$, $2$, $2$
+\end{solution}
+\protect \hypertarget {soln:11.24}{}
+\begin{solution}{{11.24}}
+\end{solution}
+\protect \hypertarget {soln:11.25}{}
+\begin{solution}{{11.25}}
+\end{solution}
+\protect \hypertarget {soln:11.26}{}
+\begin{solution}{{11.26}}
+\end{solution}
+\protect \hypertarget {soln:11.27}{}
+\begin{solution}{{11.27}}
+Несмещённость доказывается с помощью подсчёта $\E(\hb)$, а предпосылка о $\E(\e)=0$ при автокорреляции ошибок не нарушена.
+\end{solution}
+\protect \hypertarget {soln:11.28}{}
+\begin{solution}{{11.28}}
+\end{solution}
+\protect \hypertarget {soln:11.29}{}
+\begin{solution}{{11.29}}
+\begin{enumerate}
+\item Поскольку имеют место соотношения $\varepsilon_1 = \rho \varepsilon_0 + u_1$ и $Y_1 =\mu + \varepsilon_1$, то из условия задачи получаем, что $\varepsilon_1 \sim \cN(0,\sigma^2 / (1 - \rho^2))$
+и $Y_1 \sim \cN\mu,\sigma^2 / (1 - \rho^2))$. Поэтому
+\[
+f_{Y_1}(y_1) = \frac{1}{\sqrt{2\pi\sigma^2/(1-\rho^2)}}\exp{\left(-\frac{(y_1 - \mu)^2}{2\sigma^2/(1 - \rho^2)}\right)}.
+\]
+
+Далее, найдем $f_{Y_2|Y_1}(y_2|y_1)$. Учитывая, что $Y_2 = \rho Y_1 + (1- \rho) \mu + u_2$, получаем $Y_2|\{Y_1 = y_1\} \sim \cN\rho y_1 + (1- \rho) \mu, \sigma^2)$. Значит,
+\[
+f_{Y_2|Y_1}(y_2|y_1) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp{\left(-\frac{(y_2 - \rho y_1 - (1- \rho) \mu)^2}{2\sigma^2}\right)}.
+\]
+
+Действуя аналогично, получаем, что для всех $t \geq 2$ справедлива формула
+\[
+f_{Y_{t}|Y_{t-1}}(y_{t}|y_{t-1}) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp{\left(-\frac{(y_{t} - \rho y_{t-1} - (1- \rho) \mu)^2}{2\sigma^2}\right)}.
+\]
+
+Таким образом, находим функцию правдоподобия
+\[
+\mathrm{L}(\mu, \rho, \sigma^2) = f_{Y_T,\ldots,Y_1}(y_T,\dots,y_1) = f_{Y_1}(y_1)\prod_{t=2}^{T}f_{Y_t|Y_{t-1}}(y_t|y_{t-1}) \text{,}
+\]
+где $f_{Y_1}(y_1)$ и $f_{Y_t|Y_{t-1}}(y_t|y_{t-1})$ получены выше.
+
+\item Для нахождения неизвестных параметров модели запишем логарифмическую условную функцию правдоподобия:
+\[
+\ell(\mu, \rho, \sigma^2|Y_1 = y_1) = \sum_{t=2}^{T}\log{f_{Y_t|Y_{t-1}}(y_t|y_{t-1})} =
+\]
+\[
+=-\frac{T-1}{2} \log(2 \pi) - \frac{T-1}{2} \log{\sigma^2} - \frac{1}{2\sigma^2} \sum_{t=2}^{T}(y_t - \rho y_{t-1} - (1 - \rho) \mu)^2 \text{.}
+\]
+
+Найдем производные функции $\ell(\mu, \rho, \sigma^2|Y_1 = y_1)$ по неизвестным параметрам:
+\[
+\frac{\partial \ell}{\partial \mu} = -\frac{1}{2\sigma^2} \sum_{t=2}^{T} 2(y_t - \rho y_{t-1} - (1 - \rho) \mu) \cdot (\rho - 1) \text{,}
+\]
+\[
+\frac{\partial \ell}{\partial \rho} = -\frac{1}{2\sigma^2} \sum_{t=2}^{T} 2(y_t - \rho y_{t-1} - (1 - \rho) \mu) \cdot (\mu - y_{t-1}) \text{,}
+\]
+\[
+\frac{\partial \ell}{\partial {\sigma^2}} =  - \frac{T-1}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{t=2}^{T}(y_t - \rho y_{t-1} - (1 - \rho) \mu)^2 \text{.}
+\]
+
+Оценки неизвестных параметров модели могут быть получены как решение следующей системы уравнений:
+\[
+\left\{
+  \begin{aligned}
+    \frac{\partial \ell}{\partial \mu} = 0 \text{,} \\
+    \frac{\partial \ell}{\partial \rho} = 0 \text{,} \\
+    \frac{\partial \ell}{\partial {\sigma^2}} = 0 \text{.}
+  \end{aligned}
+\right.
+\]
+
+Из первого уравнения системы получаем, что
+\[
+\sum_{t=2}^{T}y_{t} - \hat{\rho} \sum_{t=2}^{T}y_{t-1} = (T - 1) (1- \hat{\rho}) \hat{\mu} \text{,}
+\]
+откуда
+\[
+\hat{\mu} = \frac{\sum_{t=2}^{T}y_{t} - \hat{\rho} \sum_{t=2}^{T}y_{t-1}}{(T - 1) (1- \hat{\rho})} = \frac{3 - \hat{\rho} \cdot 3}{4\cdot(1-\hat{\rho})} = \frac{3}{4} \text{.}
+\]
+
+Далее, если второе уравнение системы переписать в виде
+\[
+\sum_{t=2}^{T}(y_t - \hat{\mu} - \hat{\rho} (y_{t-1} - \hat{\mu}))(y_{t-1} - \hat{\mu}) = 0 \text{,}
+\]
+то легко видеть, что
+\[
+\hat{\rho} = \frac{\sum_{t=2}^{T}(y_t - \hat{\mu})(y_{t-1} - \hat{\mu})}{\sum_{t=2}^{T}(y_{t-1} - \hat{\mu})^2} \text{.}
+\]
+Следовательно, $\hat{\rho} =-1/11= -0.0909$.
+
+Наконец, из третьего уравнения системы
+\[
+\hs^2 =\frac{1}{T-1} \sum_{t=2}^{T}(y_t - \hat{\rho} y_{t-1} - (1 - \hat{\rho}) \hat{\mu})^2 \text{.}
+\]
+Значит, $\hs^2 = 165/242= 0.6818$. Ответы: $\hat{\mu} = 3/4= 0.75$, $\hat{\rho} = -1/11=-0.0909$, $\hs^2 =165/242=0.6818$.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:11.30}{}
+\begin{solution}{{11.30}}
+Рассмотрим модель без константы. Тогда ковариационная матрица коэффициентов пропорциональна матрице
+\[
+\begin{pmatrix}
+1 & -\hat{\rho}_1 \\
+-\hat{\rho}_1 & 1
+\end{pmatrix}
+\]
+\end{solution}
+\protect \hypertarget {soln:11.31}{}
+\begin{solution}{{11.31}}
+\end{solution}
+\protect \hypertarget {soln:11.32}{}
+\begin{solution}{{11.32}}
+\end{solution}
+\protect \hypertarget {soln:11.33}{}
+\begin{solution}{{11.33}}
+\end{solution}
+\protect \hypertarget {soln:11.34}{}
+\begin{solution}{{11.34}}
+\end{solution}
+\protect \hypertarget {soln:11.35}{}
+\begin{solution}{{11.35}}
+\end{solution}
+\protect \hypertarget {soln:11.36}{}
+\begin{solution}{{11.36}}
+
+Для простоты закроем глаза на малое количество наблюдений и как индейцы пираха будем считать, что пять — это много.
+
+\end{solution}
+\protect \hypertarget {soln:11.37}{}
+\begin{solution}{{11.37}}
+
+\end{solution}
+\protect \hypertarget {soln:11.38}{}
+\begin{solution}{{11.38}}
+Процесс стационарен только при $y_1=4+\frac{2}{\sqrt{3}}\e_1$. Фразу нужно понимать как «у стохастического разностного уравнения $y_t=2+0.5y_{t-1}+\e_t$ есть стационарное решение».
+\end{solution}
+\protect \hypertarget {soln:11.39}{}
+\begin{solution}{{11.39}}
+\begin{enumerate}
+\item $\E(\e_t)=0$, $\Var(\e_1)=\sigma^2$, $\Var(\e_t)=2\sigma^2$ при $t\geq 2$.  Гетероскедастичная.
+\item $\Cov(e_t,e_{t+1})=\sigma^2$. Автокоррелированная.
+\item $\hb$ — несмещённая, неэффективная
+\item Более эффективной будет $\hb_{gls}=(X'V^{-1}X)^{-1}X'V^{-1}y$, где
+\[
+X=\begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix}
+\]
+
+Матрица $V$ известна с точностью до константы $\sigma^2$, но в формуле для $\hb_{gls}$ неизвестная $\sigma^2$ сократится.
+
+Другой способ построить эффективную оценку — применить МНК к преобразованным наблюдениям, т.е. $\hb_{gls}=\frac{\sum x'_i y'_i}{\sum x_i^{\prime 2}}$, где $y'_1=y_1$, $x'_1=x_1$, $y'_t=y_t-y_{t-1}$, $x'_t=x_t-x_{t-1}$ при $t\geq 2$.
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:11.40}{}
+\begin{solution}{{11.40}}
+Да, стационарный.
+\end{solution}
+\protect \hypertarget {soln:11.41}{}
+\begin{solution}{{11.41}}
+Да, получается.
+\end{solution}
+\protect \hypertarget {soln:11.42}{}
+\begin{solution}{{11.42}}
+Да, это белый шум. Величина $N$ распределена биномиально, $Bin(n=100,p=1/2)$, $\E(N)=50$.
+\end{solution}
+\protect \hypertarget {soln:11.43}{}
+\begin{solution}{{11.43}}
+Среднее количество пересечений равно 50 помножить на вероятность того, что два соседних $y_t$ разного знака. Найдём вдвое меньшу вероятность, $\P(y_1>0, y_2 <0)$.
+\end{solution}
+\protect \hypertarget {soln:11.44}{}
+\begin{solution}{{11.44}}
+\end{solution}
+\protect \hypertarget {soln:11.45}{}
+\begin{solution}{{11.45}}
+Приписать нолики и точки на вертикальной оси.
+\end{solution}
+\protect \hypertarget {soln:11.46}{}
+\begin{solution}{{11.46}}
+В данном случае статистика $DW$ не применима, так как есть лаг $y_{t-1}$ среди регрессоров.
+\end{solution}

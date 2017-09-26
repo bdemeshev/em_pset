@@ -1,0 +1,147 @@
+\protect \hypertarget {soln:6.1}{}
+\begin{solution}{{6.1}}
+$f(x)$ чётная, $\E(X)=0$, $\Var(X)=\pi^2/3$, логистическое похоже на $N(0,\pi^2/3)$
+\end{solution}
+\protect \hypertarget {soln:6.2}{}
+\begin{solution}{{6.2}}
+$\ln \left(\frac{\P(y_i=1)}{\P(y_i=0)} \right)=\beta_1+\beta_2 x_i$.
+\end{solution}
+\protect \hypertarget {soln:6.3}{}
+\begin{solution}{{6.3}}
+\end{solution}
+\protect \hypertarget {soln:6.4}{}
+\begin{solution}{{6.4}}
+\end{solution}
+\protect \hypertarget {soln:6.5}{}
+\begin{solution}{{6.5}}
+$z = \frac{\hb_2}{se(\hb_2)}=\frac{3}{0.3}=10$, $H_0$ отвергается.
+Предельный эффект равен $\hb_2 \Lambda'(-0.8)\approx 0.642$.
+Для нахождения $se(\hat\P)$ найдём линейную аппроксимацию для $\Lambda(\hb_1 + \hb_2 x)$ в окрестности точки $\hb_1=0.7$, $\hb_2=3$. Получаем
+\[
+\Lambda(\hb_1 + \hb_2 x) \approx \Lambda(\beta_1 + \beta_2 x) + \Lambda'(\beta_1 + \beta_2 x) (\hb_1 - \beta_1) + \Lambda'(\beta_1 + \beta_2 x)x(\hb_2 - \beta_2).
+\]
+\end{solution}
+\protect \hypertarget {soln:6.6}{}
+\begin{solution}{{6.6}}
+Для краткости введем следующие обозначения: $y_i = honey_i$, $d_i = bee_i$\footnote{$Y_i$ — случайный Мёд, $y_i$ — реализация случайного Мёда (наблюдаемый Мёд)}.
+
+\begin{enumerate}
+\item Функция правдоподобия имеет следующий вид:
+
+\begin{multline*}
+\text{L}(\beta_1, \beta_2) = \prod_{i=1}^n \P_{\beta_1, \beta_2} \left(\left\lbrace Y_i = y_i \right\rbrace \right) =\\
+ \prod_{i: y_i = 0} \P_{\beta_1, \beta_2} \left(\left\lbrace Y_i = 1 \right\rbrace \right) \cdot \prod_{i: y_i = 1} \P_{\beta_1, \beta_2} \left(\left\lbrace Y_i = 0 \right\rbrace \right) =\\
+\prod_{i: y_i = 1} \Lambda(\beta_1 + \beta_2 d_i) \cdot \prod_{i: y_i = 0} [1 - \Lambda(\beta_1 + \beta_2 d_i)] = \\
+\prod_{i: y_i = 1, d_i = 1} \Lambda(\beta_1 + \beta_2) \cdot \prod_{i: y_i = 1, d_i = 0} \Lambda(\beta_1) \cdot \prod_{i: y_i = 0, d_i = 1} [1 - \Lambda(\beta_1 + \beta_2)] \cdot \\
+\cdot \prod_{i: y_i = 0, d_i = 0} [1 - \Lambda(\beta_1)] = \\
+\Lambda(\beta_1 + \beta_2)^{\#\{i: y_i=1, d_i=1\}} \cdot \Lambda(\beta_1)^{\#\{i: y_i=1, d_i=0\}} \cdot [1 - \Lambda(\beta_1 + \beta_2)]^{\#\{i: y_i=0, d_i=1\}} \cdot \\
+\cdot  [1 - \Lambda(\beta_1)]^{\#\{i: y_i=0, d_i=0\}}
+\end{multline*}
+где
+\[
+\Lambda(x) = \frac{e^x}{1 + e^x}
+\]
+логистическая функция распределения, $\#A$ означает число элементов множества $A$.
+
+\item Введём следующие обозначения:
+\[
+a = \Lambda(\beta_1)
+\]
+\[
+b = \Lambda(\beta_1 + \beta_2)
+\]
+
+
+
+Тогда с учетом имеющихся наблюдений функция правдоподобия принимает вид:
+
+\[
+\text{L}(a, b) = b^{12} \cdot a^{32} \cdot (1 - b)^{36} \cdot (1 - a)^{20}
+\]
+
+Логарифмическая функция правдоподобия:
+
+\[
+\ell(a, b) = \ln \text{L}(a, b) = 12\ln b + 32\ln a + 36\ln(1-b) + 20\ln(1 - a)
+\]
+
+Решая систему уравнений правдоподобия
+
+\[
+\begin{cases}
+\frac{\partial \ell}{\partial a} = \frac{32}{a} - \frac{20}{1 - a} = 0 \\
+\frac{\partial \ell}{\partial b} = \frac{12}{b} - \frac{36}{1 - b} = 0 \\
+\end{cases}
+\]
+получаем $\hat{a} = \frac{8}{13}$, $\hat{b} = \frac{1}{4}$. Находим $\hb_{1, UR} = \ln\left( \frac{\hat{a}}{1 - \hat{a}} \right)= \ln \left(\frac{8}{5} \right) = 0.47$. Далее получаем, что $\hb_{1, UR} + \hb_{2, UR} = \ln \left( \frac{\hat{b}}{1 - \hat{b}} \right)$. Следовательно, $\hb_{2, UR} = \ln \left( \frac{\hat{b}}{1 - \hat{b}} \right) - \hb_{1, UR} = \ln \left( \frac{1}{3} \right) - \ln \left( \frac{8}{5} \right) = -1.57$.
+
+\item Гипотеза, состоящая в том, что правильность Мёда не связана с правильностью
+пчёл, формализуется как $H_0: \beta_2 = 0$. Протестируем данную гипотезу при помощи теста
+отношения правдоподобия. Положим в функции правдоподобия $\text{L}(\beta_1, \beta_2)$ $\beta_2 = 0$. Тогда получим
+\[
+\text{L}(a, b=a) = a^{32+12} \cdot (1-a)^{20+36}
+\]
+В этом случае логарифмическая функция правдоподобия имеет вид:
+\[
+\ell(a, b=a) := \text{L}(a, b=a) = 44 \ln a + 56 \ln(1-a)
+\]
+Решаем уравнение правдоподобия
+\[
+\frac{\partial \ell}{\partial a} = \frac{44}{a} - \frac{56}{1 - a} = 0
+\]
+и получаем $\hat{a} = \frac{11}{25}$. Следовательно, $\hb_{1, R} = -0.24$ и $\hb_{2, R} = 0$.
+
+Статистика отношения правдоподобия имеет вид:
+\[
+LR = -2(\ell(\hb_{1, R}, \hb_{2, R}) - \ell(\hb_{1, UR}, \hb_{2, UR}))
+\]
+и имеет асимптотическое $\chi^2$ распределение с числом степеней свободы, равным числу ограничений, составляющих гипотезу $H_0$, то есть в данном случае $LR \overset{a}{\sim} \chi^2_1$.
+
+Находим наблюдаемое значение статистики отношения правдоподобия:
+\begin{multline*}
+l(\hb_{1, R}, \hb_{2, R}) = \ell(\hat{a}_R, \hat{b}_R = \hat{a}_R) = 44\ln\hat{a}_R + 56\ln[1-\hat{a}_R] =\\
+ 44\ln \left[ \frac{11}{25} \right] + 56\ln \left[ 1 - \frac{11}{25} \right] = -68.59
+\end{multline*}
+\begin{multline*}
+l(\hb_{1, UR}, \hb_{2, UR}) = \ell(\hat{a}_{UR}, \hat{b}_{UR}) =\\
+ 12\ln \hat{b}_{UR} + 32 \ln \hat{a}_{UR} + 36\ln[1 - \hat{b}_{UR}] + 20\ln[1 - \hat{a}_{UR}] = \\
+12\ln \left[ \frac{1}{4} \right] + 32\ln \left[ \frac{8}{13} \right] + 36\ln \left[ 1 - \frac{1}{4} \right] + 20\ln \left[1 - \frac{8}{13} \right] = -61.63
+\end{multline*}
+Следовательно, $LR = -2(-68.59 + 61.63) = 13.92$, при этом критическое значение $\chi^2$ распределения с одной степенью свободы для 5\% уровня значимости равна 3.84. Значит, на основании теста отношения правдоподобия гипотеза $H_0: \beta_2 = 0$ должна быть отвергнута. Таким образом, данные показывают, что, в действительности, правильность мёда связана с правильностью пчёл.
+
+\item
+\begin{multline*}
+\hat{\P}\{honey = 0| bee = 0\} = 1 - \hat{\P}\{honey=1|bee=0\} = \\
+1 - \frac{\exp\{\hb_{1, UR} + \hb_{2, UR} \cdot 0\}}{1 + \exp\{\hb_{1, UR} + \hb_{2, UR} \cdot 0\}} =\\
+1 - \frac{\exp\{\ln\left( \frac{8}{5} \right)\}}{1 + \exp\{\ln\left( \frac{8}{5} \right)\}} = 1 - 0.62 = 0.38
+\end{multline*}
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:6.7}{}
+\begin{solution}{{6.7}}
+в теории оценки не существуют, в R получатся некие точечные оценки, достаточно далеко лежащие от нуля с огромными стандартными ошибками и $P$-значением близким к 1.
+\end{solution}
+\protect \hypertarget {soln:6.8}{}
+\begin{solution}{{6.8}}
+Из условий первого порядка для метода максимального правдоподобия следует, что $\sum_{i=1}^n y_i = \sum_{i=1}^n \hat{p}_i=70$.
+\end{solution}
+\protect \hypertarget {soln:6.9}{}
+\begin{solution}{{6.9}}
+\end{solution}
+\protect \hypertarget {soln:6.10}{}
+\begin{solution}{{6.10}}
+\end{solution}
+\protect \hypertarget {soln:6.11}{}
+\begin{solution}{{6.11}}
+Если в пробит-уравнении ненаблюдаемой переменной домножить все коэффициенты и стандартную ошибку на произвольную константу, то в результате получится ровно та же модель. Следовательно, модель с $\e_i \sim \cN(0;\sigma^2)$ не идентифицируема. Поэтому надо взять какое-то нормировочное условие. Можно взять, например, $\beta_2 = 42$, но традиционно берут $\e_i \sim \cN(0;1)$.
+\end{solution}
+\protect \hypertarget {soln:6.12}{}
+\begin{solution}{{6.12}}
+Предельный эффект максимален при $x=31/6$, достигается он при максимальной производной $\Lambda'(\hat \beta_1 + \hat\beta_2x + \hat\beta_3z)$, то есть при $\hat \beta_1 + \hat\beta_2x + \hat\beta_3z=0$.
+\end{solution}
+\protect \hypertarget {soln:6.13}{}
+\begin{solution}{{6.13}}
+\end{solution}
+\protect \hypertarget {soln:6.14}{}
+\begin{solution}{{6.14}}
+\end{solution}

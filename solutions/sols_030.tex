@@ -1,0 +1,729 @@
+\protect \hypertarget {soln:3.1}{}
+\begin{solution}{{3.1}}
+$t$-статистики, только они бывают отрицательными из перечисленных вариантов.
+\end{solution}
+\protect \hypertarget {soln:3.2}{}
+\begin{solution}{{3.2}}
+\begin{enumerate}
+\item Поскольку $\frac{\hs_{\e}^2(n-k)}{\sigma_{\e}^2} \sim \chi ^2(n-k)$, где $\hs_{\e}^2 = \frac{RSS}{n-k}$, $k$ = 5. $\P(\chi_{l}^2 < \frac{\hs_{\e}^2}{\sigma_{\e}^2} < \chi_{u}^2) = 0.8$. Преобразовав, получим $\P(\frac{\hs_{\e}^2(n-5)}{\chi_{u}^2} < \sigma_{\e}^2 < \frac{\hs_{\e}^2(n-5)}{\chi_{l}^2}) = 0.8$, где $\chi_{u}^2 = \chi_{n-5; 0.1} ^2$, $\chi_{l}^2 = \chi_{n-5; 0.9} ^2$ — соответствующие квантили. По условию $\frac{\hs_{\e}^2(n-5)}{\chi_{l}^2} = A = 45, \frac{\hs_{\e}^2(n-5)}{\chi_{u}^2} = B = 87.942.$ Поделим $B$ на $A$, отсюда следует $\frac{\chi_{u}^2}{\chi_{l}^2} = 1.95426.$ Перебором квантилей в таблице для хи-квадрат распределения мы находим, что $\frac{\chi_{30; 0.1}^2}{\chi_{30; 0.9}^2} = \frac{40.256}{20.599} = 1.95426.$ Значит, $n - 5 = 30$, отсюда следует, что $n = 35.$
+\item $\hs_{\e}^2 = 45 \frac{\chi_{u}^2}{n-5} = 45 \frac{40.256}{30} = 60.384$
+\end{enumerate}
+
+Решение в R:
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{df} \hlkwb{<-} \hlnum{1}\hlopt{:}\hlnum{200}
+\hlstd{a} \hlkwb{<-} \hlkwd{qchisq}\hlstd{(}\hlnum{0.1}\hlstd{, df)}
+\hlstd{b} \hlkwb{<-} \hlkwd{qchisq}\hlstd{(}\hlnum{0.9}\hlstd{, df)}
+\hlstd{c} \hlkwb{<-} \hlstd{b} \hlopt{/} \hlstd{a}
+\hlstd{d} \hlkwb{<-} \hlnum{87.942} \hlopt{/} \hlnum{45}
+\hlstd{penalty} \hlkwb{<-} \hlstd{(c} \hlopt{-} \hlstd{d)}\hlopt{^}\hlnum{2}
+\hlstd{df_ans} \hlkwb{<-} \hlstd{df[}\hlkwd{which}\hlstd{(penalty} \hlopt{==} \hlkwd{min}\hlstd{(penalty))]}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+Количество степеней свободы $n-5$ должно быть равно $\verb|df_ans|=
+30
+$.
+
+\end{solution}
+\protect \hypertarget {soln:3.3}{}
+\begin{solution}{{3.3}}
+
+Упорядочим нашу выборку таким образом, чтобы наблюдения с номерами с 1 по 35 относились к мужчинам, а наблюдения с номерами с 36 по 58 относились к женщинам.
+Тогда уравнение
+\begin{multline*}
+\ln W_i=\beta_1+\beta_2 Edu_i+\beta_3 Exp_i+\beta_4 Exp_i^2+\\
+\beta_5 Fedu_i+\beta_6 Medu_i+\e_i, i=1, \ldots, 35
+\end{multline*}
+
+соответствует регрессии, построенной для подвыборки из мужчин, а уравнение
+\begin{multline*}
+\ln W_i=\gamma_1+\gamma_2 Edu_i+\gamma_3 Exp_i+\gamma_4 Exp_i^2+\\
+\gamma_5 Fedu_i+\gamma_6 Medu_i+\e_i, i=36, \ldots, 58
+\end{multline*}
+соответствует регрессии, построенной для подвыборки из женщин. Введем следующие переменные:
+
+\[
+d_i =
+\begin{cases}
+    1, & \text{если $i$--ое наблюдение соответствует мужчине,} \\
+    0, & \text{в противном случае;}
+\end{cases}
+\]
+
+\[
+dum_i =
+\begin{cases}
+    1, & \text{если $i$--ое наблюдение соответствует женщине,} \\
+    0, & \text{в противном случае.}
+\end{cases}
+\]
+
+Рассмотрим следующее уравнение регрессии:
+\begin{multline*}
+\ln W_i=\beta_1 d_i+\gamma_1 dum_i+\beta_2 Edu_i d_i+\gamma_2
+Edu_i dum_i+\beta_3 Exp_i d_i+\\
+\gamma_3 Exp_i dum_i+\beta_4 Exp_i^2 d_i + \gamma_4 Exp_i^2 dum_i + \beta_5 Fedu_i d_i +\gamma_5 Fedu_i dum_i+\\
+\beta_6 Medu_i d_i+\gamma_6 Medu_i dum_i+\e_i, i=1, \ldots, 58
+\end{multline*}
+Гипотеза, которую требуется проверить в данной задаче, имеет вид
+
+\[
+H_0:
+  \begin{cases}
+    \beta_1 =\gamma_1, \\
+    \beta_2 =\gamma_2 , & H_1:|\beta_1-\gamma_1|+|\beta_2-\gamma_2|+\dots+|\beta_6-\gamma_6| > 0.\\
+    \dots   \\
+    \beta_6=\gamma_6 \\
+ \end{cases}
+\]
+
+Тогда регрессия
+\begin{multline*}
+\ln W_i=\beta_1 d_i+\gamma_1 dum_i+\beta_2 Edu_i d_i+\gamma_2 Edu_i dum_i+\beta_3 Exp_i d_i+\\
+\gamma_3 Exp_i dum_i+\beta_4 Exp_i^2 d_i+
+\gamma_4 Exp_i^2 dum_i+\beta_5 Fedu_i d_i +\\
+\gamma_5 Fedu_i dum_i+\beta_6 Medu_i d_i+\gamma_6 Medu_i dum_i+\e_i, i=1, \ldots, 58
+\end{multline*}
+по отношению к основной гипотезе $H_0$ является регрессией без ограничений, а регрессия
+\begin{multline*}
+\ln W_i=\beta_1 +\beta_2 Edu_i+\beta_3 Exp_i+\beta_4 Exp_i^2+\\
+\beta_5 Fedu_i+\beta_6 Medu_i+\e_i, i=1, \ldots, 58
+\end{multline*}
+
+является регрессией с ограничениями.
+
+Кроме того, для решения задачи должен быть известен следующий факт:
+
+$RSS_{UR}=RSS_1+RSS_2$, где $RSS_{UR}$ — это сумма квадратов остатков в модели:
+\begin{multline*}
+\ln W_i=\beta_1  d_i+\gamma_1 dum_i+\beta_2 Edu_i d_i+\gamma_2 Edu_i dum_i+\beta_3 Exp_i d_i+\\
+\gamma_3 Exp_i dum_i+\beta_4 Exp_i^2 d_i
++ \gamma_4 Exp_i^2 dum_i+\beta_5 Fedu_i d _i +\\
+\gamma_5 Fedu_i dum_i+\beta_6 Medu_i d_i+\gamma_6 Medu_i dum_i+\e_i, i=1, \ldots, 58
+\end{multline*}
+
+$RSS_1$ — это сумма квадратов остатков в модели:
+\begin{multline*}
+\ln W_i=\beta_1 +\beta_2 Edu_i+\beta_3 Exp_i+\beta_4 Exp_i^2+\\
+\beta_5 Fedu_i+\beta_6 Medu_i+\e_i, i=1, \ldots, 35
+\end{multline*}
+
+$RSS_2$ — это сумма квадратов остатков в модели:
+\begin{multline*}
+\ln W_i=\gamma_1 +\gamma_2 Edu_i+\gamma_3 Exp_i+\gamma_4 Exp_i^2+\\
+\gamma_5 Fedu_i+\gamma_6 Medu_i+\e_i, i=36, \ldots, 58
+\end{multline*}
+
+
+\begin{enumerate}
+\item Тестовая статистика:
+
+\[
+T = \frac{(RSS_R-RSS_{UR})/q}{RSS_{UR}/(n-m)},
+\]
+
+где $RSS_R$ -- сумма квадратов остатков в модели с ограничениями;
+
+$RSS_{UR}$ -- сумма квадратов остатков в модели без ограничений;
+
+$q$ -- число линейно независимых уравнений в основной гипотезе $H_0$;
+
+$n$ -- общее число наблюдений;
+
+$m$ -- число коэффициентов в модели без ограничений
+
+\item Распределение тестовой статистики при верной $H_0$:
+
+\[
+T \sim F(q, n-m)
+\]
+
+\item Наблюдаемое значение тестовой статистики:
+
+\[
+T_{obs} = \frac{(70.3-(34.4+23.4))/6}{(34.4+23.4)/(58-12)}=1.66
+\]
+
+\item Область, в которой $H_0$ не отвергается:
+
+\[
+[0;T_{cr}]=[0;2.3]
+\]
+
+\item Статистический вывод:
+
+Поскольку $T_{obs} \in [0;T_{cr}]$, то на основе имеющихся данных мы не можем отвергнуть гипотезу $H_0$ в пользу альтернативной $H_1$. Следовательно, имеющиеся данные не противоречат гипотезе об отсутствии дискриминации на рынке труда между мужчинами и женщинами.
+
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:3.4}{}
+\begin{solution}{{3.4}}
+\end{solution}
+\protect \hypertarget {soln:3.5}{}
+\begin{solution}{{3.5}}
+Для ответа на вопрос задачи, а именно, можно или нет считать зависимость спроса на молоко от его цены и дохода единой для городской и сельской местностей, воспользуемся гипотезой о нескольких ограничениях. Тогда:
+\begin{itemize}
+\item Ограниченная («короткая») модель, то есть та модель, которая предполагает выполнение нулевой гипотезы, имеет вид :
+\[
+R: y_i = \beta_1 + \beta_2I_i + \beta_3P_i + \epsilon_i
+\]
+\[
+RSS_R = RSS = 8841601
+\]
+\item Для того чтобы записать спецификацию неограниченной («длинной») модели, которая пердполагает разные $\beta_i$ для городской и сельской местностей, введем дополнительную переменную $d_i$, такую что:
+\[
+d_i=
+\begin{cases}
+1, \text{город;}\\
+0, \text{село}\\
+\end{cases}
+\]
+Пусть коэффициенты для городской местности отличаются на некоторое $\Delta_i$, тогда неограниченная модель имеет вид:
+\[
+UR: y_i = \beta_1+\Delta_1 d_i + (\beta_2+\Delta_2 d_i)I_i + (\beta_3+\Delta_3 d_i)P_i + \epsilon_i
+\]
+\[
+RSS_{UR} = RSS_1 + RSS_2 = 1720236 + 7099423 = 8819659
+\]
+\item Гипотезы:
+\[
+H_0=
+\begin{cases}
+\Delta_1=0\\
+\Delta_2=0\\
+\Delta_3=0\\
+\end{cases} \;
+H_a:\Delta_1^2+\Delta_2^2+\Delta_3^2>0
+\]
+\item Тестовая статистика имеет вид:
+\[
+F = \frac{(RSS_R-RSS_{UR})/q}{RSS_{UR}/(n-m)}
+\]
+где $q$ — число линейно независимых уранений в нулевой гипотезе $H_0$;\\
+$n$ — общее число наблюдений;\\
+$m$ — число коэффициентов в неограниченной модели
+\item Распределение тестовой статистики при верной $H_0$:
+\[
+F_{cr}\sim(F_{\alpha,q,n-m})
+\]
+\item Расчётное значение тестовой статистики $F_{obs}=17.58$, $F_{cr}\approx 2.61$
+\item Так как $F_{obs}>F_{cr}$, гипотеза $H_0$ отвергается.
+\end{itemize}
+Вывод: зависимость спроса на молоко от его цены и дохода  для городской и сельской местностей нельзя считать единой.
+\end{solution}
+\protect \hypertarget {soln:3.6}{}
+\begin{solution}{{3.6}}
+\end{solution}
+\protect \hypertarget {soln:3.7}{}
+\begin{solution}{{3.7}}
+Задача решается аналогично предыдущем задачам, к примеру, 3.3, 3.5.
+
+Главное отличие заключается в том, что вместо значений $RSS_{R}$ и $RSS_{UR}$ даются значения соответствующих $R^2$, также следует вспомнить, что $\sum_{i=1}^{n=52}(Price_i-\overline{Price})^2=278$ ни что иное, как $TSS$, которое, в свою очередь, не зависит от спецификации модели, то есть $TSS_R=TSS_{UR}=TSS$. Тогда можно выразить$RSS$ моделей:
+\[
+\begin{cases}
+R^2=\frac{ESS}{TSS} \\
+TSS=ESS+RSS
+\end{cases}
+\to
+\begin{cases}
+RSS_R=TSS(1-R^2_R)=278(1-0.78)\approx 61.16\\
+RSS_{UR}=TSS(1-R^2_{UR})=278(1-0.85)\approx 41.7
+\end{cases}
+\]
+
+Находим расчётное значение $F$-статистики
+\[
+F_{obs}=\frac{(61.16-41.7)/5}{41.7/(52-10)}\approx 3.92
+\]
+
+Находим критическое значение $F$-статистики
+\[
+F_{cr}\sim F_{0.05,5,42}\approx 2.44
+\]
+
+Получаем, что $F_{obs}>F_{cr}$, и, следовательно, $H_0$ отвергается в пользу альтернативной гипотезы на уровне значимости 5\%.
+
+
+Вывод: гипотеза об одинаковом ценообразовании квартир на севере и на юге отвергается на уровне значимости 5\%.
+\end{solution}
+\protect \hypertarget {soln:3.8}{}
+\begin{solution}{{3.8}}
+\end{solution}
+\protect \hypertarget {soln:3.9}{}
+\begin{solution}{{3.9}}
+Спецификация модели :
+\[
+\widehat{\ln{Q}} = \hb_1+\hb_2 \ln{P}+\hb_3(SPRING+SUMMER)+\hb_5 FALL
+\]
+Интерпретация: осень так же влияет на логарифм величины спроса, как и весна. Задача решается аналогично задачам 3.7, 3.5
+\[
+\begin{cases}
+R^2=\frac{ESS}{TSS}\\
+TSS=ESS+RSS\\
+TSS_R=TSS_{UR}=TSS\\
+\end{cases}
+\]
+
+Находим расчётное и наблюдаемое значение $F$-статистики
+\[
+\begin{cases}
+F_{obs}=\frac{(R_{UR}^2-R_{R}^2)/q}{(1-R^2_{UR})/(n-m)}\approx3.3\\
+F_{cr}= F_{0.05,1,15}\approx 4.54
+\end{cases}
+\]
+
+Следовательно, $F_{obs}<F_{cr}$ и $H_0$ не отвергается на уровне значимости 5\%.
+
+Вывод: гипотеза $H_0$ о равном влиянии осени и весны на логарифм спроса не отвергается на уровне значимости 5\%.
+\end{solution}
+\protect \hypertarget {soln:3.10}{}
+\begin{solution}{{3.10}}
+Смысл гипотезы: летом и осенью одинаковая зависимость и одинаковая зависимость зимой и весной. Ограниченная модель: $\widehat{\ln Q}=\hb_1+\hb_2\cdot{\ln P}+\hb_3 d$, где $d$ равна 1 для лета и осени. Наблюдаемое значение статистики $F_{obs}=1.375$, критическое, $F_{cr}=
+3.521893
+$. Гипотеза не отвергается.
+\end{solution}
+\protect \hypertarget {soln:3.11}{}
+\begin{solution}{{3.11}}
+Наблюдений: 12. Коэффициентов: $4 \cdot 4 = 16$.
+\end{solution}
+\protect \hypertarget {soln:3.12}{}
+\begin{solution}{{3.12}}
+\end{solution}
+\protect \hypertarget {soln:3.13}{}
+\begin{solution}{{3.13}}
+$\hb_1=1.3870+2.6259=4.0129$, $\hb_2=5.2587+2.5955=7.8542$
+\end{solution}
+\protect \hypertarget {soln:3.14}{}
+\begin{solution}{{3.14}}
+$y_i=\beta_1+\beta_2(x_{i1}+x_{i2}+x_{i3})+\epsilon_{i}$
+\end{solution}
+\protect \hypertarget {soln:3.15}{}
+\begin{solution}{{3.15}}
+$y_i=\beta_1+\beta_2(x_{i1}+x_{i2}+x_{i3})+\epsilon_{i}$
+\end{solution}
+\protect \hypertarget {soln:3.16}{}
+\begin{solution}{{3.16}}
+\end{solution}
+\protect \hypertarget {soln:3.17}{}
+\begin{solution}{{3.17}}
+1,2
+\end{solution}
+\protect \hypertarget {soln:3.18}{}
+\begin{solution}{{3.18}}
+\end{solution}
+\protect \hypertarget {soln:3.19}{}
+\begin{solution}{{3.19}}
+Значим.
+\end{solution}
+\protect \hypertarget {soln:3.20}{}
+\begin{solution}{{3.20}}
+Не значим.
+\end{solution}
+\protect \hypertarget {soln:3.21}{}
+\begin{solution}{{3.21}}
+$\alpha>0.09$
+\end{solution}
+\protect \hypertarget {soln:3.22}{}
+\begin{solution}{{3.22}}
+\end{solution}
+\protect \hypertarget {soln:3.23}{}
+\begin{solution}{{3.23}}
+Из формул
+\[
+\begin{cases}
+R^2=\frac{ESS}{TSS}\\
+TSS=ESS+RSS\\
+\end{cases}
+\]
+получаем $R^2=\frac{170.4}{(170.4+80.3)}\approx=0.68$
+
+Тестируемые гипотезы:
+\[
+H_0=
+\begin{cases}
+\beta_2=0\\
+\beta_3=0\\
+\beta_4=0\\
+\end{cases}
+\;
+H_a:\beta_2^2+\beta_3^2+\beta_4^2>0
+\]
+
+Так как по условию задачи проверяем значимость модели в целом, следовательно ограниченная модель — регрессия на константу, таким образом:
+\[
+\begin{cases}
+\widehat{y_i}=\bar{y}\\
+RSS_{R}=\sum_{i=1}^{n}(y_i-\widehat{y_i})^2=\sum_{i=1}^{n}(y_i-\overline{y_i})^2=TSS\\
+RSS_{UR}=TSS(1-R^2_{UR})\\
+TSS_{UR}=TSS_{R}=TSS\\
+\end{cases}
+\]
+
+Получаем, $F_{obs}=\frac{R_{UR}^2/q}{(1-R^2_{UR})/(n-m)}$
+
+Значения статистик:
+\[
+\begin{cases}
+F_{obs}\approx 12.04\\
+F_{cr}=F(0.01,3,17)\approx 5.185
+\end{cases}
+\]
+
+Отсюда,
+$F_{obs}>F_{cr}$, и  $H_0$ отвергается на уровне значимости 1\%.
+
+Вывод: гипотеза $H_0$ отвергается на уровне значимости 1\%,
+следовательно модель в целом значима.
+\end{solution}
+\protect \hypertarget {soln:3.24}{}
+\begin{solution}{{3.24}}
+
+Ограниченная модель (Restricted model):
+\[
+\ln W_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \e_i
+\]
+Неограниченная модель (Unrestricted model):
+\begin{multline*}
+\ln W_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \\
+\beta_{Fedu}Fedu_i + \beta_{Medu}Medu_i + \e_i
+\end{multline*}
+
+По условию $ESS_R = 90.3$, $RSS_R = 60.4$, $TSS = ESS_R + RSS_R = 90.3 + 60.4 = 150.7.$ Также сказано, что $ESS_{UR} = 110.3$. Значит, $RSS_{UR} = TSS - ESS_{UR} = 150.7 - 110.3 = 40.4$
+\begin{enumerate}
+\item Cпецификация:
+\begin{multline*}
+\ln W_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \\
+\beta_{Fedu}Fedu_i + \beta_{Medu}Medu_i + \e_i
+\end{multline*}
+\item Проверка гипотезы
+\begin{enumerate}
+\item $H_0: \begin{cases} \beta_{Fedu} = 0  \\  \beta_{Medu} = 0 \end{cases}$
+$H_a: |\beta_{Fedu}| + |\beta_{Medu}| > 0$
+\item $T = \frac{(RSS_{R} - RSS_{UR})/q}{RSS_{UR}/(n - k)}$, где $q = 2$ — число линейно независимых уравнений в основной гипотезе $H_0$, $n = 25$ — число наблюдений, $k = 6$ — число коэффициентов в модели без ограничения
+\item $T \sim F(q; n - k)$
+\item $T_{obs} = \frac{(RSS_{R} - RSS_{UR})/q}{RSS_{UR}/(n - k)} = \frac{(60.4 - 40.4)/2}{40.4/(25 - 6)} = 4.70$
+\item Нижняя граница $= 0$, верхняя граница $= 3.52$
+\item Поскольку $T_{obs} = 4.70$, что не принадлежит промежутку от $0$ до $3.52$, то на основе имеющихся данных можно отвергнуть основную гипотезу на уровне значимости $5\%$. Таким образом, образование родителей существенно влияет на заработную плату.
+\end{enumerate}
+\end{enumerate}
+
+\end{solution}
+\protect \hypertarget {soln:3.25}{}
+\begin{solution}{{3.25}}
+\[
+\widehat{Price}= \hb_1+\hb_2 Hsize+20\hb_4 Lsize+\hb_4 Bath + \hb_5 BDR
+\]
+
+Размер участка в 20 раз сильнее влияет на цену дома, чем число ванных комнат.
+\[
+\begin{cases}
+R^2=\frac{ESS}{TSS}\\
+TSS=ESS+RSS\\
+TSS_R=TSS_{UR}=TSS\\
+\end{cases}
+\]
+
+\[
+\begin{cases}
+RSS_{R}=TSS(1-R^2_{R})\\
+RSS_{UR}=TSS(1-R^2_{UR})\\
+\end{cases} \to
+\]
+
+\[
+\begin{cases}
+F_{obs}=\frac{(R_{UR}^2-R_{R}^2)/q}{(1-R^2_{UR})/(n-m)}=\frac{(0.218-0.136)/1}{(1-0.218)/18}\approx 1.887\\
+F_{cr}= F_{0.05,1,18}\approx 4.41
+\end{cases}
+\]
+
+$F_{obs}<F_{cr}$ и, следовательно, $H_0$ не отвергается на уровне значимости 5\%.
+
+Вывод: гипотеза $H_0$ о том, что размер участка в 20 раз сильнее влияет на цену дома, чем число ванных комнат, не отвергается на уровне значимости 5\%.
+\end{solution}
+\protect \hypertarget {soln:3.26}{}
+\begin{solution}{{3.26}}
+\end{solution}
+\protect \hypertarget {soln:3.27}{}
+\begin{solution}{{3.27}}
+$H_0: \beta_2=\beta_3$ — труд и капитал вносят одинаковый вклад в выпуск фирмы.
+
+\[
+\begin{cases}
+F_{obs}=\frac{(RSS_R-RSS_{UR})/q}{RSS_{UR}/(n-m)}=\frac{(0.894-0.851)/1}{0.851/(27-3)}\approx 1.213\\
+F_{cr}= F_{0.05,1,24}\approx 4.26
+\end{cases}
+\]
+
+Получаем, что $F_{obs}<F_{cr}$, и, следовательно, $H_0$ не отвергается на уровне значимости 5\%
+
+Вывод: гипотеза $H_0$, предполагающая, что труд и капитал вносят одинаковый вклад в выпуск фирмы, не отвергается на уровне значимости 5\%.
+\end{solution}
+\protect \hypertarget {soln:3.28}{}
+\begin{solution}{{3.28}}
+Здесь $RSS_{R}=8.31$, $RSS_{UR}=6.85$.
+\end{solution}
+\protect \hypertarget {soln:3.29}{}
+\begin{solution}{{3.29}}
+\begin{enumerate}
+\item
+\[
+\begin{cases}
+H_0: \beta_2=0\\
+H_a: \beta_2\neq 0
+\end{cases}
+\]
+
+\item
+\begin{enumerate}
+\item $t=\frac{\hb_i-\beta_i}{se(\beta_i)}$
+\item $t_{\alpha,n-m}=t_{0.05,47}$
+\item $t=\frac{0.08-0}{0.0093}\approx 8.67$
+\item $[-t_{cr},t_{cr}]$
+\item гипотеза $H_0$ отвергается, так как $P$-значение равно нулю; можно честно посчитать $t_{cr}=t_{0.05,47}$ или вспомнить, что при количестве наблюдений больше 30, $t$-распределение похоже на нормальное, для которого квантиль на уровне 5\% примерно равна $1.67$ и $F_{\text{наб}}>F_{cr}$. Гипотеза $H_0$ отвергается, следовательно коэффициент $\beta_2$ значим на уровне значимости 10\%.
+\end{enumerate}
+
+\item
+\begin{enumerate}
+\item $t=\frac{\hb_i-\beta_i}{se(\beta_i)}$
+\item $t_{\alpha,n-m}=t_{0.05,47}$
+\item $t=\frac{-287-1}{64.92}\approx -4.42$
+\item $(-\infty,t_{cr}]$
+\item гипотеза $H_0$ отвергается, так как $P$-значение равно нулю; аналогично 2(e) $t_{cr}=t_{0.05,47}\approx 1.67$ и $F_{\text{наб}}>F_{cr}$. Гипотеза $H_0$ отвергается, следовательно коэффициент $\beta_1$ значим на уровне значимости 5\%.
+\end{enumerate}
+
+\item
+\[
+H_0=
+\begin{cases}
+\beta_2=0\\
+\beta_3=0\\
+\beta_4=0\\
+\end{cases}
+\;
+H_a:\beta_2^2+\beta_3^2+\beta_4^2>0
+\]
+
+\item
+\begin{enumerate}
+\item $F =\frac{(RSS_R-RSS_{UR})/q}{RSS_{UR}/(n-m)}$
+\item $F_{\alpha,q,n-m}=F_{0.01,3,47}$
+\item $F=34.81$
+\item $[0,F_{cr}]$
+\item гипотеза $H_0$ отвергается, так как $P$-значение примерно равно $0$, точнее меньше $(5.337\cdot 10^{-12})$; можно вычислить $F_{cr}=F_{0.01,3,47} \approx 4.23$. Следовательно, $F_{\text{наб}}>F_{cr}$ и $H_0$ отвергается, и регрессия в целом значима на уровне значимости 1\%.
+\end{enumerate}
+
+\item
+\begin{enumerate}
+\item $F =\frac{(RSS_R-RSS_{UR})/q}{RSS_{UR}/(n-m)}$
+\item $F_{\alpha,q,n-m}=F_{0.05,3,47}$
+\item $F\approx 9.525$
+\item $[0,F_{cr}]$
+\item гипотеза $H_0$ отвергается, так как $F_{cr}=F_{0.05,3,47} \approx 4.047$ и $F_{\text{наб}}>F_{cr}$, следовательно коэффициент $\beta_4$ значим на уровне значимости 5\%.
+\end{enumerate}
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:3.30}{}
+\begin{solution}{{3.30}}
+\end{solution}
+\protect \hypertarget {soln:3.31}{}
+\begin{solution}{{3.31}}
+$0.25\hb_1+0.75\hb_1'$, $0.25\hb_2+0.75\hb_2'$ и $0.25\hb_3+0.75\hb_3'$
+\end{solution}
+\protect \hypertarget {soln:3.32}{}
+\begin{solution}{{3.32}}
+Сами оценки коэффициентов никак детерминистически не связаны, но при большом размере подвыборок примерно равны. А дисперсии связаны соотношением $\Var(\hb_a)^{-1}+\Var(\hb_b)^{-1}=\Var(\hb_{tot})^{-1}$
+\end{solution}
+\protect \hypertarget {soln:3.33}{}
+\begin{solution}{{3.33}}
+В среднем ложно значимы должны быть 5\% регрессоров, то есть 2 регрессора.
+\end{solution}
+\protect \hypertarget {soln:3.34}{}
+\begin{solution}{{3.34}}
+\end{solution}
+\protect \hypertarget {soln:3.35}{}
+\begin{solution}{{3.35}}
+\end{solution}
+\protect \hypertarget {soln:3.36}{}
+\begin{solution}{{3.36}}
+\end{solution}
+\protect \hypertarget {soln:3.37}{}
+\begin{solution}{{3.37}}
+\end{solution}
+\protect \hypertarget {soln:3.38}{}
+\begin{solution}{{3.38}}
+
+
+
+Из оценки ковариационной матрицы находим, что $se(\hb_{totsp}=\hb_{livesp})=
+0.269606
+$.
+
+Исходя из $Z_{crit}=1.96$ получаем доверительный интервал, $[
+-0.822083
+;
+0.2347725
+]$.
+
+Вывод: при уровне значимости 5\% гипотеза о равенстве коэффициентов не отвергается.
+\end{solution}
+\protect \hypertarget {soln:3.39}{}
+\begin{solution}{{3.39}}
+\end{solution}
+\protect \hypertarget {soln:3.40}{}
+\begin{solution}{{3.40}}
+\end{solution}
+\protect \hypertarget {soln:3.41}{}
+\begin{solution}{{3.41}}
+
+\begin{enumerate}
+\item $\P(\hb_3>se(\hb_3))=\P(t_{17}>1)=
+0.1656664
+$
+\item $\P(\hb_3>\sigma_{\hb_3})=\P(\cN(0,1)>1)=
+0.1586553
+$
+\end{enumerate}
+\end{solution}
+\protect \hypertarget {soln:3.42}{}
+\begin{solution}{{3.42}}
+В обоих случаях можно так подобрать коэффициенты $\hb$, что $kr_i=\widehat{kr}_i$. А именно, идеальные прогнозы достигаются при  $\hb_{p_1}=1$, $\hb_{p_2}=1$, $\hb_{p_3}=1$, $\hb_{p_4}=1$, $\hb_{p_5}=1$ и (в первой модели) $\hb_1=0$. Отсюда $RSS=0$, $ESS=TSS$, поэтому $R^2=1$ даже в модели без свободного члена. Получаем $\hs^2=0$, поэтому строго говоря $t$ статистики и $P$-значения не существуют из-за деления на ноль.
+
+На практике при численной минимизации $RSS$ оказывается, что $t$-статистики коэффициентов при задачах принимают очень большие значения, а соответствующие $P$-значения крайне близки к нулю. В первой модели особенной на практике будет $t$ статистика свободного члена. В силу неопределенности вида $0/0$ свободный коэффициент на практике может оказаться незначим.
+\end{solution}
+\protect \hypertarget {soln:3.43}{}
+\begin{solution}{{3.43}}
+\end{solution}
+\protect \hypertarget {soln:3.44}{}
+\begin{solution}{{3.44}}
+$\hb_2=0.41$, $\hb_3=0.3$, $\hb_4= -0.235$, переменная $x$ значима
+\end{solution}
+\protect \hypertarget {soln:3.45}{}
+\begin{solution}{{3.45}}
+$\hb_2=0.75$, $\hb_3=0.625$, $\hb_4= 0.845$, переменные $z$ и $w$ значимы
+\end{solution}
+\protect \hypertarget {soln:3.46}{}
+\begin{solution}{{3.46}}
+$RSS_1 > RSS_2 = RSS_3$, в моделях два и три, ошибка прогноза равна $\hb_4$
+\end{solution}
+\protect \hypertarget {soln:3.47}{}
+\begin{solution}{{3.47}}
+\end{solution}
+\protect \hypertarget {soln:3.48}{}
+\begin{solution}{{3.48}}
+$RSS/\sigma^2\sim\chi^2_{n-k}$, $\E(RSS)=(n-k)\sigma^2$, $\Var(RSS)=2(n-k)\sigma^4$, $\P(5\sigma^2<RSS<10\sigma^2)\approx 0.451$
+\end{solution}
+\protect \hypertarget {soln:3.49}{}
+\begin{solution}{{3.49}}
+$\P(\hs_3^2>\hs_1^2)=0.5$, $\P(\hs_1^2>2\hs_2^2)=0.5044$, $\E(\hs_2^2/\hs_1^2)=1.25$, $\Var(\hs_2^2/\hs_1^2)=4.6875$
+ 
+\end{solution}
+\protect \hypertarget {soln:3.50}{}
+\begin{solution}{{3.50}}
+90\% во всех пунктах
+\end{solution}
+\protect \hypertarget {soln:3.51}{}
+\begin{solution}{{3.51}}
+Поскольку $\hat{\mu}$, $\hat{\nu}$, $\hat{\gamma}$ и $\hat{\delta}$ являются МНК-коэффициентами в регрессии $y_i = \mu + \nu x_i + \gamma d_i + \delta x_i d_i + \e_i$, $i = 1, \ldots, n$, то для любых $\mu$, $\nu$, $\gamma$ и $\delta$ имеет место
+\begin{multline}
+\label{task1:1}\sum_{i=1}^n (y_i - \hat{\mu} - \hat{\nu} x_i - \hat{\gamma} d_i - \hat{\delta} x_i d_i - \e_i)^2 \leqslant \\
+\sum_{i=1}^n (y_i - \mu - \nu x_i - \gamma d_i - \delta x_i d_i - \e_i)^2
+\end{multline}
+Перепишем неравенство (\ref{task1:1}) в виде
+\begin{multline}
+\label{task1:2}\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - \hat{\mu} - \hat{\nu} x_i)^2 \leqslant \\
+\sum_{i=1}^m (y_i - ({\mu} + {\gamma}) - ({\nu} + {\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - {\mu} - {\nu} x_i)^2
+\end{multline}
+Учитывая, что неравенство (\ref{task1:2}) справедливо для всех $\mu$, $\nu$, $\gamma$ и $\delta$, то оно останется верным для $\mu = \hat{\mu}$, $\nu = \hat{\nu}$ и произвольных $\gamma$ и $\delta$. Имеем
+\begin{multline*}
+\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - \hat{\mu} - \hat{\nu} x_i)^2 \leqslant \\
+ \sum_{i=1}^m (y_i - (\hat{\mu} + {\gamma}) - (\hat{\nu} + {\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - \hat{\mu} - \hat{\nu} x_i)^2
+\end{multline*}
+Следовательно
+\begin{equation*}
+\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 \leqslant \sum_{i=1}^m (y_i - (\hat{\mu} + {\gamma}) - (\hat{\nu} + {\delta}) x_i)^2
+\end{equation*}
+Обозначим $\tilde{\beta_1} := \hat{mu} + \gamma$ и $\tilde{\beta_2} := \hat{\nu} + \delta$. В силу произвольности $\gamma$ и $\delta$ коэффициенты $\tilde{\beta_1}$ и $\tilde{\beta_2}$ также произвольны. тогда для любых $\tilde{\beta_1}$ и $\tilde{\beta_2}$ выполнено неравенство:
+\[
+\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 \leqslant \sum_{i=1}^m (y_i - \tilde{\beta_1} - \tilde{\beta_2} x_i)^2
+\]
+которое означает, что $\hat{\mu} + \hat{\gamma}$ и $\hat{\nu} + \hat{\delta}$ являются МНК-оценками коэффициентов $\beta_1$ и $\beta_2$ в регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, оцененной по наблюдениям $i = 1, \ldots, m$, то есть $\hb_1 = \hat{\mu} + \hat{\gamma}$ и $\hb_2 = \hat{\nu} + \hat{\delta}$.
+\end{solution}
+\protect \hypertarget {soln:3.52}{}
+\begin{solution}{{3.52}}
+Не верно, поскольку $R_{adj}^2$ может принимать отрицательные значения, а $F(n-k, n-1)$ --– не может.
+\end{solution}
+\protect \hypertarget {soln:3.53}{}
+\begin{solution}{{3.53}}
+Сгенерируйте сильно коррелированные $x$ и $z$.
+\end{solution}
+\protect \hypertarget {soln:3.54}{}
+\begin{solution}{{3.54}}
+\end{solution}
+\protect \hypertarget {soln:3.55}{}
+\begin{solution}{{3.55}}
+\end{solution}
+\protect \hypertarget {soln:3.56}{}
+\begin{solution}{{3.56}}
+\end{solution}
+\protect \hypertarget {soln:3.57}{}
+\begin{solution}{{3.57}}
+bootstrap, дельта-метод.
+\end{solution}
+\protect \hypertarget {soln:3.58}{}
+\begin{solution}{{3.58}}
+\end{solution}
+\protect \hypertarget {soln:3.59}{}
+\begin{solution}{{3.59}}
+\end{solution}
+\protect \hypertarget {soln:3.60}{}
+\begin{solution}{{3.60}}
+При наличии ошибок в измерении зависимой переменной оценки остаются несмещёнными, их дисперсия растет. Однако оценка дисперсии может случайно оказаться меньше. Например, могло случиться, что ошибки $u_i$ случайно компенсировали $\e_i$.
+\end{solution}
+\protect \hypertarget {soln:3.61}{}
+\begin{solution}{{3.61}}
+\end{solution}
+\protect \hypertarget {soln:3.62}{}
+\begin{solution}{{3.62}}
+\end{solution}
+\protect \hypertarget {soln:3.63}{}
+\begin{solution}{{3.63}}
+$0$
+\end{solution}
+\protect \hypertarget {soln:3.64}{}
+\begin{solution}{{3.64}}
+Проводим тест Чоу.
+\end{solution}
+\protect \hypertarget {soln:3.65}{}
+\begin{solution}{{3.65}}
+Несмещённой является $\hs^2$, поэтому $\hs$ смещена, но состоятельна.
+\end{solution}
+\protect \hypertarget {soln:3.66}{}
+\begin{solution}{{3.66}}
+\end{solution}
+\protect \hypertarget {soln:3.67}{}
+\begin{solution}{{3.67}}
+\end{solution}
+\protect \hypertarget {soln:3.68}{}
+\begin{solution}{{3.68}}
+$0$ и $1$
+\end{solution}
+\protect \hypertarget {soln:3.69}{}
+\begin{solution}{{3.69}}
+\end{solution}
+\protect \hypertarget {soln:3.70}{}
+\begin{solution}{{3.70}}
+$c=1/(n-k)$.
+Заметим, что $RSS/\sigma^2 \sim \chi^2_{n-k}$, поэтому:
+\[
+MSE = \Var(\hs^2) + bias^2(\hs^2)=\sigma^4 \cdot (c^2 2(n-k) + (c(n-k)-1)^2).
+\]
+Минимизируя по $c$ получаем $c=1/(n-k+2)$.
+\end{solution}
+\protect \hypertarget {soln:3.71}{}
+\begin{solution}{{3.71}}
+  Коэффициент $R^2$ имеет бета-распределение.
+\end{solution}
