@@ -629,16 +629,16 @@ y^*_i = \tilde{y}_i\cdot3 + 7 \Rightarrow \E[y^*] = 7, \hspace{2mm} \Var(y^*) = 
 \begin{sol}
 
 $R^2$ одинаков для этих моделей. Докажем это в общем виде.
- 
+
 $R^2$ для модели $\hy_i = \hb_1 +\hb_2 x_i$:
 
 \begin{math}
 R^2 = \frac{ESS}{TSS}= \frac{\sum\limits_{i=1}^n (\hat{y_i} - \bar{y})^2}{\sum\limits_{i=1}^n(y_i-\bar{y})^2}=\frac{\sum\limits_{i=1}^n(\hb_1 + \hb_2x_i - \bar{y})^2}{\sum\limits_{i=1}^n(y_i-\bar{y})^2}=\frac{\sum\limits_{i=1}^n(\bar{y} - \hb_2\bar{x} + \hb_2x_i - \bar{y})^2}{\sum\limits_{i=1}^n(y_i-\bar{y})^2}  = \frac{\hb_2^2 \sum\limits_{i=1}^n(x_i - \bar{x})^2}{\sum\limits_{i=1}^n(y_i-\bar{y})^2} = \\ = \frac{ \left( \sum\limits_{i=1}^n(x_i-\bar{x})(y_i - \bar{y}) \right)^2 \sum\limits_{i=1}^n(x_i - \bar{x})^2}{\left( \sum\limits_{i=1}^n(x_i - \bar{x})^2 \right)^2 \sum\limits_{i=1}^n(y_i-\bar{y})^2} = \frac{ \left( \sum\limits_{i=1}^n(x_i-\bar{x})(y_i - \bar{y}) \right)^2}{\sum\limits_{i=1}^n(x_i - \bar{x})^2 = \sum\limits_{i=1}^n(y_i-\bar{y})^2} = \frac{\sum\limits_{i=1}^n(x_i-\bar{x})(y_i - \bar{y})}{\sum\limits_{i=1}^n(x_i - \bar{x})^2} \frac{\sum\limits_{i=1}^n(x_i-\bar{x})(y_i - \bar{y})}{\sum\limits_{i=1}^n(y_i-\bar{y})^2} = \\ = \hb_2 \hat{\alpha}_2
 \end{math}
 
-Если проделать те же действия для модели $\hx_i = \hat{\alpha}_1 +\hat{\alpha}_2 x_i$, мы получим тот же результат. 
+Если проделать те же действия для модели $\hx_i = \hat{\alpha}_1 +\hat{\alpha}_2 x_i$, мы получим тот же результат.
 
-$R^2 = -3 \cdot \frac{-1}{12}=\frac{1}{4}$. 
+$R^2 = -3 \cdot \frac{-1}{12}=\frac{1}{4}$.
 
 Также можно заметить, что $\hCorr^2 = R^2$. То есть, выборочная корреляция равна $-1/2$, так как коэффициенты отрицательные (между \(y\) и \(x\) отрицательная зависимость).
 \end{sol}
@@ -682,5 +682,22 @@ $6$ & ? \\
 Решаем квадратное уравнение и получаем два решения: $a=4$ и $a=7$. Итого: $a=4$, $b=7$.
 \end{sol}
 \end{problem}
+
+
+\begin{problem}
+Вся выборка поделена на две части. Возможны ли такие ситуации:
+\begin{enumerate}
+\item Выборочная корреляция между $y$ и $x$ примерно равна нулю в каждой части, а по всей выборке примерно равна единице;
+\item Выборочная корреляция между $y$ и $x$ примерно ранва единице в каждой части, а по всей выборке примерно равна нулю?
+\end{enumerate}
+
+\begin{sol}
+Обе ситуации возможны.
+\end{sol}
+\end{problem}
+
+
+
+
 
 \Closesolutionfile{solution_file}

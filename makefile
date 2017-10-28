@@ -6,6 +6,7 @@ file_name = em1_pset_v2
 $(file_name).pdf: $(file_name).tex
 	echo "If fonts are missing download them via 'make fonts'"
 	# create folder in case it does not exist
+	-mkdir R_plots
 	-mkdir solutions
 
 	# protection against biber error
