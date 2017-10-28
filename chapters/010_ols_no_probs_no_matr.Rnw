@@ -3,7 +3,7 @@
 
 \chapter{МНК без матриц и вероятностей}
 
-\begin{problem}
+\begin{problem} %1.1
 Пусть $a = (a_1,\dots,a_n)$ и $b = (b_1,\dots,b_n)$ — два произвольных вектора. Определите, какие равенства справедливы:
 \begin{enumerate}
 \item $\sum_{i=1}^n {(a_i-\bar a)} = 0$;
@@ -29,6 +29,11 @@
 \item А вот это неверно! (следует из предыдущего пункта)
 \item Верно
 \item Верно
+\item Неверно
+\item Неверно
+\item Верно
+\item Верно: \[\sum_{i=1}^{n}a_i\bar{a} = \frac{n}{n}\bar{a}\sum_{i=1}^{n}a_i = n \bar{a} \frac{\sum_{i=1}^{n}a_i}{n} = n\bar{a}^2 \]
+\item Неверно (см. пунк 3)
 \end{enumerate}
 \end{sol}
 \end{problem}
@@ -37,7 +42,7 @@
 
 
 
-\begin{problem}
+\begin{problem} %1.2
 При помощи метода наименьших квадратов найдите оценку неизвестного параметра $\theta$ в следующих моделях:
 
 \begin{enumerate}
@@ -64,7 +69,7 @@
 
 \item \(\htheta = \sum \left(y_i (1 - x_i)\right) / \sum (1 - x_i)^2\)
 
-\item \(\htheta = \left( \sum \ln (y_i / x_i) \right) / n \)
+\item \(\htheta = \left( \sum \text{ln} (y_i / x_i) \right) / n \)
 
 \item \(\htheta = \left( \sum (y_i - x_i) \right) / n \)
 
@@ -79,7 +84,7 @@
 \end{problem}
 
 
-\begin{problem}
+\begin{problem} %1.3
 Покажите, что для моделей $y_i= \alpha + \beta x_i + \e_i$, $z_i = \gamma + \delta x_i + \upsilon_i$ и $y_i + z_i = \mu + \lambda x_i + \xi_i$ МНК-оценки связаны соотношениями $\hat{\mu}=\hat{\alpha}+\hat{\gamma}$ и $\hat{\lambda}=\hb + \hat{\delta}$.
 
 
@@ -91,7 +96,7 @@
 \end{problem}
 
 
-\begin{problem}
+\begin{problem} %1.4
 Найдите МНК-оценки параметров $\alpha$ и $\beta$ в модели $y_i = \alpha + \beta y_i + \e_i$.
 
 
@@ -101,7 +106,7 @@
 \end{problem}
 
 
-\begin{problem}
+\begin{problem} %1.5
 Рассмотрите модели $y_i = \alpha + \beta (y_i + z_i) + \e_i$, $z_i = \gamma + \delta(y_i+z_i) + \e_i$.
 \begin{enumerate}
 \item Как связаны между собой $\hat{\alpha}$ и $\hat{\gamma}$?
@@ -122,7 +127,7 @@
 
 
 
-\begin{problem}
+\begin{problem} %1.6
 Как связаны МНК-оценки параметров $\alpha, \beta$ и $\gamma, \delta$ в моделях $y_i = \alpha + \beta x_i + \e_i$ и $z_i = \gamma + \delta x_i + \upsilon_i$, если $z_i = 2 y_i$?
 
 
@@ -139,7 +144,7 @@
 \end{problem}
 
 
-\begin{problem}
+\begin{problem} %1.6
 Для модели $y_i = \beta_1 x_i + \beta_2 z_i + \e_i$ решите условную задачу о наименьших квадратах:
 \[
 Q(\beta_1, \beta_2) := \sum_{i=1}^n (y_i - \beta_1 x_i - \beta_2 z_i)^2 \rightarrow \underset{\beta_1 + \beta_2 = 1}{\min}.
@@ -170,7 +175,7 @@ RSS =  \sum\limits_{i=1}^{n}(y_i - x_i - \beta_2(z_i-x_i))^2 \rightarrow \min_{\
 \sum\limits_{i=1}^{n}(y_i-x_i)(x_i-z_i) + \hb_2\sum\limits_{i=1}^{n}(z_i-x_i)^2 = 0 \Rightarrow \hb_2 = \frac{\sum\limits_{i=1}^n (y_i-x_i)(z_i-x_i)}{\sum\limits_{i=1}^n (z_i-x_i)^2}
 \]
 
-А $\beta_1$ найдется из соотношения $\hb_1+\hb_2 = 1$.
+А оценка $\beta_1$ найдется из соотношения $\hb_1+\hb_2 = 1$.
 
 \end{sol}
 \end{problem}
@@ -178,7 +183,7 @@ RSS =  \sum\limits_{i=1}^{n}(y_i - x_i - \beta_2(z_i-x_i))^2 \rightarrow \min_{\
 
 
 
-\begin{problem}
+\begin{problem} %1.8
 Даны $n$ пар чисел: $(x_1, y_1)$, \ldots, $(x_n,y_n)$. Мы прогнозируем $y_i$ по формуле $\hy_i=\hb x_i$. Найдите $\hb$ методом наименьших квадратов.
 
 
@@ -188,7 +193,7 @@ $\hb=\sum x_i y_i/\sum x_i^2$
 \end{problem}
 
 
-\begin{problem}
+\begin{problem} %1.9
 Даны $n$ чисел: $y_1$, \ldots, $y_n$. Мы прогнозируем $y_i$ по формуле $\hy_i=\hb$. Найдите $\hb$ методом наименьших квадратов.
 
 \begin{sol}
@@ -219,7 +224,7 @@ $\hb_2=\sum (x_i-\bar{x})(y_i-\bar{y})/\sum(x_i-\bar{x})^2$, $\hb_1=\bar{y}-\hb_
 \end{problem}
 
 
-\begin{problem}
+\begin{problem}%1.11
 Даны $n$ пар чисел: $(x_1, y_1)$, \ldots, $(x_n,y_n)$. Мы прогнозируем $y_i$ по формуле $\hy_i=1+\hb x_i$. Найдите $\hb$ методом наименьших квадратов.
 
 \begin{sol}
@@ -239,7 +244,7 @@ RSS = \sum\limits_i(y_i-1-\beta x_i)^2 \rightarrow \min\limits_{\beta}
 \end{problem}
 
 
-\begin{problem}
+\begin{problem} %1.12
 Перед нами два золотых слитка и весы, производящие взвешивания с ошибками. Взвесив первый слиток, мы получили результат $300$ грамм, взвесив второй слиток — $200$ грамм, взвесив оба слитка — $400$ грамм. Оцените вес каждого слитка методом наименьших квадратов.
 
 \begin{sol}
@@ -254,23 +259,33 @@ RSS = \sum\limits_i(y_i-1-\beta x_i)^2 \rightarrow \min\limits_{\beta}
 
 
 
-\begin{problem}
+\begin{problem} %1.13
 Аня и Настя утверждают, что лектор опоздал на 10 минут. Таня считает, что лектор опоздал на 3 минуты. С помощью МНК оцените, на сколько опоздал лектор.
 
 \begin{sol}
-Можем воспользоваться готовой формулой для регрессии на константу:
-\[
-\hb = \bar{y} = \frac{10+10+3}{3} = \frac{23}{3}
-\]
 
-(можно решить задачу $2(10-\beta)^2 + (3-\beta)^2\rightarrow \min$)
+Ане, Насте и Тане нужно оценить модель $y_i = \beta + \e$. Для этого они должны решить следующую задачу:
+
+\[RSS = 2(10-\beta)^2 + (3-\beta)^2\rightarrow \min \limits_{\beta}\]
+
+\[\frac{\partial RSS}{\partial \beta} = -4(10-\beta)-2(3-\beta) \]
+
+Условия первого порядка:
+
+\[-4(10-\hb)-2(3-\hb)=0\]
+
+\[20 - 2\hb +3 -\hb=0\]
+
+\[3\hb = 23\]
+
+\[\hb = \frac{23}{3}\]
 
 \end{sol}
 \end{problem}
 
 
 
-\begin{problem}
+\begin{problem} %1.14
 Функция $f(x)$ непрерывна на отрезке $[0;1]$. Найдите аналог МНК-оценок для регрессии без свободного члена в непрерывном случае. Более подробно: найдите минимум по $\hb$ для функции
 \[
 Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx.
@@ -288,7 +303,7 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx.
 
 
 
-\begin{problem}
+\begin{problem} %1.15
 Есть двести наблюдений. Вовочка оценил модель $\hy=\hb_1+\hb_2 x$ по первой сотне наблюдений. Петечка оценил модель $\hy=\hat{\gamma}_1+\hat{\gamma}_2 x$ по второй сотне наблюдений. Машенька оценила модель $\hy=\hat{m}_1+\hat{m}_2 x$ по всем наблюдениям.
 \begin{enumerate}
 \item Возможно ли, что $\hb_2>0$, $\hat{\gamma}_2>0$, но $\hat{m}_2<0$?
@@ -376,7 +391,7 @@ invisible(dev.off())
 
 
 
-\begin{problem}
+\begin{problem} %1.16
 Вася оценил модель $y=\beta_1+\beta_2 d+\beta_3 x+\varepsilon$. Дамми-переменная $d$ обозначает пол, 1 для мужчин и 0 для женщин. Оказалось, что $\hb_2>0$. Означает ли это, что для мужчин $\bar{y}$ больше, чем $\bar{y}$ для женщин?
 
 
@@ -388,7 +403,7 @@ invisible(dev.off())
 
 
 
-\begin{problem}
+\begin{problem} %1.17
 Какие из указанные моделей можно представить в линейном виде?
 \begin{enumerate}
 \item $y_i=\beta_1+\frac{\beta_2}{x_i}+\e_i$;
@@ -416,7 +431,7 @@ invisible(dev.off())
 
 
 
-\begin{problem}
+\begin{problem} %1.18
 У эконометриста Вовочки есть переменная $1_f$, которая равна 1, если $i$-ый человек в выборке — женщина, и 0, если мужчина. Есть переменная $1_m$, которая равна 1, если $i$-ый человек в выборке — мужчина, и 0, если женщина. Какие $\hy$ получатся, если Вовочка попытается построить регрессии:
 \begin{enumerate}
 \item $y$ на константу и $1_f$;
@@ -433,23 +448,23 @@ invisible(dev.off())
 \item \(\hy = \bar{y}_m + \left( \bar{y}_m -  \bar{y}_f \right) \cdot 1_f \)
 
 Оцениваемая модель:
-\[y_i = \beta_0 + \beta_1 1_{f, i} + \e_i \]
+\[y_i = \beta_1 + \beta_2 1_{f, i} + \e_i \]
 
 Стандартная процедура МНК:
-\[RSS = \sum \e_i^2 = \sum \left(y_i - \beta_0 - \beta_1 \cdot 1_f \right)^2 \rightarrow \min \limits_{\beta_0, \beta_1}\]
-\[\frac{\partial RSS}{\partial \beta_0} = 2 \sum \left(y_i - \beta_0 - \beta_1 x_i\right)(-1) \]
-\[\frac{\partial RSS}{\partial \beta_1} = 2 \sum \left(y_i - \beta_0 - \beta_1 x_i\right)(-1_f) \]
+\[RSS = \sum \e_i^2 = \sum \left(y_i - \beta_1 - \beta_2 \cdot 1_f \right)^2 \rightarrow \min \limits_{\beta_1, \beta_2}\]
+\[\frac{\partial RSS}{\partial \beta_1} = 2 \sum \left(y_i - \beta_1 - \beta_2\right)(-1) \]
+\[\frac{\partial RSS}{\partial \beta_2} = 2 \sum \left(y_i - \beta_1 - \beta_2 \right)(-1_f) \]
 
 Условия первого порядка:
-\[\sum \left(y_i - \hb_0 - \hb_1 \cdot 1_f\right) = 0\]
-\[\sum \left(\left(y_i - \hb_0 - \hb_1 \cdot 1_f\right)\cdot 1_f\right)= 0\]
+\[\sum \left(y_i - \hb_1 - \hb_2 \cdot 1_f\right) = 0\]
+\[\sum \left(\left(y_i - \hb_1 - \hb_2 \cdot 1_f\right)\cdot 1_f\right)= 0\]
 
 Осталось немного поработать с оператором суммирования. Обозначим за \(k\) — число женщин в нашей выборке объемом \(n\), мужчин тогда будет \(n - k\). Тогда
-\[\sum \left(y_i - \hb_0 - \hb_1 \cdot 1_f\right) = m \bar{y}_f + (n - m) \bar{y}_m - n \hb_0 - m \hb_1 = 0\]
-\[\sum \left(\left(y_i - \hb_0 - \hb_1 \cdot 1_f\right)\cdot 1_f\right) = m    \bar{y}_f - m \hb_0 - m \hb_1 =0\]
+\[\sum \left(y_i - \hb_1 - \hb_2 \cdot 1_f\right) = k \bar{y}_f + (n - k) \bar{y}_m - n \hb_0 - k \hb_2 = 0\]
+\[\sum \left(\left(y_i - \hb_1 - \hb_2 \cdot 1_f\right)\cdot 1_f\right) = k \bar{y}_f - k \hb_1 - k \hb_2 =0\]
 
 Отсюда легко ищутся оценки коэффициентов:
-\[\hb_0 = \bar{y}_m, \ \hb_1 = \bar{y}_f - \bar{y}_m  \]
+\[\hb_1 = \bar{y}_m, \ \hb_2 = \bar{y}_f - \bar{y}_m  \]
 
 Следовательно:
 \[\hy = \bar{y}_m + \left( \bar{y}_f -  \bar{y}_m \right) \cdot 1_f \]
@@ -466,7 +481,7 @@ invisible(dev.off())
 
 
 
-\begin{problem}
+\begin{problem} %1.19
 У эконометриста Вовочки есть три переменных: $r_i$ — доход $i$-го человека в выборке, $m_i$ — пол (1 — мальчик, 0 — девочка) и $f_i$ — пол (1 — девочка, 0 — мальчик). Вовочка оценил две модели
 \begin{enumerate}
 \item[] Модель A: $m_i=\beta_1+\beta_2 r_i+\ve_i$;
@@ -486,7 +501,7 @@ invisible(dev.off())
 
 
 
-\begin{problem}
+\begin{problem} %1.20
 Эконометрист Вовочка оценил линейную регрессионную модель, где $y$ измерялся в тугриках. Затем он оценил ту же модель, но измерял $y$ в мунгу (1 тугрик = 100 мунгу). Как изменятся оценки коэффициентов?
 
 
@@ -497,7 +512,7 @@ invisible(dev.off())
 
 
 
-\begin{problem}
+\begin{problem} %1.21
 Возможно ли, что при оценке парной регрессии $y=\beta_1+\beta_2 x+\e$ оказывается, что $\hb_2>0$, а при оценке регрессии без константы, $y=\gamma x+\e$, оказывается, что $\hat{\gamma}<0$?
 
 
@@ -532,7 +547,7 @@ invisible(dev.off())
 
 
 
-\begin{problem}
+\begin{problem} %1.22
 Эконометрист Вовочка оценил регрессию $y$ только на константу. Какой коэффициент $R^2$ он получит?
 
 
@@ -544,7 +559,7 @@ invisible(dev.off())
 
 
 
-\begin{problem}
+\begin{problem} %1.23
 Эконометрист Вовочка оценил методом наименьших квадратов модель 1, $y=\b_1+\b_2 x+\b_3 z+\e$, а затем модель 2, $y=\b_1+\b_2 x+\b_3 z+\b_4 w+\e$. Сравните полученные $ESS$, $RSS$, $TSS$ и $R^2$.
 
 
@@ -570,7 +585,7 @@ RSS = \sum\limits_{i=1}^n (y_i-\hy_i)^2 \hspace{2cm} ESS = \sum\limits_{i=1}^n (
 
 
 
-\begin{problem}
+\begin{problem} %1.24
 Создайте набор данных с тремя переменными $y$, $x$ и $z$ со следующими свойствами. При оценке модели $\hy=\hb_1+\hb_2 x$ получается $\hb_2>0$. При оценке модели $\hy=\hat{\gamma}_1+ \hat{\gamma}_2 x+\hat{\gamma}_3 z$ получается $\hat{\gamma}_2<0$. Объясните принцип, руководствуясь которым легко создать такой набор данных.
 
 
@@ -590,7 +605,7 @@ coef(lm(y ~ x + z))
 
 
 
-\begin{problem}
+\begin{problem} %1.25
 У меня есть набор данных с выборочным средним $\bar{y}$ и выборочной дисперсией $s_y^2$. Как нужно преобразовать данные, чтобы выборочное среднее равнялось $7$, а выборочная дисперсия — $9$?
 
 
@@ -609,16 +624,28 @@ y^*_i = \tilde{y}_i\cdot3 + 7 \Rightarrow \E[y^*] = 7, \hspace{2mm} \Var(y^*) = 
 
 
 
-\begin{problem}
+\begin{problem} %1.26
 Эконометресса Анжела оценила две парных регрессии $\hy_i = 2 - 3 x_i$  и $\hat x_i = 5 - \frac{1}{12}y_i$. Найдите $R^2$ в каждой регрессии и выборочную корреляцию между $x_i$ и $y_i$.
 \begin{sol}
-  $R^2 = -3 \cdot \frac{-1}{12}=\frac{1}{4}$. Выборочная корреляция равна $-1/2$, так как коэффициенты отрицательные.
+
+$R^2$ одинаков для этих моделей. Докажем это в общем виде.
+ 
+$R^2$ для модели $\hy_i = \hb_1 +\hb_2 x_i$:
+
+\begin{math}
+R^2 = \frac{ESS}{TSS}= \frac{\sum\limits_{i=1}^n (\hat{y_i} - \bar{y})^2}{\sum\limits_{i=1}^n(y_i-\bar{y})^2}=\frac{\sum\limits_{i=1}^n(\hb_1 + \hb_2x_i - \bar{y})^2}{\sum\limits_{i=1}^n(y_i-\bar{y})^2}=\frac{\sum\limits_{i=1}^n(\bar{y} - \hb_2\bar{x} + \hb_2x_i - \bar{y})^2}{\sum\limits_{i=1}^n(y_i-\bar{y})^2}  = \frac{\hb_2^2 \sum\limits_{i=1}^n(x_i - \bar{x})^2}{\sum\limits_{i=1}^n(y_i-\bar{y})^2} = \\ = \frac{ \left( \sum\limits_{i=1}^n(x_i-\bar{x})(y_i - \bar{y}) \right)^2 \sum\limits_{i=1}^n(x_i - \bar{x})^2}{\left( \sum\limits_{i=1}^n(x_i - \bar{x})^2 \right)^2 \sum\limits_{i=1}^n(y_i-\bar{y})^2} = \frac{ \left( \sum\limits_{i=1}^n(x_i-\bar{x})(y_i - \bar{y}) \right)^2}{\sum\limits_{i=1}^n(x_i - \bar{x})^2 = \sum\limits_{i=1}^n(y_i-\bar{y})^2} = \frac{\sum\limits_{i=1}^n(x_i-\bar{x})(y_i - \bar{y})}{\sum\limits_{i=1}^n(x_i - \bar{x})^2} \frac{\sum\limits_{i=1}^n(x_i-\bar{x})(y_i - \bar{y})}{\sum\limits_{i=1}^n(y_i-\bar{y})^2} = \\ = \hb_2 \hat{\alpha}_2
+\end{math}
+
+Если проделать те же действия для модели $\hx_i = \hat{\alpha}_1 +\hat{\alpha}_2 x_i$, мы получим тот же результат. 
+
+$R^2 = -3 \cdot \frac{-1}{12}=\frac{1}{4}$. 
+
+Также можно заметить, что $\hCorr^2 = R^2$. То есть, выборочная корреляция равна $-1/2$, так как коэффициенты отрицательные (между \(y\) и \(x\) отрицательная зависимость).
 \end{sol}
 \end{problem}
 
-
-\begin{problem}
-На работе Феофан построил парную регрессию по трём наблюдениям и посчитал прогнозы $\hat{y}_i$. Придя домой он отчасти вспомнил результаты:
+\begin{problem} %1.27
+На работе Феофан построил парную регрессию по трём наблюдениям и посчитал прогнозы $\hy_i$. Придя домой он отчасти вспомнил результаты:
 
 \begin{tabular}{rr}
 \toprule
