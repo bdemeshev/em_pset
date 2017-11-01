@@ -833,4 +833,70 @@ y_i^* = \beta_1 + \beta_2 x_i^* + \e_i^*,
 \end{sol}
 \end{problem}
 
+\begin{problem}
+Храбрый исследователь Василий строит регрессию переменной $y=(2, 8, 8)'$ на переменную $x=(1, 2, 3)'$ без константы, то есть $\hy_i = \hb x_i$.
+
+\begin{enumerate}
+  \item Найдите оценку коэффициента $\hb$ с помощью МНК;
+  \item Найдите матрицу-шляпницу $H$, превращающую $y$ в $\hy$, $\hy = Hy$.
+  \item Оцените $\Var(\hb)$ без корректировки на потенциальную гетероскедастичность;
+  \item Оцените $\Var(\hb)$ используя корректировку HC0, то есть с помощью оценки дисперсии случайной ошибки $\hVar(u_i)=\hat u_i^2$;
+  \item Оцените $\Var(\hb)$ используя корректировку HC1 (как по умолчанию в STATA или с опцией Huber-White with d.f. Adjustment в Eviews), то есть с помощью оценки дисперсии случайной ошибки $\hVar(u_i)=\hat u_i^2 \cdot \frac{n}{n-k}$;
+  \item Оцените $\Var(\hb)$ используя корректировку HC3 (как по умолчанию в пакете sandwich в R), то есть с помощью оценки дисперсии случайной ошибки $\hVar(u_i)=\hat u_i^2 \cdot \frac{1}{(1-H_{ii})^2}$;
+\end{enumerate}
+\begin{sol}
+  \begin{enumerate}
+    \item $\hb = 3$, $\hat u = (-1, 2, -1)'$
+    \item $H = \frac{1}{14}\begin{pmatrix}
+      1 & 2 & 3 \\
+      2 & 4 & 6 \\
+      3 & 6 & 9 \\
+    \end{pmatrix}$
+    \item $\hVar(u) = \begin{pmatrix}
+      3 & 0 & 0 \\
+      0 & 3 & 0 \\
+      0 & 0 & 3 \\
+    \end{pmatrix}$
+    \item $\hVar(u) = \begin{pmatrix}
+      1 & 0 & 0 \\
+      0 & 4 & 0 \\
+      0 & 0 & 1 \\
+    \end{pmatrix}$
+    \item $\hVar(u) = \begin{pmatrix}
+      1.5 & 0 & 0 \\
+      0 & 6 & 0 \\
+      0 & 0 & 1.5 \\
+    \end{pmatrix}$
+    \item $\hVar(u) = 14^2 \begin{pmatrix}
+      1/13^2 & 0 & 0 \\
+      0 & 4/10^2 & 0 \\
+      0 & 0 & 1/5^2 \\
+    \end{pmatrix}$
+  \end{enumerate}
+\end{sol}
+\end{problem}
+
+
+\begin{problem}
+Храбрый исследователь Василий строит регрессию переменной $y=(2, 4, 0)'$ на переменную $x=(1, 2, 3)'$ и константу, то есть $\hy_i = \hb_1 + \hb_2 x_i$.
+
+\begin{enumerate}
+  \item Найдите оценку коэффициентов $\hb$ с помощью МНК;
+  \item Найдите матрицу-шляпницу $H$, превращающую $y$ в $\hy$, $\hy = Hy$.
+  \item Оцените $\Var(\hb)$ без корректировки на потенциальную гетероскедастичность;
+  \item Оцените $\Var(\hb)$ используя корректировку HC0, то есть с помощью оценки дисперсии случайной ошибки $\hVar(u_i)=\hat u_i^2$;
+  \item Оцените $\Var(\hb)$ используя корректировку HC1 (как по умолчанию в STATA или с опцией Huber-White with d.f. Adjustment в Eviews), то есть с помощью оценки дисперсии случайной ошибки $\hVar(u_i)=\hat u_i^2 \cdot \frac{n}{n-k}$;
+  \item Оцените $\Var(\hb)$ используя корректировку HC3 (как по умолчанию в пакете sandwich в R), то есть с помощью оценки дисперсии случайной ошибки $\hVar(u_i)=\hat u_i^2 \cdot \frac{1}{(1-H_{ii})^2}$;
+\end{enumerate}
+\begin{sol}
+\begin{enumerate}
+  \item $\hb = (4, -1)'$, $\hat u = (-1, 2, -1)'$
+\end{enumerate}
+
+\end{sol}
+\end{problem}
+
+
+
+
 \Closesolutionfile{solution_file}
