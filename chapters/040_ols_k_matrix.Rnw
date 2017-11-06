@@ -418,7 +418,7 @@ $\hat\sigma^2=\frac{RSS}{n-k}=\frac12$.
 
 % 4.13
 \begin{problem}
-Пусть $y_i = \beta_1 + \beta_2 x_{i2} + \beta_3 x_{i3} + \e_i$ — регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, ошибки $\e_i$ независимы и нормально распределены с $\E(\e)$ = 0, $Var(\e) = \sigma^2 I$. Для удобства расчётов даны матрицы: $X'X = \begin{pmatrix} 5 & 2 & 1 \\ 2 & 2 & 1\\ 1 & 1 & 1 \end{pmatrix}$ и $(X'X)^{-1}= \begin{pmatrix} 0.3333 & -0.3333 & 0.0000 \\ -0.3333 & 1.3333 & -1.0000 \\ 0.0000 & -1.0000 & 2.0000 \end{pmatrix}$
+Пусть $y_i = \beta_1 + \beta_2 x_{i} + \beta_3 z_{i} + \e_i$ — регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, ошибки $\e_i$ независимы и нормально распределены с $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$. Для удобства расчётов даны матрицы: $X'X = \begin{pmatrix} 5 & 2 & 1 \\ 2 & 2 & 1\\ 1 & 1 & 1 \end{pmatrix}$ и $(X'X)^{-1}= \begin{pmatrix} 0.3333 & -0.3333 & 0.0000 \\ -0.3333 & 1.3333 & -1.0000 \\ 0.0000 & -1.0000 & 2.0000 \end{pmatrix}$
 
 
 <<"040_05", echo=FALSE, results='asis'>>=
@@ -435,9 +435,9 @@ x_x <- solve(xx)
 \begin{enumerate}
 \item Укажите число наблюдений.
 \item Укажите число регрессоров в модели, учитывая свободный член.
+\item Методом МНК найдите оценку для вектора неизвестных коэффициентов.
 \item Найдите $TSS = \sum_{i=1}^n (y_i - \bar y)^2$.
 \item Найдите $RSS = \sum_{i=1}^n (y_i - \hy_i)^2$.
-\item Методом МНК найдите оценку для вектора неизвестных коэффициентов.
 \item Чему равен $R^2$ в модели? Прокомментируйте полученное значение с точки зрения качества оценённого уравнения регрессии.
 \item Сформулируйте основную и альтернативную гипотезы, которые соответствуют тесту на значимость переменной $x_2$ в уравнении регрессии.
 \item Протестируйте на значимость переменную $x_2$ в уравнении регрессии на уровне значимости $10\%$:
@@ -514,9 +514,9 @@ x_x <- solve(xx)
 \begin{enumerate}
 \item $n = 5$
 \item $k = 3$
+\item $\hb = \begin{pmatrix} \hb_1 \\ \hb_2 \\ \hb_3 \end{pmatrix} = (X'X)^{-1}X'y = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix}$
 \item $TSS = 10$
 \item $RSS = 2$
-\item $\hb = \begin{pmatrix} \hb_1 \\ \hb_2 \\ \hb_3 \end{pmatrix} = (X'X)^{-1}X'y = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix}$
 \item $R^2 = 1 - \frac {RSS}{TSS} = 0.8.$ $R^2$ высокий, построенная эконометрическая модель хорошо описывает данные
 \item Основная гипотеза — $H_0: \beta_2 = 0$, альтернативная гипотеза — $H_a: \beta_2 \not= 0$
 \item Проверка гипотезы
@@ -527,7 +527,7 @@ x_x <- solve(xx)
 \item Нижняя граница $= -2.920$, верхняя граница $= 2.920$
 \item Поскольку $T_{obs} = 1.7321$, что принадлежит промежутку от -2.920 до 2.920, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
-\item $p-value(T_{obs}) = \P (|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ — функция распределения $t-$распределения с $n - k = 5 - 3 = 2$ степенями свободы в точке $|T_{obs}|$. $p-value(T_{obs}) = 2tcdf(-|T_{obs}|, n - k) = 2tcdf(-1.7321,2) = 0.2253$. Поскольку $P$-значение превосходит уровень значимости $10\%$, то основная гипотеза — $H_0: \beta_2 = 0$ не может быть отвергнута
+\item $p-value(T_{obs}) = \P (|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ — функция распределения $t$-распределения с $n - k = 5 - 3 = 2$ степенями свободы в точке $|T_{obs}|$. $p-value(T_{obs}) = 2tcdf(-|T_{obs}|, n - k) = 2tcdf(-1.7321,2) = 0.2253$. Поскольку $P$-значение превосходит уровень значимости $10\%$, то основная гипотеза — $H_0: \beta_2 = 0$ не может быть отвергнута
 \item Проверка гипотезы
 \begin{enumerate}
 \item $T = \frac{\hb_2 - \beta_2}{\sqrt{\Var(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
@@ -595,7 +595,7 @@ x_x <- solve(xx)
 
 % 4.14
 \begin{problem}
-Пусть $y = X\beta + \e$ — регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, $\E(\e)$ = 0, $Var(\e) = \sigma^2 I$.
+Пусть $y = X\beta + \e$ — регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$.
 
 <<"040_06", echo=FALSE, results='asis'>>=
 x <- matrix(as.integer(c(1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1)),
