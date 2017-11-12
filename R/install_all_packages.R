@@ -1,6 +1,8 @@
 # install all packages needed for compilation
 # of problem set
 
+options(repos = "http://cran.rstudio.com")
+
 install.packages("knitr")
 install.packages("tikzDevice")
 

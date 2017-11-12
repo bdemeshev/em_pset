@@ -1,4 +1,4 @@
-% Created by tikzDevice version 0.10.1 on 2017-09-13 12:31:41
+% Created by tikzDevice version 0.10.1 on 2017-09-19 09:30:13
 % !TEX encoding = UTF-8 Unicode
 \definecolor{fillColor}{RGB}{255,255,255}
 \path[use as bounding box,fill=fillColor,fill opacity=0.00] (0,0) rectangle (505.89,505.89);
