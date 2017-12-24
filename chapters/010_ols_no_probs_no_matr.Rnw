@@ -316,7 +316,11 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx.
 \begin{enumerate}
 \item Проявите воображение! Все зависит от данных. Например, может быть вот так:
 
-<<"aggregate_regression">>=
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 tikz("../R_plots/aggregate_regression.tikz", standAlone = FALSE, bareBones = TRUE)
 n <- 100;
 s <- rep(c(0, 4), c(n/2, n/2));
@@ -339,7 +343,7 @@ modelV2 <- lm(y ~ x)
 # общая модель
 abline(modelV2, lwd = 2, col = "red")
 invisible(dev.off())
-@
+\end{minted}
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
@@ -352,7 +356,11 @@ invisible(dev.off())
 
 \item Так тоже бывает:
 
-<<"aggregate_regression_b">>=
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 tikz("../R_plots/aggregate_regression_b.tikz", standAlone = FALSE, bareBones = TRUE)
 n <- 100;
 s <- rep(c(0, 4), c(n/2, n/2));
@@ -373,7 +381,7 @@ modelV2 <- lm(y ~ x)
 # общая модель
 abline(modelV2, lwd = 2, col = "red")
 invisible(dev.off())
-@
+\end{minted}
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
@@ -518,7 +526,12 @@ invisible(dev.off())
 
 \begin{sol}
 Да, возможно:
-<<"with_and_without_c">>=
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 tikz("../R_plots/with_and_without_c.tikz", standAlone = FALSE, bareBones = TRUE)
 x <- c(rnorm(n, mean = 4, sd = 2))
 y <- x - 7 + runif(n, min = -1, max = 1)
@@ -532,7 +545,7 @@ text(c(7.5, 1.5), c(2, 0.4), labels)
 coef(lm(y ~ x))
 coef(lm(y ~ 0 + x))
 invisible(dev.off())
-@
+\end{minted}
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
@@ -593,13 +606,46 @@ RSS = \sum\limits_{i=1}^n (y_i-\hy_i)^2 \hspace{2cm} ESS = \sum\limits_{i=1}^n (
 Интересный результат: смена знака коэффициента перед \(x\) при удалении переменной \(z\) не может произойти, если абсолютное значение \(t\)-статистики коэффициента перед \(z\) в регрессии с регрессорами \(x\) и \(z\) меньше абсолютного значения \(t\)-статистики коэффициента перед \(x\).\footnote{Leamer, E. E., 1975. A Result on the Sign of Restricted Least-Squares Estimates. Journal of Econometrics, 3, 387--390.}
 
 Пример такого набора данных:
-<<"sign_change_example">>=
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+set.seed(777)
 y <- 1:50
 z <- y + rnorm(length(y), 0, 0.01)
 x <- y + rnorm(length(y), 0, 1)
-coef(lm(y ~ x))
-coef(lm(y ~ x + z))
-@
+m_short <- lm(y ~ x)
+m_long <- lm(y ~ x + z)
+texreg(list(m_short, m_long))
+\end{minted}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c }
+\hline
+ & Model 1 & Model 2 \\
+\hline
+(Intercept) & $0.04$       & $-0.00$      \\
+            & $(0.27)$     & $(0.00)$     \\
+x           & $1.00^{***}$ & $-0.00$      \\
+            & $(0.01)$     & $(0.00)$     \\
+z           &              & $1.00^{***}$ \\
+            &              & $(0.00)$     \\
+\hline
+R$^2$       & 1.00         & 1.00         \\
+Adj. R$^2$  & 1.00         & 1.00         \\
+Num. obs.   & 50           & 50           \\
+RMSE        & 0.94         & 0.01         \\
+\hline
+\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table:coefficients}
+\end{center}
+\end{table}
+
+
 \end{sol}
 \end{problem}
 
