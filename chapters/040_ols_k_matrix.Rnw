@@ -2039,7 +2039,13 @@ $\sigma^2( n_2  + \tr((X'X)^{-1}Z'Z))$
 \begin{sol}
 \begin{enumerate}
 \item $H = \frac{1}{n} S$, где $S$ — матрица строевого леса, то есть матрица из единиц размера $n\times n$.
-\item \ldots
+\item $H = \begin{pmatrix}
+x_1^2 \sum x_i^2 & x_1 \cdot x_2 \sum x_i^2 & \ldots & x_1 \cdot x_n  \sum x_i^2 \\
+x_1 \cdot x_2 \sum x_i^2 & x_2^2 \sum x_i^2 & \ldots & x_2 \cdot x_n  \sum x_i^2 \\
+\ldots \\
+x_1 \cdot x_n \sum x_i^2 & x_2 \cdot x_n \sum x_i^2 & \ldots & x_n^2 \sum x_i^2 \\
+\end{pmatrix}
+$
 \item \ldots
 \end{enumerate}
 \end{sol}
