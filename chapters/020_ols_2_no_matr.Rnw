@@ -11,7 +11,11 @@
 \begin{sol}
 Даешь симуляции!
 
-<<"uniform_errors">>=
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 tikz("../R_plots/uniform_errors.tikz", standAlone = FALSE, bareBones = TRUE)
 
 n <- 100 # количество наблюдений
@@ -50,7 +54,7 @@ for(i in 1:ncol(toPlot))           # построим все одним махо
 }
 
 invisible(dev.off())
-@
+\end{minted}
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
@@ -162,25 +166,28 @@ H_a: \beta_2 \ne 2
 Наблюдаемое значение статистики:
 \[T = 0.6 \]
 
-Правое критическое значения при выбранном уровне значимости:
-<<"problem_2_4_part_1">>=
+Правое критическое значения при выбранном уровне значимости равно \verb|t_crit = 3.18|.
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 t_crit <- qt(1 - 0.05/2, df = 5 - 2)
-t_crit
-@
+\end{minted}
 
-Проверяем, попадает ли наблюдаемое значение статистики в область, в которой \(H_0\) не отвергается:
-<<"problem_2_4_part_2">>=
-t_obs <- 0.6
-abs(t_obs) < t_crit
-@
+Проверяем, попадает ли наблюдаемое значение статистики в область, в которой \(H_0\) не отвергается.
 
 Итак, наблюдаемое значение статистики не попало в критическую область, следовательно, гипотеза \(H_0\) не отвергается.
 
-P-value:
-<<"problem_2_4_part_3">>=
+Находим P-значение, \verb|p_value = 0.59|.
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+t_obs <- 0.6
 p_value <- 2 * (1 - pt(t_obs, df = 3))
-p_value
-@
+\end{minted}
 
 \item \( \begin{cases}
 H_0: \beta_1 + \beta_2 = 1 \\
@@ -190,46 +197,59 @@ H_a: \beta_1 + \beta_2 \ne 1
 Уровень значимости выберем \(\alpha = 5\,\%\).
 
 Формула расчета статистики:
-\[T = \frac{(\hb_1 + \hb_2) - \left(\beta_1 + \beta_2\right)_0}{\sqrt{\hVar (\hb_1 + \hb_2)}}\]
+\[
+T = \frac{(\hb_1 + \hb_2) - \left(\beta_1 + \beta_2\right)_0}{\sqrt{\hVar (\hb_1 + \hb_2)}}
+\]
 
-\[T = \frac{(\hb_1 + \hb_2) - 1}{\sqrt{\hVar (\hb_1 + \hb_2)}} \overset{H_0}{\sim} t_{n-2} \]
+\[
+T = \frac{(\hb_1 + \hb_2) - 1}{\sqrt{\hVar (\hb_1 + \hb_2)}} \overset{H_0}{\sim} t_{n-2}
+\]
 
-\[\Var(\hb_1) = \Var \left(\bar{y} - \hb_2 \bar{x}\right) = \frac{1}{n^2}\Var \sum y_i + \bar{x}^2 \Var (\hb_2) = \frac{1}{n} \sigma^2 + \bar{x}^2 \cdot \frac{\sigma^2}{\sum (x_i - \bar{x})^2} = \]
-\[= \sigma^2 \frac{\sum (x_i - \bar{x})^2 + n \bar{x}^2}{n \sum (x_i - \bar{x})^2} = \sigma^2\frac{\sum x_i^2 - 2 \bar{x}\sum x_i + 2n\bar{x}^2}{n \sum (x_i - \bar{x})^2} = \sigma^2\frac{\sum x_i^2}{n \sum (x_i - \bar{x})^2}\]
+\[
+\Var(\hb_1) = \Var \left(\bar{y} - \hb_2 \bar{x}\right) = \frac{1}{n^2}\Var \sum y_i + \bar{x}^2 \Var (\hb_2) = \frac{1}{n} \sigma^2 + \bar{x}^2 \cdot \frac{\sigma^2}{\sum (x_i - \bar{x})^2} = \]
+\[= \sigma^2 \frac{\sum (x_i - \bar{x})^2 + n \bar{x}^2}{n \sum (x_i - \bar{x})^2} = \sigma^2\frac{\sum x_i^2 - 2 \bar{x}\sum x_i + 2n\bar{x}^2}{n \sum (x_i - \bar{x})^2} = \sigma^2\frac{\sum x_i^2}{n \sum (x_i - \bar{x})^2}
+\]
 
-\[\Cov(\hb_1, \hb_2) = \Cov (\bar{y} - \hb_2 \bar{x}, \hb_2) = \frac{1}{n} \Cov \left(\sum y_i, \hb_2 \right) - \bar{x} \Var (\hb_2) = \]
+\[
+\Cov(\hb_1, \hb_2) = \Cov (\bar{y} - \hb_2 \bar{x}, \hb_2) = \frac{1}{n} \Cov \left(\sum y_i, \hb_2 \right) - \bar{x} \Var (\hb_2) = \]
 \[= \Cov \left(\sum y_i, \frac{\sum (x_i - \bar{x})y_i}{\sum (x_i - \bar{x})^2} \right)- \bar{x} \cdot \frac{\sigma^2}{\sum (x_i - \bar{x})^2} = \]
-\[=\sigma^2 \cdot \frac{\sum (x_i - \bar{x})}{\sum (x_i - \bar{x})^2} - \bar{x} \cdot \frac{\sigma^2}{\sum (x_i - \bar{x})^2} = \sigma^2 \frac{-\bar{x}}{\sum (x_i - \bar{x})^2}  \]
+\[=\sigma^2 \cdot \frac{\sum (x_i - \bar{x})}{\sum (x_i - \bar{x})^2} - \bar{x} \cdot \frac{\sigma^2}{\sum (x_i - \bar{x})^2} = \sigma^2 \frac{-\bar{x}}{\sum (x_i - \bar{x})^2}
+\]
 
 Итак:
-\[\Var (\hb_1 + \hb_2) = \Var (\hb_1) + \Var (\hb_2) + 2 \Cov (\hb_1, \hb_2) = \]
-\[ =\sigma^2 \left(\frac{\sum x_i^2}{n \sum (x_i - \bar{x})^2} +  \frac{1}{\sum (x_i - \bar{x})^2} - \frac{2\bar{x}}{\sum (x_i - \bar{x})^2}\right) = \sigma^2 \cdot \frac{\sum x_i^2 - 2 \sum x_i + n}{n \sum (x_i - \bar{x})^2} = \]
-\[=\sigma^2 \cdot \frac{\sum (x_i - 1)^2}{n\sum (x_i - \bar{x})^2}  \]
+\begin{multline}
+\Var (\hb_1 + \hb_2) = \Var (\hb_1) + \Var (\hb_2) + 2 \Cov (\hb_1, \hb_2) = \\
+=\sigma^2 \left(\frac{\sum x_i^2}{n \sum (x_i - \bar{x})^2} +  \frac{1}{\sum (x_i - \bar{x})^2} - \frac{2\bar{x}}{\sum (x_i - \bar{x})^2}\right) = \sigma^2 \cdot \frac{\sum x_i^2 - 2 \sum x_i + n}{n \sum (x_i - \bar{x})^2} = \\
+=\sigma^2 \cdot \frac{\sum (x_i - 1)^2}{n\sum (x_i - \bar{x})^2}
+\end{multline}
 
 \[\hVar (\hb_1 + \hb_2) = \hat{\sigma}^2 \cdot \frac{\sum (x_i - 1)^2}{n\sum (x_i - \bar{x})^2} \approx 0.278\]
 
 Наблюдаемое значение статистики:
 \[T \approx 5.692 \]
 
-Критические значения при выбранном уровне значимости:
-<<"problem_2_4_part_4">>=
+Критические значения при выбранном уровне значимости, \verb|t_crit = 3.18|.
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 t_crit <- qt(1 - 0.05/2, df = 5 - 2)
-t_crit
-@
+\end{minted}
 
-Проверяем, попадает ли наблюдаемое значение статистики в область, в которой \(H_0\) не отвергается:
-<<"problem_2_4_part_5">>=
-t_obs <- 5.692
-abs(t_obs) < t_crit
-@
+Проверяем, попадает ли наблюдаемое значение статистики в область, в которой \(H_0\) не отвергается.
 
 Итак, наблюдаемое значение статистики попадает в критическую область, следовательно, гипотеза \(H_0\) отвергается в пользу альтернативной.
 
-P-value:
-<<"problem_2_4_part_6">>=
+Находим P-значени, \verb|p_value = 0.01|.
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+t_obs <- 5.692
 p_value <- 2 * (1 - pt(t_obs, df = 3))
-p_value
-@
+\end{minted}
 
 \end{enumerate}
 \end{sol}
@@ -342,11 +362,14 @@ RSS = \sum_{i=1}^5 \left(y_i-\frac{4}{7} - \frac{3}{7}x_i\right)^2 = \dots = \su
 \[
 \frac{(23-4.5)/1}{4.5/(5-2)} \approx 12.3
 \]
-По построению статистики, гипотеза $H_0$ должна быть отвергнута, если значение статистики слишком сильно отличается от нуля. Найдем критическое значение при уровне значимости 5\%:
-<<"problem_2_5">>=
+По построению статистики, гипотеза $H_0$ должна быть отвергнута, если значение статистики слишком сильно отличается от нуля. Найдем критическое значение при уровне значимости 5\%, \verb|f_crit = 10.13|.
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 f_crit <- qf(p = 0.95, df1 = 1, df2 = 3)
-f_crit < 12.3
-@
+\end{minted}
 Вывод: $H_0$ отвергается.
 
 \end{sol}
@@ -583,10 +606,15 @@ Q(P) = \frac{e^a}{P^b}
 \[
 \frac{\hb_2-\beta_2}{s.e(\hb_2)} \sim t_{100-2} \Rightarrow \frac{-1.23-(-1)}{0.02} = -11.5
 \]
-Если значение статистики будет слишком далеко от 0 (меньше \verb|qt(0.025, df = 98)| или больше \verb|qt(0.975, df = 98))|, то различия значимы.
-<<"problem_2_9">>=
-qt(0.025, df = 98)
-@
+Если значение статистики будет слишком далеко от 0, меньше \verb|-t_crit = -1.98|, или больше  \verb|t_crit = 1.98|, то различия значимы.
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+t_crit <- qt(0.025, df = 98)
+\end{minted}
+
 Вывод: значимо.
 \end{sol}
 \end{problem}
@@ -609,13 +637,14 @@ qt(0.025, df = 98)
 Наблюдаемое значение статистики:
 \[ T = -6    \]
 
-Проверим гипотезу с помощью P-value:
-<<"problem_2_10">>=
+Проверим гипотезу с помощью P-значения, \verb|p_value| = $3.3 \cdot 10^{-8}$:
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 p_value <- 2 * pt(-6, df = 98)
-p_value
-
-p_value > 0.05 # если TRUE, то гипотеза не отвергается
-@
+\end{minted}
 
 Гипотеза отвергается в пользу альтернативной на уровне значимости 5\,\%.
 
@@ -642,10 +671,14 @@ p_value > 0.05 # если TRUE, то гипотеза не отвергаетс�
 \frac{\hb_2-\beta_2}{s.e(\hb_2)}  \sim t_{45-2} \Rightarrow \frac{-0.23 - 0}{0.04} = -5.75
 \]
 
-Нужно сравнить с:
-<<"problem_2_11">>=
-qt(0.005, df = 43)
-@
+Нужно сравнить с \verb|t_crit = -2.695|.
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+t_crit <- qt(0.005, df = 43)
+\end{minted}
 
 Видим, что статистика слишком сильно отличается от нуля. Вывод: гипотеза $H_0$ отвергается.
 
@@ -1088,10 +1121,18 @@ $\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценив�
 \[ \E RSS = (n - k) \sigma^2 = 20 \sigma^2\]
 \[ \Var RSS = 2(n - k)\sigma^4 = 40 \sigma^4\]
 \[  \P \left(10 < \frac{RSS}{\sigma^2} < 30\right) \approx 0.898\]
-<<"problem_2_26">>=
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 pchisq(30, 20) - pchisq(10, 20)
-@
-\[  \P \left(10 \hat{\sigma}^2 < \hat{\sigma}^2 (n - k)  < 30\hat{\sigma}^2\right) = 1\]
+\end{minted}
+
+\[
+\P \left(10 \hat{\sigma}^2 < \hat{\sigma}^2 (n - k)  < 30\hat{\sigma}^2\right) = 1
+\]
 
 \end{sol}
 \end{problem}
@@ -1129,38 +1170,64 @@ $\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценив�
 $\P(\beta_1>0)$ равна либо 0 либо 1, но мы этого не знаем и никогда не узнаем.
 
 \[
-\P(|\hb_1-\beta_1|<se(\hb_1)) = \P(|Z|<1), \hspace{2mm}Z \sim t_{12-2}
+\P(|\hb_1-\beta_1|<se(\hb_1)) = \P(|Z|<1) \approx 0.66, \hspace{2mm}Z \sim t_{12-2}
 \]
 Посчитаем в R:
-<<"problem_2_27_part_1">>=
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 pt(1, df = 10) - pt(-1, df = 10)
-@
+\end{minted}
 
 \[
-\P\left(\frac{\hb_2-\beta_2}{se(\hb_2)} > 1\right) = 1 - \P\left(\frac{\hb_2-\beta_2}{se(\hb_2)} < 1\right)
+\P\left(\frac{\hb_2-\beta_2}{se(\hb_2)} > 1\right) = 1 - \P\left(\frac{\hb_2-\beta_2}{se(\hb_2)} < 1\right) \approx 0.17
 \]
-<<"problem_2_27_part_2">>=
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 1 - pt(1, df = 10)
-@
+\end{minted}
+
 \[
-\P\left(\frac{\hb_2-\beta_2}{se(\hb_2)} > -1\right) = \P\left(\frac{\hb_2-\beta_2}{se(\hb_2)} < 1\right)
+\P\left(\frac{\hb_2-\beta_2}{se(\hb_2)} > -1\right) = \P\left(\frac{\hb_2-\beta_2}{se(\hb_2)} < 1\right) \approx 0.83
 \]
-<<"problem_2_27_part_3">>=
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 pt(1, df = 10)
-@
+\end{minted}
 
 \item Выполнены предпосылки теоремы Гаусса-Маркова, поэтому оценки МНК несмещённые: $\E(\hb_1) = \beta_1$, $\E(\hb_2) = \beta_2$. А $\E(\beta_2) = \beta_2$, независимо от предпосылок.
 
 \item Первая величина $\sim \cN(0, 1)$, вторая и третья $\sim t_{10}$.
 \item
-\[\P(\hat{\sigma} > \sigma) = \P(\hat{\sigma}^2 > \sigma^2) = \P\left(\frac{RSS}{n-k}>\sigma^2\right) = \P\left( \underbrace{\frac{RSS}{\sigma^2}}_{Z} > 10\right), \hspace{3mm} Z \sim \chi^2_{10}\]
-<<"problem_2_27_part_4">>=
+\[\P(\hat{\sigma} > \sigma) = \P(\hat{\sigma}^2 > \sigma^2) = \P\left(\frac{RSS}{n-k}>\sigma^2\right) = \P\left( \underbrace{\frac{RSS}{\sigma^2}}_{Z} > 10\right) \approx 0.44, \hspace{3mm} Z \sim \chi^2_{10}
+\]
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 1 - pchisq(10, df = 10)
-@
-Аналогично, $\P(\hat{\sigma} > 2\sigma)$ равна:
-<<"problem_2_27_part_5">>=
+\end{minted}
+
+Аналогично, $\P(\hat{\sigma} > 2\sigma) \approx 1.69 \cdot 10^{-5}$ равна:
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 1 - pchisq(40, df = 10)
-@
+\end{minted}
 
 \end{enumerate}
 \end{sol}
@@ -1500,7 +1567,12 @@ x_n\\
 Известно, что для парной регрессии $t_2^2 = \frac{R^2}{(1 - R^2)/(n-2)}$. Поэтому из выражения $t_2^2 = \frac{0.05^2}{(1 - 0.05^2)/(n-2)} = \frac{0.05^2 (n-2)}{1 - 0.05^2}$ становится очевидным, что при надлежащем выборе числа наблюдений можно сделать величину $t_{\hb_2}$ сколь угодно большой.
 
 Например, сгенерируем такие данные искусственно:
-<<"small_r2_big_t">>=
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 set.seed(777) # на удачу!
 x <- rnorm(100000, mean = 0, sd = 1)
 eps <- rnorm(100000, mean = 0, sd = 10)
@@ -1508,17 +1580,10 @@ y <- 0 + 1 * x + eps
 model <- lm(y ~ x)
 report <- summary(model)
 report$r.squared
-@
+\end{minted}
 
-Здесь $R^2=
-<<"020_a", echo=FALSE, results="asis">>=
-cat(round(report$r.squared, 2))
-@
-$, а $t=
-<<"020_b", echo=FALSE, results="asis">>=
-cat(round(report$coefficients[2,3], 2))
-@
-$.
+Здесь $R^2=0.01$, а $t = 31.8$.
+
 
 \end{sol}
 \end{problem}
@@ -1698,26 +1763,55 @@ $.
 Вспомните про $t$, $\chi^2$, $F$-распределения:
 \begin{enumerate}
 \item \(1/2\).
-\item
-<<"problem_2_38_part_1">>=
+\item $0.37$
+
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 1 - pchisq(q = 2, df = 2)
-@
-\item \[\P\left(\frac{\e_1}{\sqrt{\e_2^2 + \e_3^2}} > 2 \right) =  \P\left(\frac{(\e_1/\sigma)}{\sqrt{1/2 \cdot \left((\e_2/\sigma)^2 + (\e_3/\sigma)^2\right)}} > 2\sqrt{2} \right)\]
-<<"problem_2_38_part_2">>=
+\end{minted}
+\item \[\P\left(\frac{\e_1}{\sqrt{\e_2^2 + \e_3^2}} > 2 \right) =  \P\left(\frac{(\e_1/\sigma)}{\sqrt{1/2 \cdot \left((\e_2/\sigma)^2 + (\e_3/\sigma)^2\right)}} > 2\sqrt{2} \right) \approx 0.05
+\]
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 1 - pt(q = 2 * sqrt(2), df = 2)
-@
-\item
-<<"problem_2_38_part_3">>=
+\end{minted}
+\item $0.15$
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 1 - pt(q = 5 / 4, df = 3)
-@
+\end{minted}
 \item \(\left(\e_1 + 2\e_2\right) \sim \cN(0, 5\sigma^2)  \)
-<<"problem_2_38_part_4">>=
+
+Итого, $0.98$.
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 pt(q = 9 / 2 * sqrt(3) / sqrt(5), df = 3)
-@
-\item
-<<"problem_2_38_part_5">>=
+\end{minted}
+\item $0.028$
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 pt(q = -sqrt(34), df = 2) + (1 - pt(q = sqrt(34), df = 2))
-@
+\end{minted}
 \end{enumerate}
 \end{sol}
 \end{problem}
@@ -1780,17 +1874,41 @@ $y$ & $x$ \\
 
 
 \begin{sol}
-<<"problem_2_40", results="asis">>=
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 df1 <- data.frame(x = c(1, 2, 3, 4), y = c(5, 3, 3, 4))
 df2 <- data.frame(y = rep(df1$y, 10), x = rep(df1$x, 10))
 m1 <- lm(data=df1, y ~ x)
 m2 <- lm(data=df2, y ~ x)
-mt <- mtable(m1, m2, summary.stats = c("N",
-    "Deviance", "R-squared", "sigma", "F", "p"))
-write.mtable(mt, forLaTeX = TRUE)
-@
+texreg(list(m1, m2))
+\end{minted}
 
-
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c }
+\hline
+ & Model 1 & Model 2 \\
+\hline
+(Intercept) & $4.50$   & $4.50^{***}$ \\
+            & $(1.31)$ & $(0.30)$     \\
+x           & $-0.30$  & $-0.30^{**}$ \\
+            & $(0.48)$ & $(0.11)$     \\
+\hline
+R$^2$       & 0.16     & 0.16         \\
+Adj. R$^2$  & -0.25    & 0.14         \\
+Num. obs.   & 4        & 40           \\
+RMSE        & 1.07     & 0.78         \\
+\hline
+\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table:coefficients}
+\end{center}
+\end{table}
 
 \end{sol}
 \end{problem}
@@ -1991,7 +2109,11 @@ $\Var(\bar\e)=\sigma^2/n$,  $\plim \bar{\e}=0$
 \begin{problem}
 На плоскости изображены оба наблюдения:
 
-<<"two_points_zero_slope", echo=FALSE>>=
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 tikz("../R_plots/two_points_zero_slope.tikz", standAlone = FALSE, bareBones = TRUE)
 data_2d <- data_frame(
   x = c(10, 20),
@@ -2002,7 +2124,7 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
   scale_y_continuous(limits = c(0, 15)) +
   scale_x_continuous(limits = c(0, 30))
 invisible(dev.off())
-@
+\end{minted}
 
 
 
@@ -2026,7 +2148,11 @@ invisible(dev.off())
 \begin{problem}
 На плоскости изображены оба наблюдения:
 
-<<"two_points_positive_slope", echo=FALSE>>=
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 tikz("../R_plots/two_points_positive_slope.tikz", standAlone = FALSE, bareBones = TRUE)
 data_2d <- data_frame(
   x = c(10, 20),
@@ -2037,7 +2163,7 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
   scale_y_continuous(limits = c(0, 20)) +
   scale_x_continuous(limits = c(0, 30))
 invisible(dev.off())
-@
+\end{minted}
 
 
 
@@ -2103,7 +2229,11 @@ $20$ & ? \\
 
 
 
-<<"regression_on_plot", echo=FALSE>>=
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 tikz("../R_plots/regression_on_plot.tikz", standAlone = FALSE, bareBones = TRUE)
 set.seed(94)
 n_obs <- 20
@@ -2119,7 +2249,7 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
   stat_smooth(method = "lm", se = FALSE, col = I("gray")) +
   xlab("") + ylab("$y_i$")
 invisible(dev.off())
-@
+\end{minted}
 
 
 
@@ -2152,7 +2282,11 @@ invisible(dev.off())
 \begin{problem}
 Постройте парную регрессию по четырём наблюдениям:
 
-<<"4_observations", echo=FALSE>>=
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 tikz("../R_plots/4_observations.tikz", standAlone = FALSE, bareBones = TRUE)
 data_2d <- data_frame(
   x = c(1, 2, 2, 2),
@@ -2163,7 +2297,7 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
   labels = c("$0$", "$1$", "$2$")) +
   xlab("$x_i$") + ylab("$y_i$")
 invisible(dev.off())
-@
+\end{minted}
 
 
 \begin{minipage}{\textwidth}
