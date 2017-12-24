@@ -23,6 +23,10 @@ $C$ & 3 & 0 \\
 
 
 \begin{sol}
+\begin{enumerate}
+\item $|AB| = \sqrt{10}$, $\cos(ABC) = \frac{1}{\sqrt{5}}$
+\item $|AB| = 1$, $\cos(ABC) = e^{-8}$
+\end{enumerate}
 \end{sol}
 \end{problem}
 
@@ -36,6 +40,7 @@ f : (x_1,x_2) \to (1,x_1,x_2,3x_1 x2, 2x_1^2, 4x_2^2).
 
 
 \begin{sol}
+$K(x, y) = 1 + x_1 y_1 + x_2 y_2 + 3x_1 x_2 \cdot 3 y_1 y_2 + 2 x_1^2 \cdot 2 y_1^2 + 4 x_2^2 \cdot 4 y_2^2$
 \end{sol}
 \end{problem}
 
@@ -145,6 +150,11 @@ $C=0$ и $\sigma=+\infty$
 \end{enumerate}
 
 \begin{sol}
+\begin{enumerate}
+\item Нужно нарисовать прямые $2x_1 + 3 x_2 = 7$, $2x_1 + 3 x_2 = 8$, $2x_1 + 3 x_2 = 6$.
+\item $2/\sqrt{13}$
+\item $22/\sqrt{13}$
+\end{enumerate}
 \end{sol}
 \end{problem}
 
@@ -152,6 +162,7 @@ $C=0$ и $\sigma=+\infty$
 \begin{problem}
 Заданы две прямые, $l_0$: $x^{(1)}+3x^{(2)} = 9$ и $l_1$: $x^{(1)}+3x^{(2)} = 13$. Найдите подходяющий вектор $w$ и число $w_0$ так, чтобы прямая $l_0$ записывалась как  $\langle w,x \rangle=w_0-1$, а прямая $l_1$ как  $\langle w,x\rangle=w_0 + 1$.
 \begin{sol}
+$w = (1/2, 1/2)$, $w_0 = 5.5$
 \end{sol}
 \end{problem}
 
