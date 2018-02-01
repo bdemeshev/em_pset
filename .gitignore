@@ -190,3 +190,5 @@ fonts/
 solutions/
 .DS_Store
 em1_pset_v2.xdv
+*.pygtex
+*.pygstyle
