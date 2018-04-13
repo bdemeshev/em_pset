@@ -345,15 +345,15 @@ xmodel <- function(model,
 @
 <<child='chapters/140_forest.Rnw'>>=
 @
-<<child='chapters/150_nnetwork.Rnw'>>=
-@
+
+\input{chapters/150_nnetwork.tex}
+
 
 
 
 % байесовский подход
 
-<<child='chapters/160_ba.Rnw'>>=
-@
+\input{chapters/160_ba.tex}
 
 % Приложения
 
@@ -363,18 +363,17 @@ xmodel <- function(model,
 @
 <<child='chapters/220_multivariate_n.Rnw'>>=
 @
-<<child='chapters/230_programming.Rnw'>>=
-@
+
+\input{chapters/230_programming.tex}
 
 
-<<child='chapters/110_gmm.Rnw'>>=
-@
+\input{chapters/110_gmm.tex}
+
 
 %%% не задачи:
 
+\input{chapters/240_ustav_test.tex}
 
-<<child='chapters/240_ustav_test.Rnw'>>=
-@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -428,8 +427,9 @@ xmodel <- function(model,
 
 \chapter{Таблицы}
 
-<<child='chapters/250_tables.Rnw'>>=
-@
+
+\input{chapters/250_tables.tex}
+
 
 \chapter{Обозначения}
 
