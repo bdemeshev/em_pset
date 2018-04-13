@@ -282,8 +282,8 @@ xmodel <- function(model,
 
 %\parindent=0 pt % отступ равен 0
 
-<<child='chapters/010_ols_no_probs_no_matr.Rnw'>>=
-@
+\input{chapters/010_ols_no_probs_no_matr.tex}
+
 
 
 <<child='chapters/020_ols_2_no_matr.Rnw'>>=
@@ -323,16 +323,9 @@ xmodel <- function(model,
 @
 
 
-<<child='chapters/090_specification.Rnw'>>=
-@
+\input{chapters/090_specification.tex}
 
-
-%
-
-<<child='chapters/100_random_x.Rnw'>>=
-@
-
-
+\input{chapters/100_random_x.tex}
 
 % time series
 
