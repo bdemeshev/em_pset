@@ -284,11 +284,7 @@ xmodel <- function(model,
 
 \input{chapters/010_ols_no_probs_no_matr.tex}
 
-
-
-<<child='chapters/020_ols_2_no_matr.Rnw'>>=
-@
-
+\input{chapters/020_ols_2_no_matr.tex}
 
 
 <<child='chapters/030_ols_k_no_matr.Rnw'>>=
