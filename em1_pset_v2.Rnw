@@ -419,6 +419,44 @@ xmodel <- function(model,
 
 \input{chapters/250_tables.tex}
 
+\chapter{Правила виноделов}
+
+\begin{enumerate}
+
+
+
+\item Дробную часть числа отделяй от целой точкой: $3.14$ — хорошо, $3{,}14$ — плохо. Это нарушает русскую традицию, но облегчает копирование-вставку в любой программный пакет.
+\item Существует длинное тире, —, которое отличается от просто дефиса - и нужно, чтобы разделять части предложения. \href{https://ru.wikihow.com/напечатать-тире}{Инструкция в картинках по набору тире :)}
+\item Выключные формулы следует окружать \verb|\[|\ldots\verb|\]|. Никаких \$\$\ldots\$\$!
+\item Про остальные окружения: для системы уравнений подойдёт \verb|cases|, для формул на несколько строк – \verb|multline*|, для нумерации – \verb|enumerate|.
+\item Русский текст внутри формулы нужно писать в \verb|\text{|\ldots\}.
+\item Для многоточий существует команда \verb|\ldots|.
+\item В преамбуле определены сокращения! Самые популярные: \verb|\P, \E, \Var, \Cov, \Corr, \cN|.
+\item Названия функций тоже идут со слэшем: \verb|\ln, \exp, \cos|\ldots
+\item Таблицы нужно оформлять по стандарту booktabs. Самый удобный способ сделать это – зайти на
+\href{https://www.tablesgenerator.com}{tablesgenerator} и выбрать там опцию booktabs table style вместо default table style.
+\item Уважай букву ё – ставь над ней точки! :)
+
+
+\item Если к задаче нужно добавить рисунок, то лучше это делать с помощью окружения \verb|minipage|:
+
+
+\begin{minted}[mathescape,
+               linenos,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{latex}
+\begin{minipage}{0.6\textwidth}
+\begin{center}
+\includegraphics[scale=0.4]{файл_картинки}
+\end{center}
+\captionof{figure}{Текст подписи :)}
+\end{minipage}
+\end{minted}
+
+
+\end{enumerate}
+
 
 \chapter{Обозначения}
 
