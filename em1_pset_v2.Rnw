@@ -49,7 +49,16 @@
 \date{\today}
 
 \makeindex % команда для создания предметного указателя
-\bibliographystyle{plain} % стиль оформления ссылок
+
+
+
+\usepackage[bibencoding = auto,
+backend = biber,
+sorting = none,
+style=alphabetic]{biblatex}
+
+\addbibresource{em1_pset_v2.bib}
+
 
 
 
@@ -501,6 +510,13 @@ $RSS=\sum \he^2_i$
 $TSS=\sum_{i=1}^n (y_i - \bar{y})^2$
 
 $ESS=\sum_{i=1}^n (\hy_i - \bar{y})^2$
+
+
+\chapter{Источники мудрости}
+\printbibliography[heading=none]
+
+
+
 
 \listoftodos % comment/uncomment this line :)
 

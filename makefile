@@ -3,7 +3,7 @@
 # .Rnw extension is automatically added
 file_name = em1_pset_v2
 
-$(file_name).pdf: $(file_name).tex title_bor_utf8_knitr_e.tex
+$(file_name).pdf: $(file_name).tex title_bor_utf8_knitr_e.tex chapters/*.tex
 	echo "If fonts are missing download them via 'make fonts'"
 	# create folder in case it does not exist
 	-mkdir R_plots

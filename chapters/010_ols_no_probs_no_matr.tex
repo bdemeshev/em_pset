@@ -440,12 +440,12 @@ invisible(dev.off())
 
 
 \begin{problem} %1.18
-У эконометриста Вовочки есть переменная $1_f$, которая равна 1, если $i$-ый человек в выборке — женщина, и 0, если мужчина. Есть переменная $1_m$, которая равна 1, если $i$-ый человек в выборке — мужчина, и 0, если женщина. Какие $\hy$ получатся, если Вовочка попытается построить регрессии:
+У эконометриста Вовочки есть переменная $f_i$, которая равна 1, если $i$-ый человек в выборке — женщина, и 0, если мужчина. Есть переменная $m_i$, которая равна 1, если $i$-ый человек в выборке — мужчина, и 0, если женщина. Какие $\hy$ получатся, если Вовочка попытается построить регрессии:
 \begin{enumerate}
-\item $y$ на константу и $1_f$;
-\item $y$ на константу и $1_m$;
-\item $y$ на $1_f$ и $1_m$ без константы;
-\item $y$ на константу, $1_f$ и $1_m$.
+\item $y$ на константу и $f$;
+\item $y$ на константу и $m$;
+\item $y$ на $f$ и $m$ без константы;
+\item $y$ на константу, $f$ и $m$.
 \end{enumerate}
 
 
@@ -453,35 +453,37 @@ invisible(dev.off())
 Пусть \(\bar{y}_m\) — среднее значение \(y\) по выборке для мужчин, \(\bar{y}_f\) — среднее значение \(y\) по выборке для женщин. Тогда
 
 \begin{enumerate}
-\item \(\hy = \bar{y}_m + \left( \bar{y}_m -  \bar{y}_f \right) \cdot 1_f \)
+\item \(\hy = \bar{y}_m + \left( \bar{y}_m -  \bar{y}_f \right) \cdot f \)
 
 Оцениваемая модель:
-\[y_i = \beta_1 + \beta_2 1_{f, i} + \e_i \]
+\[
+y_i = \beta_1 + \beta_2 f_i + \e_i 
+\]
 
 Стандартная процедура МНК:
-\[RSS = \sum \e_i^2 = \sum \left(y_i - \beta_1 - \beta_2 \cdot 1_f \right)^2 \rightarrow \min \limits_{\beta_1, \beta_2}\]
+\[RSS = \sum \e_i^2 = \sum \left(y_i - \beta_1 - \beta_2 \cdot f_i \right)^2 \rightarrow \min \limits_{\beta_1, \beta_2}\]
 \[\frac{\partial RSS}{\partial \beta_1} = 2 \sum \left(y_i - \beta_1 - \beta_2\right)(-1) \]
-\[\frac{\partial RSS}{\partial \beta_2} = 2 \sum \left(y_i - \beta_1 - \beta_2 \right)(-1_f) \]
+\[\frac{\partial RSS}{\partial \beta_2} = 2 \sum \left(y_i - \beta_1 - \beta_2 \right)(-f_i) \]
 
 Условия первого порядка:
-\[\sum \left(y_i - \hb_1 - \hb_2 \cdot 1_f\right) = 0\]
-\[\sum \left(\left(y_i - \hb_1 - \hb_2 \cdot 1_f\right)\cdot 1_f\right)= 0\]
+\[\sum \left(y_i - \hb_1 - \hb_2 \cdot f_i\right) = 0\]
+\[\sum \left(\left(y_i - \hb_1 - \hb_2 \cdot f_i\right)\cdot f_i\right)= 0\]
 
 Осталось немного поработать с оператором суммирования. Обозначим за \(k\) — число женщин в нашей выборке объемом \(n\), мужчин тогда будет \(n - k\). Тогда
-\[\sum \left(y_i - \hb_1 - \hb_2 \cdot 1_f\right) = k \bar{y}_f + (n - k) \bar{y}_m - n \hb_0 - k \hb_2 = 0\]
-\[\sum \left(\left(y_i - \hb_1 - \hb_2 \cdot 1_f\right)\cdot 1_f\right) = k \bar{y}_f - k \hb_1 - k \hb_2 =0\]
+\[\sum \left(y_i - \hb_1 - \hb_2 \cdot f_i\right) = k \bar{y}_f + (n - k) \bar{y}_m - n \hb_1 - k \hb_2 = 0\]
+\[\sum \left(\left(y_i - \hb_1 - \hb_2 \cdot f_i\right)\cdot f_i\right) = k \bar{y}_f - k \hb_1 - k \hb_2 =0\]
 
 Отсюда легко ищутся оценки коэффициентов:
 \[\hb_1 = \bar{y}_m, \ \hb_2 = \bar{y}_f - \bar{y}_m  \]
 
 Следовательно:
-\[\hy = \bar{y}_m + \left( \bar{y}_f -  \bar{y}_m \right) \cdot 1_f \]
+\[\hy = \bar{y}_m + \left( \bar{y}_f -  \bar{y}_m \right) \cdot f \]
 
-\item \(\hy = \bar{y}_f + \left( \bar{y}_m -  \bar{y}_f \right) \cdot 1_m \)
+\item \(\hy = \bar{y}_f + \left( \bar{y}_m -  \bar{y}_f \right) \cdot m \)
 
-\item \(\hy = \bar{y}_m \cdot 1_m + \bar{y}_f \cdot 1_f \)
+\item \(\hy = \bar{y}_m \cdot m + \bar{y}_f \cdot f \)
 
-\item Условия первого порядка линейного зависимы — мультиколлинеарность. МНК здесь неприменим.
+\item Условия первого порядка линейного зависимы — мультиколлинеарность. МНК-оценки здесь не единственны.
 \end{enumerate}
 \end{sol}
 \end{problem}
@@ -573,7 +575,9 @@ invisible(dev.off())
 
 
 \begin{problem} %1.23
-Эконометрист Вовочка оценил методом наименьших квадратов модель 1, $y=\b_1+\b_2 x+\b_3 z+\e$, а затем модель 2, $y=\b_1+\b_2 x+\b_3 z+\b_4 w+\e$. Сравните полученные $ESS$, $RSS$, $TSS$ и $R^2$.
+Эконометрист Вовочка оценил методом наименьших квадратов модель 1, $y_i=\b_1+\b_2 x_i+\b_3 z_i+\e_i$, 
+а затем модель 2, $y_i=\b_1+\b_2 x_i+\b_3 z_i+\b_4 w_i+\e_i$. 
+Сравните полученные $ESS$, $RSS$, $TSS$ и $R^2$.
 
 
 \begin{sol}
@@ -603,8 +607,7 @@ RSS = \sum\limits_{i=1}^n (y_i-\hy_i)^2 \hspace{2cm} ESS = \sum\limits_{i=1}^n (
 
 
 \begin{sol}
-Интересный результат: смена знака коэффициента перед \(x\) при удалении переменной \(z\) не может произойти, если абсолютное значение \(t\)-статистики коэффициента перед \(z\) в регрессии с регрессорами \(x\) и \(z\) меньше абсолютного значения \(t\)-статистики коэффициента перед \(x\).\footnote{Leamer, E. E., 1975. A Result on the Sign of Restricted Least-Squares Estimates. Journal of Econometrics, 3, 387--390.}
-
+  Интересный результат, \cite{leamer1975result}: смена знака коэффициента перед \(x\) при удалении переменной \(z\) не может произойти, если абсолютное значение \(t\)-статистики коэффициента перед \(z\) в регрессии с регрессорами \(x\) и \(z\) меньше абсолютного значения \(t\)-статистики коэффициента перед \(x\).
 Пример такого набора данных:
 \begin{minted}[mathescape,
                linenos,

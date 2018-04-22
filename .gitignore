@@ -190,3 +190,5 @@ solutions/
 em1_pset_v2.xdv
 *.pygtex
 *.pygstyle
+em1_pset_v2.run.xml
+em1_pset_v2.bbl
