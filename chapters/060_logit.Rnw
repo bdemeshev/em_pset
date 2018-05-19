@@ -243,11 +243,11 @@ LR = -2(\ell(\hb_{1, R}, \hb_{2, R}) - \ell(\hb_{1, UR}, \hb_{2, UR}))
 
 Находим наблюдаемое значение статистики отношения правдоподобия:
 \begin{multline*}
-l(\hb_{1, R}, \hb_{2, R}) = \ell(\hat{a}_R, \hat{b}_R = \hat{a}_R) = 44\ln\hat{a}_R + 56\ln[1-\hat{a}_R] =\\
+\ell(\hb_{1, R}, \hb_{2, R}) = \ell(\hat{a}_R, \hat{b}_R = \hat{a}_R) = 44\ln\hat{a}_R + 56\ln[1-\hat{a}_R] =\\
  44\ln \left[ \frac{11}{25} \right] + 56\ln \left[ 1 - \frac{11}{25} \right] = -68.59
 \end{multline*}
 \begin{multline*}
-l(\hb_{1, UR}, \hb_{2, UR}) = \ell(\hat{a}_{UR}, \hat{b}_{UR}) =\\
+\ell(\hb_{1, UR}, \hb_{2, UR}) = \ell(\hat{a}_{UR}, \hat{b}_{UR}) =\\
  12\ln \hat{b}_{UR} + 32 \ln \hat{a}_{UR} + 36\ln[1 - \hat{b}_{UR}] + 20\ln[1 - \hat{a}_{UR}] = \\
 12\ln \left[ \frac{1}{4} \right] + 32\ln \left[ \frac{8}{13} \right] + 36\ln \left[ 1 - \frac{1}{4} \right] + 20\ln \left[1 - \frac{8}{13} \right] = -61.63
 \end{multline*}
