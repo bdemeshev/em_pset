@@ -43,20 +43,18 @@ $t$-статистики, только они бывают отрицатель�
 \end{enumerate}
 
 Решение в R:
-<<"030_01">>=
-df <- 1:200
-a <- qchisq(0.1, df)
-b <- qchisq(0.9, df)
-c <- b / a
-d <- 87.942 / 45
-penalty <- (c - d)^2
-df_ans <- df[which(penalty == min(penalty))]
-@
-Количество степеней свободы $n-5$ должно быть равно $\verb|df_ans|=
-<<"030_01b", echo=FALSE, results="asis">>=
-cat(df_ans)
-@
-$.
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+the_grid <- tibble(df = 1:200, left = qchisq(0.1, df),
+                   right = qchisq(0.9, df), ratio = right / left,
+                   penalty = (ratio - 87.942 / 45)^2)
+
+df_ans <- the_grid$df[which.min(the_grid$penalty)]
+\end{minted}
+
+Количество степеней свободы $n-5$ должно быть равно $30$.
 
 \end{sol}
 \end{problem}
@@ -466,11 +464,14 @@ $H_0:
 
 
 \begin{sol}
-Смысл гипотезы: летом и осенью одинаковая зависимость и одинаковая зависимость зимой и весной. Ограниченная модель: $\widehat{\ln Q}=\hb_1+\hb_2\cdot{\ln P}+\hb_3 d$, где $d$ равна 1 для лета и осени. Наблюдаемое значение статистики $F_{obs}=1.375$, критическое, $F_{cr}=
-<<"030_s02", echo=FALSE, results="asis">>=
-cat(qf(0.95, df1 = 2, df2 = 19))
-@
-$. Гипотеза не отвергается.
+Смысл гипотезы: летом и осенью одинаковая зависимость и одинаковая зависимость зимой и весной. Ограниченная модель: $\widehat{\ln Q}=\hb_1+\hb_2\cdot{\ln P}+\hb_3 d$, где $d$ равна 1 для лета и осени. Наблюдаемое значение статистики $F_{obs}=1.375$, критическое, $F_{cr}=3.52$.
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+qf(0.95, df1 = 2, df2 = 19)
+\end{minted}
+Гипотеза не отвергается.
 \end{sol}
 \end{problem}
 
@@ -668,19 +669,36 @@ $\alpha>0.09$
 \[
 deaths_i = \beta_1 + \beta_2 drivers_i + \beta_3 popden_i + \beta_4  temp + \beta_5 fuel + \e_i
 \]
-<<"030_02", echo=FALSE, warning=FALSE, results='asis'>>=
-d <- road
-model1 <- lm(deaths ~ drivers + popden + temp + fuel, data = d)
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+model1 <- lm(deaths ~ drivers + popden + temp + fuel, data = MASS::road)
 xmodel(model1, below = "se")
 report <- summary(model1)
 coefficient_table <- report$coefficients
 rownames(coefficient_table) <- c("Intercept", "Drivers", "Popden", "Temp", "Fuel")
 colnames(coefficient_table) <- c("Estimate", "St.Error", "t value", "P-value")
 xtable(coefficient_table)
-@
-Перечислите, какие из переменных в регрессии являются значимыми и на каком уровне значимости.
+\end{minted}
+
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & St.Error & t value & P-value \\ 
+  \hline
+Intercept & -27.10 & 222.88 & -0.12 & 0.90 \\ 
+  Drivers & 4.64 & 0.38 & 12.30 & 0.00 \\ 
+  Popden & -0.02 & 0.02 & -0.95 & 0.35 \\ 
+  Temp & 5.30 & 4.60 & 1.15 & 0.26 \\ 
+  Fuel & -0.66 & 0.87 & -0.76 & 0.45 \\ 
+   \hline
+\end{tabular}
+
+
+Перечислите, какие из коэффициентов в регрессии значимы на 5\%-ом уровне значимости.
 
 \begin{sol}
+Только коэффициент при переменной Drivers. 
 \end{sol}
 \end{problem}
 
@@ -798,12 +816,15 @@ ESS = 90.3, RSS = 60.4
 \end{multline*}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $H_0: \begin{cases} \beta_{Fedu} = 0  \\  \beta_{Medu} = 0 \end{cases}$
+\item $H_0: \begin{cases} 
+\beta_{Fedu} = 0  \\  
+\beta_{Medu} = 0 
+\end{cases}$
 $H_a: |\beta_{Fedu}| + |\beta_{Medu}| > 0$
 \item $T = \frac{(RSS_{R} - RSS_{UR})/q}{RSS_{UR}/(n - k)}$, где $q = 2$ — число линейно независимых уравнений в основной гипотезе $H_0$, $n = 25$ — число наблюдений, $k = 6$ — число коэффициентов в модели без ограничения
 \item $T \sim F(q; n - k)$
 \item $T_{obs} = \frac{(RSS_{R} - RSS_{UR})/q}{RSS_{UR}/(n - k)} = \frac{(60.4 - 40.4)/2}{40.4/(25 - 6)} = 4.70$
-\item Нижняя граница $= 0$, верхняя граница $= 3.52$
+\item Нижняя граница равна $0$, верхняя граница равна $3.52$
 \item Поскольку $T_{obs} = 4.70$, что не принадлежит промежутку от $0$ до $3.52$, то на основе имеющихся данных можно отвергнуть основную гипотезу на уровне значимости $5\%$. Таким образом, образование родителей существенно влияет на заработную плату.
 \end{enumerate}
 \end{enumerate}
@@ -947,24 +968,37 @@ y_i = \beta_1 + \beta_2 x_{i} + \beta_3 z_{i} + \beta_4 w_{i} + \beta_5 q_{i} + 
 education_i = \beta_1 + \beta_2 income_i + \beta_3 young_i + \beta_4 urban_i + \e_i
 \]
 Ниже приведены результаты оценивания уравнения этой линейной регрессии:
-\begin{center}
-<<"030_03", echo=FALSE, warning=FALSE, results='asis'>>=
-d <- Anscombe
-model1 <- lm(education ~ income + young + urban, data = d)
+
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+model1 <- lm(education ~ income + young + urban, data = carData::Anscombe)
 xmodel(model1, below = "se")
 report <- summary(model1)
 coefficient_table <- report$coefficients
 rownames(coefficient_table) <- c("Intercept", "Income", "Young", "Urban")
 colnames(coefficient_table) <- c("Estimate", "St.Error", "t value", "P-value")
 xtable(coefficient_table)
-@
+\end{minted}
+
+\ensuremath{\widehat{education}_i=-\underset{( 64.9199 )}{ 287 }+\underset{( 0.0093)}{0.0807}\cdot income_i+\underset{( 0.1598)}{0.817}\cdot young_i-\underset{( 0.0343)}{0.106}\cdot urban_i}
+
+
+\begin{center}
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & St.Error & t value & P-value \\ 
+  \hline
+Intercept & -286.84 & 64.92 & -4.42 & 0.00 \\ 
+  Income & 0.08 & 0.01 & 8.67 & 0.00 \\ 
+  Young & 0.82 & 0.16 & 5.12 & 0.00 \\ 
+  Urban & -0.11 & 0.03 & -3.09 & 0.00 \\ 
+   \hline
+\end{tabular}
 \end{center}
 
-Модель оценивается по
-<<"030_s03", echo=FALSE, results="asis">>=
-cat(nrow(Anscombe))
-@
-наблюдению.
+Модель оценивается по 51 наблюдению.
 
 \begin{enumerate}
 \item Сформулируйте основную и альтернативую гипотезы, которые соответствуют тесту на значимость коэффициента при переменной доход на душу населения в уравнении регрессии.
@@ -995,16 +1029,34 @@ cat(nrow(Anscombe))
 \end{enumerate}
 
 Далее приведены результаты оценивания уравнения регрессии без переменной, отражающей долю городского населения:
-\begin{center}
-<<"030_04", echo=FALSE, warning=FALSE, results='asis'>>=
-model2 <- lm(education ~ income + young, data = d)
+
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+model2 <- lm(education ~ income + young, data = carData::Anscombe)
 xmodel(model2, below = "se")
 report2 <- summary(model2)
 coefficient_table2 <- report2$coefficients
 rownames(coefficient_table2) <- c("Intercept", "Income", "Young")
 colnames(coefficient_table2) <- c("Estimate", "St.Error", "t value", "P-value")
 xtable(coefficient_table2)
-@
+\end{minted}
+
+
+\begin{center}
+\ensuremath{\widehat{education}_i=-\underset{( 70.27134 )}{ 301 }+\underset{( 0.00741)}{0.0612}\cdot income_i+\underset{( 0.17327)}{0.836}\cdot young_i}
+
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & St.Error & t value & P-value \\ 
+  \hline
+Intercept & -301.09 & 70.27 & -4.28 & 0.00 \\ 
+  Income & 0.06 & 0.01 & 8.25 & 0.00 \\ 
+  Young & 0.84 & 0.17 & 4.83 & 0.00 \\ 
+   \hline
+\end{tabular}
+
 \end{center}
 Также известно, что $RSS$ для первой модели равен $33489.35$, а для второй модели — $40276.61$. На уровне значимости $5\%$ проверьте гипотезу $H_0: \beta_4 = 0$ против альтернативной $H_0: \beta_4 \not= 0$:
 \begin{enumerate}
@@ -1086,22 +1138,36 @@ H_a:\beta_2^2+\beta_3^2+\beta_4^2>0
 \[
 education_i = \beta_1 + \beta_2 income_i + \beta_3 young_i + \beta_4 urban_i + \e_i
 \]
-Модель оценивается по
-<<"030_s04", echo=FALSE, results="asis">>=
-cat(nrow(Anscombe))
-@
-наблюдению. Ниже приведены результаты оценивания уравнения этой линейной регрессии:
-\begin{center}
-<<"030_05", echo=FALSE, warning=FALSE, results='asis'>>=
-d <- Anscombe
-model1 <- lm(education ~ income + young + urban, data = d)
+Модель оценивается по 51 наблюдению. 
+Ниже приведены результаты оценивания уравнения этой линейной регрессии:
+
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+model1 <- lm(education ~ income + young + urban, data = carData::Anscombe)
 xmodel(model1, below = "se")
 report <- summary(model1)
 coefficient_table <- report$coefficients
 rownames(coefficient_table) <- c("Intercept", "Income", "Young", "Urban")
 colnames(coefficient_table) <- c("Estimate", "St.Error", "t value", "P-value")
 xtable(coefficient_table)
-@
+\end{minted}
+
+
+\begin{center}
+\ensuremath{\widehat{education}_i=-\underset{( 64.9199 )}{ 287 }+\underset{( 0.0093)}{0.0807}\cdot income_i+\underset{( 0.1598)}{0.817}\cdot young_i-\underset{( 0.0343)}{0.106}\cdot urban_i}
+
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\ 
+  \hline
+(Intercept) & -286.8388 & 64.9199 & -4.42 & 0.0001 \\ 
+  income & 0.0807 & 0.0093 & 8.67 & 0.0000 \\ 
+  young & 0.8173 & 0.1598 & 5.12 & 0.0000 \\ 
+  urban & -0.1058 & 0.0343 & -3.09 & 0.0034 \\ 
+   \hline
+\end{tabular}
 \end{center}
 
 \begin{enumerate}
@@ -1119,7 +1185,7 @@ xtable(coefficient_table)
 Далее приведены результаты оценивания уравнения регрессии без переменной, отражающей долю населения в возрасте до 18 лет:
 \begin{center}
 <<"030_06", echo=FALSE, warning=FALSE, results='asis'>>=
-model3 <- lm(education ~ income + urban, data = d)
+model3 <- lm(education ~ income + urban, data = carData::Anscombe)
 xmodel(model3, below = "se")
 report3 <- summary(model3)
 coefficient_table3 <- report3$coefficients
@@ -1231,11 +1297,15 @@ R_m-R_0=R_m^*-R_0^*+u
 \begin{problem}
 По 47 наблюдениям оценивается зависимость доли мужчин занятых в сельском хозяйстве от уровня образованности и доли католического населения по Швейцарским кантонам в 1888 году.
 
-\[Agriculture_i=\beta_1+\beta_2 Examination_i+\beta_3 Catholic_i+\varepsilon_i\]
+\[
+Agriculture_i=\beta_1+\beta_2 Examination_i+\beta_3 Catholic_i+\varepsilon_i
+\]
 
-<<"030_07", message=FALSE>>=
-h <- swiss
-model1 <- glm(Agriculture ~ Examination + Catholic, data = h)
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+model1 <- lm(Agriculture ~ Examination + Catholic, data = swiss)
 coef.t <- coeftest(model1)
 dimnames(coef.t)[[2]] <-
     c("Оценка", "Ст. ошибка",
@@ -1244,25 +1314,26 @@ coef.t <- coef.t[, -4]
 coef.t[1, 1] <- NA
 coef.t[2, 2] <- NA
 coef.t[3, 3] <- NA
-@
-
-
-
-<<"030_08", results='asis'>>=
 xtable(coef.t)
-@
+\end{minted}
+
+\begin{tabular}{rrrr}
+  \hline
+ & Оценка & Ст. ошибка & t-статистика \\ 
+  \hline
+(Intercept) &  & 8.72 & 9.44 \\ 
+  Examination & -1.94 &  & -5.08 \\ 
+  Catholic & 0.01 & 0.07 &  \\ 
+   \hline
+\end{tabular}
+
+
 
 \begin{enumerate}
 \item Заполните пропуски в таблице.
 \item Укажите коэффициенты, значимые на 10\% уровне значимости.
 \item Постройте 99\%-ый доверительный интервал для коэффициента при переменной Catholic.
 \end{enumerate}
-
-Набор данных доступен в пакете R:
-<<"030_09", eval=FALSE>>=
-h <- swiss
-@
-
 
 \begin{sol}
 \end{sol}
@@ -1278,22 +1349,44 @@ h <- swiss
 
 Модель 2: $Fertility_i=\gamma_1+\gamma_2 (Education_i+Examination_i)+\gamma_3 Catholic_i+u_i$
 
-<<"030_10">>=
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 m1 <- lm(Fertility ~ Agriculture + Education +
-  Examination + Catholic, data = h)
+  Examination + Catholic, data = swiss)
 m2 <- lm(Fertility ~ I(Education + Examination) + Catholic,
-  data = h)
-@
-
-<<"030_11", results='asis'>>=
+  data = swiss)
 texreg(list(m1, m2))
+\end{minted}
 
-@
 
-Набор данных доступен в пакете R:
-<<"030_12", eval=FALSE>>=
-h <- swiss
-@
+\begin{tabular}{l c c }
+\hline
+ & Model 1 & Model 2 \\
+\hline
+(Intercept)                & $91.06^{***}$ & $80.52^{***}$ \\
+                           & $(6.95)$      & $(3.31)$      \\
+Agriculture                & $-0.22^{**}$  &               \\
+                           & $(0.07)$      &               \\
+Education                  & $-0.96^{***}$ &               \\
+                           & $(0.19)$      &               \\
+Examination                & $-0.26$       &               \\
+                           & $(0.27)$      &               \\
+Catholic                   & $0.12^{**}$   & $0.07^{*}$    \\
+                           & $(0.04)$      & $(0.03)$      \\
+I(Education + Examination) &               & $-0.48^{***}$ \\
+                           &               & $(0.08)$      \\
+\hline
+R$^2$                      & 0.65          & 0.55          \\
+Adj. R$^2$                 & 0.62          & 0.53          \\
+Num. obs.                  & 47            & 47            \\
+RMSE                       & 7.74          & 8.56          \\
+\hline
+\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+
+
 
 \begin{enumerate}
 \item Проверьте гипотезу о том, что коэффициент при $Education$ в модели 1 равен  $-0.5$.
@@ -1309,16 +1402,8 @@ h <- swiss
 
 
 \begin{problem}
-По
-<<"030_s05", echo=FALSE, results="asis">>=
-cat(nrow(flats))
-@
-наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
+По 2040 наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
 
-% данные загружаются одним махом вначале
-<<"030_13", include=FALSE, eval=FALSE>>=
-flats <- read.table("~/science/econometrix/em301/datasets/flats_moscow.txt", header = TRUE)
-@
 
 <<"030_14", results='asis'>>=
 model1 <- lm(price ~ totsp + livesp, data = flats)
@@ -1452,16 +1537,21 @@ xtable(coef.table)
 \begin{sol}
 
 \begin{enumerate}
-\item $\P(\hb_3>se(\hb_3))=\P(t_{17}>1)=
-<<"030_s12", echo=FALSE, results="asis">>=
-cat(1 - pt(1, 17))
-@
-$
-\item $\P(\hb_3>\sigma_{\hb_3})=\P(\cN(0,1)>1)=
-<<"030_s13", echo=FALSE, results="asis">>=
-cat(1 - pnorm(1))
-@
-$
+\item $\P(\hb_3>se(\hb_3))=\P(t_{17}>1)=0.166$
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+1 - pt(1, 17)
+\end{minted}
+
+\item $\P(\hb_3>\sigma_{\hb_3})=\P(\cN(0,1)>1)=0.159$
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
+1 - pnorm(1)
+\end{minted}
 \end{enumerate}
 \end{sol}
 \end{problem}
@@ -1490,23 +1580,26 @@ $
 \begin{problem}
 Сгенерируйте данные так, чтобы при оценке линейной регрессионной модели оказалось, что скорректированный коэффициент детерминации, $R^2_{adj}$, отрицательный.
 
+\begin{sol}
+
 \[ R^2_{adj}=1-(1-R^2)\frac{n-1}{n-k} \]
 
 Следовательно, при $R^2$ близком к 0 и большом количестве регрессоров $k$ может оказаться, что $R^2_{adj}<0$.
 
 Например,
 
-<<"030_20">>=
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 set.seed(42)
 y <- rnorm(200, sd = 15)
 X <- matrix(rnorm(2000), nrow = 200)
 model <- lm(y ~ X)
 report <- summary(model)
 report$adj.r.squared
-@
+\end{minted}
 
-
-\begin{sol}
 \end{sol}
 \end{problem}
 
@@ -1784,7 +1877,7 @@ bootstrap, дельта-метод.
 
 
 \begin{problem}
-Эконометресса Эвридика хочет оценить модель $y_i=\beta_1 + \beta_2 x_i +\beta_3 z_i + \e_i$. К сожалению, она измеряет зависимую переменную с ошибкой. Т.е. вместо $y_i$ она знает значение $y_i^*=y_i+u_i$ и использует его в качестве зависимой переменной при оценке регрессии. Ошибки измерения $u_i$ некоррелированы между собой и с $\e_i$.
+Эконометресса Эвридика хочет оценить модель $y_i=\beta_1 + \beta_2 x_i +\beta_3 z_i + \e_i$. К сожалению, она измеряет зависимую переменную с ошибкой. Вместо $y_i$ Эвридика знает значение $y_i^*=y_i+u_i$ и использует его в качестве зависимой переменной при оценке регрессии. Ошибки измерения $u_i$ некоррелированы между собой и с $\e_i$.
 \begin{enumerate}
 \item Будут ли оценки Эвридики несмещёнными?
 \item Могут ли дисперсии оценок Эвридики быть ниже чем дисперсии МНК оценок при использовании настоящего $y_i$?
