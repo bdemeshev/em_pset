@@ -355,8 +355,7 @@ xmodel <- function(model,
 @
 <<child='chapters/210_random_vectors.Rnw'>>=
 @
-<<child='chapters/220_multivariate_n.Rnw'>>=
-@
+\input{chapters/220_multivariate_n.tex}
 
 \input{chapters/230_programming.tex}
 
