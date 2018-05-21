@@ -88,13 +88,9 @@
 
 
 \begin{problem}
-Пусть $y = X\beta + \e$ — регрессионная модель, $X = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \end{pmatrix}$, $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$. Найдите коэффициент корреляции $\Corr(\hb_1,\hb_2)$.
-<<"040_01", echo=FALSE>>=
-X <- matrix(as.integer(c(1, 1, 1, 0, 1, 1)), nrow = 3,
-  byrow = FALSE, dimnames = NULL)
-y <- c(1, 2, 3)
-@
+Пусть $y = X\beta + \e$ — регрессионная модель, $X = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \end{pmatrix}$, $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$. 
 
+Найдите коэффициент корреляции $\Corr(\hb_1,\hb_2)$.
 
 \begin{sol}
 \[X'X=\left(\begin{array}{cc}
@@ -115,17 +111,23 @@ y <- c(1, 2, 3)
 Показательно, что значения $y$ здесь не используются.
 
 Ответ: $\frac{\sqrt6}{3}$.
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+X <- matrix(c(1, 1, 1, 0, 1, 1), nrow = 3,
+  byrow = FALSE)
+y <- c(1, 2, 3)
+\end{minted}
+
+
 \end{sol}
 \end{problem}
 
 
 
 \begin{problem}
-Пусть $y = X\beta + \e$ — регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются «новые» МНК-коэффициенты через «старые».
-<<"040_02", echo=FALSE, results='asis'>>=
-alpha <- matrix(as.integer(c(1, 0, 0, 1, 1, 0, 0, 1, 1)),
-  nrow = 3, byrow = FALSE, dimnames = NULL)
-@
+Пусть $y = X\beta + \e$ — регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. 
+
+Определите, как выражаются «новые» МНК-коэффициенты через «старые».
 
 
 \begin{sol}
@@ -145,17 +147,21 @@ alpha <- matrix(as.integer(c(1, 0, 0, 1, 1, 0, 0, 1, 1)),
 \hat\alpha_2=\beta_2-\beta_3\\
 \hat\alpha_3=\beta_3
 \end{cases}\]
+
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+alpha <- matrix(c(1, 0, 0, 1, 1, 0, 0, 1, 1), nrow = 3, byrow = FALSE)
+\end{minted}
+
 \end{sol}
 \end{problem}
 
 
 
 \begin{problem}
-Пусть $y = X\beta + \e$ — регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются «новые» МНК-коэффициенты через «старые».
-<<"040_03", echo=FALSE, results='asis'>>=
-alpha2 <- matrix(as.integer(c(1, 0, 0, 1, 1, 0, 1, 1, 1)), nrow = 3,
-  ncol = 3, byrow = FALSE, dimnames = NULL)
-@
+Пусть $y = X\beta + \e$ — регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. 
+
+Определите, как выражаются «новые» МНК-коэффициенты через «старые».
 
 
 \begin{sol}
@@ -175,17 +181,22 @@ alpha2 <- matrix(as.integer(c(1, 0, 0, 1, 1, 0, 1, 1, 1)), nrow = 3,
 \hat\alpha_2=\beta_2-\beta_3\\
 \hat\alpha_3=\beta_3
 \end{cases}\]
+
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+alpha2 <- matrix(c(1, 0, 0, 1, 1, 0, 1, 1, 1), nrow = 3, byrow = FALSE)
+\end{minted}
+
+
 \end{sol}
 \end{problem}
 
 
 
 \begin{problem}
-Пусть $y = X\beta + \e$ — регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются «новые» МНК-коэффициенты через «старые».
-<<"040_04", echo=FALSE, results='asis'>>=
-alpha3 <- matrix(as.integer(c(1, 0, 0, 0, 1, 0, 0, 1, 1)), nrow = 3,
-  ncol = 3, byrow = FALSE, dimnames = NULL)
-@
+Пусть $y = X\beta + \e$ — регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. 
+
+Определите, как выражаются «новые» МНК-коэффициенты через «старые».
 
 
 \begin{sol}
@@ -205,6 +216,13 @@ alpha3 <- matrix(as.integer(c(1, 0, 0, 0, 1, 0, 0, 1, 1)), nrow = 3,
 \hat\alpha_2=\beta_2-\beta_3\\
 \hat\alpha_3=\beta_3
 \end{cases}\]
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+alpha3 <- matrix(c(1, 0, 0, 0, 1, 0, 0, 1, 1), nrow = 3, byrow = FALSE)
+\end{minted}
+
+
+
 \end{sol}
 \end{problem}
 
@@ -418,18 +436,7 @@ $\hat\sigma^2=\frac{RSS}{n-k}=\frac12$.
 
 % 4.13
 \begin{problem}
-Пусть $y_i = \beta_1 + \beta_2 x_{i} + \beta_3 z_{i} + \e_i$ — регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, ошибки $\e_i$ независимы и нормально распределены с $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$. Для удобства расчётов даны матрицы: $X'X = \begin{pmatrix} 5 & 2 & 1 \\ 2 & 2 & 1\\ 1 & 1 & 1 \end{pmatrix}$ и $(X'X)^{-1}= \begin{pmatrix} 0.3333 & -0.3333 & 0.0000 \\ -0.3333 & 1.3333 & -1.0000 \\ 0.0000 & -1.0000 & 2.0000 \end{pmatrix}$
-
-
-<<"040_05", echo=FALSE, results='asis'>>=
-x <- matrix(as.integer(c(1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1)),
-  nrow = 5, ncol = 3, byrow = FALSE, dimnames = NULL)
-y <- matrix(as.integer(c(1, 2, 3, 4, 5)), nrow = 5,
-  ncol = 1, byrow = FALSE, dimnames = NULL)
-xx <- matrix(as.integer(c(5, 2, 1, 2, 2, 1, 1, 1, 1)),
-  nrow = 3, ncol = 3, byrow = FALSE, dimnames = NULL)
-x_x <- solve(xx)
-@
+Пусть $y_i = \beta_1 + \beta_2 x_{i} + \beta_3 z_{i} + \e_i$ — регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, ошибки $\e_i$ независимы и нормально распределены с $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$. Для удобства расчётов даны матрицы: $X'X = \begin{pmatrix} 5 & 2 & 1 \\ 2 & 2 & 1\\ 1 & 1 & 1 \end{pmatrix}$ и $(X'X)^{-1}= \begin{pmatrix} 0.3333 & -0.3333 & 0.0000 \\ -0.3333 & 1.3333 & -1.0000 \\ 0.0000 & -1.0000 & 2.0000 \end{pmatrix}$.
 
 
 \begin{enumerate}
@@ -511,6 +518,16 @@ x_x <- solve(xx)
 
 
 \begin{sol}
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+x <- matrix(c(1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1), nrow = 5, byrow = FALSE)
+y <- matrix(c(1, 2, 3, 4, 5), nrow = 5, byrow = FALSE)
+xx <- crossprod(x)
+xx_inv <- solve(xx)
+\end{minted}
+
+
+
 \begin{enumerate}
 \item $n = 5$
 \item $k = 3$
@@ -597,13 +614,6 @@ x_x <- solve(xx)
 \begin{problem}
 Пусть $y = X\beta + \e$ — регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$.
 
-<<"040_06", echo=FALSE, results='asis'>>=
-x <- matrix(as.integer(c(1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1)),
-  nrow = 5, ncol = 3, byrow = FALSE, dimnames = NULL)
-y <- matrix(as.integer(c(1, 2, 3, 4, 5)), nrow = 5,
-  ncol = 1, byrow = FALSE, dimnames = NULL)
-@
-
 На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_a: \beta_1 + \beta_2 \not= 2$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики.
@@ -615,6 +625,14 @@ y <- matrix(as.integer(c(1, 2, 3, 4, 5)), nrow = 5,
 
 
 \begin{sol}
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+x <- matrix(as.integer(c(1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1)),
+  nrow = 5, byrow = FALSE, dimnames = NULL)
+y <- matrix(as.integer(c(1, 2, 3, 4, 5)), nrow = 5, byrow = FALSE, dimnames = NULL)
+\end{minted}
+
+
 \begin{enumerate}
 \item $T = \frac{\hb_1 + \hb_2 - (\beta_1 + \beta_2)}{\sqrt{\hVar(\hb_1 + \hb_2)}}$, где $\hVar(\hb_1 + \hb_2) = \hVar(\hb_1) + \hVar(\hb_2) + 2\hCov(\hb_1;\hb_2) = \hat{\sigma}^2 [(X'X)^{-1}]_{11} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{12} + \hat{\sigma}^2 [(X'X)^{-1}]_{22}= \frac{RSS}{n - k}([(X'X)^{-1}]_{11} + 2[(X'X)^{-1}]_{12} + [(X'X)^{-1}]_{22}), \beta_1 + \beta_2=2$
 \item $T \sim t_{n-k}; n = 5; k = 3$
@@ -1785,23 +1803,25 @@ $\frac{\partial x'Ax}{\partial x'}=x'(A'+A)$
 
 
 \begin{problem}
-<<"040_07">>=
+Исследователь оценил зависимость длины тормозного пути в футах от скорости автомобиля в милях в час по данным 1920-х годов.
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 model <- lm(dist ~ speed, data = cars)
 model_sum <- summary(model)
 hat_sigma <- model_sum$sigma
-@
-
-Исследователь оценил зависимость длины тормозного пути в футах от скорости автомобиля в милях в час по данным 1920-х годов.
-При построении парной регрессии у него получилась $\hs=
-<<"040_07b", echo=FALSE, results="asis">>=
-cat(hat_sigma)
-@
-$ и оценка ковариационной матрицы
-
-
-<<"040_08", results="asis">>=
 xtable(vcov(model))
-@
+\end{minted}
+
+
+При построении парной регрессии у него получилась $\hs=15.4$ и оценка ковариационной матрицы
+\begin{tabular}{rrr}
+  \hline
+ & (Intercept) & speed \\ 
+  \hline
+(Intercept) & 45.68 & -2.66 \\ 
+  speed & -2.66 & 0.17 \\ 
+   \hline
+\end{tabular}
 
 
 \begin{enumerate}

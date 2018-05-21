@@ -134,7 +134,7 @@ $LM := \left[ \frac{\partial \ell}{\partial \theta}(\hat{\theta}_{R}) \right]' \
 
 Значит, для того, чтобы с вероятностью не меньше 99\,\% купить гравицапу, необходимо дать, как минимум, 838 концертов.
 
-\item \( \lambda \in [2.190102,  2.809898  ]\)
+\item \( \lambda \in [2.19,  2.81  ]\)
 
 Так как оценки метода максимального правдоподобия асимптотически нормальны, то:
 \[ \hat{\lambda} \overset{\text{ас}}{\sim} \cN \left(\lambda, \Var\hat{\lambda} \right)\]
@@ -144,11 +144,10 @@ $LM := \left[ \frac{\partial \ell}{\partial \theta}(\hat{\theta}_{R}) \right]' \
 \[ \hVar \hat{\lambda} = - \left( - \frac{\sum x_i}{\hat{\lambda}^2}\right)^{-1} = \frac{\hat{\lambda}^2}{\sum x_i} = 0.025\]
 
 Границы 95\,\% доверительного интервала:
-<<"050_01">>=
-df <- tibble(left = 2.5 + qnorm(0.025) * sqrt(0.025),
-             right = 2.5 + qnorm(0.975) * sqrt(0.025))
-df
-@
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+left <- 2.5 + qnorm(0.025) * sqrt(0.025)
+right <- 2.5 + qnorm(0.975) * sqrt(0.025)
+\end{minted}
 
 Итак:
 \[ \lambda \in [2.190102,  2.809898  ]\]
@@ -170,13 +169,10 @@ H_a: \lambda \ne 2
 Наблюдаемое значение LR-статистики:
 \[ LR =2\left(-20.92732 - \log \left(x_1!\cdot \ldots \cdot x_{100}!\right) - \left(-26.7132 - \log \left(x_1!\cdot \ldots \cdot x_{100}! \right) \right)\right) = 5.78588\]
 
-При 5\,\% уровне значимости гипотеза отвергается в пользу альтернативной:
-<<"050_02">>=
+При 5\,\% уровне значимости гипотеза отвергается в пользу альтернативной, P-значение примерно равно 0.02:
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 p_value <- 1 - pchisq(5.78588, df = 1)
-p_value
-
-p_value > 0.05 # если TRUE, то гипотеза не отвергается
-@
+\end{minted}
 
 Применяем \textbf{тест Вальда}:
 \[W = \left(g\left(\hat{\lambda}_{UR} \right) \right)' \cdot \left( \dfrac{\partial g}{\partial \lambda'}\left(\hat{\lambda}_{UR} \right) \cdot \widehat{I}^{-1} \left(\hat{\lambda}_{UR} \right) \cdot \dfrac{\partial g'}{\partial \lambda}\left(\hat{\lambda}_{UR} \right) \right)^{-1} \cdot g\left(\hat{\lambda}_{UR} \right) \overset{H_0}{\sim} \chi^2_q \]
@@ -188,13 +184,10 @@ p_value > 0.05 # если TRUE, то гипотеза не отвергаетс�
 
 \[W = 0.5 \cdot \left(0.025 \right)^{-1} \cdot 0.5 = 10 \]
 
-При 5\,\% уровне значимости гипотеза отвергается в пользу альтернативной:
-<<"050_03">>=
+При 5\,\% уровне значимости гипотеза отвергается в пользу альтернативной, P-значение меньше 1\%:
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 p_value <- 1 - pchisq(10, df = 1)
-p_value
-
-p_value > 0.05 # если TRUE, то гипотеза не отвергается
-@
+\end{minted}
 
 Применяем \textbf{тест множителей Лагранжа}:
 \[LM = \left(\dfrac{\partial \ell}{\partial \theta}\left(\hat{\theta}_R \right)\right)' \cdot \widehat{I}^{-1} \left(\hat{\theta}_R \right) \cdot \left(\dfrac{\partial \ell}{\partial \theta}\left(\hat{\theta}_R \right)\right) \overset{H_0}{\sim} \chi^2_q \]
@@ -204,13 +197,11 @@ p_value > 0.05 # если TRUE, то гипотеза не отвергаетс�
 \[\left(\hat{I} \left(\hat{\lambda}_{R} \right) \right)^{-1} = \frac{4}{250} = 0.016\]
 \[LM = 25 \cdot 0.016 \cdot 25 = 10\]
 
-При 5\,\% уровне значимости гипотеза отвергается в пользу альтернативной:
-<<"050_04">>=
+При 5\,\% уровне значимости гипотеза отвергается в пользу альтернативной, P-значение меньше 1\%:
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 p_value <- 1 - pchisq(10, df = 1)
-p_value
+\end{minted}
 
-p_value > 0.05 # если TRUE, то гипотеза не отвергается
-@
 \end{enumerate}
 
 \end{sol}

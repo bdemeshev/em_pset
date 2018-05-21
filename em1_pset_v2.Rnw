@@ -301,16 +301,15 @@ xmodel <- function(model,
 
 
 
-<<child='chapters/040_ols_k_matrix.Rnw'>>=
-@
+\input{chapters/040_ols_k_matrix.tex}
 
 
 
 
 % ML
 
-<<child='chapters/050_ml_general.Rnw'>>=
-@
+\input{chapters/050_ml_general.tex}
+
 <<child='chapters/060_logit.Rnw'>>=
 @
 
