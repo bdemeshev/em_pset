@@ -321,8 +321,7 @@ xmodel <- function(model,
 %%%%%%% здесь?... LASSO, ridge regression
 
 
-<<child='chapters/080_hetero.Rnw'>>=
-@
+\input{chapters/080_hetero.tex}
 
 
 \input{chapters/090_specification.tex}

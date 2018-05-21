@@ -1,0 +1,6 @@
+% latex table generated in R 3.5.0 by xtable 1.8-2 package
+% Mon May 21 15:16:01 2018
+\begin{pmatrix}{}
+  0.00 \\ 
+  2.00 \\ 
+  \end{pmatrix}
