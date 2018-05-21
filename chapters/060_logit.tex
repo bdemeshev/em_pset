@@ -350,11 +350,6 @@ $x_i$ & 1 & 2 & 3 \\
 \begin{problem}
 Установите и подключите пакет \verb|Ecdat|. Активируйте встроенный набор данных по посещениям врача \verb|Doctor| и введите бинарную переменную \verb|y|, для тех семей, у которых был хотя бы один визит.
 
-<<"060_01", eval = FALSE>>=
-data("Doctor")
-h <- Doctor
-h$y <- (Doctor$doctor>0)
-@
 
 \begin{enumerate}
 \item Постройте логит модель для переменной $y$, в качестве объясняющих выберите переменные $children$, $access$ и $health$. Постройте 90\% доверительный интервал для коэффициента при количестве детей.
@@ -365,6 +360,10 @@ h$y <- (Doctor$doctor>0)
 \end{enumerate}
 
 \begin{sol}
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+data <- mutate(Ecdat::Doctor, y = ifelse(1, 0, doctor > 0))
+\end{minted}
+
 \end{sol}
 \end{problem}
 

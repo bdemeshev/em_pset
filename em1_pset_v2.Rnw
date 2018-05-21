@@ -310,8 +310,7 @@ xmodel <- function(model,
 
 \input{chapters/050_ml_general.tex}
 
-<<child='chapters/060_logit.Rnw'>>=
-@
+\input{chapters/060_logit.tex}
 
 
 
