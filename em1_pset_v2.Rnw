@@ -337,12 +337,9 @@ xmodel <- function(model,
 
 <<child='chapters/130_svm.Rnw'>>=
 @
-<<child='chapters/140_forest.Rnw'>>=
-@
+\input{chapters/140_forest.tex}
 
 \input{chapters/150_nnetwork.tex}
-
-
 
 
 % байесовский подход
@@ -351,10 +348,8 @@ xmodel <- function(model,
 
 % Приложения
 
-<<child='chapters/200_la.Rnw'>>=
-@
-<<child='chapters/210_random_vectors.Rnw'>>=
-@
+\input{chapters/200_la.tex}
+\input{chapters/210_random_vectors.tex}
 \input{chapters/220_multivariate_n.tex}
 
 \input{chapters/230_programming.tex}
