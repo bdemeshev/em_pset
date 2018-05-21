@@ -1183,8 +1183,8 @@ xtable(coefficient_table)
 
 
 Далее приведены результаты оценивания уравнения регрессии без переменной, отражающей долю населения в возрасте до 18 лет:
-\begin{center}
-<<"030_06", echo=FALSE, warning=FALSE, results='asis'>>=
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 model3 <- lm(education ~ income + urban, data = carData::Anscombe)
 xmodel(model3, below = "se")
 report3 <- summary(model3)
@@ -1192,7 +1192,23 @@ coefficient_table3 <- report3$coefficients
 rownames(coefficient_table3) <- c("Intercept", "Income", "Urban")
 colnames(coefficient_table3) <- c("Estimate", "St.Error", "t value", "P-value")
 xtable(coefficient_table3)
-@
+\end{minted}
+
+
+\begin{center}
+
+\ensuremath{\widehat{education}_i=\underset{( 27.3827 )}{ 25.3 }+\underset{( 0.0114)}{0.0762}\cdot income_i-\underset{( 0.0423)}{0.112}\cdot urban_i}
+
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & St.Error & t value & P-value \\ 
+  \hline
+Intercept & 25.25 & 27.38 & 0.92 & 0.36 \\ 
+  Income & 0.08 & 0.01 & 6.67 & 0.00 \\ 
+  Urban & -0.11 & 0.04 & -2.66 & 0.01 \\ 
+   \hline
+\end{tabular}
+
 \end{center}
 Также известно, что $RSS$ для первой модели равен $33489.35$, а для второй модели — $52132.29$. На уровне значимости $5\%$ проверьте гипотезу $H_0: \beta_3 = 0$ против альтернативной $H_0: \beta_3 \not= 0$:
 \begin{enumerate}
@@ -1232,7 +1248,8 @@ $0.25\hb_1+0.75\hb_1'$, $0.25\hb_2+0.75\hb_2'$ и $0.25\hb_3+0.75\hb_3'$
 
 
 \begin{problem}
-Сгенерируйте вектор $y$ из 300 независимых нормальных $N(10,1)$ случайных величин. Сгенерируйте 40 «объясняющих» переменных, по 300 наблюдений в каждой, каждое наблюдение — независимая нормальная $\cN(5,1)$ случайная величина. Постройте регрессию $y$ на все 40 регрессоров и константу.
+Сгенерируйте вектор $y$ из 300 независимых нормальных $\cN(10,1)$ случайных величин. 
+Сгенерируйте 40 «объясняющих» переменных, по 300 наблюдений в каждой, каждое наблюдение — независимая нормальная $\cN(5,1)$ случайная величина. Постройте регрессию $y$ на все 40 регрессоров и константу.
 \begin{enumerate}
 \item Сколько регрессоров оказалось значимо на 5\% уровне?
 \item Сколько регрессоров в среднем значимо на 5\% уровне?
@@ -1390,7 +1407,8 @@ RMSE                       & 7.74          & 8.56          \\
 
 \begin{enumerate}
 \item Проверьте гипотезу о том, что коэффициент при $Education$ в модели 1 равен  $-0.5$.
-\item На 5\% уровне значимости проверьте гипотезу о том, что переменные $Education$ и $Examination$ оказывают одинаковое влияние на $Fertility$.
+\item На 5\% уровне значимости проверьте гипотезу о том, что 
+переменные $Education$ и $Examination$ оказывают одинаковое влияние на $Fertility$.
 \end{enumerate}
 
 
@@ -1404,21 +1422,38 @@ RMSE                       & 7.74          & 8.56          \\
 \begin{problem}
 По 2040 наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
 
-
-<<"030_14", results='asis'>>=
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 model1 <- lm(price ~ totsp + livesp, data = flats)
 report <- summary(model1)
 coef.table <- report$coefficients
 rownames(coef.table) <-
   c("Константа", "Общая площадь", "Жилая площадь")
 xtable(coef.table)
-@
-
-Оценка ковариационной матрицы $\Var(\hb)$ имеет вид
-<<"030_15", results='asis'>>=
 var.hat <- vcov(model1)
 xtable(var.hat, digits = 4)
-@
+\end{minted}
+
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\ 
+  \hline
+Константа & -88.81 & 4.37 & -20.34 & 0.00 \\ 
+  Общая площадь & 1.70 & 0.10 & 17.78 & 0.00 \\ 
+  Жилая площадь & 1.99 & 0.18 & 10.89 & 0.00 \\ 
+   \hline
+\end{tabular}
+
+
+Оценка ковариационной матрицы $\Var(\hb)$ имеет вид
+\begin{tabular}{rrrr}
+  \hline
+ & (Intercept) & totsp & livesp \\ 
+  \hline
+(Intercept) & 19.0726 & 0.0315 & -0.4498 \\ 
+  totsp & 0.0315 & 0.0091 & -0.0151 \\ 
+  livesp & -0.4498 & -0.0151 & 0.0335 \\ 
+   \hline
+\end{tabular}
 
 \begin{enumerate}
 \item Проверьте $H_0$: $\beta_{totsp}=\beta_{livesp}$. В чём содержательный смысл этой гипотезы?
@@ -1429,27 +1464,20 @@ xtable(var.hat, digits = 4)
 
 \begin{sol}
 
-<<"030_16", include=FALSE>>=
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 est.se <- sqrt(var.hat[2, 2] + var.hat[3, 3] - 2 * var.hat[2, 3])
 hb <- model1$coefficients
 est.diff <- hb[2] - hb[3]
-@
+est.diff - 1.96 * est.se
+est.diff + 1.96 * est.se
+\end{minted}
 
-Из оценки ковариационной матрицы находим, что $se(\hb_{totsp}=\hb_{livesp})=
-<<"030_s06", echo=FALSE, results="asis">>=
-cat(est.se)
-@
-$.
+Из оценки ковариационной матрицы находим, что $se(\hb_{totsp} - \hb_{livesp})=0.27$.
 
-Исходя из $Z_{crit}=1.96$ получаем доверительный интервал, $[
-<<"030_s07", echo=FALSE, results="asis">>=
-cat(est.diff - 1.96 * est.se)
-@
-;
-<<"030_s08", echo=FALSE, results="asis">>=
-cat(est.diff + 1.96 * est.se)
-@
-]$.
+Исходя из $Z_{crit}=1.96$ получаем доверительный интервал, $[-0.82; 0.23]$.
 
 Вывод: при уровне значимости 5\% гипотеза о равенстве коэффициентов не отвергается.
 \end{sol}
@@ -1461,28 +1489,48 @@ cat(est.diff + 1.96 * est.se)
 
 
 \begin{problem}
-По
-<<"030_s09", echo=FALSE, results="asis">>=
-cat(nrow(flats))
-@
-наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
-<<"030_17", results='asis'>>=
+По 2040 наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
+
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 model1 <- lm(price ~ totsp + livesp, data = flats)
 report <- summary(model1)
 coef.table <- report$coefficients
 rownames(coef.table) <-
   c("Константа", "Общая площадь", "Жилая площадь")
 xtable(coef.table)
-@
-
-Сумма квадратов остатков равна $RSS=
-<<"030_s10", echo=FALSE, results="asis">>=
-cat(deviance(model1))
-@
-$. Оценка ковариационной матрицы $\Var(\hb)$ имеет вид
-<<"030_18", results='asis'>>=
+deviance(model1)
 xtable(vcov(model1), digits = 4)
-@
+\end{minted}
+
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & Std. Error & t value & P-value \\ 
+  \hline
+Константа & -88.81 & 4.37 & -20.34 & 0.00 \\ 
+  Общая площадь & 1.70 & 0.10 & 17.78 & 0.00 \\ 
+  Жилая площадь & 1.99 & 0.18 & 10.89 & 0.00 \\ 
+   \hline
+\end{tabular}
+
+
+
+Сумма квадратов остатков равна $RSS=2.2\cdot 10^6$.
+Оценка ковариационной матрицы $\Var(\hb)$ имеет вид
+
+\begin{tabular}{rrrr}
+  \hline
+ & (Intercept) & totsp & livesp \\ 
+  \hline
+(Intercept) & 19.0726 & 0.0315 & -0.4498 \\ 
+  totsp & 0.0315 & 0.0091 & -0.0151 \\ 
+  livesp & -0.4498 & -0.0151 & 0.0335 \\ 
+   \hline
+\end{tabular}
+
+
 
 \begin{enumerate}
 \item Постройте 95\%-ый доверительный интервал для ожидаемой стоимости квартиры с жилой площадью $30$ м$^2$ и общей площадью $60$ м$^2$.
@@ -1498,20 +1546,33 @@ xtable(vcov(model1), digits = 4)
 
 
 \begin{problem}
-По
-<<"030_s11", echo=FALSE, results="asis">>=
-cat(nrow(flats))
-@
-наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража, метража жилой площади и дамми-переменной, равной 1 для кирпичных домов.
-<<"030_19", results='asis'>>=
+По 2040 наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража, метража жилой площади и дамми-переменной, равной 1 для кирпичных домов.
+\begin{minted}[mathescape,
+               numbersep=5pt,
+               frame=lines,
+               framesep=2mm]{r}
 model1 <- lm(price ~ totsp + livesp + brick + brick:totsp +
   brick:livesp, data = flats)
 report <- summary(model1)
 coef.table <- report$coefficients
-# rownames(coef.table) <- c("Константа", "Общая площадь",
-#  "Жилая площадь")
 xtable(coef.table)
-@
+\end{minted}
+
+
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & Std. Error & t value & P-value \\ 
+  \hline
+(Intercept) & -66.03 & 6.07 & -10.89 & 0.00 \\ 
+  totsp & 1.77 & 0.12 & 14.98 & 0.00 \\ 
+  livesp & 1.27 & 0.25 & 5.05 & 0.00 \\ 
+  brick & -19.59 & 9.01 & -2.17 & 0.03 \\ 
+  totsp:brick & 0.42 & 0.20 & 2.10 & 0.04 \\ 
+  livesp:brick & 0.09 & 0.38 & 0.23 & 0.82 \\ 
+   \hline
+\end{tabular}
+
+
 
 \begin{enumerate}
 \item Выпишите отдельно уравнения регрессии для кирпичных домов и для некирпичных домов.
@@ -1526,7 +1587,7 @@ xtable(coef.table)
 
 
 \begin{problem}
-По 20 наблюдениям оценивается линейная регрессия $\hy=\hb_1 +\hb_2 x+\hb_3 z$, причём истинная зависимость имеет вид $y=\beta_1 +\beta_2 x+\varepsilon$. Случайная ошибка $\varepsilon_i$ имеет нормальное распределение $N(0,\sigma^2)$.
+По 20 наблюдениям оценивается линейная регрессия $\hy=\hb_1 +\hb_2 x+\hb_3 z$, причём истинная зависимость имеет вид $y=\beta_1 +\beta_2 x+\varepsilon$. Случайная ошибка $\varepsilon_i$ имеет нормальное распределение $\cN(0,\sigma^2)$.
 
 \begin{enumerate}
 \item Найдите вероятность $\P(\hb_3>se(\hb_3))$.
@@ -1616,7 +1677,7 @@ report$adj.r.squared
 
 
 \begin{sol}
-$\hb_2=0.41$, $\hb_3=0.3$, $\hb_4= -0.235$, переменная $x$ значима
+$\hb_2=0.41$, $\hb_3=0.3$, $\hb_4= -0.235$, переменная $x$ значима.
 \end{sol}
 \end{problem}
 
@@ -1793,11 +1854,12 @@ d_i = \begin{cases}
 
 
 \begin{problem}
-Верно ли, что $R_{adj}^2 = 1 - (1 - R^2)\frac{n-1}{n-k}$ распределен по $F(n-k, n-1)$? Если да, то объясните, почему, если нет, то тоже объясните, почему.
+Верно ли, что $R_{adj}^2 = 1 - (1 - R^2)\frac{n-1}{n-k}$ распределен по $F(n-k, n-1)$? 
+Если да, то объясните, почему, если нет, то тоже объясните, почему.
 
 
 \begin{sol}
-Не верно, поскольку $R_{adj}^2$ может принимать отрицательные значения, а $F(n-k, n-1)$ --– не может.
+Не верно, поскольку $R_{adj}^2$ может принимать отрицательные значения, а $F(n-k, n-1)$ — не может.
 \end{sol}
 \end{problem}
 
