@@ -5,34 +5,9 @@
 /em1_pset_v2.pyg
 /em1_pset_v2.synctex.gz
 /em1_pset_v2.tdo
-/em1_pset_v2.tex
 /em1_pset_v2.toc
 /cache/
 /figure/
-
-solutions_only/solutions.log
-
-solutions_only/solutions.idx
-
-solutions_only/solutions.out
-
-solutions_only/solutions.aux
-
-solutions_only/solutions.synctex.gz
-
-solutions_only/solutions.tex
-
-solutions_only/solutions.toc
-
-problems_only/em1_pset_solo.synctex.gz
-
-problems_only/em1_pset_solo.out
-
-problems_only/em1_pset_solo.log
-
-problems_only/em1_pset_solo.idx
-
-problems_only/em1_pset_solo.aux
 
 errata/metrics_errata.aux
 
@@ -44,20 +19,6 @@ errata/metrics_errata.synctex.gz
 
 em1_pset_v2-concordance.tex
 
-chapters/020_ols_2_no_matr.log
-
-chapters/120_series.log
-
-chapters/120_series.tex
-
-chapters/solutions.tex
-
-problems_only/em1_pset_solo.tex
-solutions_only/figure/
-
-chapters/em1_pset_v2.tex
-
-problems_only/em1_pset_solo.pdf
 
 em1_pset_v2.pdf
 
@@ -89,13 +50,6 @@ em1_pset_v2_tikz.toc
 
 .Rhistory
 
-solutions_only/solutions-tikzDictionary
-
-solutions_only/solutions-concordance.tex
-
-solutions_only/solutions.ilg
-
-solutions_only/solutions.ind
 .Rproj.user
 
 one_chapter_quick_test-concordance.tex
@@ -126,11 +80,6 @@ em1_pset_v2.fdb_latexmk
 
 3d_ols_picture/3d_ols_picture.synctex.gz
 
-chapters/120_series-concordance.tex
-
-chapters/figure/unnamed-chunk-2-1.pdf
-
-chapters/figure/unnamed-chunk-3-1.pdf
 
 chapters/junk.txt
 

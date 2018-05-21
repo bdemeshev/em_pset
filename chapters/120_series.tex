@@ -16,7 +16,8 @@
 \begin{problem}
 На графике представлены данные по уровню озера Гур\'{о}н в футах в 1875-1972 годах:
 
-<<"120_01", include=FALSE>>=
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 level <- LakeHuron
 df <- tibble(level, obs = 1875:1972)
 n <- nrow(df) # used later for answers
@@ -28,15 +29,10 @@ acfs.df <- tibble(lag = c(1:15, 1:15),
 model <- arima(level, order = c(1, 0, 1))
 resids <- model$residuals
 resid.acf <- acf(resids, plot = FALSE)$acf
-@
-
-\todo[inline]{Здесь виснет чанк кода!}
-<<"huron_ts", warning=FALSE, message=FALSE, eval=FALSE>>=
-tikz("../R_plots/huron_level.tikz", standAlone = FALSE, bareBones = TRUE)
 ggplot(df, aes(x = obs, y = level)) + geom_line() +
     labs(x = "Год", y = "Уровень озера (футы)")
-invisible(dev.off())
-@
+
+\end{minted}
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
@@ -50,16 +46,14 @@ invisible(dev.off())
 График автокорреляционной и частной автокорреляционной функций:
 
 \todo[inline]{Здесь виснет чанк кода!}
-<<"huron_acf", warning=FALSE, eval=FALSE>>=
-tikz("../R_plots/huron_acf.tikz", standAlone = FALSE, bareBones = TRUE)
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 ggplot(acfs.df, aes(x = lag, y = acf, fill = acf.type)) +
     geom_bar(position = "dodge", stat = "identity") +
   xlab("Лаг") + ylab("Корреляция") +
   guides(fill = guide_legend(title = NULL))+
   geom_hline(yintercept = 1.96/sqrt(nrow(df)))+
   geom_hline(yintercept = -1.96/sqrt(nrow(df)))
-invisible(dev.off())
-@
+\end{minted}
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
@@ -71,19 +65,8 @@ invisible(dev.off())
 
 \begin{enumerate}
 \item Судя по графикам, какие модели класса ARMA или ARIMA имеет смысл оценить?
-\item По результатам оценки некоей модели ARMA c двумя параметрами, исследователь посчитал оценки автокорреляционной функции для остатков модели. Известно, что для остатков модели первые три выборочные автокорреляции равны соответственно $
-<<"120_s01", echo=FALSE, results="asis">>=
-cat(resid.acf[2])
-@
-$, $
-<<"120_s02", echo=FALSE, results="asis">>=
-cat(resid.acf[3])
-@
-$ и $
-<<"120_s03", echo=FALSE, results="asis">>=
-cat(resid.acf[4])
-@
-$. С помощью подходящей статистики проверьте гипотезу о том, что первые три корреляции ошибок модели равны нулю.
+\item По результатам оценки некоей модели ARMA c двумя параметрами, исследователь посчитал оценки автокорреляционной функции для остатков модели. Известно, что для остатков модели первые три выборочные автокорреляции равны соответственно $0.0047$, $-0.0129$, $-0.0630$. 
+С помощью подходящей статистики проверьте гипотезу о том, что первые три корреляции ошибок модели равны нулю.
 \end{enumerate}
 
 
@@ -92,22 +75,28 @@ $. С помощью подходящей статистики проверьт�
 \item Процесс $AR(2)$, т.к. две первые частные корреляции значимо отличаются от нуля, а гипотезы о том, что каждая последующая равна нулю не отвергаются.
 \item Можно использовать одну из двух статистик
 \[
-\text{Ljung-Box}=n(n+2)\sum_{k=1}^3\frac{\hat{\rho}_k^2}{n-k}=
-<<"120_s04", echo=FALSE, results="asis">>=
-cat(n * (n + 2) * (resid.acf[2]^2/(n - 1) + resid.acf[3]^2/(n - 2) + resid.acf[4]^2/(n - 3)))
-@
+\text{Ljung-Box}=n(n+2)\sum_{k=1}^3\frac{\hat{\rho}_k^2}{n-k}=0.43
 \]
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+n * (n + 2) * sum(resid.acf[2:4]^2/ ((n - 1) : (n - 3))) 
+\end{minted}
+
+
 \[
-\text{Box-Pierce}=n\sum_{k=1}^3\hat{\rho}_k^2=
-<<"120_s05", echo=FALSE, results="asis">>=
-cat(n * (resid.acf[2]^2 + resid.acf[3]^2 + resid.acf[4]^2))
-@
+\text{Box-Pierce}=n\sum_{k=1}^3\hat{\rho}_k^2=0.41
 \]
-Критическое значение хи-квадрат распределения с 3-мя степенями свободы для $\alpha=0.05$ равно $\chi^2_{3,crit}=
-<<"120_s06", echo=FALSE, results="asis">>=
-cat(qchisq(0.95, df = 3))
-@
-$.
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+n * sum(resid.acf[2:4]^2)
+\end{minted}
+
+Критическое значение хи-квадрат распределения с 3-мя степенями свободы для $\alpha=0.05$ равно $\chi^2_{3,crit}=7.81$.
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+qchisq(0.95, df = 3)
+\end{minted}
+
 Вывод: гипотеза $H_0$ об отсутствии корреляции ошибок модели не отвергается.
 \end{enumerate}
 \end{sol}
@@ -137,11 +126,12 @@ $.
 
 \begin{enumerate}
 \item $H_0$: ряд содержит единичный корень, $\beta=0$; $H_a$: ряд не содержит единичного корня, $\beta<0$
-\item $ADF=-0.4/0.1=-4$, $ADF_{crit}=
-<<"120_s07", echo=FALSE, results="asis">>=
-cat(qunitroot(0.05, N = 100, trend = "c", statistic = "t"))
-@
-$, $H_0$ отвергается.
+\item $ADF=-0.4/0.1=-4$, $ADF_{crit}=-2.89$, $H_0$ отвергается.
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+qunitroot(0.05, N = 100, trend = "c", statistic = "t")
+\end{minted}
+
 \item Ряд стационарен.
 \item При верной $H_0$ ряд не стационарен, и  $t$-статистика имеет не $t$-распределение, а распределение Дики-Фуллера.
 \end{enumerate}
@@ -968,15 +958,13 @@ d_t=\Delta w_t
 Эконометресса Антуанетта построила график автоковариационной функции временного ряда и распечатала его:
 
 \todo[inline]{Здесь виснет чанк кода!}
-<<"acf_rescale", warning=FALSE, eval=FALSE>>=
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 acf.df <- data.frame(lag = 1:10, acf = c(11, 5, 3, 1, -2, 2, 1, 2, 0, 1))
-tikz("../R_plots/acf_rescale.tikz", standAlone = FALSE, bareBones = TRUE)
 ggplot(acf.df, aes(x = lag, y = acf)) +
     geom_bar(stat = "identity") +
   xlab("Лаг") + ylab("ACF") +
   guides(fill = guide_legend(title = NULL))
-invisible(dev.off())
-@
+\end{minted}
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}

@@ -107,13 +107,9 @@ style=alphabetic]{biblatex}
 \vspace{30pt}
 
 
-<<"setup", echo=TRUE, message=FALSE, tidy=FALSE, warning=FALSE>>=
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 library(knitr)
 library(tikzDevice)
-
-# options(tikzDefaultEngine = 'xetex')
-# opts_chunk$set(dev = "tikz")
-
 library(tidyverse)
 library(Hmisc)
 library(lmtest)
@@ -135,13 +131,6 @@ library(tseries)
 theme_set(theme_bw())
 
 load("pset_data.Rdata")
-@
-
-<<"hidden_chunk", include=FALSE>>=
-knit_hooks$set(document = function(x) {
-  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
-})
-
 
 #' convert an R matrix into a LaTeX output
 #' @param a the matrix to be converted
@@ -258,7 +247,7 @@ xmodel <- function(model,
   return(invisible(res))
 }
 
-@
+\end{minted}
 
 
 
@@ -330,13 +319,12 @@ xmodel <- function(model,
 
 % time series
 
-<<child='chapters/120_series.Rnw'>>=
-@
+\input{chapters/120_series.tex}
 
 % Нетрадиционная медицина
 
-<<child='chapters/130_svm.Rnw'>>=
-@
+\input{chapters/130_svm.tex}
+
 \input{chapters/140_forest.tex}
 
 \input{chapters/150_nnetwork.tex}
