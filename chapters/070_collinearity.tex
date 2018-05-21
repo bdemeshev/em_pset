@@ -31,14 +31,11 @@
 \begin{problem}
 Исследуем зависимость длины тормозного пути автомобиля от скорости по историческим данным 1920-х годов.
 
-\todo[inline]{Здесь виснет чанк кода!}
-<<"cars_scatter", include=FALSE, eval=FALSE>>=
-tikz("../R_plots/cars_scatter.tikz", standAlone = FALSE, bareBones = TRUE)
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 ggplot(data = cars, aes(x = speed, y = dist)) + geom_point() +
     labs(title = "Зависимость длины тормозного пути",
     x = "Скорость, миль в час", y = "Длина пути, футов")
-invisible(dev.off())
-@
+\end{minted}
 
 
 \begin{minipage}{0.6\textwidth}
@@ -51,39 +48,55 @@ invisible(dev.off())
 
 
 
-Построим результаты оценивания нецентрированной регрессии:
-<<"070_02">>=
+Известны результаты оценивания нецентрированной регрессии:
+
+\begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 cars_model <- lm(dist ~ speed + I(speed^2) + I(speed^3), data = cars)
 cars_table <- as.table(coeftest(cars_model))
 rownames(cars_table) <-
   c("Константа", "speed", "speed^2", "speed^3")
-@
-
-%\todo[inline]{с тремя переменными руками громоздко делать, а с двумя вроде не видно мультик.}
-
-<<"070_03", results='asis'>>=
 xtable(cars_table)
-@
-
-Ковариационная матрица коэффициентов имеет вид:
-<<"070_04", results='asis'>>=
 cars_vcov <- vcov(cars_model)
 rownames(cars_vcov) <-
   c("Константа", "speed", "speed^2", "speed^3")
 colnames(cars_vcov) <- rownames(cars_vcov)
 xtable(cars_vcov)
-@
+\end{minted}
+
+%\todo[inline]{с тремя переменными руками громоздко делать, а с двумя вроде не видно мультик.}
+
+
+\begin{tabular}{rrrrr}
+  \hline
+ & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\ 
+  \hline
+Константа & -19.51 & 28.41 & -0.69 & 0.50 \\ 
+  speed & 6.80 & 6.80 & 1.00 & 0.32 \\ 
+  speed\verb|^|2 & -0.35 & 0.50 & -0.70 & 0.49 \\ 
+  speed\verb|^|3 & 0.01 & 0.01 & 0.91 & 0.37 \\ 
+   \hline
+\end{tabular}
+
+
+Ковариационная матрица коэффициентов имеет вид:
+
+\begin{tabular}{rrrrr}
+  \hline
+ & Константа & speed & speed\verb|^|2 & speed\verb|^|3 \\ 
+  \hline
+Константа & 806.86 & -186.20 & 12.88 & -0.27 \\ 
+  speed & -186.20 & 46.26 & -3.35 & 0.07 \\ 
+  speed\verb|^|2 & 12.88 & -3.35 & 0.25 & -0.01 \\ 
+  speed\verb|^|3 & -0.27 & 0.07 & -0.01 & 0.00 \\ 
+   \hline
+\end{tabular}
 
 
 \begin{enumerate}
 \item Проверьте значимость всех коэффициентов и регрессии в целом.
 \item Постройте 95\%-ый доверительный интервал для $\E(dist)$ при $speed=10$.
 \item Постройте 95\%-ый доверительный интервал для $\E(\partial dist/ \partial speed)$ при $speed=10$.
-\item Как выглядит уравнение регрессии, если вместо $speed$ использовать центрированную скорость? Известно, что средняя скорость равна $
-<<"070_04b", echo=FALSE, results="asis">>=
-cat(mean(cars[, 1]))
-@
-$. % здесь специально [, 1] вместо доллара и speed (!!!)
+\item Как выглядит уравнение регрессии, если вместо $speed$ использовать центрированную скорость? Известно, что средняя скорость равна $15.4$. 
 \item С помощью регрессии с центрированной скоростью ответьте на предыдущие вопросы.
 \end{enumerate}
 % here

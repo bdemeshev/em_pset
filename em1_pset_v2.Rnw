@@ -316,8 +316,8 @@ xmodel <- function(model,
 
 % Нарушения предпосылог тГМ
 
-<<child='chapters/070_collinearity.Rnw'>>=
-@
+\input{chapters/070_collinearity.tex}
+
 %%%%%%% здесь?... LASSO, ridge regression
 
 
