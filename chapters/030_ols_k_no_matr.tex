@@ -361,14 +361,14 @@ F_{cr}\sim F_{0.05,5,42}\approx 2.44
 \begin{problem} % 3.8
 На основе квартальных данных с 2003 по 2008 год было получено следующее уравнение регрессии, описывающее зависимость цены на товар P от нескольких факторов:
 \[
-P=3.5+0.4X+1.1W, ESS=70.4, RSS=40.5
+\hat P_t=3.5+0.4X_t+1.1W_t, ESS=70.4, RSS=40.5
 \]
 Когда в уравнение были добавлены фиктивные переменные, соответствующие первым
 трем кварталам года $Q_1, Q_2, Q_3$, оцениваемая модель приобрела вид:
 \[
 P_t=\beta+\beta_X X_t+\beta_W W_t+\beta_{Q_{1t}} Q_{1t}+\beta_{Q_{2t}} Q_{2t}+\beta_{Q_{3t}} Q_{3t}+\e_t
 \]
-При этом величина $ESS = \sum (\hy_i - \bar y)^2$ выросла до 86.4.
+При этом величина $ESS = \sum (\hat P_t - \bar P)^2$ выросла до 86.4.
 
 \begin{enumerate}
 \item Аккуратно сформулируйте гипотезу об отсутствии сезонности.
@@ -684,13 +684,13 @@ xtable(coefficient_table)
 
 \begin{tabular}{rrrrr}
   \hline
- & Estimate & St.Error & t value & P-value \\ 
+ & Estimate & St.Error & t value & P-value \\
   \hline
-Intercept & -27.10 & 222.88 & -0.12 & 0.90 \\ 
-  Drivers & 4.64 & 0.38 & 12.30 & 0.00 \\ 
-  Popden & -0.02 & 0.02 & -0.95 & 0.35 \\ 
-  Temp & 5.30 & 4.60 & 1.15 & 0.26 \\ 
-  Fuel & -0.66 & 0.87 & -0.76 & 0.45 \\ 
+Intercept & -27.10 & 222.88 & -0.12 & 0.90 \\
+  Drivers & 4.64 & 0.38 & 12.30 & 0.00 \\
+  Popden & -0.02 & 0.02 & -0.95 & 0.35 \\
+  Temp & 5.30 & 4.60 & 1.15 & 0.26 \\
+  Fuel & -0.66 & 0.87 & -0.76 & 0.45 \\
    \hline
 \end{tabular}
 
@@ -698,7 +698,7 @@ Intercept & -27.10 & 222.88 & -0.12 & 0.90 \\
 Перечислите, какие из коэффициентов в регрессии значимы на 5\%-ом уровне значимости.
 
 \begin{sol}
-Только коэффициент при переменной Drivers. 
+Только коэффициент при переменной Drivers.
 \end{sol}
 \end{problem}
 
@@ -816,9 +816,9 @@ ESS = 90.3, RSS = 60.4
 \end{multline*}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $H_0: \begin{cases} 
-\beta_{Fedu} = 0  \\  
-\beta_{Medu} = 0 
+\item $H_0: \begin{cases}
+\beta_{Fedu} = 0  \\
+\beta_{Medu} = 0
 \end{cases}$
 $H_a: |\beta_{Fedu}| + |\beta_{Medu}| > 0$
 \item $T = \frac{(RSS_{R} - RSS_{UR})/q}{RSS_{UR}/(n - k)}$, где $q = 2$ — число линейно независимых уравнений в основной гипотезе $H_0$, $n = 25$ — число наблюдений, $k = 6$ — число коэффициентов в модели без ограничения
@@ -988,12 +988,12 @@ xtable(coefficient_table)
 \begin{center}
 \begin{tabular}{rrrrr}
   \hline
- & Estimate & St.Error & t value & P-value \\ 
+ & Estimate & St.Error & t value & P-value \\
   \hline
-Intercept & -286.84 & 64.92 & -4.42 & 0.00 \\ 
-  Income & 0.08 & 0.01 & 8.67 & 0.00 \\ 
-  Young & 0.82 & 0.16 & 5.12 & 0.00 \\ 
-  Urban & -0.11 & 0.03 & -3.09 & 0.00 \\ 
+Intercept & -286.84 & 64.92 & -4.42 & 0.00 \\
+  Income & 0.08 & 0.01 & 8.67 & 0.00 \\
+  Young & 0.82 & 0.16 & 5.12 & 0.00 \\
+  Urban & -0.11 & 0.03 & -3.09 & 0.00 \\
    \hline
 \end{tabular}
 \end{center}
@@ -1049,11 +1049,11 @@ xtable(coefficient_table2)
 
 \begin{tabular}{rrrrr}
   \hline
- & Estimate & St.Error & t value & P-value \\ 
+ & Estimate & St.Error & t value & P-value \\
   \hline
-Intercept & -301.09 & 70.27 & -4.28 & 0.00 \\ 
-  Income & 0.06 & 0.01 & 8.25 & 0.00 \\ 
-  Young & 0.84 & 0.17 & 4.83 & 0.00 \\ 
+Intercept & -301.09 & 70.27 & -4.28 & 0.00 \\
+  Income & 0.06 & 0.01 & 8.25 & 0.00 \\
+  Young & 0.84 & 0.17 & 4.83 & 0.00 \\
    \hline
 \end{tabular}
 
@@ -1138,7 +1138,7 @@ H_a:\beta_2^2+\beta_3^2+\beta_4^2>0
 \[
 education_i = \beta_1 + \beta_2 income_i + \beta_3 young_i + \beta_4 urban_i + \e_i
 \]
-Модель оценивается по 51 наблюдению. 
+Модель оценивается по 51 наблюдению.
 Ниже приведены результаты оценивания уравнения этой линейной регрессии:
 
 \begin{minted}[mathescape,
@@ -1160,12 +1160,12 @@ xtable(coefficient_table)
 
 \begin{tabular}{rrrrr}
   \hline
- & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\ 
+ & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\
   \hline
-(Intercept) & -286.8388 & 64.9199 & -4.42 & 0.0001 \\ 
-  income & 0.0807 & 0.0093 & 8.67 & 0.0000 \\ 
-  young & 0.8173 & 0.1598 & 5.12 & 0.0000 \\ 
-  urban & -0.1058 & 0.0343 & -3.09 & 0.0034 \\ 
+(Intercept) & -286.8388 & 64.9199 & -4.42 & 0.0001 \\
+  income & 0.0807 & 0.0093 & 8.67 & 0.0000 \\
+  young & 0.8173 & 0.1598 & 5.12 & 0.0000 \\
+  urban & -0.1058 & 0.0343 & -3.09 & 0.0034 \\
    \hline
 \end{tabular}
 \end{center}
@@ -1201,11 +1201,11 @@ xtable(coefficient_table3)
 
 \begin{tabular}{rrrrr}
   \hline
- & Estimate & St.Error & t value & P-value \\ 
+ & Estimate & St.Error & t value & P-value \\
   \hline
-Intercept & 25.25 & 27.38 & 0.92 & 0.36 \\ 
-  Income & 0.08 & 0.01 & 6.67 & 0.00 \\ 
-  Urban & -0.11 & 0.04 & -2.66 & 0.01 \\ 
+Intercept & 25.25 & 27.38 & 0.92 & 0.36 \\
+  Income & 0.08 & 0.01 & 6.67 & 0.00 \\
+  Urban & -0.11 & 0.04 & -2.66 & 0.01 \\
    \hline
 \end{tabular}
 
@@ -1248,7 +1248,7 @@ $0.25\hb_1+0.75\hb_1'$, $0.25\hb_2+0.75\hb_2'$ и $0.25\hb_3+0.75\hb_3'$
 
 
 \begin{problem}
-Сгенерируйте вектор $y$ из 300 независимых нормальных $\cN(10,1)$ случайных величин. 
+Сгенерируйте вектор $y$ из 300 независимых нормальных $\cN(10,1)$ случайных величин.
 Сгенерируйте 40 «объясняющих» переменных, по 300 наблюдений в каждой, каждое наблюдение — независимая нормальная $\cN(5,1)$ случайная величина. Постройте регрессию $y$ на все 40 регрессоров и константу.
 \begin{enumerate}
 \item Сколько регрессоров оказалось значимо на 5\% уровне?
@@ -1336,11 +1336,11 @@ xtable(coef.t)
 
 \begin{tabular}{rrrr}
   \hline
- & Оценка & Ст. ошибка & t-статистика \\ 
+ & Оценка & Ст. ошибка & t-статистика \\
   \hline
-(Intercept) &  & 8.72 & 9.44 \\ 
-  Examination & -1.94 &  & -5.08 \\ 
-  Catholic & 0.01 & 0.07 &  \\ 
+(Intercept) &  & 8.72 & 9.44 \\
+  Examination & -1.94 &  & -5.08 \\
+  Catholic & 0.01 & 0.07 &  \\
    \hline
 \end{tabular}
 
@@ -1407,7 +1407,7 @@ RMSE                       & 7.74          & 8.56          \\
 
 \begin{enumerate}
 \item Проверьте гипотезу о том, что коэффициент при $Education$ в модели 1 равен  $-0.5$.
-\item На 5\% уровне значимости проверьте гипотезу о том, что 
+\item На 5\% уровне значимости проверьте гипотезу о том, что
 переменные $Education$ и $Examination$ оказывают одинаковое влияние на $Fertility$.
 \end{enumerate}
 
@@ -1435,11 +1435,11 @@ xtable(var.hat, digits = 4)
 
 \begin{tabular}{rrrrr}
   \hline
- & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\ 
+ & Estimate & Std. Error & t value & Pr($>$$|$t$|$) \\
   \hline
-Константа & -88.81 & 4.37 & -20.34 & 0.00 \\ 
-  Общая площадь & 1.70 & 0.10 & 17.78 & 0.00 \\ 
-  Жилая площадь & 1.99 & 0.18 & 10.89 & 0.00 \\ 
+Константа & -88.81 & 4.37 & -20.34 & 0.00 \\
+  Общая площадь & 1.70 & 0.10 & 17.78 & 0.00 \\
+  Жилая площадь & 1.99 & 0.18 & 10.89 & 0.00 \\
    \hline
 \end{tabular}
 
@@ -1447,11 +1447,11 @@ xtable(var.hat, digits = 4)
 Оценка ковариационной матрицы $\Var(\hb)$ имеет вид
 \begin{tabular}{rrrr}
   \hline
- & (Intercept) & totsp & livesp \\ 
+ & (Intercept) & totsp & livesp \\
   \hline
-(Intercept) & 19.0726 & 0.0315 & -0.4498 \\ 
-  totsp & 0.0315 & 0.0091 & -0.0151 \\ 
-  livesp & -0.4498 & -0.0151 & 0.0335 \\ 
+(Intercept) & 19.0726 & 0.0315 & -0.4498 \\
+  totsp & 0.0315 & 0.0091 & -0.0151 \\
+  livesp & -0.4498 & -0.0151 & 0.0335 \\
    \hline
 \end{tabular}
 
@@ -1507,11 +1507,11 @@ xtable(vcov(model1), digits = 4)
 
 \begin{tabular}{rrrrr}
   \hline
- & Estimate & Std. Error & t value & P-value \\ 
+ & Estimate & Std. Error & t value & P-value \\
   \hline
-Константа & -88.81 & 4.37 & -20.34 & 0.00 \\ 
-  Общая площадь & 1.70 & 0.10 & 17.78 & 0.00 \\ 
-  Жилая площадь & 1.99 & 0.18 & 10.89 & 0.00 \\ 
+Константа & -88.81 & 4.37 & -20.34 & 0.00 \\
+  Общая площадь & 1.70 & 0.10 & 17.78 & 0.00 \\
+  Жилая площадь & 1.99 & 0.18 & 10.89 & 0.00 \\
    \hline
 \end{tabular}
 
@@ -1522,11 +1522,11 @@ xtable(vcov(model1), digits = 4)
 
 \begin{tabular}{rrrr}
   \hline
- & (Intercept) & totsp & livesp \\ 
+ & (Intercept) & totsp & livesp \\
   \hline
-(Intercept) & 19.0726 & 0.0315 & -0.4498 \\ 
-  totsp & 0.0315 & 0.0091 & -0.0151 \\ 
-  livesp & -0.4498 & -0.0151 & 0.0335 \\ 
+(Intercept) & 19.0726 & 0.0315 & -0.4498 \\
+  totsp & 0.0315 & 0.0091 & -0.0151 \\
+  livesp & -0.4498 & -0.0151 & 0.0335 \\
    \hline
 \end{tabular}
 
@@ -1561,14 +1561,14 @@ xtable(coef.table)
 
 \begin{tabular}{rrrrr}
   \hline
- & Estimate & Std. Error & t value & P-value \\ 
+ & Estimate & Std. Error & t value & P-value \\
   \hline
-(Intercept) & -66.03 & 6.07 & -10.89 & 0.00 \\ 
-  totsp & 1.77 & 0.12 & 14.98 & 0.00 \\ 
-  livesp & 1.27 & 0.25 & 5.05 & 0.00 \\ 
-  brick & -19.59 & 9.01 & -2.17 & 0.03 \\ 
-  totsp:brick & 0.42 & 0.20 & 2.10 & 0.04 \\ 
-  livesp:brick & 0.09 & 0.38 & 0.23 & 0.82 \\ 
+(Intercept) & -66.03 & 6.07 & -10.89 & 0.00 \\
+  totsp & 1.77 & 0.12 & 14.98 & 0.00 \\
+  livesp & 1.27 & 0.25 & 5.05 & 0.00 \\
+  brick & -19.59 & 9.01 & -2.17 & 0.03 \\
+  totsp:brick & 0.42 & 0.20 & 2.10 & 0.04 \\
+  livesp:brick & 0.09 & 0.38 & 0.23 & 0.82 \\
    \hline
 \end{tabular}
 
@@ -1854,7 +1854,7 @@ d_i = \begin{cases}
 
 
 \begin{problem}
-Верно ли, что $R_{adj}^2 = 1 - (1 - R^2)\frac{n-1}{n-k}$ распределен по $F(n-k, n-1)$? 
+Верно ли, что $R_{adj}^2 = 1 - (1 - R^2)\frac{n-1}{n-k}$ распределен по $F(n-k, n-1)$?
 Если да, то объясните, почему, если нет, то тоже объясните, почему.
 
 
