@@ -1323,15 +1323,14 @@ Agriculture_i=\beta_1+\beta_2 Examination_i+\beta_3 Catholic_i+\varepsilon_i
                frame=lines,
                framesep=2mm]{r}
 model1 <- lm(Agriculture ~ Examination + Catholic, data = swiss)
-coef.t <- coeftest(model1)
-dimnames(coef.t)[[2]] <-
-    c("Оценка", "Ст. ошибка",
-    "t-статистика", "P-значение")
-coef.t <- coef.t[, -4]
-coef.t[1, 1] <- NA
-coef.t[2, 2] <- NA
-coef.t[3, 3] <- NA
-xtable(coef.t)
+coef_t <- coeftest(model1)
+dimnames(coef_t)[[2]] <- c("Оценка", "Ст. ошибка",
+  "t-статистика", "P-значение")
+coef_t <- coef_t[, -4]
+coef_t[1, 1] <- NA
+coef_t[2, 2] <- NA
+coef_t[3, 3] <- NA
+xtable(coef_t)
 \end{minted}
 
 \begin{tabular}{rrrr}

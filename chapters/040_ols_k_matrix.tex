@@ -88,7 +88,7 @@
 
 
 \begin{problem}
-Пусть $y = X\beta + \e$ — регрессионная модель, $X = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \end{pmatrix}$, $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$. 
+Пусть $y = X\beta + \e$ — регрессионная модель, $X = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \end{pmatrix}$, $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$.
 
 Найдите коэффициент корреляции $\Corr(\hb_1,\hb_2)$.
 
@@ -125,7 +125,7 @@ y <- c(1, 2, 3)
 
 
 \begin{problem}
-Пусть $y = X\beta + \e$ — регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. 
+Пусть $y = X\beta + \e$ — регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$.
 
 Определите, как выражаются «новые» МНК-коэффициенты через «старые».
 
@@ -159,7 +159,7 @@ alpha <- matrix(c(1, 0, 0, 1, 1, 0, 0, 1, 1), nrow = 3, byrow = FALSE)
 
 
 \begin{problem}
-Пусть $y = X\beta + \e$ — регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. 
+Пусть $y = X\beta + \e$ — регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$.
 
 Определите, как выражаются «новые» МНК-коэффициенты через «старые».
 
@@ -194,7 +194,7 @@ alpha2 <- matrix(c(1, 0, 0, 1, 1, 0, 1, 1, 1), nrow = 3, byrow = FALSE)
 
 
 \begin{problem}
-Пусть $y = X\beta + \e$ — регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. 
+Пусть $y = X\beta + \e$ — регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите «новую» регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$.
 
 Определите, как выражаются «новые» МНК-коэффициенты через «старые».
 
@@ -717,7 +717,9 @@ $\E(TSS)=(n-1)\sigma^2+\beta'X'(I-\pi)X\beta$
 
 
 \begin{problem}
-Вася строит регрессию $y$ на некий набор объясняющих переменных и константу. А на самом деле $y_i=\beta_1+\e_i$. Чему равно $\E(TSS)$, $\E(RSS)$, $\E(ESS)$ в этом случае?
+Вася строит регрессию $y$ на некий набор объясняющих переменных и константу.
+Всего он оценивает $k$ коэффициентов бета.
+А на самом деле $y_i=\beta + \e_i$. Чему равно $\E(TSS)$, $\E(RSS)$, $\E(ESS)$ в этом случае?
 
 
 \begin{sol}
@@ -1814,12 +1816,13 @@ xtable(vcov(model))
 
 
 При построении парной регрессии у него получилась $\hs=15.4$ и оценка ковариационной матрицы
+
 \begin{tabular}{rrr}
   \hline
- & (Intercept) & speed \\ 
+ & (Intercept) & speed \\
   \hline
-(Intercept) & 45.68 & -2.66 \\ 
-  speed & -2.66 & 0.17 \\ 
+(Intercept) & 45.68 & -2.66 \\
+  speed & -2.66 & 0.17 \\
    \hline
 \end{tabular}
 
@@ -2025,10 +2028,10 @@ $
 
 \begin{problem}
 	Эконометресса Эвелина оценила классическую линейную модель $y_{train}=X_{train}\b + \e$ на обучающей выборке из $n_{train}$ наблюдений методом наименьших квадратов.
-	А затем, используя полученную оценку $\hb$, Эвелина строит прогноз на тестовой выборке из $n_{test}$ наблюдений. 
-То есть истинные вневыборочные значения вектора $y_{test}$ получаются по формуле $y_{test}=X_{test}\b + u$. 
-	Прогнозы Эвелина строит по формуле $\hat y_{test} = X_{test}\hb$. 
-Ошибки $\e_i$ и $u_j$ имеют одинаковое распределение и некоррелированы между собой. 
+	А затем, используя полученную оценку $\hb$, Эвелина строит прогноз на тестовой выборке из $n_{test}$ наблюдений.
+То есть истинные вневыборочные значения вектора $y_{test}$ получаются по формуле $y_{test}=X_{test}\b + u$.
+	Прогнозы Эвелина строит по формуле $\hat y_{test} = X_{test}\hb$.
+Ошибки $\e_i$ и $u_j$ имеют одинаковое распределение и некоррелированы между собой.
 Найдите математическое ожидание суммы квадратов ошибок прогнозов,
 \[
 	\E\left(  \sum_i (y_{test,i} - \hat y_{test,i})^2  \right)
