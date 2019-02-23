@@ -787,7 +787,7 @@ $\sum y_i^2=\sum \hy_i^2+\sum \he_i^2$, $TSS=ESS+RSS$,
 
 
 \begin{problem}
-Покажите на картинке TSS, ESS, RSS, $R^2$, $\sCorr(\hy,y)$, $\sCov(\hy,y)$
+Покажите на картинке TSS, ESS, RSS, $R^2$, $\sCorr(\hy, y)$, $\sCov(\hy, y)$
 
 \tdplotsetmaincoords{70}{110}
 \begin{tikzpicture}[tdplot_main_coords]
@@ -808,17 +808,20 @@ $\sum y_i^2=\sum \hy_i^2+\sum \he_i^2$, $TSS=ESS+RSS$,
 
 
 \begin{sol}
-$\sCorr(\hy, y)=\frac{\sCov(\hy, y)}{\sqrt{\sVar(\hy)\sVar{(y)}}}$
+$\sCorr(\hy, y)=\frac{\sCov(\hy, y)}{\sqrt{\sVar(\hy)\sVar(y)}}$
 
-$\sCorr(\hy, y)^2=\frac{(\sCov(\hy, y))^2}{\sVar(\hy)\sVar{(y)}} $
+$\sCorr(\hy, y)^2=\frac{(\sCov(\hy, y))^2}{\sVar(\hy)\sVar(y)}$
 
-$R^2\cdot TSS/(n-1)\cdot ESS/(n-1)=(\sCov(\hy, y))^2=(\sCov(\hy-\bar y, y-\bar y))^2$
-Отсюда можно понять, что ковариация для двухмерного случая равна произведению длин векторов $\hy-\bar y$ и $y-\bar y$ — $\sqrt{ESS}$ и $\sqrt{TSS}$ на косинус угла между ними ($\sqrt{R^2}$). Геометрически скалярное произведение можно изобразить как произведение длин одного из векторов на проекцию второго вектора на первый. Если будет проецировать $y-\bar y\v1$ на $\hy-\bar y\v1$, то получим как раз $ESS$ — тот квадрат на рисунке, что уже построен.
+\[
+R^2\cdot TSS/(n-1)\cdot ESS/(n-1)=(\sCov(\hy, y))^2=(\langle \hy-\bar y\v1, y-\bar y\v1 \rangle/(n-1))^2
+\]
+С точностью до деления на $n-1$ ковариация для двухмерного случая равна произведению длин векторов $\hy-\bar y\v1$ и $y-\bar y\v1$, равных $\sqrt{ESS}$ и $\sqrt{TSS}$, на косинус угла между ними, $\sqrt{R^2}$.
 
+\[
+\sCov(\hy, y)=\sqrt{ESS^2/(n-1)^2}=ESS/(n-1)
+\]
 
-$\sCov(\hy, y)=\sqrt{ESS^2/(n-1)^2}=ESS/(n-1)$
-
-
+Ковариация пропорциональна площади квадрата со стороной $\hy - \bar y \v1$.
 \end{sol}
 \end{problem}
 
@@ -1026,15 +1029,12 @@ y_i^*=\b_2'' x^*_i + u_i''
 \end{enumerate}
 
 \begin{sol}
-
-  \todo[inline]{Ахтунг! Истинные дисперсии в формуле оценок!}
-
 \begin{enumerate}
-\item $\hat\beta_1'=\bar y^* -\hb_2'\bar x^*=\overline{y-\bar y}-\hb_2'(\overline{x-\bar x})=0$
+\item $\hat\beta_1'=\bar y^* -\hb_2'\bar x^*=0$
 
-\item $\hb_2'=\frac{\Cov(y^*,x^*)}{\Var(x^*)}=\frac{\Cov(y-\bar y,x-\bar x)s_x/s_y}{\Var(x-\bar x)}=\frac{\Cov(y,x)s_x/s_y}{\Var(x)}=\frac{s_x}{s_y}\hb_2$
+\item $\hb_2'=\frac{\sCov(y^*,x^*)}{\sVar(x^*)}=\frac{\sCov(y-\bar y\v1,x-\bar x\v1)s_x/s_y}{\sVar(x-\bar x\v1)}=\frac{\sCov(y, x)s_x/s_y}{\sVar(x)}=\frac{s_x}{s_y}\hb_2$
 
-$\hb_2''=\frac{\overline{x^*y^*}}{\overline{\bar x^2}}=\frac{\Cov(x^*y^*)+\bar{x^*}\bar{y^*}}{\Var(x^*)+\bar{x^*}}=\frac{\Cov(y^*,x^*)}{\Var(x^*)}=\hb_2'=\frac{s_x}{s_y}\hb_2$
+$\hb_2''=\frac{\sCov(y^*,x^*)}{\sVar(x^*)}=\hb_2'=\frac{s_x}{s_y}\hb_2$
 
 \item $\hat u_i'=y_i^*-\hy_i^*=y_i^*-\hb_1'-\hb_2'x_i^*=y_i^*-\frac{s_x}{s_y}\hb_2x_i^*=\frac{y_i-\bar y-\hb_2(x_i-\bar x)}{s_y}=\frac{y_i-\hb_2x_i-(\bar y-\hb_2\bar x)}{s_y}=\frac{y_i-\hb_2x_i-\hb_1}{s_y}=\frac{\hat u_i}{s_y}$
 
@@ -1048,16 +1048,12 @@ n&\sum^n_{i=1}x_i\\
 \end{pmatrix}$
 
 $X'X_{new}=\begin{pmatrix}
-n&\sum^n_{i=1}(x_i-\bar x)/s_x\\
-\sum^n_{i=1}(x_i-\bar x)/s_x&\sum^n_{i=1}(x_i-\bar x)^2/s_x^2
+n                            & \sum^n_{i=1}(x_i-\bar x)/s_x\\
+\sum^n_{i=1}(x_i-\bar x)/s_x & \sum^n_{i=1}(x_i-\bar x)^2/s_x^2
 \end{pmatrix}=
 \begin{pmatrix}
-n&\sum^n_{i=1}(x_i-\bar x)/s_x\\
-(\sum^n_{i=1}x_i^2-\bar x^2)/s_x&\sum^n_{i=1}(x_i-\bar x)^2/s_x^2
-\end{pmatrix}=
-\begin{pmatrix}
-n&0\\
-0&(\sum^n_{i=1}x_i^2-n\bar x^2)/s_x^2
+n   & 0  \\
+0   & \sum^n_{i=1}(x_i-\bar x)^2/s_x^2
 \end{pmatrix}$
 
 $\hVar(\hb_2)=\frac{RSS_1}{n-2}(X'X)_{(2,2)}^{-1}=\frac{RSS_2s_y^2}{n-2}\frac{1}{n\sum^n_{i=1}x_i^2-(\sum^n_{i=1}x_i)^2}
@@ -1077,7 +1073,7 @@ $\hVar(\hb'_2)=\frac{RSS_2}{n-2}(X'X_{new})_{(2,2)}^{-1}=\frac{RSS_3}{n-1}(X'X_{
 \sum_{i=1}^n(x_i-\bar x)y_i
 \end{pmatrix}$, в частности, $\hb_1'=0$.
 
-\item $t_{\hb_2}=\frac{\hat\beta}{\sqrt{\Var(\hb_2)}}=\frac{\hat\beta's_y/s_x}{\sqrt{\Var(\hb_2')}s_y/s_x}=t_{\hb_2'}=\sqrt{\frac{n-2}{n-1}}t_{\hb_2''}$
+\item $t_{\hb_2}=\frac{\hat\beta}{\sqrt{\hVar(\hb_2)}}=\frac{\hat\beta's_y/s_x}{\sqrt{\hVar(\hb_2')}s_y/s_x}=t_{\hb_2'}=\sqrt{\frac{n-2}{n-1}}t_{\hb_2''}$
 
 \item $TSS'=TSS''=\frac{\sum_{i=1}^n(y_i-\bar y)^2}{s_y^2}=\frac{TSS}{s_y^2}$.
 
@@ -1085,19 +1081,22 @@ $R'^2=R''^2$, так как соответствующие $TSS$ и $RSS$ рав
 
 $R^2=\frac{RSS}{TSS}=\frac{s_y^2RSS'}{TSS's_y^2}=\frac{RSS}{TSS}=R'^2$
 
-\item При переходе к стандартизированным переменным изменяются оценки коэффициентов и остатки регрессии пропорционально стандартным отклонениям переменным. Также перестаёт играет роль регрессор-свободный член, так как матожидание эндогенной переменной становится равной 0. Также при переходе к стандартизированным переменным можно снизить оценку дисперсии переменных, так как можно убрать регрессор-свободный член. Качество регрессий по $R^2$ не изменяется.
+\item При переходе к стандартизированным переменным изменяются оценки коэффициентов и остатки регрессии пропорционально стандартным отклонениям переменным.
+Оценка свободного члена становится равной нулю.
+Однако при выкидывании свободного члена из регрессии слегка изменяется оценка дисперсии коэффициента наклона.
+Коэффициент детерминации $R^2$ не изменяется.
+
 
 \end{enumerate}
 \end{sol}
 \end{problem}
 
 
-
-
 \begin{problem}
-Регрессионная модель  задана в матричном виде при помощи уравнения $y=X\beta+\varepsilon$, где $\beta=(\beta_1,\beta_2,\beta_3)'$.
-Известно, что $\E(\varepsilon)=0$  и  $\Var(\varepsilon)=\sigma^2\cdot I$.
+Регрессионная модель задана в матричном виде при помощи уравнения $y = X\beta + \varepsilon$, где $\beta=(\beta_1, \beta_2, \beta_3)'$.
+Известно, что $\E(\varepsilon) = 0$ и $\Var(\varepsilon)=\sigma^2\cdot I$.
 Известно также, что
+
 
 $y=\left(
 \begin{array}{c}
