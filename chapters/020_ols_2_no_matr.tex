@@ -16,8 +16,6 @@
                numbersep=5pt,
                frame=lines,
                framesep=2mm]{r}
-tikz("../R_plots/uniform_errors.tikz", standAlone = FALSE, bareBones = TRUE)
-
 n <- 100 # количество наблюдений
 m <- 100 # можно менять количество прогонов
          # и радоваться!
@@ -52,14 +50,12 @@ for(i in 1:ncol(toPlot))           # построим все одним махо
        xlab = colnames(toPlot)[i], ylim = c(0, max(density(toPlot[, i])$y)) )
   lines(density(toPlot[, i]), col = i, lwd = 4)
 }
-
-invisible(dev.off())
 \end{minted}
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
 \begin{tikzpicture}[scale = 0.025]
-\input{R_plots/uniform_errors.tikz}
+\input{R_plots/uniform_errors.tex}
 \end{tikzpicture}
 \end{center}
 \end{minipage}
@@ -2114,7 +2110,6 @@ $\Var(\bar\e)=\sigma^2/n$,  $\plim \bar{\e}=0$
                numbersep=5pt,
                frame=lines,
                framesep=2mm]{r}
-tikz("../R_plots/two_points_zero_slope.tikz", standAlone = FALSE, bareBones = TRUE)
 data_2d <- data_frame(
   x = c(10, 20),
   y = c(7, 7))
@@ -2123,7 +2118,6 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
   xlab("$x_i$") + ylab("$y_i$") +
   scale_y_continuous(limits = c(0, 15)) +
   scale_x_continuous(limits = c(0, 30))
-invisible(dev.off())
 \end{minted}
 
 
@@ -2153,7 +2147,6 @@ invisible(dev.off())
                numbersep=5pt,
                frame=lines,
                framesep=2mm]{r}
-tikz("../R_plots/two_points_positive_slope.tikz", standAlone = FALSE, bareBones = TRUE)
 data_2d <- data_frame(
   x = c(10, 20),
   y = c(7, 12))
@@ -2162,7 +2155,6 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
   xlab("$x_i$") + ylab("$y_i$") +
   scale_y_continuous(limits = c(0, 20)) +
   scale_x_continuous(limits = c(0, 30))
-invisible(dev.off())
 \end{minted}
 
 
@@ -2234,7 +2226,6 @@ $20$ & ? \\
                numbersep=5pt,
                frame=lines,
                framesep=2mm]{r}
-tikz("../R_plots/regression_on_plot.tikz", standAlone = FALSE, bareBones = TRUE)
 set.seed(94)
 n_obs <- 20
 data_2d <- data_frame(
@@ -2248,7 +2239,6 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
                      labels = c("$0$", "$x_{20}$", "$\\bar x$")) +
   stat_smooth(method = "lm", se = FALSE, col = I("gray")) +
   xlab("") + ylab("$y_i$")
-invisible(dev.off())
 \end{minted}
 
 
@@ -2287,7 +2277,6 @@ invisible(dev.off())
                numbersep=5pt,
                frame=lines,
                framesep=2mm]{r}
-tikz("../R_plots/4_observations.tikz", standAlone = FALSE, bareBones = TRUE)
 data_2d <- data_frame(
   x = c(1, 2, 2, 2),
   y = c(3, 1, 2, 3))
@@ -2296,7 +2285,6 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
   scale_x_continuous(breaks = c(0, 1, 2),
   labels = c("$0$", "$1$", "$2$")) +
   xlab("$x_i$") + ylab("$y_i$")
-invisible(dev.off())
 \end{minted}
 
 

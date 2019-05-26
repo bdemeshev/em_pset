@@ -79,9 +79,7 @@ ggplot(flats, aes(x = totsp, y = price)) + geom_point() +
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
-\begin{tikzpicture}[scale = 0.025]
-\input{R_plots/flats_scatter.tikz}
-\end{tikzpicture}
+% \input{R_plots/flats_scatter.tex}
 \end{center}
 \end{minipage}
 
@@ -539,17 +537,19 @@ y_n \sqrt{x_n}/\sigma_{\e} \\
 
 
 \begin{problem}
-Исследователь оценил регрессионную модель $y_i = \beta_1 + \beta_2 x_i + \beta_3 z_i + \beta_4 w_i + \e_i$ и провёл диагностику различных проблемных явлений. Результаты его стараний приведены ниже:
+Исследователь оценил регрессионную модель $y_i = \beta_1 + \beta_2 x_i + \beta_3 z_i + \beta_4 w_i + \e_i$ и провёл диагностику различных проблемных явлений. 
+Результаты его стараний приведены ниже:
 
 
 \todo[inline]{Здесь виснет чанк кода!}
 
 \begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+set.seed(777)
 n <- 200
 x <- rnorm(n)
 z <- rnorm(n)
 w <- rnorm(n)
-eps <- abs(x2)*rnorm(n)
+eps <- abs(x)*rnorm(n)
 y <- 2 + 3 * x - 3 * z + 1 * w + eps
 model <- lm(y ~ x + z + w)
 resid <- resid(model)
@@ -568,7 +568,7 @@ grid.arrange(plot1, plot2, ncol = 2)
 \begin{minipage}{0.6\textwidth}
 \begin{center}
 \begin{tikzpicture}[scale = 0.025]
-\input{R_plots/residual_plot.tikz}
+\input{R_plots/residual_plot.tex}
 \end{tikzpicture}
 \end{center}
 \end{minipage}

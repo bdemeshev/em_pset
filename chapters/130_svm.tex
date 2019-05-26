@@ -201,6 +201,7 @@ $w = (1/2, 1/2)$, $w_0 = 5.5$
 \todo[inline]{Здесь виснет чанк кода!}
 
 \begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
+set.seed(777)
 n_obs <- 2000
 svm_df <- data_frame(x = runif(n_obs, min = -20, max = 20), y = runif(n_obs, min = -20, max = 20))
 svm_df <- dplyr::filter(svm_df, (y > x + 10) | (y < x - 10))
@@ -215,9 +216,7 @@ ggplot(data = svm_df, aes(x = x, y = y)) +
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
-\begin{tikzpicture}[scale = 0.025]
-\input{R_plots/armada.tikz}
-\end{tikzpicture}
+% \input{R_plots/armada.tex}
 \end{center}
 \end{minipage}
 

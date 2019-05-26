@@ -31,14 +31,11 @@ resids <- model$residuals
 resid.acf <- acf(resids, plot = FALSE)$acf
 ggplot(df, aes(x = obs, y = level)) + geom_line() +
     labs(x = "Год", y = "Уровень озера (футы)")
-
 \end{minted}
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
-\begin{tikzpicture}[scale = 0.025]
-\input{R_plots/huron_level.tikz}
-\end{tikzpicture}
+\input{R_plots/huron_level.tex}
 \end{center}
 \end{minipage}
 
@@ -57,9 +54,7 @@ ggplot(acfs.df, aes(x = lag, y = acf, fill = acf.type)) +
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
-\begin{tikzpicture}[scale = 0.025]
-\input{R_plots/huron_acf.tikz}
-\end{tikzpicture}
+\input{R_plots/huron_acf.tex}
 \end{center}
 \end{minipage}
 
@@ -970,9 +965,7 @@ ggplot(acf.df, aes(x = lag, y = acf)) +
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
-\begin{tikzpicture}[scale = 0.025]
-\input{R_plots/acf_rescale.tikz}
-\end{tikzpicture}
+\input{R_plots/acf_rescale.tex}
 \end{center}
 \end{minipage}
 
