@@ -19,19 +19,14 @@
 *.bbl
 *.toc
 *-concordance.tex
+
 _minted-em1_pset_v2/
 experiments/
+solutions/
 
 em1_pset_v2.pdf
 
-
 .Rhistory
 .Rproj.user
-
-chapters/junk.txt
-
-
 .Rapp.history
-
-solutions/
 .DS_Store
