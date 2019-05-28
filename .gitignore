@@ -19,81 +19,19 @@
 *.bbl
 *.toc
 *-concordance.tex
-/cache/
-/figure/
-
-
-em1_pset_v2-concordance.tex
-
+_minted-em1_pset_v2/
+experiments/
 
 em1_pset_v2.pdf
 
 
-
-
-em1_pset_v2_tikz.tex
-
-em1_pset_v2_tikz.pdf
-
-
 .Rhistory
-
 .Rproj.user
-
-one_chapter_quick_test.pdf
-
-
-one_chapter_quick_test.tex
-
-
 
 chapters/junk.txt
 
-R_plots/aggregate_regression_b.tikz
-
-R_plots/aggregate_regression_b.tikz
-
-R_plots/aggregate_regression_b.tikz
-
-R_plots/aggregate_regression.tikz
-
-R_plots/cars_scatter.tikz
-
-R_plots/flats_scatter.tikz
-
-R_plots/residual_plot.tikz
-
-R_plots/tree_scatter_data.tikz
-
-R_plots/uniform_errors.tikz
-
-R_plots/with_and_without_c.tikz
 
 .Rapp.history
 
-R_plots/huron_acf.tikz
-
-R_plots/huron_level.tikz
-
-R_plots/acf_rescale.tikz
-
-R_plots/armada.tikz
-
-zadachnik_version_2.zip
-
-update_v_2016_10_09.zip
-
-em_pset_all.zip
-
-.brackets.json
-
-experiments/figure/test-1.tex
-
-experiments/figure/test-2-1.pdf
-
-experiments/figure/test-2.tex
-
-
-fonts/
 solutions/
 .DS_Store
