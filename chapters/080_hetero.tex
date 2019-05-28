@@ -77,11 +77,15 @@ ggplot(flats, aes(x = totsp, y = price)) + geom_point() +
     y = "Цена квартиры, 1000\\$")
 \end{minted}
 
+\todo[inline]{Здесь вместо tikz вставлен png}
+
+
 \begin{minipage}{0.6\textwidth}
 \begin{center}
-\begin{tikzpicture}[scale = 0.025]
+% \begin{tikzpicture}[scale = 0.025]
 % \input{R_plots/flats_scatter.tex}
-\end{tikzpicture}
+% \end{tikzpicture}
+\includegraphics[scale=0.65]{R_plots/flats_scatter.png}
 \end{center}
 \end{minipage}
 
@@ -542,9 +546,6 @@ y_n \sqrt{x_n}/\sigma_{\e} \\
 Исследователь оценил регрессионную модель $y_i = \beta_1 + \beta_2 x_i + \beta_3 z_i + \beta_4 w_i + \e_i$ и провёл диагностику различных проблемных явлений. 
 Результаты его стараний приведены ниже:
 
-
-\todo[inline]{Здесь виснет чанк кода!}
-
 \begin{minted}[mathescape, numbersep=5pt, frame=lines, framesep=2mm]{r}
 set.seed(777)
 n <- 200
@@ -557,11 +558,11 @@ model <- lm(y ~ x + z + w)
 resid <- resid(model)
 plot1 <- qplot(x, abs(resid),
   xlab = "Переменная $x$",
-  ylab = "Модуль остатков")
+  ylab = "Модуль остатка")
 plot2 <- qplot(head(resid, -1),
        tail(resid, -1),
-       xlab = "Остаток $\\varepsilon_{t-1}$",
-       ylab = "Остаток $\\varepsilon_{t}$")
+       xlab = "Остаток $\\hat\\varepsilon_{t-1}$",
+       ylab = "Остаток $\\hat\\varepsilon_{t}$")
 grid.arrange(plot1, plot2, ncol = 2)
 \end{minted}
 

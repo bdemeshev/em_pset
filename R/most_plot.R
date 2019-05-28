@@ -65,11 +65,11 @@ model <- lm(y ~ x + z + w)
 resid <- resid(model)
 plot1 <- qplot(x, abs(resid),
                xlab = "Переменная $x$",
-               ylab = "Модуль остатков")
+               ylab = "Модуль остатка")
 plot2 <- qplot(head(resid, -1),
                tail(resid, -1),
-               xlab = "Остаток $\\varepsilon_{t-1}$",
-               ylab = "Остаток $\\varepsilon_{t}$")
+               xlab = "Остаток $\\hat\\varepsilon_{t-1}$",
+               ylab = "Остаток $\\hat\\varepsilon_{t}$")
 grid.arrange(plot1, plot2, ncol = 2)
 
 
@@ -162,14 +162,14 @@ dev.off()
 
 set.seed(777)
 n_obs <- 2000
-svm_df <- data_frame(x = runif(n_obs, min = -20, max = 20), y = runif(n_obs, min = -20, max = 20))
+svm_df <- tibble(x = runif(n_obs, min = -20, max = 20), y = runif(n_obs, min = -20, max = 20))
 svm_df <- dplyr::filter(svm_df, (y > x + 10) | (y < x - 10))
 svm_df <- mutate(svm_df, type = ifelse(y > x + 10, 1, 0))
-more_points <- data_frame(x = c(0, 5, 5), y = c(0, 5, 0), type = c(1, 1, 0))
+more_points <- tibble(x = c(0, 5, 5), y = c(0, 5, 0), type = c(1, 1, 0))
 svm_df <- bind_rows(svm_df, more_points)
 
 p = ggplot(data = svm_df, aes(x = x, y = y)) +
-  geom_point(aes(shape = factor(type))) + theme_bw() + guides(shape = guide_legend(title = "Тип"))
+  geom_point(aes(shape = factor(type))) + theme_bw() + guides(shape = guide_legend(title = "Type"))
 p
 
 file_name <- "../R_plots/armada"
