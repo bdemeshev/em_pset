@@ -2110,7 +2110,7 @@ $\Var(\bar\e)=\sigma^2/n$,  $\plim \bar{\e}=0$
                numbersep=5pt,
                frame=lines,
                framesep=2mm]{r}
-data_2d <- data_frame(
+data_2d <- tibble(
   x = c(10, 20),
   y = c(7, 7))
 
@@ -2125,7 +2125,7 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
 \begin{minipage}{0.6\textwidth}
 \begin{center}
 \begin{tikzpicture}[scale = 0.025]
-\input{R_plots/two_points_zero_slope.tikz}
+\input{R_plots/two_points_zero_slope.tex}
 \end{tikzpicture}
 \end{center}
 \end{minipage}
@@ -2147,7 +2147,7 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
                numbersep=5pt,
                frame=lines,
                framesep=2mm]{r}
-data_2d <- data_frame(
+data_2d <- tibble(
   x = c(10, 20),
   y = c(7, 12))
 
@@ -2162,7 +2162,7 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
 \begin{minipage}{0.6\textwidth}
 \begin{center}
 \begin{tikzpicture}[scale = 0.025]
-\input{R_plots/two_points_positive_slope.tikz}
+\input{R_plots/two_points_positive_slope.tex}
 \end{tikzpicture}
 \end{center}
 \end{minipage}
@@ -2228,7 +2228,7 @@ $20$ & ? \\
                framesep=2mm]{r}
 set.seed(94)
 n_obs <- 20
-data_2d <- data_frame(
+data_2d <- tibble(
   x = -20 + rbinom(n_obs, size = 50, prob = 0.5),
   y = 5 + 3 * x + rbinom(n_obs, size = 160, prob = 0.5))
 
@@ -2246,7 +2246,7 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
 
 \begin{minipage}{\textwidth}
 \begin{tikzpicture}[scale = 0.025]
-\input{R_plots/regression_on_plot.tikz}
+\input{R_plots/regression_on_plot.tex}
 \end{tikzpicture}
 \end{minipage}
 
@@ -2277,7 +2277,7 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
                numbersep=5pt,
                frame=lines,
                framesep=2mm]{r}
-data_2d <- data_frame(
+data_2d <- tibble(
   x = c(1, 2, 2, 2),
   y = c(3, 1, 2, 3))
 
@@ -2290,7 +2290,7 @@ qplot(data = data_2d, x = x, y = y) + theme_bw() +
 
 \begin{minipage}{\textwidth}
 \begin{tikzpicture}[scale = 0.025]
-\input{R_plots/4_observations.tikz}
+\input{R_plots/4_observations.tex}
 \end{tikzpicture}
 \end{minipage}
 

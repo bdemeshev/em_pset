@@ -8,37 +8,6 @@ a <- tikzsetup()
 # source("tikz_setup.R")
 
 
-# n <- 2
-# data <- expand.grid(x = 1:n, y = 1:n)
-# data$chars <- intToUtf8(seq.int(187, by = 1, length.out = n * n), multiple = T)
-# data$letters <- c("ы", "я", "ф", "Ю")
-# 
-# p <- ggplot2::ggplot(data, ggplot2::aes(x = x, y = y)) +
-#   ggplot2::geom_text(ggplot2::aes(label = letters))
-
-
-# test plot ---------------------------------------------------------------
-
-df <- tibble(x = c(8, 5, 6, 7, 3, 9))
-df <- df %>% arrange(x)
-ecdfmass <- ecdf(df$x)
-df <- df %>% mutate(y = ecdfmass(x), xend = c(tail(x, -1), Inf))
-
-p <- ggplot(data = df) + geom_segment(aes(x = x, xend = xend, y = y, yend = y), 
-                                      arrow = arrow(ends = "last"))  + geom_point(aes(x = x, y = y)) + theme_bw()
-
-
-file_name <- "test_tikz"
-tikz_full <- paste0(file_name, ".tex")
-png_full <- paste0(file_name, ".png")
-
-ggsave(filename = png_full, device = "png", dpi = 200)
-
-tikz(standAlone = TRUE, file = tikz_full)
-print(p)
-dev.off()
-
-
 # cars scatter ------------------------------------------------------------
 
 p = ggplot(data = cars, aes(x = speed, y = dist)) + geom_point() +
@@ -52,7 +21,7 @@ png_full <- paste0(file_name, ".png")
 
 ggsave(filename = png_full, device = "png", dpi = 200)
 
-tikz(standAlone = FALSE, file = tikz_full)
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
 print(p)
 dev.off()
 
@@ -74,7 +43,7 @@ png_full <- paste0(file_name, ".png")
 
 ggsave(filename = png_full, device = "png", dpi = 200)
 
-tikz(standAlone = FALSE, file = tikz_full)
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
 print(p)
 dev.off()
 
@@ -110,7 +79,7 @@ png_full <- paste0(file_name, ".png")
 
 ggsave(filename = png_full, device = "png", dpi = 200)
 
-tikz(standAlone = FALSE, file = tikz_full)
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
 grid.arrange(plot1, plot2, ncol = 2)
 dev.off()
 
@@ -139,7 +108,7 @@ png_full <- paste0(file_name, ".png")
 
 ggsave(filename = png_full, device = "png", dpi = 200)
 
-tikz(standAlone = FALSE, file = tikz_full)
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
 print(p)
 dev.off()
 
@@ -151,8 +120,8 @@ dev.off()
 p = ggplot(acfs.df, aes(x = lag, y = acf, fill = acf.type)) +
   geom_bar(position = "dodge", stat = "identity") +
   xlab("Лаг") + ylab("Корреляция") + labs(title = "Автокорреляционная функция для уровня воды в озере Гурон") + 
-  guides(fill = guide_legend(title = NULL))+
-  geom_hline(yintercept = 1.96/sqrt(nrow(df)))+
+  guides(fill = guide_legend(title = NULL)) +
+  geom_hline(yintercept = 1.96/sqrt(nrow(df))) +
   geom_hline(yintercept = -1.96/sqrt(nrow(df)))
 
 p
@@ -163,7 +132,7 @@ png_full <- paste0(file_name, ".png")
 
 ggsave(filename = png_full, device = "png", dpi = 200)
 
-tikz(standAlone = FALSE, file = tikz_full)
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
 print(p)
 dev.off()
 
@@ -184,7 +153,7 @@ png_full <- paste0(file_name, ".png")
 
 ggsave(filename = png_full, device = "png", dpi = 200)
 
-tikz(standAlone = FALSE, file = tikz_full)
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
 print(p)
 dev.off()
 
@@ -209,7 +178,7 @@ png_full <- paste0(file_name, ".png")
 
 ggsave(filename = png_full, device = "png", dpi = 200)
 
-tikz(standAlone = FALSE, file = tikz_full)
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
 print(p)
 dev.off()
 
@@ -229,7 +198,7 @@ png_full <- paste0(file_name, ".png")
 
 ggsave(filename = png_full, device = "png", dpi = 200)
 
-tikz(standAlone = FALSE, file = tikz_full)
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
 print(p)
 dev.off()
 
@@ -242,7 +211,7 @@ png_full <- paste0(file_name, ".png")
 
 # ggsave(filename = png_full, device = "png", dpi = 200)
 
-tikz(standAlone = FALSE, file = tikz_full)
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
 
 
 n <- 100;
@@ -252,9 +221,9 @@ y <- 2 * x + s + rnorm(n, sd = 0.15)
 
 
 plot(x, y, type = "n", frame = "FALSE")
-points(x[1 : (n/2)], y[1 : (n/2)], pch = 21,
+points(x[1:(n/2)], y[1:(n/2)], pch = 21,
        col = "black", bg = "ForestGreen", cex = 2)
-points(x[(n/2 + 1) : n], y[(n/2 + 1) : n],
+points(x[(n/2 + 1):n], y[(n/2 + 1):n],
        pch = 21, col = "black", bg = "SkyBlue", cex = 2)
 
 modelV1 <- lm(y ~ x + s)
@@ -287,9 +256,9 @@ x <- c(runif(n/2), 1 + runif(n/2));
 y <- -2 * x + s + rnorm(n, sd = 0.15)
 
 plot(x, y, type = "n", frame = FALSE)
-points(x[1 : (n/2)], y[1 : (n/2)], pch = 21,
+points(x[1:(n/2)], y[1:(n/2)], pch = 21,
        col = "black", bg = "ForestGreen", cex = 2)
-points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21,
+points(x[(n/2 + 1):n], y[(n/2 + 1):n], pch = 21,
        col = "black", bg = "SkyBlue", cex = 2)
 
 modelV1 <- lm(y ~ x + s)
@@ -359,7 +328,7 @@ varB1 <- rep(0, m)
 varB2 <- rep(0, m)
 Cov <- rep(0, m)
 
-for(i in 1:m) {
+for (i in 1:m) {
   y <- 1 + 2 * x + runif(n, -1, 1)       # остатки распределены как надо
   b1[i] <- coef(lm(y ~ x))[[1]]
   b2[i] <- coef(lm(y ~ x))[[2]]
@@ -375,7 +344,7 @@ par(mfrow = c(2, 3))
 toPlot <- data.frame(b1 = b1, b2 = b2, sHatSquared = sHatSquared,
                      varB1 = varB1, varB2 = varB2, Cov = Cov)
 
-for(i in 1:ncol(toPlot))           # построим все одним махом
+for (i in 1:ncol(toPlot))           # построим все одним махом
 {
   hist(toPlot[, i], prob = TRUE, main = "",
        xlab = colnames(toPlot)[i], ylim = c(0, max(density(toPlot[, i])$y)) )
@@ -385,3 +354,104 @@ for(i in 1:ncol(toPlot))           # построим все одним махо
 dev.off()
 
 
+
+# two_points_zero_slope ---------------------------------------------------
+
+data_2d <- tibble(
+  x = c(10, 20),
+  y = c(7, 7))
+
+p = qplot(data = data_2d, x = x, y = y) + theme_bw() +
+  xlab("$x_i$") + ylab("$y_i$") +
+  scale_y_continuous(limits = c(0, 15)) +
+  scale_x_continuous(limits = c(0, 30))
+p
+
+
+file_name <- "../R_plots/two_points_zero_slope"
+tikz_full <- paste0(file_name, ".tex")
+png_full <- paste0(file_name, ".png")
+
+ggsave(filename = png_full, device = "png", dpi = 200)
+
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
+print(p)
+dev.off()
+
+
+# two_points_positive_slope ---------------------------------------------------
+
+data_2d <- tibble(
+  x = c(10, 20),
+  y = c(7, 12))
+
+p = qplot(data = data_2d, x = x, y = y) + theme_bw() +
+  xlab("$x_i$") + ylab("$y_i$") +
+  scale_y_continuous(limits = c(0, 20)) +
+  scale_x_continuous(limits = c(0, 30))
+p
+
+
+file_name <- "../R_plots/two_points_positive_slope"
+tikz_full <- paste0(file_name, ".tex")
+png_full <- paste0(file_name, ".png")
+
+ggsave(filename = png_full, device = "png", dpi = 200)
+
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
+print(p)
+dev.off()
+
+
+
+# regression_on_plot ------------------------------------------------------
+
+
+set.seed(94)
+n_obs <- 20
+data_2d <- tibble(
+  x = -20 + rbinom(n_obs, size = 50, prob = 0.5),
+  y = 5 + 3 * x + rbinom(n_obs, size = 160, prob = 0.5))
+
+x_bar <- mean(data_2d$x)
+
+p = qplot(data = data_2d, x = x, y = y) + theme_bw() +
+  scale_x_continuous(breaks = c(0, data_2d$x[20], x_bar),
+                     labels = c("$0$", "$x_{20}$", "$\\bar x$")) +
+  stat_smooth(method = "lm", se = FALSE, col = I("gray")) +
+  xlab("") + ylab("$y_i$")
+p
+
+file_name <- "../R_plots/regression_on_plot"
+tikz_full <- paste0(file_name, ".tex")
+png_full <- paste0(file_name, ".png")
+
+ggsave(filename = png_full, device = "png", dpi = 200)
+
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
+print(p)
+dev.off()
+
+
+# 4_observations ----------------------------------------------------------
+
+data_2d <- tibble(
+  x = c(1, 2, 2, 2),
+  y = c(3, 1, 2, 3))
+
+p = qplot(data = data_2d, x = x, y = y) + theme_bw() +
+  scale_x_continuous(breaks = c(0, 1, 2),
+                     labels = c("$0$", "$1$", "$2$")) +
+  xlab("$x_i$") + ylab("$y_i$")
+p
+
+
+file_name <- "../R_plots/4_observations"
+tikz_full <- paste0(file_name, ".tex")
+png_full <- paste0(file_name, ".png")
+
+ggsave(filename = png_full, device = "png", dpi = 200)
+
+tikz(standAlone = FALSE, file = tikz_full, bareBones = TRUE)
+print(p)
+dev.off()

@@ -35,7 +35,9 @@ ggplot(df, aes(x = obs, y = level)) + geom_line() +
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
+\begin{tikzpicture}[scale = 0.025]
 \input{R_plots/huron_level.tex}
+\end{tikzpicture}
 \end{center}
 \end{minipage}
 
@@ -54,7 +56,9 @@ ggplot(acfs.df, aes(x = lag, y = acf, fill = acf.type)) +
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
+\begin{tikzpicture}[scale = 0.025]
 \input{R_plots/huron_acf.tex}
+\end{tikzpicture}
 \end{center}
 \end{minipage}
 
@@ -965,7 +969,9 @@ ggplot(acf.df, aes(x = lag, y = acf)) +
 
 \begin{minipage}{0.6\textwidth}
 \begin{center}
+\begin{tikzpicture}[scale = 0.025]
 \input{R_plots/acf_rescale.tex}
+\end{tikzpicture}
 \end{center}
 \end{minipage}
 

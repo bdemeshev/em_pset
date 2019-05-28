@@ -1,6 +1,4 @@
-# makefile: Rnw -> tex -> pdf
-# v 2.0
-# .Rnw extension is automatically added
+# makefile: tex -> pdf
 file_name = em1_pset_v2
 
 $(file_name).pdf: $(file_name).tex title_bor_utf8_knitr_e.tex chapters/*.tex
@@ -20,9 +18,6 @@ $(file_name).pdf: $(file_name).tex title_bor_utf8_knitr_e.tex chapters/*.tex
 	# clean auxillary files
 	latexmk -c $(file_name).tex
 
-# $(file_name).tex: $(file_name).Rnw chapters/*.Rnw emetrix_preamble.tex
-#	Rscript -e "library(knitr); knit('$(file_name).Rnw')"
-
 
 clean:
 	# with minus before rm make will ignore errors if file does not exist
@@ -41,10 +36,17 @@ clean:
 	-rm $(file_name).ilg
 	-rm $(file_name).log
 	-rm $(file_name).toc
-
+	-rm $(file_name).xdv
+	-rm $(file_name).bcf
+	-rm $(file_name).blg
+	-rm $(file_name)-cache.yaml
+	-rm $(file_name).pyg
+	-rm $(file_name).run.xml
+	-rm $(file_name).bbl
+	-rm junk.txt
 
 archive:
-	zip em_pset_all.zip makefile $(file_name).tex $(file_name).pdf solutions/*.tex R/*.R emetrix_preamble.tex title_bor_utf8_knitr_e pset_data.Rdata R_plots/*.tikz
+	zip em_pset_all.zip makefile $(file_name).tex $(file_name).pdf solutions/*.tex R/*.R emetrix_preamble.tex title_bor_utf8_knitr_e pset_data.Rdata R_plots/*.*
 
 .PHONY: fonts r_packages
 fonts:
@@ -59,3 +61,5 @@ fonts:
 r_packages:
 	Rscript R/install_all_packages.R
 
+r_plots:
+	Rscript R/most_plot.R
