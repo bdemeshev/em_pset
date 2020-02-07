@@ -2349,11 +2349,14 @@ $\E(x_i)=10/6$, $\Var(x_i)=50/6$.
 
 Какой ожидаемый $R^2$ получит Машенька?
 \begin{sol}
-Без ограничения общности центрируем исходные переменные. Значения регрессора обозначим $x_i$, исходную зависимую переменную $\tilde{y}_i$, а переставленную в случайном порядке $y_i$. По условию $\sum y_i^2 = \sum \tilde{y}_i^2$.
+Без ограничения общности центрируем исходные переменные. 
+Значения регрессора обозначим $x_i$, исходную зависимую переменную $\tilde{y}_i$, а переставленную в случайном порядке $y_i$. 
+По условию $\sum y_i^2 = \sum \tilde{y}_i^2$.
 
 Фиксируем исходные переменные и находим:
 \[
-\E(R^2 | \tilde{y}) = \E\left( \frac{(\sum x_i y_i )^2}{\sum x_i^2 \sum y_i^2}  \right) = \frac{\Var(\sum x_i y_i | \tilde{y})}{\sum x_i^2 \sum y_i^2}
+\E(R^2 | \tilde{y}) = \E\left( \frac{(\sum x_i y_i )^2}{\sum x_i^2 \sum y_i^2}  \right) = 
+\frac{\Var(\sum x_i y_i | \tilde{y})}{\sum x_i^2 \sum y_i^2}
 \]
 
 Для начала найдём дисперсию отдельного игрека:
@@ -2363,7 +2366,9 @@ $\E(x_i)=10/6$, $\Var(x_i)=50/6$.
 
 А теперь из $\Cov(y_1, \sum y_i | \tilde{y}) =0$ найдём и дисперсию нужной суммы:
 \[
-\Var(\sum x_i y_i | \tilde{y}) = \Var(y_i | \tilde{y}) \left(  \sum x_i^2 - \sum_{i\neq j} x_i x_j \frac{1}{n-1}  \right) = \Var(y_i | \tilde{y}) \frac{n}{n-1} \sum x_i^2 = \frac{\sum x_i^2 \sum y_i^2 }{n-1}
+\Var(\sum x_i y_i | \tilde{y}) = 
+\Var(y_i | \tilde{y}) \left(  \sum x_i^2 - \sum_{i\neq j} x_i x_j \frac{1}{n-1}  \right) = 
+\Var(y_i | \tilde{y}) \frac{n}{n-1} \sum x_i^2 = \frac{\sum x_i^2 \sum y_i^2 }{n-1}
 \]
 
 Заканчиваем подсчёт,
@@ -2397,6 +2402,39 @@ $\E(x_i)=10/6$, $\Var(x_i)=50/6$.
 \begin{sol}
 \end{sol}
 \end{problem}
+
+\begin{problem}
+Илон Маск оценил модель парной регрессии $y_i = \b_1 + \b_2 x_i + u_i$.
+Часть данных и прогнозов окалазась потеряна. 
+
+\begin{tabular}{ccc}
+  \toprule
+  $x_i$ & $y_i$ & $\hy_i$ \\
+  \midrule
+  $a$ & 6 & 1 \\
+  1 & 7 & 0 \\
+  1 & 4 & 3 \\
+  2 & 5 & $b$ \\
+  \bottomrule
+\end{tabular}
+  
+Помогите бравому Илону Маску восстановить пропуски, найдите $a$ и $b$. 
+\begin{sol}
+Решаем систему двух уравнений:
+\[
+\begin{cases}
+  \langle x, y - \hy \rangle = 0, \\
+  \langle \ones, y - \hy \rangle = 0 
+\end{cases}
+\]
+
+Из $\langle \ones, y - \hy \rangle = 0$ следует, что $b=18$. 
+Затем из $\langle x, y - \hy \rangle = 0$ следует, что $a=18/5$.
+\end{sol}
+\end{problem}
+
+
+
 
 
 \Closesolutionfile{solution_file}
