@@ -740,6 +740,37 @@ $6$ & ? \\
 \end{problem}
 
 
+\begin{problem}
+Илон Маск оценил модель парной регрессии $y_i = \b_1 + \b_2 x_i + u_i$.
+Часть данных и прогнозов окалазась потеряна. 
+
+\begin{tabular}{ccc}
+       \toprule
+       $x_i$ & $y_i$ & $\hy_i$ \\
+       \midrule
+       $a$ & 6 & 1 \\
+       1 & 7 & 0 \\
+       1 & 4 & 3 \\
+       2 & 5 & $b$ \\
+       \bottomrule
+\end{tabular}
+       
+Помогите бравому Илону Маску восстановить пропуски, найдите $a$ и $b$. 
+\begin{sol}
+Решаем систему двух уравнений:
+\[
+\begin{cases}
+       \langle x, y - \hy \rangle = 0, \\
+       \langle \ones, y - \hy \rangle = 0 
+\end{cases}
+\]
+
+Из $\langle \ones, y - \hy \rangle = 0$ следует, что $b=18$. 
+Затем из $\langle x, y - \hy \rangle = 0$ следует, что $a=18/5$.
+\end{sol}
+\end{problem}
+       
+
 
 
 
