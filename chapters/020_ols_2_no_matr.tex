@@ -1,3 +1,4 @@
+% !TEX root = ../em1_pset_v2.tex
 \Opensolutionfile{solution_file}[solutions/sols_020]
 % в квадратных скобках фактическое имя файла
 
@@ -107,7 +108,9 @@ for(i in 1:ncol(toPlot))           # построим все одним махо
 
 
 \begin{problem}
-Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ — классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 3, \sum_{i=1}^5 x_iy_i = 12, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 3$.
+Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ — классическая регрессионная модель. 
+Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 3, 
+\sum_{i=1}^5 x_iy_i = 12, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 3$.
 
 \begin{enumerate}
 \item Найдите $\hb_1$, $\hb_2$, $\Corr(\hb_1, \hb_2)$.
@@ -122,8 +125,10 @@ for(i in 1:ncol(toPlot))           # построим все одним махо
 \[\hb_2 = \frac{\sum (x_i - \bar{x}) (y_i - \bar{y})}{\sum (x_i-\bar{x})^2} = \frac{\sum (x_i - \bar{x})y_i}{\sum (x_i-\bar{x})^2} = \frac{\sum x_i y_i - \bar{y} \sum x_i}{\sum x_i^2 - 2 \bar{x} \sum x_i + n \bar{x}^2}=2.5\]
 \[\hb_1 = \bar{y} - \hb_2 \bar{x} = 1.5 \]
 \item
-\[\Corr(\hb_1, \hb_2) = \frac{\Cov (\hb_1, \hb_2)}{\sqrt{\Var (\hb_1)\cdot \Var (\hb_2)}}=\frac{\Cov (\bar{y}-\hb_2 \bar{x}, \hb_2)}{\sqrt{\Var (\bar{y}-\hb_2 \bar{x})\cdot \Var (\hb_2)}} = \]
-\[ = \frac{-\bar{x} \cdot \Cov(\hb_2,\hb_2)}{\bar{x}\cdot\sqrt{\left(\Var (\hb_2) \right)^2}} = -1  \]
+\[
+  \Corr(\hb_1, \hb_2) = \frac{\Cov (\hb_1, \hb_2)}{\sqrt{\Var (\hb_1)\cdot \Var (\hb_2)}}= \ldots =
+\frac{-\sum x_i}{\sqrt{n \sum x_i^2}} = \frac{-3}{\sqrt{5\cdot 3}}
+\]
 \item
 \[TSS = \sum (y_i - \bar{y})^2 = \sum y_i^2 - 2 \bar{y} \sum y_i + n \bar{y}^2 = 10 \]
 \item

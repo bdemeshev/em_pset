@@ -7,6 +7,7 @@
 *.ind
 *-tikzDictionary
 *-cache.yaml
+*.bcf
 *.pyg
 *.synctex.gz
 *.tdo
