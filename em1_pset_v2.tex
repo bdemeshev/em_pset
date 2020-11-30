@@ -1,5 +1,4 @@
 \documentclass[11pt, openany]{book}
-% moving to xelatex: pdftex option removed
 
 % команды АК.
 \newcommand{\calL}{\mathcal{L}}
@@ -88,6 +87,16 @@ style=alphabetic]{biblatex}
         {%
         \end{myenum}}
 
+
+
+% this magick solves problem that appeared after update of texlive 2018 to texlive 2020
+% https://tex.stackexchange.com/questions/511341/the-error-occurred-after-the-last-update
+\makeatletter
+\def\nobreak{\penalty\@M}
+\makeatother
+
+
+ 
 
 
 
