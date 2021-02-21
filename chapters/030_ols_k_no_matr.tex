@@ -679,23 +679,26 @@ $y_i=\beta_1+\beta_2(x_{i1}+x_{i2}+x_{i3})+\epsilon_{i}$
 
 
 \begin{problem} % II. 3.17
-Пусть регрессионная модель имеет вид $y_i= \beta_1+ \beta_2 x_{i1}+ \beta_3 x_{i2}+ \beta_4 x_{i3}+\e_i, i=1,\dots,n.$ Тестируемая гипотеза
+Регрессионная модель имеет вид $y_i= \beta_1+ \beta_2 x_i+ \beta_3 z_i+ \beta_4 w_i+\e_i$. 
+
+Мы тестируем гипотезу
 $H_0:
   \begin{cases}
     \beta_2+ \beta_3+ \beta_4=1, \\
     \beta_3+ \beta_4=0.
  \end{cases}$
-Какая модель из приведённых ниже может выступать в качестве ограниченной модели для тестирования указанной гипотезы? Если ни одна из них, то запишите свою.
+Какая модель из приведённых ниже может выступать в качестве ограниченной модели для тестирования указанной гипотезы? 
+Если ни одна из них, то запишите свою.
 \begin{enumerate}
-\item $y_i-x_{i1} = \beta_1+ \beta_3 (x_{i2}-x_{i3})+ \e_i$;
-\item $y_i-x_{i1} = \beta_1+ \beta_4 (x_{i3}-x_{i2})+ \e_i$;
-\item $y_i+x_{i1} = \beta_1+ \beta_3 (x_{i2}+x_{i3})+ \e_i$;
-\item $y_i+x_{i1} = \beta_1+ \beta_3 (x_{i2}-x_{i3})+ \e_i$.
+\item $y_i - x_i = \beta_1 + \beta_3 (z_i-w_i)+ \e_i$;
+\item $y_i - x_i = \beta_1 + \beta_4 (w_i-z_i)+ \e_i$;
+\item $y_i + x_i = \beta_1 + \beta_3 (z_i+w_i)+ \e_i$;
+\item $y_i + x_i = \beta_1 + \beta_3 (z_i-w_i)+ \e_i$.
 \end{enumerate}
 
 
 \begin{sol}
-1,2
+Модели 1 и 2.
 \end{sol}
 \end{problem}
 
@@ -712,17 +715,17 @@ $H_0:
 Какая модель из приведённых ниже может выступать в качестве ограниченной модели для тестирования указанной гипотезы? 
 Если ни одна из них, то запишите свою.
 \begin{enumerate}
-\item $y_i = \beta_1 + \beta_3 (z_{i}-x_{i}-w_{i})+ \e_i$;
-\item $y_i-x_{i} = \beta_1+ \beta_4 (w_{i}-z_{i})+ \e_i$;
-\item $y_i = \beta_1+ \beta_3 (x_{i}+z_{i}+w_{i})+ \e_i$;
-\item $y_i = \beta_1+ \beta_3 (x_{i}+z_{i}-w_{i})+ \e_i$.
+\item $y_i = \beta_1 + \beta_3 (z_i-x_i-w_i)+ \e_i$;
+\item $y_i-x_i = \beta_1+ \beta_4 (w_i-z_i)+ \e_i$;
+\item $y_i = \beta_1+ \beta_3 (x_i+z_i+w_i)+ \e_i$;
+\item $y_i = \beta_1+ \beta_3 (x_i+z_i-w_i)+ \e_i$.
 \end{enumerate}
 
 
 \begin{sol}
 Можно коротко переформулировать гипотезу: $\beta_3 = \beta_2 = -\beta_4$
 
-$y_i= \beta_1+ \beta_3(x_{i}+ z_{i}- w_{i}+)\e_i$
+$y_i= \beta_1+ \beta_3(x_i+ z_i- w_i+)\e_i$
  
 \textbf{Вывод}: только модель 4
 
@@ -1071,7 +1074,7 @@ F_{cr}= F_{0.05,1,24}\approx 4.26
 
  Пусть задана линейная регрессионная модель:
 \[
-y_i = \beta_1 + \beta_2 x_{i} + \beta_3 z_{i} + \beta_4 w_{i} + \beta_5 q_{i} + \e_i, i = 1, \dots, 20
+y_i = \beta_1 + \beta_2 x_i + \beta_3 z_i + \beta_4 w_i + \beta_5 q_{i} + \e_i, i = 1, \dots, 20
 \]
 По имеющимся данным оценены следующие регрессии:
 \[
@@ -2293,7 +2296,11 @@ $0$
 
 
 \begin{sol}
-$0$ и $1$
+  \begin{enumerate}
+  \item В силу линейности ковариации получаем $\Cov(y_i, w_x x_i + w_z z_i) =0$ для любых весов $w_x$ и $w_z$.
+  \item Предположим, что $z_i$ — это линейная комбинация $y_i$ и $x_i$ с весами, подобранными для равенства $\Corr(y_i, z_i)=0.0001$.
+  В этом случае максимальная корреляция между $y_i$ и линейной комбинацией $x_i$ и $z_i$ окажется равной 1. 
+  \end{enumerate}
 \end{sol}
 \end{problem}
 
