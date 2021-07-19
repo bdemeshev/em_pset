@@ -1,6 +1,8 @@
 ## Задачник по эконометрике
 
-Задачник можно купить [в издательстве URSS](http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=221890)
+* Задачник можно купить [в издательстве URSS](http://urss.ru/cgi-bin/db.pl?lang=Ru&blang=ru&page=Book&id=221890)
+* Опечатки в [первом издании](https://github.com/bdemeshev/em_pset/raw/master/errata/errata_I/metrics_errata_I.pdf)
+* Опечатки во [втором издании](https://github.com/bdemeshev/em_pset/raw/master/errata/errata_I/metrics_errata_II.pdf)
 
 #### Описание папок:
 
